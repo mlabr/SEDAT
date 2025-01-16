@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="PC_GUI.Views.CodeList.CSightsOverviewView">
+  <StackPanel>
+    <TextBlock>CSihts overview</TextBlock>
+    <Button Command="{Binding CSightsCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Center">
+      <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">New Place</TextBlock>
+    </Button>
+    <DataGrid Margin="20" ItemsSource="{Binding CSightsModelList}"
+          IsReadOnly="True"
+          CanUserReorderColumns="True"
+          CanUserResizeColumns="True"
+          CanUserSortColumns="False"
+          GridLinesVisibility="All"
+          BorderThickness="1" BorderBrush="Gray">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Name"  Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+        <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
+        <DataGridTextColumn Header="IsUsed" Binding="{Binding IsUsed}" />
+        <DataGridTemplateColumn>
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button Command="{Binding Path=DataContext.GoToDetailCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                  CommandParameter="{Binding DbId}"
+                  ToolTip.Tip="Go to the detail of a Place."
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <Image Source="resm:PC_GUI.Assets.Icons.detail.ico?assembly=SEDAT" Width="20" Height="20"/>
+              </Button>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTemplateColumn>
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Button Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                  CommandParameter="{Binding DbId}"
+                  ToolTip.Tip="Delete this place permanently."
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <Image Source="resm:PC_GUI.Assets.Icons.trash.ico?assembly=SEDAT" Width="20" Height="20"/>
+              </Button>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+  </StackPanel>
+</UserControl>

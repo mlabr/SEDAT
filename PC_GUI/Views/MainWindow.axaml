@@ -1,0 +1,81 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PC_GUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        x:Class="PC_GUI.Views.MainWindow" CanResize="False" Width="1200" Height="750"
+        x:DataType="vm:MainWindowViewModel"
+        x:CompileBindings="True"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="SEDAT"
+        RequestedThemeVariant="Light">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+  <Grid RowDefinitions="Auto, *, Auto" >
+    <!-- Title bar-->
+    <Grid Grid.Row="0" Height="40" Background="#B0C2B4" ColumnDefinitions="Auto, Auto, *, Auto, Auto">
+      <Rectangle Grid.Column="0"  Width="40"></Rectangle>
+      <Rectangle Grid.Column="1" Width="80"></Rectangle>
+      <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="22" ToolTip.Tip="Shooter's Electronic Data Analyst Tool" >SEDAT</TextBlock>
+      <Image Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Source="resm:PC_GUI.Assets.Icons.target.ico?assembly=SEDAT" Width="25" Height="25"/>
+      <DockPanel Grid.Column="2" >
+        <Menu DockPanel.Dock="Top" Margin="10" >
+          <MenuItem Header="File" Foreground="Black" >
+            <MenuItem Header="Import"></MenuItem>
+            <MenuItem Header="Export"></MenuItem>
+            <MenuItem Header="Backup database"></MenuItem>
+            <MenuItem Header="Restore database"></MenuItem>
+          </MenuItem>
+          <MenuItem Header="Sessions">
+            <MenuItem Header="New">
+              <MenuItem Header="Trainig" Command="{Binding NewSessionCommand}" ></MenuItem>
+              <MenuItem Header="Competition" Command="{Binding NewSessionCommand}" ></MenuItem>
+              <MenuItem Header="Custom" Command="{Binding NewSessionCommand}" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Overview"></MenuItem>
+            <MenuItem Header="Calendar"></MenuItem>
+          </MenuItem>
+	      <MenuItem Header="Weapons">
+			    <MenuItem Header="OverView"></MenuItem>
+				  <MenuItem Header="New">
+				    <MenuItem Header="Full" Command="{Binding ChangeViewCommand}" CommandParameter="NewFullWeaponView" ></MenuItem>
+             <MenuItem Header="Generic"></MenuItem>
+           </MenuItem>
+		  </MenuItem>
+          <MenuItem Header="Manage">
+            <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverView" ></MenuItem>
+			<MenuItem Header="Targets" ></MenuItem>
+			<MenuItem Header="Weapon" >
+				<MenuItem Header="Caliber" ></MenuItem>
+		    <MenuItem Header="Munition" ></MenuItem>
+        <MenuItem Header="Sights" ></MenuItem>
+			</MenuItem>
+            <!--<MenuItem Header="Weapons" Command="{Binding ChangeViewCommand}" CommandParameter="{x:static PC_GUI.Helpers:MenuHelper.MyParam}" ></MenuItem>-->
+          </MenuItem>
+		    <MenuItem Header="Settings" >
+            <MenuItem Header="Code lists" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverView" >
+				      <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="CSightsOverView" />
+			        <MenuItem Header="Disciplines"/>
+			        <MenuItem Header="Shooting Positions"/>
+	          </MenuItem>
+       </MenuItem>
+       <MenuItem Header="About" Command="{Binding OpenInfoDialogCommand}" >
+       </MenuItem>
+     </Menu>
+      </DockPanel>
+    </Grid>
+    <!--Main area-->
+    <Grid Grid.Row="1">
+        <ContentControl Content="{Binding CurrentPage}" />
+        <!--<TransitioningContentControl Content="{Binding CurrentPage}"/>-->
+    </Grid>
+    <!--Bottom area-->
+    <Grid Grid.Row="2" Height="40" Background="#B0C2B4">
+    </Grid>
+  </Grid>
+</Window>

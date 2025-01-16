@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="PC_GUI.Views.Dialogs.InfoDialogView" CanResize="False" Width="200" Height="250"
+        Title="{Binding Title}"
+        RequestedThemeVariant="Light">
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <TextBlock Text="{Binding Message}" />
+    <StackPanel Orientation="Horizontal">
+      <!--<Button Name="YesButton" Click="OnYesClick" Content="Yes"/>
+      <Button Name="NoButton" Click="OnNoClick" Content="No"/>-->
+      <Button Name="OkButton" Content="OK" Command="{Binding SelectOkCommand}"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

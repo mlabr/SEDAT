@@ -1,0 +1,57 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:PC_GUI"
+             x:Class="PC_GUI.App">
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+    <Application.Styles>
+      <!--blue-->
+      <!--<FluentTheme>
+        <FluentTheme.Palettes>
+          <ColorPaletteResources x:Key="Light" Accent="#ff4d8995" AltHigh="White" AltLow="White" AltMedium="White" AltMediumHigh="White" AltMediumLow="White" BaseHigh="Black" BaseLow="#ff99b6c2" BaseMedium="#ff457c90" BaseMediumHigh="#ff0d556f" BaseMediumLow="#ff296880" ChromeAltLow="#ff0d556f" ChromeBlackHigh="Black" ChromeBlackLow="#ff99b6c2" ChromeBlackMedium="#ff0d556f" ChromeBlackMediumLow="#ff457c90" ChromeDisabledHigh="#ff99b6c2" ChromeDisabledLow="#ff457c90" ChromeGray="#ff296880" ChromeHigh="#ff99b6c2" ChromeLow="#ffcbe7f1" ChromeMedium="#ffc1dde8" ChromeMediumLow="#ffcbe7f1" ChromeWhite="White" ListLow="#ffc1dde8" ListMedium="#ff99b6c2" RegionColor="#ffe7e8e3" />
+          <ColorPaletteResources x:Key="Dark" Accent="#ff0073cf" AltHigh="Black" AltLow="Black" AltMedium="Black" AltMediumHigh="Black" AltMediumLow="Black" BaseHigh="White" BaseLow="#ff333333" BaseMedium="#ff9a9a9a" BaseMediumHigh="#ffb4b4b4" BaseMediumLow="#ff676767" ChromeAltLow="#ffb4b4b4" ChromeBlackHigh="Black" ChromeBlackLow="#ffb4b4b4" ChromeBlackMedium="Black" ChromeBlackMediumLow="Black" ChromeDisabledHigh="#ff333333" ChromeDisabledLow="#ff9a9a9a" ChromeGray="Gray" ChromeHigh="Gray" ChromeLow="#ff151515" ChromeMedium="#ff1d1d1d" ChromeMediumLow="#ff2c2c2c" ChromeWhite="White" ListLow="#ff1d1d1d" ListMedium="#ff333333" RegionColor="Black" />
+        </FluentTheme.Palettes>
+      </FluentTheme>-->
+  
+       <!--green-->
+      <FluentTheme>
+        <FluentTheme.Palettes>
+          <ColorPaletteResources x:Key="Light" Accent="#ff769389" AltHigh="White" AltLow="White" AltMedium="White" AltMediumHigh="White" AltMediumLow="White" BaseHigh="Black" BaseLow="#ffb0c2b4" BaseMedium="#ff5f856f" BaseMediumHigh="#ff295d41" BaseMediumLow="#ff447158" ChromeAltLow="#ff295d41" ChromeBlackHigh="Black" ChromeBlackLow="#ffb0c2b4" ChromeBlackMedium="#ff295d41" ChromeBlackMediumLow="#ff5f856f" ChromeDisabledHigh="#ffb0c2b4" ChromeDisabledLow="#ff5f856f" ChromeGray="#ff447158" ChromeHigh="#ffb0c2b4" ChromeLow="#ffdaebdd" ChromeMedium="#ffd2e3d5" ChromeMediumLow="#ffdaebdd" ChromeWhite="White" ListLow="#ffd2e3d5" ListMedium="#ffb0c2b4" RegionColor="#ffe7e8e3" />
+          <ColorPaletteResources x:Key="Dark" Accent="#ff0073cf" AltHigh="Black" AltLow="Black" AltMedium="Black" AltMediumHigh="Black" AltMediumLow="Black" BaseHigh="White" BaseLow="#ff333333" BaseMedium="#ff9a9a9a" BaseMediumHigh="#ffb4b4b4" BaseMediumLow="#ff676767" ChromeAltLow="#ffb4b4b4" ChromeBlackHigh="Black" ChromeBlackLow="#ffb4b4b4" ChromeBlackMedium="Black" ChromeBlackMediumLow="Black" ChromeDisabledHigh="#ff333333" ChromeDisabledLow="#ff9a9a9a" ChromeGray="Gray" ChromeHigh="Gray" ChromeLow="#ff151515" ChromeMedium="#ff1d1d1d" ChromeMediumLow="#ff2c2c2c" ChromeWhite="White" ListLow="#ff1d1d1d" ListMedium="#ff333333" RegionColor="Black" />
+        </FluentTheme.Palettes>
+      </FluentTheme>
+      <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+      <Style Selector="DataGrid">
+        <!-- Definice, jak chceme stylovat DataGrid -->
+        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+        <Setter Property="Background" Value="{DynamicResource GridBackgroundColor}" />
+        <Setter Property="RowHeight" Value="40"/>
+        <Setter Property="RowBackground" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+        <!--<Setter Property="AlternatingRowBackground" Value="{DynamicResource SystemControlBackgroundAltLowMediumBrush}" />-->
+        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+      </Style>
+      <!--<Style Selector="StackPanel">
+        <Setter Property="Background" Value="{DynamicResource GridBackgroundColor}" />
+      </Style>
+      <Style Selector="MenuItem">
+        <Setter Property="Background" Value="{DynamicResource BaseColorBackground}" />
+      </Style>-->
+    </Application.Styles>
+  <Application.Resources>
+    <!-- Static colors -->
+    <Color x:Key="RegionColorLight">#e7e8e3</Color>
+    <Color x:Key="BaseColorLight">#B0C2B4</Color>
+    <Color x:Key="PrimaryColorLight">#769389</Color>
+    <Color x:Key="SecondaryColor">#2D3748</Color>
+    <!---->
+    <!-- Dynamics colors -->
+    <SolidColorBrush x:Key="DynamicBackgroundBrush" Color="{DynamicResource PrimaryColorLight}" />
+    <SolidColorBrush x:Key="BaseColorBackground" Color="{DynamicResource BaseColorLight}" />
+    <SolidColorBrush x:Key="GridBackgroundColor" Color="{DynamicResource RegionColorLight}" />
+  </Application.Resources>
+</Application>

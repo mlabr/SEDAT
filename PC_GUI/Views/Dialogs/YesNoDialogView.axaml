@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100"
+        x:Class="PC_GUI.Views.Dialogs.YesNoDialogView" CanResize="False" Width="300" Height="100"
+        Title="{Binding Title}">
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <TextBlock Text="{Binding Message}" />
+    <StackPanel Orientation="Horizontal">
+      <!--<Button Name="YesButton" Click="OnYesClick" Content="Yes"/>
+      <Button Name="NoButton" Click="OnNoClick" Content="No"/>-->
+      <Button Name="YesButton"  Content="Yes" Command="{Binding SelectYesCommand}"/>
+      <Button Name="NoButton"  Content="No" Command="{Binding SelectNoCommand}"/>
+    </StackPanel>
+  </StackPanel>
+</Window>
+
