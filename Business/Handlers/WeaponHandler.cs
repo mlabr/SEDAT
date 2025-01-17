@@ -24,8 +24,10 @@ namespace Business.Handlers
 		}
 
 
-		public void SaveWeaponToDataBase(WeaponBo bo)
+		public void SaveNewWeaponToDataBase(WeaponBo bo)
 		{
+			var wp = new WeaponProfile();
+			wp.CCaliberList = new List<CCaliber>();
 			//TODO
 			var weapon = new Weapon();
 			weapon.PersonId = 1; //TODO, for test purposes
@@ -34,7 +36,30 @@ namespace Business.Handlers
 			weapon.Note = bo.Note;
 			weapon.IsUsed = true;
 
-			repo.Create(weapon);
+
+			var ccal = bo.CCaliberBoList.FirstOrDefault();
+			if (ccal.IsExisting)
+			{
+
+			}
+			else
+			{
+				var cal = new CCaliber();
+				cal.Name = ccal.Name;
+				cal.Description = ccal.Description;
+				cal.Note = ccal.Note;
+				cal.IsUsed = true;
+				cal.Priority = ccal.Priority; //TODO
+				//Store in db
+				wp.CCaliberList.Add(cal);
+			}
+			
+			//create profileCaliber
+
+			
+			wp.Weapon = weapon;
+
+			repo.Create(wp);
 
 			//must addd new profileSights, weapon can have more than one sights at time 
 
@@ -67,7 +92,7 @@ namespace Business.Handlers
 			foreach (var firingModeBo in list)
 			{
 				var fm = new CCaliberBo();
-				fm.DbId = firingModeBo.CCaliberId;
+				fm.DbId = firingModeBo.CCaliberId.Value;
 				fm.Name = firingModeBo.Name;
 				fm.Description = firingModeBo.Description;
 				fm.Note = firingModeBo.Note;

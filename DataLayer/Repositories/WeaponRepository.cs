@@ -85,6 +85,14 @@ namespace DataLayer.Repositories
 			}
 		}
 
+
+		public void Create(WeaponProfile wp)
+		{
+			Create(wp.Weapon);
+			Create(wp.CCaliberList.FirstOrDefault());
+		}
+
+
 		public void Create(Weapon weapon)
 		{
 			weapon.WeaponId = null;
@@ -92,6 +100,25 @@ namespace DataLayer.Repositories
 			{
 				conn.Insert(weapon);
 			}
+
+			//profile
+
+			//ccaliber
+
+			//profile ccaliber
+
+			//other stuff
+		}
+
+		public void Create(CCaliber cc)
+		{
+			cc.CCaliberId = null;
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(cc);
+			}
+
+
 		}
 
 	}

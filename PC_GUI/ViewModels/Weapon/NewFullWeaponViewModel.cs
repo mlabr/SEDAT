@@ -278,7 +278,7 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 
 
-			handler.SaveWeaponToDataBase(bo);
+			handler.SaveNewWeaponToDataBase(bo);
 			//this.FullWeaponName;
 
 		}

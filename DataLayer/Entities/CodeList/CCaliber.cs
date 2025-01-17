@@ -8,7 +8,7 @@ namespace DataLayer.Entities.CodeList
     public class CCaliber : EntityCodeBase
     {
         [PrimaryKey]
-        public int CCaliberId { get; set; }
+        public int? CCaliberId { get; set; }
 
 
         public float? ValueMetric { get; set; }
