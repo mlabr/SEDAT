@@ -5,38 +5,38 @@ using SQLite;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	public class CSightsRepository : ICodeRepository<CSights>
+	public class CSightsTypeRepository : ICodeRepository<CSightsType>
 	{
 		DbHelper helper;
 		private string connectionString;
 
-		public CSightsRepository()
+		public CSightsTypeRepository()
 		{
 			helper = new DbHelper();
 			connectionString = helper.ConnectionString;
 		}
 
-		public CSights Get(int id)
+		public CSightsType Get(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public List<CSights> GetAllList()
+		public List<CSightsType> GetAllList()
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var list = from csights in conn.Table<CSights>()
+				var list = from csights in conn.Table<CSightsType>()
 						   select csights;
 
 				return list.ToList();
 			}
 		}
 
-		public List<CSights> GetUsedOnlyList()
+		public List<CSightsType> GetUsedOnlyList()
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var list = from principle in conn.Table<CSights>()
+				var list = from principle in conn.Table<CSightsType>()
 						   where principle.IsUsed == true
 						   select principle;
 
@@ -44,17 +44,17 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
-		public void Insert(CSights item)
+		public void Insert(CSightsType item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void InsertList(List<CSights> item)
+		public void InsertList(List<CSightsType> item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Update(CSights item)
+		public void Update(CSightsType item)
 		{
 			throw new NotImplementedException();
 		}

@@ -64,13 +64,20 @@ namespace PC_GUI.ViewModels.Weapon
 		private CCaliberModel _selectedCaliber;
 
 		[ObservableProperty]
-		internal CSightsTypeModel _selectedSightsType;
+		internal CSightsTypeModel _selectedCSightsType;
 
 		[ObservableProperty]
 		internal CFiringModeModel _selectedFiringMode;
 
 		[ObservableProperty]
 		internal MenuItemViewModel _selectedOwnerMenuItem;
+
+		[ObservableProperty]
+		internal SightsModel _selectedSightsModel;
+
+		public ObservableCollection<SightsModel> SightsModelList { get; private set; }
+
+
 		#endregion
 
 		public ObservableCollection<MenuItemViewModel> OwnerMenuItemViewModelList { get; set; }
@@ -160,7 +167,7 @@ namespace PC_GUI.ViewModels.Weapon
 
 
 			var cSightsModelList = handler.GetCSightsTypeBoList();
-			var csightses = new List<CSightsTypeModel>();
+			var csightsTypeList = new List<CSightsTypeModel>();
 
 			foreach(var item in cSightsModelList)
 			{
@@ -169,11 +176,26 @@ namespace PC_GUI.ViewModels.Weapon
 				model.DbId = item.DbId;
 				model.Name = item.Name;
 				model.Description = item.Description;
-				csightses.Add(model);
+				csightsTypeList.Add(model);
 			}
 
-			CSightsTypeModelList = new ObservableCollection<CSightsTypeModel>(csightses);
-			_selectedSightsType = CSightsTypeModelList.FirstOrDefault();
+			CSightsTypeModelList = new ObservableCollection<CSightsTypeModel>(csightsTypeList);
+			_selectedCSightsType = CSightsTypeModelList.FirstOrDefault();
+
+
+			var sightsBoList = handler.GetSightsBoList();
+			var sightsList = new List<SightsModel>();
+			foreach (var item in sightsBoList)
+			{
+				var model = new SightsModel();
+				model.DbId= item.DbId;
+				model.Name = item.Name;
+				model.Description = item.Description;
+				sightsList.Add(model);
+			}
+
+			SightsModelList = new ObservableCollection<SightsModel>(sightsList);
+			_selectedSightsModel = SightsModelList.FirstOrDefault();
 
 			var PowerPrincipleMenuItemsFlatList = Mapper.Weapon.CPowerPrincipleBoListToMenuItemViewModelList(handler.GetCPowerPrincipleBoList());
 			var PowerPrincipleMenuItemNestedList = MenuHelper.CreateNestedListFromFlatList(PowerPrincipleMenuItemsFlatList);
@@ -263,7 +285,7 @@ namespace PC_GUI.ViewModels.Weapon
 			if (IsExistingSightsSelected)
 			{
 				bo.SightsBoList.FirstOrDefault().IsExisting = true;
-				bo.SightsBoList.FirstOrDefault().DbId = model.SelectedSightsType.DbId;
+				bo.SightsBoList.FirstOrDefault().DbId = model.SelectedCSightsType.DbId;
 			}
 			else
 			{
@@ -273,9 +295,13 @@ namespace PC_GUI.ViewModels.Weapon
 				sights.Name = model.SightsName;
 				sights.Description = model.SightsDescription;
 				sights.Note = model.SightsNote;
-				sights.CSightsType.DbId = model.SelectedSightsType.DbId;
+				sights.CSightsType.DbId = model.SelectedCSightsType.DbId;
 				bo.SightsBoList.Add (sights);
 			}
+
+			//TODO validate
+
+			//Show error message in modal window
 
 
 			handler.SaveNewWeaponToDataBase(bo);

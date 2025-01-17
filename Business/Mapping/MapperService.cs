@@ -18,7 +18,7 @@ namespace Business.Mapping
 			_mapper = mapper;
 		}
 
-		public CSightsTypeBo CSightToCSightsBo(CSights sights)
+		public CSightsTypeBo CSightToCSightsBo(CSightsType sights)
 		{
 			//CSights -> CSightsBo
 			return _mapper.Map<CSightsTypeBo>(sights);

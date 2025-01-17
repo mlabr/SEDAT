@@ -14,7 +14,7 @@ namespace Business.Handlers.CodeHandler
 		private readonly MapperService _mapService;
 		public List<CSightsTypeBo> GetAll()
 		{
-			var repo = new CSightsRepository();
+			var repo = new CSightsTypeRepository();
 
 			var csightsList = repo.GetAllList();
 

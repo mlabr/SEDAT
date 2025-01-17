@@ -11,11 +11,11 @@ namespace DataLayer.Entities
 
         public string Name { get; set; }
 
-        public int CSightsId { get; set; }
+        public int CSightsTypeId { get; set; }
 
         public string  Description { get; set; }
 
 		[Ignore]
-        public CSights CSights { get; set; }
+        public CSightsType CSightsType { get; set; }
     }
 }

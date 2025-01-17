@@ -15,7 +15,7 @@ namespace DataLayer.DataResources
     internal class InitialDataResources
     {
 
-        public IEnumerable<CSights> GetCSightsIEnumerable()
+        public IEnumerable<CSightsType> GetCSightsTypeIEnumerable()
         {
 
 			Tuple<string, string>[] sightses =
@@ -33,10 +33,10 @@ namespace DataLayer.DataResources
 			var i = 1;
 			foreach (var sights in sightses)
 			{
-				var item = new CSights();
+				var item = new CSightsType();
 				item.Name = sights.Item1;
 				item.Description = sights.Item2;
-				item.CSightsId = i;
+				item.CSightsTypeId = i;
 				item.Priority = i;
 				item.Note = "";
 				i++;
@@ -340,7 +340,7 @@ namespace DataLayer.DataResources
 		{
 			var sights = new Sights();
 			sights.SightsId = 1;
-			sights.CSightsId = 1;
+			sights.CSightsTypeId = 1;
 			sights.Name = "Unknown";
 			sights.IsUsed = true;
 

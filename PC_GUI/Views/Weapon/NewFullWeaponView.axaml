@@ -54,9 +54,10 @@
       <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="2" Padding="10">
         <Grid ColumnDefinitions="330,330,370" RowDefinitions="auto">
           <Grid Grid.Column="0" ColumnDefinitions="20,100,20,170,1*" RowDefinitions="30,30,30,45,80,80">
+            <!--sights-->
             <RadioButton IsChecked="{Binding IsExistingSightsSelected}" Grid.Column="0" Grid.Row="0" GroupName="SightsGroup"></RadioButton>
             <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Existing sights:</TextBlock>
-            <ComboBox Grid.Column="3" Grid.Row="0" ItemsSource="{Binding CCaliberModelList}" SelectedItem="{Binding SelectedCaliber}"  Width="170" MaxDropDownHeight="300">
+            <ComboBox Grid.Column="3" Grid.Row="0" ItemsSource="{Binding SightsModelList}" SelectedItem="{Binding SelectedSightsModel}"  Width="170" MaxDropDownHeight="300">
               <ComboBox.ItemTemplate>
                 <DataTemplate>
                   <TextBlock Text="{Binding Name}" FontFamily="{Binding}" ToolTip.Tip="{Binding Description}" >
@@ -69,7 +70,7 @@
             <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Name:</TextBlock>
             <TextBox Text="{Binding SightsName}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" ToolTip.Tip="This is a rectangle"></TextBox>
             <TextBlock Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">Type:</TextBlock>
-            <ComboBox Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" ItemsSource="{Binding CSightsTypeModelList}" SelectedItem="{Binding SelectedSightsType}"  Width="170" MaxDropDownHeight="300">
+            <ComboBox Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" ItemsSource="{Binding CSightsTypeModelList}" SelectedItem="{Binding SelectedCSightsType}"  Width="170" MaxDropDownHeight="300">
               <ComboBox.ItemTemplate>
                 <DataTemplate>
                   <TextBlock Text="{Binding Name}" FontFamily="{Binding}" ToolTip.Tip="{Binding Description}" >
@@ -83,6 +84,7 @@
             <TextBox Text="{Binding SightsNote}" Grid.Column="3" Grid.Row="5" Height="75" VerticalAlignment="Top" ToolTip.Tip="This is a rectangle"></TextBox>
           </Grid>
           <Grid Grid.Column="1" ColumnDefinitions="20,100,20,200,1*" RowDefinitions="30,30,30,45,80,80">
+            <!--caliber-->
             <RadioButton IsChecked="{Binding IsExistingCaliberSelected}"  Grid.Column="0" Grid.Row="0" GroupName="CaliberGroup"></RadioButton>
             <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Existing caliber:</TextBlock>
             <ComboBox Grid.Column="3" Grid.Row="0" ItemsSource="{Binding CCaliberModelList}" SelectedItem="{Binding SelectedCaliber}"  Width="200" MaxDropDownHeight="300">

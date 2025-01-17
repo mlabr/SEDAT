@@ -30,8 +30,8 @@ namespace DataLayer
 				db.CreateTable<CCaliber>();
 				db.Insert(idr.GetDefaultCCaliber());
 
-				db.CreateTable<CSights>();
-				foreach (var s in idr.GetCSightsIEnumerable())
+				db.CreateTable<CSightsType>();
+				foreach (var s in idr.GetCSightsTypeIEnumerable())
 				{
 					db.Insert(s);
 				}
@@ -77,7 +77,7 @@ namespace DataLayer
 
 				db.Execute("Create Table Sights (SightsId INTEGER PRIMARY KEY NOT NULL," +
 												"Name String NOT NULL," +
-												"CSightsId INTEGER References CSights (CSightsId) NOT NULL," +
+												"CSightsTypeId INTEGER References CSightsType (CSightsTypeId) NOT NULL," +
 												"Description String," +
 												"Note String," +
 												"IsUsed Boolean NOT NULL );");
