@@ -4,6 +4,7 @@ using DataLayer.Entities.CodeList;
 using PC_GUI.Models;
 using PC_GUI.Models.Weapon;
 using PC_GUI.ViewModels;
+using PC_GUI.ViewModels.Weapon;
 using System;
 using System.Collections.Generic;
 using System.Linq;

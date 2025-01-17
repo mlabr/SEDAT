@@ -21,7 +21,7 @@ using System.Windows.Input;
 
 namespace PC_GUI.ViewModels.Weapon
 {
-	internal partial class NewFullWeaponViewModel : WeaponBaseViewModel
+	internal partial class NewFullWeaponViewModel : ViewModelBase
 	{
 		[ObservableProperty]
 		private string? _dialogResult;
@@ -33,57 +33,60 @@ namespace PC_GUI.ViewModels.Weapon
 		private MainWindowViewModel mainWindowViewModel;
 
 		[ObservableProperty]
-		private MenuItemViewModel _selectedOwnerMenuItem;
-
-		public ObservableCollection<MenuItemViewModel> OwnerMenuItemViewModelList { get; set; }
-
+		public string _weaponName = "";
 
 		[ObservableProperty]
 		public string _profileName = "";
 
+		[ObservableProperty]
+		internal MenuItemViewModel _selectedCPowerPrincipleMenuItem;
+
+		[ObservableProperty]
+		internal MenuItemViewModel _selectedCWeaponTypeMenuItem;
+
+		#region baseviewmodel
+		[ObservableProperty]
+		public string _fullWeaponName = "";
+
+		[ObservableProperty]
+		internal string _identification = "";
+
+		[ObservableProperty]
+		internal string _description = "";
+
+		[ObservableProperty]
+		public string _note = "";
+
+		[ObservableProperty]
+		private CCaliberModel _selectedCaliber;
+
+		[ObservableProperty]
+		internal CSightsModel _selectedSights;
+
+		[ObservableProperty]
+		internal CFiringModeModel _selectedFiringMode;
+
+		[ObservableProperty]
+		internal MenuItemViewModel _selectedOwnerMenuItem;
+		#endregion
+
+		public ObservableCollection<MenuItemViewModel> OwnerMenuItemViewModelList { get; set; }
 		
 		public ObservableCollection<CCaliberModel> CCaliberModelList { get; set; }
 
-
-		[ObservableProperty]
-		private CSightsModel _selectedCSights;
 		public ObservableCollection<CSightsModel> CSightsModelList { get; set; }
 
-
-		[ObservableProperty]
-		private CFiringModeModel _selectedFiringMode;
 		public ObservableCollection<CFiringModeModel> CFiringModelList { get; set; }
 
 		public ObservableCollection<MenuItemViewModel> CPowerPrincipleMenuItems { get; set; }
 
 		[ObservableProperty]
-		private MenuItemViewModel _selectedCPowerPrincipleMenuItem;
-
-		[ObservableProperty]
 		private string _cPowerPrincipleDisplayName = "Power principle: ";
-
 
 		public ObservableCollection<MenuItemViewModel> CWeaponTypeMenuItems { get; set; }
 
 		[ObservableProperty]
-		private MenuItemViewModel _selectedCWeaponTypeMenuItem;
-
-		[ObservableProperty]
 		private string _cWeaponTypeDisplayName = "Weapon type: ";
-
-		[ObservableProperty]
-		public string _weaponName = "";
-
-
-		[ObservableProperty]
-		public string _fullWeaponName = "";
-
-
-		[ObservableProperty]
-		public string _identification = "";
-
-		[ObservableProperty]
-		public string _note = "";
 
 
 		[ObservableProperty]
@@ -94,6 +97,14 @@ namespace PC_GUI.ViewModels.Weapon
 
 		[ObservableProperty]
 		public string _sightsNote = "";
+
+		//View specific
+		[ObservableProperty]
+		private bool _isExistingSightsSelected = true;
+
+
+		[ObservableProperty]
+		private bool _isExistingCaliberSelected = true;
 
 
 		public NewFullWeaponViewModel(MainWindowViewModel main)
@@ -133,7 +144,7 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 
 			CCaliberModelList = new ObservableCollection<CCaliberModel>(cmodelList);
-			_selectedCaliber = CCaliberModelList.FirstOrDefault();
+			SelectedCaliber = CCaliberModelList.FirstOrDefault();
 
 
 			var cSightsModelList = handler.GetCSightsBoList();
@@ -150,7 +161,7 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 
 			CSightsModelList = new ObservableCollection<CSightsModel>(csightses);
-			_selectedCSights = CSightsModelList.FirstOrDefault();
+			_selectedSights = CSightsModelList.FirstOrDefault();
 
 			var PowerPrincipleMenuItemsFlatList = Mapper.Weapon.CPowerPrincipleBoListToMenuItemViewModelList(handler.GetCPowerPrincipleBoList());
 			var PowerPrincipleMenuItemNestedList = MenuHelper.CreateNestedListFromFlatList(PowerPrincipleMenuItemsFlatList);
@@ -166,7 +177,7 @@ namespace PC_GUI.ViewModels.Weapon
 
 			var OwnerMenuItemFlatList = Mapper.PersonBoListToMenuItemViewModelList(handler.GetPersonBoUsedOnlyList());
 			OwnerMenuItemViewModelList = new ObservableCollection<MenuItemViewModel>(OwnerMenuItemFlatList);
-			SelectedOwnerMenuItem = OwnerMenuItemFlatList.FirstOrDefault();
+			_selectedOwnerMenuItem = OwnerMenuItemFlatList.FirstOrDefault();
 
 		}
 
@@ -208,10 +219,37 @@ namespace PC_GUI.ViewModels.Weapon
 		[RelayCommand]
 		private void BtnSubmitOnClick()
 		{
-		
-			var www = this;
-			var w = new WeaponBo();
-			w.Name = this.WeaponName;
+			var model = this;
+			var bo = new WeaponBo();
+			bo.WeaponName = model.WeaponName;
+			bo.Identification = model.Identification;
+			bo.Note = model.Note;
+			bo.Description = model.Description;
+			bo.CWeaponTypeCode = model.SelectedCWeaponTypeMenuItem.DbId;
+			bo.CPowerPrincipleCode = model.SelectedCPowerPrincipleMenuItem.DbId;
+			bo.CFiringModeCode = model.SelectedFiringMode.DbId;
+
+			//Caliber
+			if(IsExistingCaliberSelected)
+			{
+				bo.CCaliberBoList.FirstOrDefault().IsExisting = true;
+				bo.CCaliberBoList.FirstOrDefault().DbId = model.SelectedCaliber.DbId;
+			}
+			else
+			{
+				bo.CCaliberBoList.FirstOrDefault().IsExisting = false;
+			}
+
+			//Sights
+			if(IsExistingSightsSelected)
+			{
+				bo.SightsBoList.FirstOrDefault().IsExisting = true;
+				bo.SightsBoList.FirstOrDefault().DbId = model.SelectedSights.DbId;
+			}
+			else
+			{
+				bo.SightsBoList.FirstOrDefault().IsExisting = false;
+			}
 			
 			//this.FullWeaponName;
 

@@ -8,7 +8,7 @@ namespace Business.BusinessObjects.CodeList
 {
 	public class CodeBoBase
 	{
-		public int DbId { get; set; }
+		public int DbId { get; set; } = 1; //default value
 
 		public string Name { get; set; }
 

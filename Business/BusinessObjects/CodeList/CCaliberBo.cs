@@ -8,5 +8,6 @@ namespace Business.BusinessObjects.CodeList
 {
 	public class CCaliberBo : CodeBoBase
 	{
+		public bool IsExisting { get; set; } = true;
 	}
 }

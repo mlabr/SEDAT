@@ -8,6 +8,5 @@ namespace Business.BusinessObjects.CodeList
 {
 	public class CSightsBo : CodeBoBase
 	{
-
 	}
 }
