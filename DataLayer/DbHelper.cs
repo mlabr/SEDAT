@@ -170,6 +170,11 @@ namespace DataLayer
 												"IsUsed Boolean NOT NULL );");
 
 
+				db.Execute("Create Table ProfileCCaliber (ProfileCCaliberId INTEGER PRIMARY KEY NOT NULL," +
+												"WeaponProfileId INTEGER References Weapon (WeaponId) NOT NULL," +
+												"CCcaliberId INTEGER References CCaliber (CCaliberId) NOT NULL);");
+				
+
 				Console.WriteLine("Done");
 			}
 		}
