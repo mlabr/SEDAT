@@ -28,6 +28,7 @@ namespace Business.Handlers
 		{
 			var wp = new WeaponProfile();
 			wp.CCaliberList = new List<CCaliber>();
+			wp.SightsList = new List<Sights>();
 			//TODO
 			var weapon = new Weapon();
 			weapon.PersonId = 1; //TODO, for test purposes
@@ -53,13 +54,30 @@ namespace Business.Handlers
 				//Store in db
 				wp.CCaliberList.Add(cal);
 			}
+
+			var sights = bo.SightsBoList.FirstOrDefault();
+			if (sights.IsExisting)
+			{
+			}
+			else
+			{
+				var sig = new Sights();
+				sig.Name = sights.Name;
+				sig.Description = sights.Description;
+				sig.Note = sights.Note;
+				sig.IsUsed = true;
+				sig.CSightsTypeId = sights.CSightsType.DbId; 
+				wp.SightsList.Add(sig);
+
+			}
+			
 			
 			//create profileCaliber
 
 			
 			wp.Weapon = weapon;
 
-			repo.Create(wp);
+			repo.Insert(wp);
 
 			//must addd new profileSights, weapon can have more than one sights at time 
 
@@ -132,7 +150,7 @@ namespace Business.Handlers
 			{
 
 				var sg = new SightsBo();
-				sg.DbId = sight.SightsId;
+				sg.DbId = sight.SightsId.Value;
 				sg.Name = sight.Name;
 				sg.Description = sight.Description;
 				sg.Note = sight.Note;

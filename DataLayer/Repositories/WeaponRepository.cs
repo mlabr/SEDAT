@@ -86,14 +86,23 @@ namespace DataLayer.Repositories
 		}
 
 
-		public void Create(WeaponProfile wp)
+		public void Insert(WeaponProfile wp)
 		{
-			Create(wp.Weapon);
-			Create(wp.CCaliberList.FirstOrDefault());
+			Insert(wp.Weapon);
+			Insert(wp.SightsList.FirstOrDefault());
+			Insert(wp.CCaliberList.FirstOrDefault());
 		}
 
+		private void Insert(Sights sights)
+		{
+			sights.SightsId = null;
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(sights);
+			}
+		}
 
-		public void Create(Weapon weapon)
+		public void Insert(Weapon weapon)
 		{
 			weapon.WeaponId = null;
 			using (var conn = new SQLiteConnection(connectionString))
@@ -110,7 +119,7 @@ namespace DataLayer.Repositories
 			//other stuff
 		}
 
-		public void Create(CCaliber cc)
+		public void Insert(CCaliber cc)
 		{
 			cc.CCaliberId = null;
 			using (var conn = new SQLiteConnection(connectionString))

@@ -19,5 +19,7 @@ namespace Business.BusinessObjects.Weapon
 		public CSightsTypeBo CSightsType { get; set; }
 		public bool IsExisting { get; set; }
 
+		public int CSightsTypeId { get; set; }
+
 	}
 }
