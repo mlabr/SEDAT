@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.BusinessObjects
+namespace Business.BusinessObjects.Weapon
 {
 	public class WeaponBo
 	{

@@ -2,6 +2,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Business.BusinessObjects;
+using Business.BusinessObjects.CodeList;
+using Business.BusinessObjects.Weapon;
 using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -102,6 +104,15 @@ namespace PC_GUI.ViewModels.Weapon
 		[ObservableProperty]
 		private bool _isExistingSightsSelected = true;
 
+
+		[ObservableProperty]
+		public string _caliberName = "";
+
+		[ObservableProperty]
+		public string _caliberDescription = "";
+
+		[ObservableProperty]
+		public string _caliberNote = "";
 
 		[ObservableProperty]
 		private bool _isExistingCaliberSelected = true;
@@ -219,6 +230,7 @@ namespace PC_GUI.ViewModels.Weapon
 		[RelayCommand]
 		private void BtnSubmitOnClick()
 		{
+			//mapping
 			var model = this;
 			var bo = new WeaponBo();
 			bo.WeaponName = model.WeaponName;
@@ -237,11 +249,17 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 			else
 			{
-				bo.CCaliberBoList.FirstOrDefault().IsExisting = false;
+				bo.CCaliberBoList = new List<CCaliberBo>();
+				var cal = new CCaliberBo();
+				cal.IsExisting = false;
+				cal.Name = model.CaliberName;
+				cal.Description = model.CaliberDescription;
+				cal.Note = model.CaliberNote;
+				bo.CCaliberBoList.Add(cal);
 			}
 
 			//Sights
-			if(IsExistingSightsSelected)
+			if (IsExistingSightsSelected)
 			{
 				bo.SightsBoList.FirstOrDefault().IsExisting = true;
 				bo.SightsBoList.FirstOrDefault().DbId = model.SelectedSights.DbId;

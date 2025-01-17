@@ -1,5 +1,6 @@
 ﻿using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
+using Business.BusinessObjects.Weapon;
 using DataLayer.Entities.CodeList;
 using PC_GUI.Models;
 using PC_GUI.Models.Weapon;
