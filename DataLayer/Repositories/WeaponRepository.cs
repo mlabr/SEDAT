@@ -85,5 +85,14 @@ namespace DataLayer.Repositories
 			}
 		}
 
+		public void Create(Weapon weapon)
+		{
+			weapon.WeaponId = null;
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(weapon);
+			}
+		}
+
 	}
 }

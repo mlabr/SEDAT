@@ -7,7 +7,7 @@ namespace DataLayer.Entities
 	public class Weapon : EntityBase
 	{
 		[SQLite.PrimaryKey]
-		public int WeaponId { get; set; }
+		public int? WeaponId { get; set; }
 
         public string Name { get; set; }
 

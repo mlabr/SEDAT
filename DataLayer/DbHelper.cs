@@ -67,7 +67,7 @@ namespace DataLayer
 
 				//db.CreateTable<Weapon>(); //This shit doesnt work :(
 
-				db.Execute("Create Table Weapon (WeaponId INTEGER PRIMARY KEY NOT NULL," +
+				db.Execute("Create Table Weapon (WeaponId INTEGER PRIMARY KEY NOT NULL UNIQUE," +
 												"Name String NOT NULL," +
 												"Identification String," +
 												"Note String," +

@@ -276,7 +276,9 @@ namespace PC_GUI.ViewModels.Weapon
 				sights.CSightsType.DbId = model.SelectedSightsType.DbId;
 				bo.SightsBoList.Add (sights);
 			}
-			
+
+
+			handler.SaveWeaponToDataBase(bo);
 			//this.FullWeaponName;
 
 		}

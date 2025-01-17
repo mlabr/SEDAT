@@ -1,5 +1,6 @@
 ﻿using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
+using Business.BusinessObjects.Weapon;
 using Business.Mapping;
 using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
@@ -23,13 +24,21 @@ namespace Business.Handlers
 		}
 
 
-		public void SaveWeaponToDataBase()
+		public void SaveWeaponToDataBase(WeaponBo bo)
 		{
 			//TODO
-			//create weapon bo or something like that.
+			var weapon = new Weapon();
+			weapon.PersonId = 1; //TODO, for test purposes
+			weapon.Name = bo.WeaponName;
+			weapon.Identification = bo.Identification;
+			weapon.Note = bo.Note;
+			weapon.IsUsed = true;
+
+			repo.Create(weapon);
+
 			//must addd new profileSights, weapon can have more than one sights at time 
 
-			throw new NotImplementedException();
+			
 		}
 
 
