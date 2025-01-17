@@ -9,6 +9,6 @@ Build with C# and Avalonia framework to run on GNU/Linux and MS Windows.
 Warning: This is not complete program, not even pre-aplha :).
 
 Supported platforms:
- - Windows (64bit)
- - Linux (64bit)
- - Linux ARM (32bit)
+ - Windows (64bit), tested Win 11
+ - Linux (64bit), Test Linux Mint
+ - Linux ARM (32bit), Tested Raspberry Pi OS (Raspbian)
