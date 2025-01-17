@@ -18,7 +18,7 @@ namespace PC_GUI.ViewModels.CodeList
 		[ObservableProperty]
 		private string? _dialogResult;
 
-		public ObservableCollection<CSightsModel> CSightsModelList { get; set; }
+		public ObservableCollection<CSightsTypeModel> CSightsModelList { get; set; }
 
 		//public Interaction<>
 
@@ -36,10 +36,10 @@ namespace PC_GUI.ViewModels.CodeList
 
 			var list = handler.GetAll();
 
-			var modelList = new List<CSightsModel>();
+			var modelList = new List<CSightsTypeModel>();
 			foreach (var item in list)
 			{
-				var model = new CSightsModel();
+				var model = new CSightsTypeModel();
 				model.DbId = item.DbId;
 				model.Name = item.Name;
 				model.Description = item.Description;
@@ -48,7 +48,7 @@ namespace PC_GUI.ViewModels.CodeList
 
 			}
 
-			CSightsModelList = new ObservableCollection<CSightsModel>(modelList);
+			CSightsModelList = new ObservableCollection<CSightsTypeModel>(modelList);
 		}
 
 	}

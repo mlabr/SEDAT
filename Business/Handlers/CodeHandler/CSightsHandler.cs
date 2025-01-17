@@ -12,19 +12,19 @@ namespace Business.Handlers.CodeHandler
 	public class CSightsHandler : CodeBoBase
 	{
 		private readonly MapperService _mapService;
-		public List<CSightsBo> GetAll()
+		public List<CSightsTypeBo> GetAll()
 		{
 			var repo = new CSightsRepository();
 
 			var csightsList = repo.GetAllList();
 
-			var boList = new List<CSightsBo>();
+			var boList = new List<CSightsTypeBo>();
 
 			foreach (var csight in csightsList)
 			{
 
 				//var bo = _mapService.CSightToCSightsBo(csight);
-				var bo = new CSightsBo();
+				var bo = new CSightsTypeBo();
 				bo.Name = csight.Name;
 				bo.Description = csight.Description;
 				bo.Note = csight.Note;

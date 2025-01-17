@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Business.BusinessObjects.CodeList
 {
-	public class CSightsBo : CodeBoBase
+	public class CSightsTypeBo : CodeBoBase
 	{
+		public CSightsTypeBo()
+		{
+			DbId = 1; //defaul value
+		}
 	}
 }

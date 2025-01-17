@@ -69,15 +69,15 @@ namespace Business.Handlers
 		}
 
 
-		public List<CSightsBo> GetCSightsBoList()
+		public List<CSightsTypeBo> GetCSightsTypeBoList()
 		{
 			var repo = new CSightsRepository();
 			var list = repo.GetUsedOnlyList();
-			var listBo = new List<CSightsBo>();
+			var listBo = new List<CSightsTypeBo>();
 			foreach (var sight in list)
 			{
 				
-				var fm = new CSightsBo();
+				var fm = new CSightsTypeBo();
 				fm.DbId = sight.CSightsId;
 				fm.Name = sight.Name;
 				fm.Description = sight.Description;

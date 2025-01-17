@@ -13,9 +13,9 @@ namespace Business.Mapping
 	{
 		public MappingProfile()
 		{
-			CreateMap<CSights, CSightsBo>();
+			CreateMap<CSights, CSightsTypeBo>();
 
-			CreateMap<CSightsBo, CSights>();
+			CreateMap<CSightsTypeBo, CSights>();
 		}
 	}
 }

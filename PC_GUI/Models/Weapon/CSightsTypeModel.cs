@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Weapon
 {
-	internal class CSightsModel : CodeBaseModel
+	internal class CSightsTypeModel : CodeBaseModel
 	{
 	}
 }

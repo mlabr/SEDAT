@@ -9,10 +9,15 @@ namespace Business.BusinessObjects.Weapon
 {
 	public class SightsBo : CodeBoBase
 	{
+		public SightsBo()
+		{
+			CSightsType = new CSightsTypeBo();
+			IsExisting = true;
 
-		public CSightsBo CSights { get; set; } = new CSightsBo();
-		public bool IsExisting { get; set; } = true;
+		}
 
-		public int CSightsType { get; set; } = 1;
+		public CSightsTypeBo CSightsType { get; set; }
+		public bool IsExisting { get; set; }
+
 	}
 }
