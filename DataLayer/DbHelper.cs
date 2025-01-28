@@ -66,7 +66,7 @@ namespace DataLayer
 				db.Insert(idr.GetDefaultTarget());
 
 				//db.CreateTable<Weapon>(); //This shit doesnt work :(
-
+				//Tables with foreign key msut be created this way.
 				db.Execute("Create Table Weapon (WeaponId INTEGER PRIMARY KEY NOT NULL UNIQUE," +
 												"Name String NOT NULL," +
 												"Identification String," +
@@ -173,7 +173,12 @@ namespace DataLayer
 				db.Execute("Create Table ProfileCCaliber (ProfileCCaliberId INTEGER PRIMARY KEY NOT NULL," +
 												"WeaponProfileId INTEGER References Weapon (WeaponId) NOT NULL," +
 												"CCcaliberId INTEGER References CCaliber (CCaliberId) NOT NULL);");
-				
+
+
+
+				db.Execute("Create Table ProfileSights (ProfileSightsId INTEGER PRIMARY KEY NOT NULL," +
+												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
+												"SightsId INTEGER References Sights (SightsId) NOT NULL);");
 
 				Console.WriteLine("Done");
 			}
