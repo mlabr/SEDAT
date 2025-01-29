@@ -8,9 +8,11 @@ namespace DataLayer.Entities
 		[PrimaryKey]
 		public int ProfileCCaliberId { get; set; }
 
+		[NotNull]
         public int WeaponProfileId { get; set; }
 
-        public int CCaliberId { get; set; }
+		[NotNull]
+		public int CCaliberId { get; set; }
 
     }
 }

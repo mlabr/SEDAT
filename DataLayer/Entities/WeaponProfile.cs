@@ -7,7 +7,7 @@ namespace DataLayer.Entities
 	public class WeaponProfile : EntityBase
 	{
 		[PrimaryKey, NotNull, AutoIncrement]
-		public int WeaponProfileId { get; set; }
+		public int? WeaponProfileId { get; set; }
 
         public string Name { get; set; }
 

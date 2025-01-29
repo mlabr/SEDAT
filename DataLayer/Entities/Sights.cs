@@ -6,7 +6,7 @@ namespace DataLayer.Entities
 	[Table("Sights")]
 	public class Sights : EntityBase
 	{
-		[PrimaryKey]
+		[PrimaryKey, NotNull]
 		public int? SightsId { get; set; }
 
         public string Name { get; set; }
