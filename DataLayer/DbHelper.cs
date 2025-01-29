@@ -161,9 +161,10 @@ namespace DataLayer
 
 
 				db.Execute("Create Table WeaponProfile (WeaponProfileId INTEGER PRIMARY KEY NOT NULL," +
-												"WeaponId INTEGER References Weapon (WeaponId)," +
-												"CWeaponTypeParrentId INTEGER References CWeaponType (CWeaponTypeId)," +
-												"CPowerPrincipleId INTEGER References CPowerPrincipleId (CPowerPrincipleIdId)," +
+												"WeaponId INTEGER References Weapon (WeaponId)  NOT NULL," +
+												"CWeaponTypeId INTEGER References CWeaponType (CWeaponTypeId)  NOT NULL," +
+												"CPowerPrincipleId INTEGER References CPowerPrinciple (CPowerPrincipleId)  NOT NULL," +
+												"CFiringModeId INTEGER References CFiringMode (CFiringModeId)  NOT NULL," +
 												"Name String NOT NULL," +
 												"Description String," +
 												"Note String," +
