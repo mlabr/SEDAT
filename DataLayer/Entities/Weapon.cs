@@ -6,7 +6,7 @@ namespace DataLayer.Entities
 	[SQLite.Table("Weapon")]
 	public class Weapon : EntityBase
 	{
-		[SQLite.PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public int? WeaponId { get; set; }
 
         public string Name { get; set; }
@@ -17,7 +17,7 @@ namespace DataLayer.Entities
         public int PersonId { get; set; }
 
 		
-		[SQLite.Ignore]
+		[Ignore]
         public Person Person {get; set; }
 
 

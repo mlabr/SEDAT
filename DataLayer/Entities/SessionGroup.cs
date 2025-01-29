@@ -9,7 +9,7 @@ namespace DataLayer.Entities
 {
 	public class SessionGroup : EntityBase
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public int SessionGroupId { get; set; }
 
 		public int SessionId { get; set; }

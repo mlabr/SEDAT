@@ -5,7 +5,7 @@ namespace DataLayer.Entities
 	[Table("ProfileCCaliber")]
 	public class ProfileCCaliber
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public int ProfileCCaliberId { get; set; }
 
 		[NotNull]

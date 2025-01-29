@@ -7,7 +7,7 @@ namespace DataLayer.Entities.CodeList
     [Table("CCaliber")]
     public class CCaliber : EntityCodeBase
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int? CCaliberId { get; set; }
 
 

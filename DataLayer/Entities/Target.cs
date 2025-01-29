@@ -5,7 +5,7 @@ namespace DataLayer.Entities
 	[Table("Target")]
 	public class Target : EntityBase
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
         public int TargetId { get; set; }
 
 		[NotNull, Unique]

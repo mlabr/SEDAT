@@ -5,7 +5,7 @@ namespace DataLayer.Entities
 	[Table("ProfileSights")]
 	public class ProfileSights
 	{
-		[PrimaryKey, NotNull]
+		[PrimaryKey, NotNull, AutoIncrement]
 		public int? ProfileSightsId { get; set; }
 
 		[NotNull]

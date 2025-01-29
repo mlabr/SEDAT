@@ -9,7 +9,7 @@ namespace DataLayer.Entities
 {
 	public class Event : EntityBase
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
         public int EventId { get; set; }
 
 		public string Name { get; set; }

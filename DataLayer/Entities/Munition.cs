@@ -7,7 +7,7 @@ namespace DataLayer.Entities
 	[Table("Munition")]
 	public class Munition : EntityBase
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public int MunitionId { get; set; }
 
         public int CCaliberId { get; set; }

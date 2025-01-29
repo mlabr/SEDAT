@@ -6,7 +6,7 @@ namespace DataLayer.Entities
 	[Table("Person")]
 	public class Person
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public int PersonId { get; set; }
 
 		[NotNull, Unique]

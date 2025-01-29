@@ -6,7 +6,7 @@ namespace DataLayer.Entities
 	[Table("Sights")]
 	public class Sights : EntityBase
 	{
-		[PrimaryKey, NotNull]
+		[PrimaryKey, NotNull, AutoIncrement]
 		public int? SightsId { get; set; }
 
         public string Name { get; set; }
@@ -17,5 +17,8 @@ namespace DataLayer.Entities
 
 		[Ignore]
         public CSightsType CSightsType { get; set; }
+
+		[Ignore]
+		public int Id { get; set; }
     }
 }

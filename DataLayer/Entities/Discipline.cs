@@ -6,7 +6,7 @@ namespace DataLayer.Entities
 	[Table("Discipline")]
 	public class Discipline : EntityBase
 	{
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]
 		public int DisciplineId { get; set; }
 
         public int CDisciplineId { get; set; }
