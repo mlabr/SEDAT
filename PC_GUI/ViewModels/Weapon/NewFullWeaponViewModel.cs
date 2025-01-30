@@ -288,7 +288,7 @@ namespace PC_GUI.ViewModels.Weapon
 			if (IsExistingSightsSelected)
 			{
 				bo.SightsBoList.FirstOrDefault().IsExisting = true;
-				bo.SightsBoList.FirstOrDefault().DbId = model.SelectedCSightsType.DbId;
+				bo.SightsBoList.FirstOrDefault().DbId = model.SelectedSightsModel.DbId;
 			}
 			else
 			{

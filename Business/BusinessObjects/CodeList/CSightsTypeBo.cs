@@ -10,7 +10,7 @@ namespace Business.BusinessObjects.CodeList
 	{
 		public CSightsTypeBo()
 		{
-			DbId = 1; //defaul value
+			
 		}
 	}
 }

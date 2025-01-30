@@ -97,13 +97,16 @@ namespace DataLayer.Repositories
 			{
 				Insert(sights);
 			}
-			var id = sights.SightsId;
+			var ps = new ProfileSights();
+			ps.SightsId = sights.SightsId.Value;
 			
 			var ccaliber = wp.CCaliberList.FirstOrDefault();
 			if (!ccaliber.CCaliberId.HasValue)
 			{
 				Insert(ccaliber);
 			}
+			var pc = new ProfileCCaliber();
+			pc.CCaliberId = ccaliber.CCaliberId.Value;
 
 			var weapon = wp.Weapon;
 			if (!weapon.WeaponId.HasValue)
@@ -117,20 +120,24 @@ namespace DataLayer.Repositories
 			{
 				conn.Insert(wp);
 			}
-
+			ps.WeaponProfileId = wp.WeaponProfileId.Value;
+			pc.WeaponProfileId = wp.WeaponProfileId.Value;
+			
 			//ProfileSights
-
+			Insert(ps);
 			//ProfileCaliber
+			Insert(pc);
 
-
-			//other stuff
 		}
 
 
 
 		private void Insert(Sights sights)
 		{
-
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(sights);
+			}
 		}
 
 		public void Insert(Weapon weapon)
@@ -156,6 +163,15 @@ namespace DataLayer.Repositories
 			using (var conn = new SQLiteConnection(connectionString))
 			{
 				conn.Insert(ps);
+			}
+		}
+
+		private void Insert(ProfileCCaliber pc)
+		{
+			pc.ProfileCCaliberId= null;
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(pc);
 			}
 		}
 

@@ -172,8 +172,8 @@ namespace DataLayer
 
 
 				db.Execute("Create Table ProfileCCaliber (ProfileCCaliberId INTEGER PRIMARY KEY NOT NULL," +
-												"WeaponProfileId INTEGER References Weapon (WeaponId) NOT NULL," +
-												"CCcaliberId INTEGER References CCaliber (CCaliberId) NOT NULL);");
+												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
+												"CCaliberId INTEGER References CCaliber (CCaliberId) NOT NULL);");
 
 
 
