@@ -1,5 +1,4 @@
-﻿using AutoMapper.Configuration.Annotations;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
@@ -18,6 +17,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -130,6 +130,8 @@ namespace PC_GUI.ViewModels.Weapon
 		{
 			mainWindowViewModel = main;
 			handler = new WeaponHandler();
+			var tt = handler.GetWeaponProfileList();
+
 
 			var cfmModelList = handler.GetCFiringModeBoList();
 			var modelList = new List<CFiringModeModel>();
@@ -257,6 +259,7 @@ namespace PC_GUI.ViewModels.Weapon
 			var model = this;
 			var bo = new WeaponBo();
 			bo.WeaponName = model.WeaponName;
+			bo.ProfileName = model.ProfileName;
 			bo.Identification = model.Identification;
 			bo.Note = model.Note;
 			bo.Description = model.Description;

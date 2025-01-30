@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace DataLayer.Repositories
 {
@@ -59,17 +60,19 @@ namespace DataLayer.Repositories
 			}
 		}
 
-		public void Get()
+		public List<WeaponProfile> GetWeaponProfileList()
 		{
-			using (var conn = new SQLiteConnection(connectionString))
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var item = from weapon in conn.Table<Weapon>()
-						   join person in conn.Table<Person>() on weapon.PersonId equals person.PersonId
-						   where weapon.WeaponId == 1
-						   select weapon;
+				var list = from profile in conn.Table<WeaponProfile>()
+						   where profile.IsUsed == true
+						   select profile;
 
-				var stop = 0;
+				list.ToList();
+				return list.ToList();
 			}
+
+			//return new List<WeaponProfile>();
 		}
 
 		public List<CFiringMode> GetFiringModeListUsedOnly()
@@ -88,35 +91,54 @@ namespace DataLayer.Repositories
 
 		public void Insert(WeaponProfile wp)
 		{
-			Insert(wp.Weapon);
-			Insert(wp.SightsList.FirstOrDefault());
-			Insert(wp.CCaliberList.FirstOrDefault());
+			
+			var sights = wp.SightsList.FirstOrDefault();
+			if (!sights.SightsId.HasValue)
+			{
+				Insert(sights);
+			}
+			var id = sights.SightsId;
+			
+			var ccaliber = wp.CCaliberList.FirstOrDefault();
+			if (!ccaliber.CCaliberId.HasValue)
+			{
+				Insert(ccaliber);
+			}
+
+			var weapon = wp.Weapon;
+			if (!weapon.WeaponId.HasValue)
+			{
+				Insert(wp.Weapon);
+			}
+			wp.WeaponId = wp.Weapon.WeaponId.Value;
+
+			//ProfileItself
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(wp);
+			}
+
+			//ProfileSights
+
+			//ProfileCaliber
+
+
+			//other stuff
 		}
+
+
 
 		private void Insert(Sights sights)
 		{
-			sights.SightsId = null;
-			using (var conn = new SQLiteConnection(connectionString))
-			{
-				conn.Insert(sights);
-			}
+
 		}
 
 		public void Insert(Weapon weapon)
 		{
-			weapon.WeaponId = null;
 			using (var conn = new SQLiteConnection(connectionString))
 			{
 				conn.Insert(weapon);
-			}
-
-			//profile
-
-			//ccaliber
-
-			//profile ccaliber
-
-			//other stuff
+			}		
 		}
 
 		public void Insert(CCaliber cc)
@@ -126,8 +148,15 @@ namespace DataLayer.Repositories
 			{
 				conn.Insert(cc);
 			}
+		}
 
-
+		public void Insert(ProfileSights ps)
+		{
+			ps.ProfileSightsId = null;
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(ps);
+			}
 		}
 
 	}

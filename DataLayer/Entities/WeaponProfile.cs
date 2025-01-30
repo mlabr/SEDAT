@@ -17,7 +17,9 @@ namespace DataLayer.Entities
 
         public int CPowerPrincipleId { get; set; }
 
-        [Ignore]
+		public int CFiringModeId { get; set; }
+
+		[Ignore]
         public Weapon Weapon { get; set; }
 
         [Ignore]
@@ -25,6 +27,9 @@ namespace DataLayer.Entities
 
         [Ignore]
         public CPowerPrinciple CPowerPrinciple { get; set; }
+
+        [Ignore]
+        public CFiringMode CFiringMode { get; set; }
 
         [Ignore]
         public List<CCaliber> CCaliberList { get; set; }

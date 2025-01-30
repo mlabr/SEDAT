@@ -29,53 +29,57 @@ namespace Business.Handlers
 			var wp = new WeaponProfile();
 			wp.CCaliberList = new List<CCaliber>();
 			wp.SightsList = new List<Sights>();
-			//TODO
+			wp.Name = bo.WeaponName + " " + bo.ProfileName;
+			wp.CWeaponTypeId = bo.CWeaponTypeCode;
+			wp.CPowerPrincipleId = bo.CPowerPrincipleCode;
+			wp.CFiringModeId = bo.CFiringModeCode;
+
+			
 			var weapon = new Weapon();
 			weapon.PersonId = 1; //TODO, for test purposes
 			weapon.Name = bo.WeaponName;
 			weapon.Identification = bo.Identification;
 			weapon.Note = bo.Note;
 			weapon.IsUsed = true;
-
-
-			var ccal = bo.CCaliberBoList.FirstOrDefault();
-			if (ccal.IsExisting)
-			{
-
-			}
-			else
-			{
-				var cal = new CCaliber();
-				cal.Name = ccal.Name;
-				cal.Description = ccal.Description;
-				cal.Note = ccal.Note;
-				cal.IsUsed = true;
-				cal.Priority = ccal.Priority; //TODO
-				//Store in db
-				wp.CCaliberList.Add(cal);
-			}
-
-			var sights = bo.SightsBoList.FirstOrDefault();
-			if (sights.IsExisting)
-			{
-			}
-			else
-			{
-				var sig = new Sights();
-				sig.Name = sights.Name;
-				sig.Description = sights.Description;
-				sig.Note = sights.Note;
-				sig.IsUsed = true;
-				sig.CSightsTypeId = sights.CSightsType.DbId; 
-				wp.SightsList.Add(sig);
-
-			}
-			
-			
-			//create profileCaliber
-
-			
 			wp.Weapon = weapon;
+
+			var cal = new CCaliber();
+			var calBo = bo.CCaliberBoList.FirstOrDefault();
+			if (calBo.IsExisting)
+			{
+				cal.CCaliberId = calBo.DbId;
+			}
+			else
+			{
+				cal.CCaliberId = null;
+			}
+			cal.Name = calBo.Name;
+			cal.Description = calBo.Description;
+			cal.Note = calBo.Note;
+			cal.IsUsed = true;
+			cal.Priority = calBo.Priority; 
+			wp.CCaliberList.Add(cal);
+
+
+			//TODO Mapping
+			var sights = new Sights();
+			var sightsBo = bo.SightsBoList.FirstOrDefault();
+			if (sightsBo.IsExisting)
+			{
+				sights.SightsId = sightsBo.DbId;
+			}
+			else
+			{
+				sights.SightsId = null;
+			}
+			
+			sights.Name = sightsBo.Name;
+			sights.Description = sightsBo.Description;
+			sights.Note = sightsBo.Note;
+			sights.IsUsed = true;
+			sights.CSightsTypeId = sightsBo.CSightsType.DbId;
+			wp.SightsList.Add(sights);
+			
 
 			repo.Insert(wp);
 
@@ -255,6 +259,12 @@ namespace Business.Handlers
 
 		}
 
+		public object GetWeaponProfileList()
+		{
 
+			var repo = new WeaponRepository();
+			var list = repo.GetWeaponProfileList();
+			return list;
+		}
 	}
 }
