@@ -47,6 +47,24 @@ namespace PC_GUI.Mapping
 				return model;
 			}
 
+			internal static CSightsTypeModel CSightsTypeBoToCSightsTypeModel(CSightsTypeBo bo)
+			{
+				var model = new CSightsTypeModel();
+				model.DbId = bo.DbId;
+				model.Name = bo.Name;
+				model.Description = bo.Description;
+				return model;
+			}
+
+			internal static SightsModel SightsBoToSightsModel(SightsBo bo)
+			{
+				var model = new SightsModel();
+				model.DbId = bo.DbId;
+				model.Name = bo.Name;
+				model.Description = bo.Description;
+				return model;
+			}
+
 			internal static MenuItemViewModel CWeaponTypeBoToMenuItemViewModel(CWeaponTypeBo bo)
 			{
 				var model = new MenuItemViewModel(bo.Name, bo.Description);
@@ -73,7 +91,24 @@ namespace PC_GUI.Mapping
 				var model = new MenuItemViewModel(bo.Name, bo.Description);
 				model.DbId = bo.DbId;
 				model.ParentDbId = bo.DbId;
+				return model;
+			}
 
+			internal static CCaliberModel CCaliberBoToCCaliberModel(CCaliberBo bo)
+			{
+				var model = new CCaliberModel();
+				model.DbId = bo.DbId;
+				model.Name = bo.Name;
+				model.Description = bo.Description;
+				return model;
+			}
+
+			internal static CFiringModeModel CFiringModeBoToCFiringModeModel(CFiringModeBo bo)
+			{
+				var model = new CFiringModeModel();
+				model.DbId = bo.DbId;
+				model.Name = bo.Name;
+				model.Description = bo.Description;
 				return model;
 			}
 

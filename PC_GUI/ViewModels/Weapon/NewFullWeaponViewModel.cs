@@ -76,8 +76,6 @@ namespace PC_GUI.ViewModels.Weapon
 		internal SightsModel _selectedSightsModel;
 
 		public ObservableCollection<SightsModel> SightsModelList { get; private set; }
-
-
 		#endregion
 
 		public ObservableCollection<MenuItemViewModel> OwnerMenuItemViewModelList { get; set; }
@@ -130,23 +128,14 @@ namespace PC_GUI.ViewModels.Weapon
 		{
 			mainWindowViewModel = main;
 			handler = new WeaponHandler();
-			var tt = handler.GetWeaponProfileList();
-
-
 			var cfmModelList = handler.GetCFiringModeBoList();
 			var modelList = new List<CFiringModeModel>();
 
 			foreach (var item in cfmModelList)
 			{
-				//TODO mapper
-				var model = new CFiringModeModel();
-				model.DbId = item.DbId;
-				model.Name = item.Name;
-				model.Description = item.Description;
+				var model = Mapper.Weapon.CFiringModeBoToCFiringModeModel(item);
 				modelList.Add(model);
-
 			}
-
 			CFiringModelList = new ObservableCollection<CFiringModeModel>(modelList);
 			_selectedFiringMode = CFiringModelList.FirstOrDefault();
 
@@ -155,13 +144,8 @@ namespace PC_GUI.ViewModels.Weapon
 
 			foreach (var item in cCaliberModelList)
 			{
-				//TODO mapper
-				var model = new CCaliberModel();
-				model.DbId = item.DbId;
-				model.Name = item.Name;
-				model.Description = item.Description; 
+				var model = Mapper.Weapon.CCaliberBoToCCaliberModel(item);
 				cmodelList.Add(model);
-
 			}
 
 			CCaliberModelList = new ObservableCollection<CCaliberModel>(cmodelList);
@@ -173,11 +157,7 @@ namespace PC_GUI.ViewModels.Weapon
 
 			foreach(var item in cSightsModelList)
 			{
-				//TODO mapper
-				var model = new CSightsTypeModel();
-				model.DbId = item.DbId;
-				model.Name = item.Name;
-				model.Description = item.Description;
+				var model = Mapper.Weapon.CSightsTypeBoToCSightsTypeModel(item);
 				csightsTypeList.Add(model);
 			}
 
@@ -189,10 +169,7 @@ namespace PC_GUI.ViewModels.Weapon
 			var sightsList = new List<SightsModel>();
 			foreach (var item in sightsBoList)
 			{
-				var model = new SightsModel();
-				model.DbId= item.DbId;
-				model.Name = item.Name;
-				model.Description = item.Description;
+				var model = Mapper.Weapon.SightsBoToSightsModel(item);
 				sightsList.Add(model);
 			}
 
@@ -243,13 +220,10 @@ namespace PC_GUI.ViewModels.Weapon
 			FullWeaponName = value + " " + _profileName;
 		}
 
-
 		partial void OnProfileNameChanged(string? value)
 		{
 			FullWeaponName = _weaponName + " " + value;
 		}
-
-
 
 		//BtnSubmitOnClickCommand
 		[RelayCommand]
