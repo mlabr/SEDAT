@@ -42,49 +42,17 @@ namespace Business.Handlers
 			weapon.Note = bo.Note;
 			weapon.IsUsed = true;
 			wp.Weapon = weapon;
-
-			var cal = new CCaliber();
+			
 			var calBo = bo.CCaliberBoList.FirstOrDefault();
-			if (calBo.IsExisting)
-			{
-				cal.CCaliberId = calBo.DbId;
-			}
-			else
-			{
-				cal.CCaliberId = null;
-			}
-			cal.Name = calBo.Name;
-			cal.Description = calBo.Description;
-			cal.Note = calBo.Note;
-			cal.IsUsed = true;
-			cal.Priority = calBo.Priority; 
+
+			var cal = Mapper.Weapon.CCaliberBoToCCaliber(calBo);
 			wp.CCaliberList.Add(cal);
 
-
-			//TODO Mapping
-			var sights = new Sights();
 			var sightsBo = bo.SightsBoList.FirstOrDefault();
-			if (sightsBo.IsExisting)
-			{
-				sights.SightsId = sightsBo.DbId;
-			}
-			else
-			{
-				sights.SightsId = null;
-			}
-			
-			sights.Name = sightsBo.Name;
-			sights.Description = sightsBo.Description;
-			sights.Note = sightsBo.Note;
-			sights.IsUsed = true;
-			sights.CSightsTypeId = sightsBo.CSightsType.DbId;
+			var sights = Mapper.Weapon.SightsBoToSights(sightsBo);
 			wp.SightsList.Add(sights);
 			
-
 			repo.Insert(wp);
-
-			//must addd new profileSights, weapon can have more than one sights at time 
-
 			
 		}
 
@@ -95,14 +63,10 @@ namespace Business.Handlers
 			var listBo = new List<CFiringModeBo>();
 			foreach (var firingModeBo in list)
 			{
-				var fm = new CFiringModeBo();
-				fm.DbId = firingModeBo.CFiringModeId;
-				fm.Name = firingModeBo.Name;
-				fm.Description = firingModeBo.Description;
-				fm.Note = firingModeBo.Note;
-				fm.IsUsed = firingModeBo.IsUsed;
+				var fm = Mapper.Weapon.CFiringModeToCFiringModeBo(firingModeBo);
 				listBo.Add(fm);
 			}
+
 			return listBo;
 		}
 
@@ -111,16 +75,12 @@ namespace Business.Handlers
 			var repo = new CCightsRepository();
 			var list = repo.GetUsedOnlyList();
 			var listBo = new List<CCaliberBo>();
-			foreach (var firingModeBo in list)
+			foreach (var item in list)
 			{
-				var fm = new CCaliberBo();
-				fm.DbId = firingModeBo.CCaliberId.Value;
-				fm.Name = firingModeBo.Name;
-				fm.Description = firingModeBo.Description;
-				fm.Note = firingModeBo.Note;
-				fm.IsUsed = firingModeBo.IsUsed;
-				listBo.Add(fm);
+				var bo = Mapper.Weapon.CCaliberToCCaliberBo(item);
+				listBo.Add(bo);
 			}
+
 			return listBo;
 		}
 
@@ -130,19 +90,13 @@ namespace Business.Handlers
 			var repo = new CSightsTypeRepository();
 			var list = repo.GetUsedOnlyList();
 			var listBo = new List<CSightsTypeBo>();
-			foreach (var sight in list)
+			foreach (var sights in list)
 			{
-				
-				var fm = new CSightsTypeBo();
-				fm.DbId = sight.CSightsTypeId;
-				fm.Name = sight.Name;
-				fm.Description = sight.Description;
-				fm.Note = sight.Note;
-				fm.IsUsed = sight.IsUsed;
-				listBo.Add(fm);
+				var bo = Mapper.Weapon.CSightsTypeToCSightsTypeBo(sights);
+				listBo.Add(bo);
 			}
-			return listBo;
 
+			return listBo;
 		}
 
 		public List<SightsBo> GetSightsBoList()
@@ -150,17 +104,12 @@ namespace Business.Handlers
 			var repo = new SightsRepository();
 			var list = repo.GetUsedOnlyList();
 			var listBo = new List<SightsBo>();
-			foreach (var sight in list)
+			foreach (var sights in list)
 			{
-
-				var sg = new SightsBo();
-				sg.DbId = sight.SightsId.Value;
-				sg.Name = sight.Name;
-				sg.Description = sight.Description;
-				sg.Note = sight.Note;
-				sg.IsUsed = sight.IsUsed;
-				listBo.Add(sg);
+				var bo = Mapper.Weapon.SightsToSightsBo(sights);
+				listBo.Add(bo);
 			}
+
 			return listBo;
 
 		}
@@ -171,27 +120,19 @@ namespace Business.Handlers
 			var repo = new CPowerPrincipleRepository();
 			var list = repo.GetUsedOnlyList();
 			var flatListBo = new List<CPowerPrincipleBo>();
-			foreach (var firingModeBo in list)
+			foreach (var item in list)
 			{
-				var pp = new CPowerPrincipleBo();
-				pp.DbId = firingModeBo.CPowerPrincipleId;
-				pp.ParentDbId = firingModeBo.CPowerPrincipleParrentId;
-				pp.Name = firingModeBo.Name;
-				pp.Description = firingModeBo.Description;
-				pp.Note = firingModeBo.Note;
-				pp.IsUsed = firingModeBo.IsUsed;
-				flatListBo.Add(pp);
+				var bo = Mapper.Weapon.CPowerPrincipleToCPowerPrincipleBo(item);
+				flatListBo.Add(bo);
 			}
 
-
 			return flatListBo;
-
 		}
 
 		public CPowerPrincipleBo GetCPowerPrincipleById(int id)
 		{
 			var repo = new CPowerPrincipleRepository();
-			var bo = Mapper.CPowerPrincipleToCPowerPrincipleBo(repo.Get(id));
+			var bo = Mapper.Weapon.CPowerPrincipleToCPowerPrincipleBo(repo.Get(id));
 
 			return bo;
 		}
@@ -202,18 +143,11 @@ namespace Business.Handlers
 			var repo = new CWeaponTypeRepository();
 			var list = repo.GetUsedOnlyList();
 			var flatListBo = new List<CWeaponTypeBo>();
-			foreach (var firingModeBo in list)
+			foreach (var item in list)
 			{
-				var pp = new CWeaponTypeBo();
-				pp.DbId = firingModeBo.CWeaponTypeId;
-				pp.ParentDbId = firingModeBo.CWeaponTypeParrentId;
-				pp.Name = firingModeBo.Name;
-				pp.Description = firingModeBo.Description;
-				pp.Note = firingModeBo.Note;
-				pp.IsUsed = firingModeBo.IsUsed;
-				flatListBo.Add(pp);
+				var bo = Mapper.Weapon.CWeaponTypeToCWeaponTypeBo(item);
+				flatListBo.Add(bo);
 			}
-
 
 			return flatListBo;
 		}
@@ -225,12 +159,10 @@ namespace Business.Handlers
 			var list = repo.GetUsedOnlyList();
 			var boList = new List<CFiringModeBo>();
 
-			foreach(var firingModeBo in list)
+			foreach(var item in list)
 			{
-				var fm = new CFiringModeBo();
-				fm.Name = firingModeBo.Name;
-				fm.Description = firingModeBo.Description;
-				fm.DbId = firingModeBo.CFiringModeId;
+				var bo = Mapper.Weapon.CFiringModeToCFiringModeBo(item);
+				boList.Add(bo);
 			}
 
 			return boList;
@@ -245,26 +177,12 @@ namespace Business.Handlers
 
 			foreach (var bo in list)
 			{
-				var p = new PersonBo();
-				p.Id = bo.PersonId;
-				p.NickName = bo.Nickname;
-				p.FirstName = bo.Firstame;
-				p.LastName = bo.Surname;
-				p.Note = bo.Note;
-				p.IsUsed = bo.IsUsed;
+				var p = Mapper.PersonToPersonBo(bo);
 				boList.Add(p);
 			}
 
 			return boList;
-
 		}
 
-		public object GetWeaponProfileList()
-		{
-
-			var repo = new WeaponRepository();
-			var list = repo.GetWeaponProfileList();
-			return list;
-		}
 	}
 }
