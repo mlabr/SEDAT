@@ -23,7 +23,7 @@ namespace DataLayer.Entities
         public Weapon Weapon { get; set; }
 
         [Ignore]
-        public CPowerPrinciple CWeaponType { get; set; }
+        public CWeaponType CWeaponType { get; set; }
 
         [Ignore]
         public CPowerPrinciple CPowerPrinciple { get; set; }
