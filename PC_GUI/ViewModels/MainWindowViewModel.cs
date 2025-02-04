@@ -61,8 +61,8 @@ namespace PC_GUI.ViewModels
 			CurrentPage = value switch
 			{
 				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
-				MenuHelper.Weapon.OverView.WeaponOverview => new WeaponOverviewViewModel(this),
-				MenuHelper.Weapon.New.NewFullWeapon => new NewFullWeaponViewModel(this),
+				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
+				MenuHelper.Weapon.NewFullWeapon => new NewFullWeaponViewModel(this),
 				MenuHelper.Settings.CodeList.CSightsOverview => new CSightsOverviewViewModel(this),
 				//"PlacesOverView" => new PlaceOverviewViewModel(this),
 				_ => new HomePageViewModel()

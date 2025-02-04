@@ -13,16 +13,9 @@ namespace PC_GUI.Helpers
 
 		public static class Weapon
 		{
-			public static class OverView
-			{
-				public const string WeaponOverview = "WeaponOverviewView";
-			}
 
-			public static class New
-			{
-				public const string NewFullWeapon = "NewFullWeaponView";
-			}
-
+			public const string WeaponOverview = "WeaponOverviewView";
+			public const string NewFullWeapon = "NewFullWeaponView";
 			
 		}
 
