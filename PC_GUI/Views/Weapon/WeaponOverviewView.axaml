@@ -11,13 +11,14 @@
     </Button>
     <DataGrid Margin="20" ItemsSource="{Binding WeaponModelList}"
           IsReadOnly="True"
-          CanUserReorderColumns="True"
+          CanUserReorderColumns="False"
           CanUserResizeColumns="True"
-          CanUserSortColumns="False"
+          CanUserSortColumns="True"
           GridLinesVisibility="All"
           BorderThickness="1">
       <DataGrid.Columns>
         <DataGridTextColumn Header="Name"  Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Name"  Binding="{Binding WeaponProfileName}"/>
         <DataGridTextColumn Header="Identification" Binding="{Binding Identification}" />
         <DataGridTextColumn Header="Caliber"  Binding="{Binding Caliber}"/>
         <DataGridTemplateColumn>
