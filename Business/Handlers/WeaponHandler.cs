@@ -46,7 +46,7 @@ namespace Business.Handlers
 			var wp = new WeaponProfile();
 			wp.CCaliberList = new List<CCaliber>();
 			wp.SightsList = new List<Sights>();
-			wp.Name = bo.WeaponName + " " + bo.ProfileDdId;
+			wp.Name = bo.WeaponName + " " + bo.ProfileName;
 			wp.CWeaponTypeId = bo.CWeaponTypeCode;
 			wp.CPowerPrincipleId = bo.CPowerPrincipleCode;
 			wp.CFiringModeId = bo.CFiringModeCode;
