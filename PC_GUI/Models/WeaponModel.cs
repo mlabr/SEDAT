@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.BusinessObjects.CodeList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,20 @@ namespace PC_GUI.Models
 {
 	public class WeaponModel
 	{
-        public int Id { get; set; }
+        public int ProfileDbId { get; set; }
+
+        public int WeaponDbId { get; set; }
 
 		public string Name { get; set; }
 
-		public string Identification { get; set; }
+        public string WeaponProfileName { get; set; }
 
-        public WeaponModel()
+		public string Identification { get; set; }
+		public string Caliber { get; internal set; }
+
+		public WeaponModel()
         {
-            Id = 0;
+            ProfileDbId = 0;
             Name = string.Empty;
             Identification = string.Empty;
         }

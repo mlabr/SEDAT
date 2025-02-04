@@ -20,9 +20,11 @@ namespace Business.BusinessObjects.Weapon
 		}
 
 
-		public string ProfileName { get; set; }
+		public int ProfileDdId { get; set; }
 
 		public string WeaponName { get; set; }
+
+		public string ProfileName { get; set; }
 
 		public string Identification { get; set; }
 

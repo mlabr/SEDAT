@@ -41,7 +41,7 @@
             <MenuItem Header="Calendar"></MenuItem>
           </MenuItem>
 	      <MenuItem Header="Weapons">
-			    <MenuItem Header="OverView"></MenuItem>
+			    <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponOverviewView" ></MenuItem>
 				  <MenuItem Header="New">
 				    <MenuItem Header="Full" Command="{Binding ChangeViewCommand}" CommandParameter="NewFullWeaponView" ></MenuItem>
              <MenuItem Header="Generic"></MenuItem>

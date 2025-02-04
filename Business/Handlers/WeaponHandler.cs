@@ -24,12 +24,29 @@ namespace Business.Handlers
 		}
 
 
+		public List<WeaponBo> GetWeaponProfiles()
+		{
+			var list = new List<WeaponBo>();
+			var result = repo.GetWeaponProfileAll();
+			foreach (var item in result)
+			{
+				var bo = new WeaponBo();
+				bo.ProfileName = item.Name;
+				bo.WeaponName = item.Weapon.Name;
+				bo.ProfileDdId = item.WeaponProfileId.Value;
+				bo.Identification = item.Weapon.Identification;
+				list.Add(bo);
+			}
+
+			return list;
+		}
+
 		public void SaveNewWeaponToDataBase(WeaponBo bo)
 		{
 			var wp = new WeaponProfile();
 			wp.CCaliberList = new List<CCaliber>();
 			wp.SightsList = new List<Sights>();
-			wp.Name = bo.WeaponName + " " + bo.ProfileName;
+			wp.Name = bo.WeaponName + " " + bo.ProfileDdId;
 			wp.CWeaponTypeId = bo.CWeaponTypeCode;
 			wp.CPowerPrincipleId = bo.CPowerPrincipleCode;
 			wp.CFiringModeId = bo.CFiringModeCode;

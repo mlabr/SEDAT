@@ -60,19 +60,59 @@ namespace DataLayer.Repositories
 			}
 		}
 
-		public List<WeaponProfile> GetWeaponProfileList()
+		public List<WeaponProfile> GetWeaponProfileAll()
 		{
-			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			using (var conn = new SQLiteConnection(connectionString))
 			{
-				var list = from profile in conn.Table<WeaponProfile>()
-						   where profile.IsUsed == true
-						   select profile;
 
-				list.ToList();
-				return list.ToList();
+
+
+				var items = from weaponProfile in conn.Table<WeaponProfile>()
+							join weapon in conn.Table<Weapon>() on weaponProfile.WeaponId equals weapon.WeaponId
+							join wtype in conn.Table<CWeaponType>() on weaponProfile.CWeaponTypeId equals wtype.CWeaponTypeId
+							join pPrinciple in conn.Table<CPowerPrinciple>() on weaponProfile.CPowerPrincipleId equals pPrinciple.CPowerPrincipleId
+							join cFMode in conn.Table<CFiringMode>() on weaponProfile.CFiringModeId equals cFMode.CFiringModeId
+							select new WeaponProfile()
+							{
+								WeaponProfileId = weaponProfile.WeaponProfileId,
+								Name = weaponProfile.Name,
+								Note = weaponProfile.Note,
+								Weapon = weapon,
+								CWeaponType = wtype,
+								CPowerPrinciple = pPrinciple,
+								CFiringMode = cFMode
+
+							};
+
+
+				if (items is null)
+				{
+					return null;
+				}
+
+				items.ToList();
+
+
+				var list = new List<WeaponProfile>();
+				foreach (var item in items)
+				{
+					list.Add(item);
+				}
+
+				//var result = item.Select(m => m.Weapon).FirstOrDefault();
+
+				//if (result is not null)
+				//{
+				//	if (result.Person is not null)
+				//	{
+				//		result.Person = item.Select(c => c.Person).FirstOrDefault();
+				//	}
+
+				//}
+
+				return list;
 			}
 
-			//return new List<WeaponProfile>();
 		}
 
 		public List<CFiringMode> GetFiringModeListUsedOnly()
