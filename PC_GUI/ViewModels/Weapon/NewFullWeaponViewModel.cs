@@ -128,6 +128,7 @@ namespace PC_GUI.ViewModels.Weapon
 		{
 			mainWindowViewModel = main;
 			handler = new WeaponHandler();
+
 			var cfmModelList = handler.GetCFiringModeBoList();
 			var modelList = new List<CFiringModeModel>();
 
@@ -181,17 +182,14 @@ namespace PC_GUI.ViewModels.Weapon
 			CPowerPrincipleMenuItems = new ObservableCollection<MenuItemViewModel>(PowerPrincipleMenuItemNestedList);
 			_selectedCPowerPrincipleMenuItem = PowerPrincipleMenuItemsFlatList.FirstOrDefault();
 
-
 			var WeaponTypeMenuItemFlatList = Mapper.Weapon.CWeaponTypeBoListToMenuItemViewModelList(handler.GetCWeaponTypeBoList());
 			var WeaponTypeMenuItemNestedList = MenuHelper.CreateNestedListFromFlatList(WeaponTypeMenuItemFlatList);
 			CWeaponTypeMenuItems = new ObservableCollection<MenuItemViewModel>(WeaponTypeMenuItemNestedList);
 			_selectedCWeaponTypeMenuItem = WeaponTypeMenuItemFlatList.FirstOrDefault();
 
-
 			var OwnerMenuItemFlatList = Mapper.PersonBoListToMenuItemViewModelList(handler.GetPersonBoUsedOnlyList());
 			OwnerMenuItemViewModelList = new ObservableCollection<MenuItemViewModel>(OwnerMenuItemFlatList);
 			_selectedOwnerMenuItem = OwnerMenuItemFlatList.FirstOrDefault();
-
 		}
 
 
@@ -201,8 +199,7 @@ namespace PC_GUI.ViewModels.Weapon
 			if(value != null)
 			{
 				CPowerPrincipleDisplayName = msg + _selectedCPowerPrincipleMenuItem.Name;
-			}
-			
+			}			
 		}
 
 		partial void OnSelectedCWeaponTypeMenuItemChanged(MenuItemViewModel value)
@@ -212,7 +209,6 @@ namespace PC_GUI.ViewModels.Weapon
 			{
 				CWeaponTypeDisplayName = msg + _selectedCWeaponTypeMenuItem.Name;
 			}
-			
 		}
 
 		partial void OnWeaponNameChanged(string? value)
@@ -280,10 +276,8 @@ namespace PC_GUI.ViewModels.Weapon
 
 			//Show error message in modal window
 
-
 			handler.SaveNewWeaponToDataBase(bo);
 			//this.FullWeaponName;
-
 		}
 
 		[RelayCommand]
