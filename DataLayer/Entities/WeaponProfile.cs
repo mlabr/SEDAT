@@ -19,6 +19,12 @@ namespace DataLayer.Entities
 
 		public int CFiringModeId { get; set; }
 
+		public int MaintenanceIntervalDate { get; set; }
+
+		public int MaintenanceIntervalShots { get; set; }
+
+		public string MaintenanceLastDate { get; set; }
+
 		[Ignore]
         public Weapon Weapon { get; set; }
 

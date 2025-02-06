@@ -123,11 +123,21 @@ namespace PC_GUI.ViewModels.Weapon
 		[ObservableProperty]
 		private bool _isExistingCaliberSelected = true;
 
+		[ObservableProperty]
+		private int _maintenanceIntervalDate;
+
+		[ObservableProperty]
+		private int _maintenanceIntervalShots;
+
+		[ObservableProperty]
+		private DateTimeOffset _maintenanceLastDate;
 
 		public NewFullWeaponViewModel(MainWindowViewModel main)
 		{
 			mainWindowViewModel = main;
 			handler = new WeaponHandler();
+			//MaintenanceLastDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+			MaintenanceLastDate = new DateTimeOffset(DateTime.Now);
 
 			var cfmModelList = handler.GetCFiringModeBoList();
 			var modelList = new List<CFiringModeModel>();
@@ -236,6 +246,9 @@ namespace PC_GUI.ViewModels.Weapon
 			bo.CWeaponTypeCode = model.SelectedCWeaponTypeMenuItem.DbId;
 			bo.CPowerPrincipleCode = model.SelectedCPowerPrincipleMenuItem.DbId;
 			bo.CFiringModeCode = model.SelectedFiringMode.DbId;
+			bo.MaintenanceIntervalDate = model.MaintenanceIntervalDate;
+			bo.MaintenanceIntervalShots = model.MaintenanceIntervalShots;
+			bo.MaintenanceLastDate = model.MaintenanceLastDate;
 
 			//Caliber
 			if(IsExistingCaliberSelected)

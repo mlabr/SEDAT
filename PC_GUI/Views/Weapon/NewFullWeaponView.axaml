@@ -10,7 +10,7 @@
       <TextBlock FontSize="28" FontWeight="DemiBold" Padding="0 0 0 10" Grid.Column="1" Grid.Row="0" Text="{Binding FullWeaponName}"/>
     </Grid>
     
-    <Grid ColumnDefinitions="242, 242, 222,230, 230, 230" RowDefinitions="30, 30,30,30" >
+    <Grid ColumnDefinitions="242, 242, 222,230, 230, 230" RowDefinitions="30, 30,30,30, 30, 30" >
       <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Weapon Name</TextBlock>
       <TextBox Padding="5" Width="215" Text="{Binding WeaponName}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" ></TextBox>
       <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left">Owner</TextBlock>
@@ -47,8 +47,17 @@
       
       <TextBlock Grid.Column="4" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left"> Note</TextBlock>
       <TextBox Grid.Column="4" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Note}" Width="200" Height="100" AcceptsReturn="True" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
-      
-    
+
+
+      <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center">Date maintenance interval</TextBlock>
+      <TextBox Padding="5" Width="215" Text="{Binding MaintenanceIntervalDate}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="5" ></TextBox>
+
+      <TextBlock Grid.Column="1" Grid.Row="4" VerticalAlignment="Center">Shots maintenance interval</TextBlock>
+      <TextBox Padding="5" Width="215" Text="{Binding MaintenanceIntervalShots}" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5" ></TextBox>
+
+      <TextBlock Grid.Column="2" Grid.Row="4" VerticalAlignment="Center">Shots maintenance interval</TextBlock>
+      <DatePicker Grid.Column="2" Grid.Row="5" SelectedDate="{Binding MaintenanceLastDate, Mode=TwoWay}"  DayFormat="ddd dd" Padding="0 5"   HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Grid.ColumnSpan="2"></DatePicker>
+
     </Grid>
     <Grid ColumnDefinitions="1*" RowDefinitions="20, auto, auto">
       <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="2" Padding="10">

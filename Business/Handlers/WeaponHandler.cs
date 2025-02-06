@@ -50,8 +50,11 @@ namespace Business.Handlers
 			wp.CWeaponTypeId = bo.CWeaponTypeCode;
 			wp.CPowerPrincipleId = bo.CPowerPrincipleCode;
 			wp.CFiringModeId = bo.CFiringModeCode;
+			wp.MaintenanceIntervalDate = bo.MaintenanceIntervalDate;
+			wp.MaintenanceIntervalShots = bo.MaintenanceIntervalShots;
+			//wp.MaintenanceLastDate = bo.MaintenanceLastDate;
+			wp.MaintenanceLastDate = bo.MaintenanceLastDate.ToString(format:("yyyy-MM-dd"));
 
-			
 			var weapon = new Weapon();
 			weapon.PersonId = 1; //TODO, for test purposes
 			weapon.Name = bo.WeaponName;

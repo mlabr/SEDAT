@@ -168,6 +168,9 @@ namespace DataLayer
 												"Name String NOT NULL," +
 												"Description String," +
 												"Note String," +
+												"MaintenanceLastDate TEXT," +
+												"MaintenanceIntervalDate INTEGER NOT NULL ," +
+												"MaintenanceIntervalShots INTEGER NOT NULL ," +
 												"IsUsed Boolean NOT NULL );");
 
 

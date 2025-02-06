@@ -47,5 +47,11 @@ namespace Business.BusinessObjects.Weapon
 
 		public List<SightsBo> SightsBoList { get; set; }
 
+		public int MaintenanceIntervalDate { get; set; }
+
+		public int MaintenanceIntervalShots { get; set; }
+
+		public DateTimeOffset MaintenanceLastDate { get; set; }
+
 	}
 }
