@@ -1,16 +1,12 @@
 ﻿using Business.Handlers;
-using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PC_GUI.ViewModels.Weapon
 {
-	internal class WeaponOverviewViewModel : ViewModelBase
+	internal partial class WeaponOverviewViewModel : ViewModelBase
 	{
 		private bool isActionConfirmed = false;
 
@@ -32,6 +28,7 @@ namespace PC_GUI.ViewModels.Weapon
 			foreach (var item in list)
 			{
 				var model = new WeaponModel();
+				model.ProfileDbId = item.ProfileDdId;
 				model.WeaponProfileName = item.ProfileName;
 				model.Name = item.WeaponName;
 				model.Identification = item.Identification;
@@ -40,6 +37,20 @@ namespace PC_GUI.ViewModels.Weapon
 
 			}
 			WeaponModelList = new ObservableCollection<WeaponModel>(modelList);
+		}
+
+		[RelayCommand]
+		protected void GoToDetail(int id)
+		{
+			mainWindowViewModel.CurrentPage = new WeaponDetailViewModel(mainWindowViewModel, id);
+			//mainWindowViewModel.GoToPlaceDetail(id);
+		}
+
+		[RelayCommand]
+		protected void NewPlace()
+		{
+			//mainWindowViewModel.CurrentPage = new WeaponDetailViewModel(mainWindowViewModel);
+			//mainWindowViewModel.GoToPlaceDetail(id);
 		}
 	}
 }

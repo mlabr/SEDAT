@@ -18,15 +18,15 @@
           BorderThickness="1">
       <DataGrid.Columns>
         <DataGridTextColumn Header="Name"  Binding="{Binding Name}"/>
-        <DataGridTextColumn Header="Name"  Binding="{Binding WeaponProfileName}"/>
+        <DataGridTextColumn Header="Profile"  Binding="{Binding WeaponProfileName}"/>
         <DataGridTextColumn Header="Identification" Binding="{Binding Identification}" />
         <DataGridTextColumn Header="Caliber"  Binding="{Binding Caliber}"/>
         <DataGridTemplateColumn>
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
               <Button Command="{Binding Path=DataContext.GoToDetailCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                  CommandParameter="{Binding DbId}"
-                  ToolTip.Tip="Go to the detail of a Place."
+                  CommandParameter="{Binding ProfileDbId}"
+                  ToolTip.Tip="Go to the detail of a weapon."
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center">
                 <Image Source="resm:PC_GUI.Assets.Icons.detail.ico?assembly=SEDAT" Width="20" Height="20"/>
@@ -38,7 +38,7 @@
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
               <Button Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                  CommandParameter="{Binding DbId}"
+                  CommandParameter="{Binding ProfileDdId}"
                   ToolTip.Tip="Delete this place permanently."
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center">

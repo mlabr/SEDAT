@@ -62,4 +62,10 @@
     <Folder Include="Views\Overviews\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\Weapon\WeaponDetailView.axaml.cs">
+      <DependentUpon>WeaponDetailView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
