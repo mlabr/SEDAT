@@ -16,6 +16,10 @@ namespace PC_GUI.ViewModels.Weapon
 
 		public WeaponDetailViewModel(MainWindowViewModel model, int id)
 		{
+			handler = new WeaponHandler();
+
+			handler.GetWeaponProfile(id);
+
 			mainWindowViewModel = model;
 			FullWeaponName = id.ToString();
 		}

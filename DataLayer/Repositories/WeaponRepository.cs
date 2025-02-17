@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using static SQLite.SQLite3;
 
 namespace DataLayer.Repositories
 {
@@ -55,6 +56,76 @@ namespace DataLayer.Repositories
 					}
 					
 				}
+
+				return result;
+			}
+		}
+
+		public WeaponProfile GetWeaponProfile(int id)
+		{
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				var item = from weaponProfile in conn.Table<WeaponProfile>()
+							join weapon in conn.Table<Weapon>() on weaponProfile.WeaponId equals weapon.WeaponId
+							join wtype in conn.Table<CWeaponType>() on weaponProfile.CWeaponTypeId equals wtype.CWeaponTypeId
+							join pPrinciple in conn.Table<CPowerPrinciple>() on weaponProfile.CPowerPrincipleId equals pPrinciple.CPowerPrincipleId
+							join cFMode in conn.Table<CFiringMode>() on weaponProfile.CFiringModeId equals cFMode.CFiringModeId
+							//add caliber
+							//add sights
+							where weaponProfile.WeaponProfileId == id
+							select new WeaponProfile()
+							{
+								WeaponProfileId = weaponProfile.WeaponProfileId,
+								Name = weaponProfile.Name,
+								Note = weaponProfile.Note,
+								Weapon = weapon,
+								CWeaponType = wtype,
+								CPowerPrinciple = pPrinciple,
+								CFiringMode = cFMode
+
+							};
+
+				var caliberList = from profileCCaliber in conn.Table<ProfileCCaliber>()
+								  join caliber in conn.Table<CCaliber>() on profileCCaliber.CCaliberId equals caliber.CCaliberId
+								  where profileCCaliber.WeaponProfileId == id
+								  select new CCaliber()
+								  {
+									  CCaliberId = caliber.CCaliberId,
+									  Name = caliber.Name,
+									  Description = caliber.Description,
+									  ValueMetric = caliber.ValueMetric,
+									  Note = caliber.Note,
+									  Priority = caliber.Priority
+								  };
+
+
+				caliberList.ToList();
+
+				var sightsList = from profileSights in conn.Table<ProfileSights>()
+								  join sights in conn.Table<Sights>() on profileSights.SightsId equals sights.SightsId
+								  join csightsType in conn.Table<CSightsType>() on sights.CSightsTypeId equals csightsType.CSightsTypeId
+								  where profileSights.WeaponProfileId == id
+								  select new Sights()
+								  {
+									  SightsId = sights.SightsId,
+									  Name = sights.Name,
+									  Description = sights.Description,
+									  Note = sights.Note,
+									  IsUsed = sights.IsUsed,
+									  CSightsType = csightsType,
+								  };
+				sightsList.ToList();
+
+
+				if (item is null)
+				{
+					return null;
+				}
+				var result = item.FirstOrDefault();
+				result.CCaliberList = new List<CCaliber>();
+				result.CCaliberList.AddRange(caliberList);
+				result.SightsList = new List<Sights>();
+				result.SightsList.AddRange(sightsList);
 
 				return result;
 			}

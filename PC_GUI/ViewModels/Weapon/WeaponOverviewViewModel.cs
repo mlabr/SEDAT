@@ -22,7 +22,7 @@ namespace PC_GUI.ViewModels.Weapon
 			mainWindowViewModel = main;
 			handler = new WeaponHandler();
 
-			var list = handler.GetWeaponProfiles();
+			var list = handler.GetWeaponProfileList();
 
 			var modelList = new ObservableCollection<WeaponModel>();
 			foreach (var item in list)

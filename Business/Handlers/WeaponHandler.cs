@@ -24,7 +24,7 @@ namespace Business.Handlers
 		}
 
 
-		public List<WeaponBo> GetWeaponProfiles()
+		public List<WeaponBo> GetWeaponProfileList()
 		{
 			var list = new List<WeaponBo>();
 			var result = repo.GetWeaponProfileAll();
@@ -39,6 +39,11 @@ namespace Business.Handlers
 			}
 
 			return list;
+		}
+
+		public void GetWeaponProfile(int id)
+		{
+			var result = repo.GetWeaponProfile(id);
 		}
 
 		public void SaveNewWeaponToDataBase(WeaponBo bo)
@@ -203,6 +208,7 @@ namespace Business.Handlers
 
 			return boList;
 		}
+
 
 	}
 }
