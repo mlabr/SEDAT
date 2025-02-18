@@ -77,6 +77,7 @@ namespace DataLayer.Repositories
 							{
 								WeaponProfileId = weaponProfile.WeaponProfileId,
 								Name = weaponProfile.Name,
+								Description = weaponProfile.Description,
 								Note = weaponProfile.Note,
 								Weapon = weapon,
 								CWeaponType = wtype,
@@ -84,6 +85,12 @@ namespace DataLayer.Repositories
 								CFiringMode = cFMode
 
 							};
+
+
+				if (item is null)
+				{
+					return null;
+				}
 
 				var caliberList = from profileCCaliber in conn.Table<ProfileCCaliber>()
 								  join caliber in conn.Table<CCaliber>() on profileCCaliber.CCaliberId equals caliber.CCaliberId
@@ -116,16 +123,24 @@ namespace DataLayer.Repositories
 								  };
 				sightsList.ToList();
 
+				//TODO
+				//Get shots count total
+				//get shots count from last maintanence
+				//maybe in another query?
 
-				if (item is null)
-				{
-					return null;
-				}
+
+
+
+
+
 				var result = item.FirstOrDefault();
 				result.CCaliberList = new List<CCaliber>();
 				result.CCaliberList.AddRange(caliberList);
 				result.SightsList = new List<Sights>();
 				result.SightsList.AddRange(sightsList);
+
+
+
 
 				return result;
 			}
