@@ -4,5 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PC_GUI.Views.Weapon.WeaponDetailView">
-  <TextBox Text="{Binding FullWeaponName}"></TextBox>
+  <StackPanel>
+    <TextBlock Text="Profile name: ">
+      <TextBlock Text="{Binding ProfileName}"/>
+    </TextBlock>
+    <TextBlock Text="Weapon name: ">
+      <TextBlock Text="{Binding WeaponName}"/>
+    </TextBlock>
+    <TextBlock Text="Identification: ">
+      <TextBlock Text="{Binding Identification}"/>
+    </TextBlock>
+    <TextBlock Text="Profile Description: ">
+      <TextBlock Text="{Binding Description}"/>
+    </TextBlock>
+  </StackPanel>
 </UserControl>

@@ -11,6 +11,8 @@ namespace DataLayer.Entities
 
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public int WeaponId { get; set; }
 
         public int CWeaponTypeId { get; set; }

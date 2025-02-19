@@ -41,9 +41,26 @@ namespace Business.Handlers
 			return list;
 		}
 
-		public void GetWeaponProfile(int id)
+		public WeaponBo GetWeaponProfile(int id)
 		{
 			var result = repo.GetWeaponProfile(id);
+			var w = new WeaponBo();
+			w.ProfileName = result.Name;
+			w.WeaponName = result.Weapon.Name;
+			w.ProfileDdId = result.WeaponProfileId.Value;
+			w.Identification = result.Weapon.Identification;
+			w.Description = result.Description;
+
+
+			//get some stats
+			//TODO
+			//Get shots count total
+			//get shots count from last maintanence
+			//maybe in another query?
+
+
+
+			return w;
 		}
 
 		public void SaveNewWeaponToDataBase(WeaponBo bo)
@@ -52,6 +69,7 @@ namespace Business.Handlers
 			wp.CCaliberList = new List<CCaliber>();
 			wp.SightsList = new List<Sights>();
 			wp.Name = bo.WeaponName + " " + bo.ProfileName;
+			wp.Description = bo.Description;
 			wp.CWeaponTypeId = bo.CWeaponTypeCode;
 			wp.CPowerPrincipleId = bo.CPowerPrincipleCode;
 			wp.CFiringModeId = bo.CFiringModeCode;

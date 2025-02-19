@@ -123,24 +123,11 @@ namespace DataLayer.Repositories
 								  };
 				sightsList.ToList();
 
-				//TODO
-				//Get shots count total
-				//get shots count from last maintanence
-				//maybe in another query?
-
-
-
-
-
-
 				var result = item.FirstOrDefault();
 				result.CCaliberList = new List<CCaliber>();
 				result.CCaliberList.AddRange(caliberList);
 				result.SightsList = new List<Sights>();
 				result.SightsList.AddRange(sightsList);
-
-
-
 
 				return result;
 			}
