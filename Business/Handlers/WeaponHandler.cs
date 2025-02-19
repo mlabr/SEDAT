@@ -7,6 +7,7 @@ using DataLayer.Entities.CodeList;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,16 @@ namespace Business.Handlers
 			w.Identification = result.Weapon.Identification;
 			w.Description = result.Description;
 
+			w.CCaliberBoList = new List<CCaliberBo>();
+			foreach (var cal in result.CCaliberList)
+			{
+				if (cal == null) continue;
+				var c = new CCaliberBo();
+				c.Name = cal.Name;
+				c.Description = cal.Description;
+				c.Note = cal.Note;
+				w.CCaliberBoList.Add(c);
+			}
 
 			//get some stats
 			//TODO

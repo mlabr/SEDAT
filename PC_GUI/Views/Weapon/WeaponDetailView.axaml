@@ -17,5 +17,21 @@
     <TextBlock Text="Profile Description: ">
       <TextBlock Text="{Binding Description}"/>
     </TextBlock>
+    
+    
+    <TextBlock Text="Sights: "/>
+    <DataGrid Margin="5" ItemsSource="{Binding CCaliberModelList}"
+      IsReadOnly="True"
+      CanUserReorderColumns="True"
+      CanUserResizeColumns="True"
+      CanUserSortColumns="False"
+      GridLinesVisibility="All"
+      BorderThickness="1">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Name"  Binding="{Binding Name}"/>
+        <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+        <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
+      </DataGrid.Columns>
+    </DataGrid>
   </StackPanel>
 </UserControl>
