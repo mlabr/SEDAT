@@ -63,6 +63,17 @@ namespace Business.Handlers
 				w.CCaliberBoList.Add(c);
 			}
 
+			w.SightsBoList = new List<SightsBo>();
+			foreach (var sig in result.SightsList)
+			{
+				if (sig == null) continue;
+				var c = new SightsBo();
+				c.Name = sig.Name;
+				c.Description = sig.Description;
+				c.Note = sig.Note;
+				w.SightsBoList.Add(c);
+			}
+
 			//get some stats
 			//TODO
 			//Get shots count total

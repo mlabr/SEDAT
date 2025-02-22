@@ -38,6 +38,8 @@ namespace PC_GUI.ViewModels.Weapon
 
 		public ObservableCollection<CCaliberModel> CCaliberModelList { get; set; }
 
+		public ObservableCollection<SightsModel> SightsModelList { get; set; }
+
 		public WeaponDetailViewModel(MainWindowViewModel model, int id)
 		{
 			handler = new WeaponHandler();
@@ -62,6 +64,19 @@ namespace PC_GUI.ViewModels.Weapon
 				cList.Add(c);
 			}
 			CCaliberModelList = new ObservableCollection<CCaliberModel>(cList);
+
+			var sList = new List<SightsModel>();
+			foreach (var sig in w.SightsBoList)
+			{
+				if (sig == null) continue;
+				var s = new SightsModel();
+				s.Name = sig.Name;
+				s.Description = sig.Description;
+				s.Note = sig.Note;
+				sList.Add(s);
+
+			}
+			SightsModelList = new ObservableCollection<SightsModel>(sList);
 
 
 			mainWindowViewModel = model;
