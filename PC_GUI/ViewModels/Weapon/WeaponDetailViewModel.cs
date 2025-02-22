@@ -21,7 +21,12 @@ namespace PC_GUI.ViewModels.Weapon
 
 		[ObservableProperty]
 		public string _profileName = "";
+		
+		[ObservableProperty]
+		CWeaponTypeModel _weaponTypeModel = new CWeaponTypeModel();
 
+		[ObservableProperty]
+		public string _weaponTypeName = "";
 
 		[ObservableProperty]
 		public string _fullWeaponName = "";
@@ -79,6 +84,7 @@ namespace PC_GUI.ViewModels.Weapon
 			SightsModelList = new ObservableCollection<SightsModel>(sList);
 
 
+			_weaponTypeName = w.WeaponType.Name;
 			mainWindowViewModel = model;
 			FullWeaponName = id.ToString();
 		}

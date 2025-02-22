@@ -74,6 +74,12 @@ namespace Business.Handlers
 				w.SightsBoList.Add(c);
 			}
 
+			w.WeaponType = new CWeaponTypeBo();
+			w.WeaponType.Name = result.CWeaponType.Name;
+			w.WeaponType.Description = result.CWeaponType.Description;
+			w.WeaponType.Note = result.CWeaponType.Note;
+
+
 			//get some stats
 			//TODO
 			//Get shots count total
