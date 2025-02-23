@@ -17,6 +17,9 @@
     <TextBlock Text="Weapon type: ">
       <TextBlock Text="{Binding WeaponTypeName}"/>
     </TextBlock>
+    <TextBlock Text="Power priciple: ">
+      <TextBlock Text="{Binding PowerPrinciple}"/>
+    </TextBlock>
     <TextBlock Text="Profile Description: ">
       <TextBlock Text="{Binding Description}"/>
     </TextBlock>

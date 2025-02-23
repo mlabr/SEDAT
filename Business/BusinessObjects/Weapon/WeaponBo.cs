@@ -40,6 +40,8 @@ namespace Business.BusinessObjects.Weapon
 
 		public CPowerPrincipleBo PowerPrinciple { get; set; }
 
+		public List<CPowerPrincipleBo> PowerPrincipleBoList { get; set; }
+
 		public int CPowerPrincipleCode { get; set; } = _defaultDbValue;
 
 		public CFiringModeBo CFiringMode { get; set; }

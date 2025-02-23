@@ -80,6 +80,7 @@ namespace Business.Handlers
 			w.WeaponType.Note = result.CWeaponType.Note;
 
 			w.WeaponTypeList = GetCWeaponTypeBoAllParrentsList(result.CWeaponType.CWeaponTypeId);
+			w.PowerPrincipleBoList = GetCPowerPrincipleBoAllParrentsList(result.CPowerPrinciple.CPowerPrincipleId);
 
 			//get some stats
 			//TODO
@@ -207,6 +208,20 @@ namespace Business.Handlers
 			var bo = Mapper.Weapon.CPowerPrincipleToCPowerPrincipleBo(repo.Get(id));
 
 			return bo;
+		}
+
+		public List<CPowerPrincipleBo> GetCPowerPrincipleBoAllParrentsList(int id)
+		{
+			var repo = new CPowerPrincipleRepository();
+			var list = repo.GetAllParrents(id);
+			var flatListBo = new List<CPowerPrincipleBo>();
+			foreach (var item in list)
+			{
+				var bo = Mapper.Weapon.CPowerPrincipleToCPowerPrincipleBo(item);
+				flatListBo.Add(bo);
+			}
+
+			return flatListBo;
 		}
 
 

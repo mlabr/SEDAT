@@ -1,5 +1,6 @@
 ﻿using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
+using DataLayer.Entities.CodeList;
 using PC_GUI.Models.Weapon;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,9 @@ namespace PC_GUI.ViewModels.Weapon
 
 		[ObservableProperty]
 		public string _weaponTypeName = "";
+
+		[ObservableProperty]
+		public string _powerPrinciple = "";
 
 		[ObservableProperty]
 		public string _fullWeaponName = "";
@@ -91,6 +95,18 @@ namespace PC_GUI.ViewModels.Weapon
 			{
 				_weaponTypeName = w.WeaponType.Name;
 			}
+
+
+			var j = w.PowerPrincipleBoList.Count;
+			for (int i = 0; i < j; i++)
+			{
+				_powerPrinciple += w.PowerPrincipleBoList[i].Name;
+				if(i < (j - 1))
+				{
+					_powerPrinciple += ", ";
+				}
+			}
+
 
 			mainWindowViewModel = model;
 			FullWeaponName = id.ToString();

@@ -44,6 +44,25 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
+		public List<CPowerPrinciple> GetAllParrents(int id)
+		{
+			var list = new List<CPowerPrinciple>();
+
+			var isTopParrent = false;
+			while (!isTopParrent)
+			{
+				var item = Get(id);
+				list.Add(item);
+				if (item.CPowerPrincipleParrentId == item.CPowerPrincipleId)
+				{
+					isTopParrent = true;
+					break;
+				}
+				id = item.CPowerPrincipleParrentId;
+			}
+			return list;
+		}
+
 		public List<CPowerPrinciple> GetUsedOnlyList()
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
