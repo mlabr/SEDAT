@@ -79,6 +79,7 @@ namespace Business.Handlers
 			w.WeaponType.Description = result.CWeaponType.Description;
 			w.WeaponType.Note = result.CWeaponType.Note;
 
+			w.WeaponTypeList = GetCWeaponTypeBoAllParrentsList(result.CWeaponType.CWeaponTypeId);
 
 			//get some stats
 			//TODO
@@ -213,6 +214,20 @@ namespace Business.Handlers
 		{
 			var repo = new CWeaponTypeRepository();
 			var list = repo.GetUsedOnlyList();
+			var flatListBo = new List<CWeaponTypeBo>();
+			foreach (var item in list)
+			{
+				var bo = Mapper.Weapon.CWeaponTypeToCWeaponTypeBo(item);
+				flatListBo.Add(bo);
+			}
+
+			return flatListBo;
+		}
+
+		public List<CWeaponTypeBo> GetCWeaponTypeBoAllParrentsList(int id)
+		{
+			var repo = new CWeaponTypeRepository();
+			var list = repo.GetAllParrents(id);
 			var flatListBo = new List<CWeaponTypeBo>();
 			foreach (var item in list)
 			{

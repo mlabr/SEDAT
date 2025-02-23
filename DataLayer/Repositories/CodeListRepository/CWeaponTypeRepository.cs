@@ -30,5 +30,51 @@ namespace DataLayer.Repositories.CodeListRepository
 				return list.ToList();
 			}
 		}
+
+		public CWeaponType Get(int id)
+		{
+			CWeaponType type;
+
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+
+				var item = from cWeaponType in conn.Table<CWeaponType>()
+						   where cWeaponType.CWeaponTypeId == id
+						   select new CWeaponType()
+						   {
+							   CWeaponTypeId = cWeaponType.CWeaponTypeId,
+							   CWeaponTypeParrentId = cWeaponType.CWeaponTypeParrentId,
+							   Name = cWeaponType.Name,
+							   Description = cWeaponType.Description,
+							   Note = cWeaponType.Note
+						   };
+
+				type = item.FirstOrDefault();
+			}
+
+
+			return type;
+		}
+
+
+		public List<CWeaponType> GetAllParrents(int id)
+		{
+			var list = new List<CWeaponType>();
+
+			var isTopParrent = false;
+			while(!isTopParrent)
+			{
+				var item = Get(id);
+				list.Add(item);
+				if (item.CWeaponTypeParrentId == item.CWeaponTypeId)
+				{
+					isTopParrent = true;
+					break;
+				}
+				id = item.CWeaponTypeParrentId;
+			}
+			return list;
+		}
+
 	}
 }

@@ -34,6 +34,8 @@ namespace Business.BusinessObjects.Weapon
 
 		public CWeaponTypeBo WeaponType { get; set; }
 
+		public List<CWeaponTypeBo> WeaponTypeList { get; set; }
+
 		public int CWeaponTypeCode { get; set; } = _defaultDbValue;
 
 		public CPowerPrincipleBo PowerPrinciple { get; set; }

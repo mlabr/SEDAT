@@ -83,8 +83,15 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 			SightsModelList = new ObservableCollection<SightsModel>(sList);
 
+			if(w.WeaponTypeList.Count > 1)
+			{
+				_weaponTypeName = w.WeaponTypeList[0].Name + ", "+ w.WeaponTypeList[1].Name;
+			}
+			else
+			{
+				_weaponTypeName = w.WeaponType.Name;
+			}
 
-			_weaponTypeName = w.WeaponType.Name;
 			mainWindowViewModel = model;
 			FullWeaponName = id.ToString();
 		}
