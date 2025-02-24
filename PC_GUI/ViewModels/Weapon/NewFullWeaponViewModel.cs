@@ -36,6 +36,9 @@ namespace PC_GUI.ViewModels.Weapon
 		private MainWindowViewModel mainWindowViewModel;
 
 		[ObservableProperty]
+		public bool _isBasedOnExistingWeapon = false;
+
+		[ObservableProperty]
 		public string _weaponName = "";
 
 		[ObservableProperty]
@@ -93,6 +96,9 @@ namespace PC_GUI.ViewModels.Weapon
 
 		public ObservableCollection<MenuItemViewModel> CWeaponTypeMenuItems { get; set; }
 
+
+		public int WeaponId { get; set; } = 0;
+
 		[ObservableProperty]
 		private string _cWeaponTypeDisplayName = "Weapon type: ";
 
@@ -132,10 +138,29 @@ namespace PC_GUI.ViewModels.Weapon
 		[ObservableProperty]
 		private DateTimeOffset _maintenanceLastDate;
 
+
+		public NewFullWeaponViewModel(MainWindowViewModel main, int dbid)
+		{
+			_isBasedOnExistingWeapon = true;
+			handler = new WeaponHandler();
+			prepareNewWeapon();
+			var bo = handler.GetWeaponBaseById(dbid);
+			WeaponName = bo.WeaponName;
+			WeaponId = bo.WeaponId;
+			Identification = bo.Identification;
+		}
+
 		public NewFullWeaponViewModel(MainWindowViewModel main)
 		{
 			mainWindowViewModel = main;
 			handler = new WeaponHandler();
+			prepareNewWeapon();
+		}
+
+
+		private void prepareNewWeapon()
+		{
+			//handler = new WeaponHandler();
 			//MaintenanceLastDate = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 			MaintenanceLastDate = new DateTimeOffset(DateTime.Now);
 
@@ -166,7 +191,7 @@ namespace PC_GUI.ViewModels.Weapon
 			var cSightsModelList = handler.GetCSightsTypeBoList();
 			var csightsTypeList = new List<CSightsTypeModel>();
 
-			foreach(var item in cSightsModelList)
+			foreach (var item in cSightsModelList)
 			{
 				var model = Mapper.Weapon.CSightsTypeBoToCSightsTypeModel(item);
 				csightsTypeList.Add(model);
@@ -239,6 +264,7 @@ namespace PC_GUI.ViewModels.Weapon
 			var model = this;
 			var bo = new WeaponBo();
 			bo.WeaponName = model.WeaponName;
+			bo.WeaponId = model.WeaponId;
 			bo.ProfileName = model.ProfileName;
 			bo.Identification = model.Identification;
 			bo.Note = model.Note;

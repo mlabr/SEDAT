@@ -47,6 +47,7 @@ namespace Business.Handlers
 			var result = repo.GetWeaponProfile(id);
 			var w = new WeaponBo();
 			w.ProfileName = result.Name;
+			w.WeaponId = result.WeaponId;
 			w.WeaponName = result.Weapon.Name;
 			w.ProfileDdId = result.WeaponProfileId.Value;
 			w.Identification = result.Weapon.Identification;
@@ -95,11 +96,22 @@ namespace Business.Handlers
 			//Get shots count total
 			//get shots count from last maintanence
 			//maybe in another query?
-
-
-
 			return w;
 		}
+
+		public WeaponBo GetWeaponBaseById(int id)
+		{
+			var result = repo.GetWeaponBaseById(id);
+			var bo = new WeaponBo();
+			bo.WeaponId = result.WeaponId.Value;
+			bo.Identification = result.Identification;
+			bo.WeaponName = result.Name;
+
+			return bo;
+
+		}
+
+
 
 		public void SaveNewWeaponToDataBase(WeaponBo bo)
 		{
@@ -122,8 +134,14 @@ namespace Business.Handlers
 			weapon.Identification = bo.Identification;
 			weapon.Note = bo.Note;
 			weapon.IsUsed = true;
+			//weapon is exists
+			if (bo.WeaponId > 0)
+			{
+				weapon.WeaponId = bo.WeaponId;
+			}
 			wp.Weapon = weapon;
-			
+
+
 			var calBo = bo.CCaliberBoList.FirstOrDefault();
 
 			var cal = Mapper.Weapon.CCaliberBoToCCaliber(calBo);
@@ -132,7 +150,11 @@ namespace Business.Handlers
 			var sightsBo = bo.SightsBoList.FirstOrDefault();
 			var sights = Mapper.Weapon.SightsBoToSights(sightsBo);
 			wp.SightsList.Add(sights);
-			
+
+
+
+
+
 			repo.Insert(wp);
 			
 		}

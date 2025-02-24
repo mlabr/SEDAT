@@ -28,7 +28,7 @@ namespace DataLayer.Repositories
 		//CRUD
 
 
-		public Weapon Get(int id)
+		public Weapon GetWeaponBaseById(int id)
 		{
 			using (var conn = new SQLiteConnection(connectionString))
 			{
@@ -76,6 +76,7 @@ namespace DataLayer.Repositories
 							select new WeaponProfile()
 							{
 								WeaponProfileId = weaponProfile.WeaponProfileId,
+								WeaponId = weaponProfile.WeaponId,
 								Name = weaponProfile.Name,
 								Description = weaponProfile.Description,
 								Note = weaponProfile.Note,

@@ -19,6 +19,7 @@ namespace Business.BusinessObjects.Weapon
 			SightsBoList.Add(new SightsBo());
 		}
 
+		public int WeaponId { get; set; }
 
 		public int ProfileDdId { get; set; }
 

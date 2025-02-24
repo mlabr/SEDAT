@@ -1,7 +1,9 @@
 ﻿using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using DataLayer.Entities.CodeList;
 using PC_GUI.Models.Weapon;
+using PC_GUI.ViewModels.Place;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +18,12 @@ namespace PC_GUI.ViewModels.Weapon
 		WeaponHandler handler;
 
 		private MainWindowViewModel mainWindowViewModel;
+
+		[ObservableProperty]
+		public int _weaponId = 0;
+
+		[ObservableProperty]
+		public int _weaponProfileId = 0;
 
 		[ObservableProperty]
 		public string _weaponName = "";
@@ -59,6 +67,7 @@ namespace PC_GUI.ViewModels.Weapon
 			var w = handler.GetWeaponProfile(id);
 
 			WeaponName = w.WeaponName;
+			WeaponId = w.WeaponId;
 			ProfileName = w.ProfileName;
 			Identification = w.Identification;
 			Description = w.Description;
@@ -115,6 +124,14 @@ namespace PC_GUI.ViewModels.Weapon
 
 			mainWindowViewModel = model;
 			FullWeaponName = id.ToString();
+		}
+
+
+		[RelayCommand]
+		public void CreateNewProfile(int dbid)
+		{
+			var i = dbid;
+			mainWindowViewModel.CurrentPage = new NewFullWeaponViewModel(mainWindowViewModel, dbid);
 		}
 
 
