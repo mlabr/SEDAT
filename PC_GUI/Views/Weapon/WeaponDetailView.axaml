@@ -17,6 +17,9 @@
     <TextBlock Text="Weapon type: ">
       <TextBlock Text="{Binding WeaponTypeName}"/>
     </TextBlock>
+    <TextBlock Text="Firing mode: ">
+      <TextBlock Text="{Binding CFiringMode}"/>
+    </TextBlock>
     <TextBlock Text="Power priciple: ">
       <TextBlock Text="{Binding PowerPrinciple}"/>
     </TextBlock>

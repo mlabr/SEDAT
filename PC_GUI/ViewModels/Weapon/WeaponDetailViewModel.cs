@@ -33,6 +33,9 @@ namespace PC_GUI.ViewModels.Weapon
 		public string _powerPrinciple = "";
 
 		[ObservableProperty]
+		public string _cFiringMode = "";
+
+		[ObservableProperty]
 		public string _fullWeaponName = "";
 
 		[ObservableProperty]
@@ -106,6 +109,8 @@ namespace PC_GUI.ViewModels.Weapon
 					_powerPrinciple += ", ";
 				}
 			}
+
+			_cFiringMode = w.CFiringMode.Name;
 
 
 			mainWindowViewModel = model;

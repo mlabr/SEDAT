@@ -82,6 +82,14 @@ namespace Business.Handlers
 			w.WeaponTypeList = GetCWeaponTypeBoAllParrentsList(result.CWeaponType.CWeaponTypeId);
 			w.PowerPrincipleBoList = GetCPowerPrincipleBoAllParrentsList(result.CPowerPrinciple.CPowerPrincipleId);
 
+
+			w.CFiringMode = new CFiringModeBo();
+			w.CFiringMode.Name = result.CFiringMode.Name;
+			w.CFiringMode.Description = result.CFiringMode.Description;
+			w.CFiringMode.Note = result.CFiringMode.Note;
+			w.CFiringMode.DbId = result.CFiringMode.CFiringModeId;
+
+
 			//get some stats
 			//TODO
 			//Get shots count total
