@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -132,6 +133,13 @@ namespace PC_GUI.ViewModels.Weapon
 		{
 			var i = dbid;
 			mainWindowViewModel.CurrentPage = new NewFullWeaponViewModel(mainWindowViewModel, dbid);
+		}
+
+		[RelayCommand]
+		public void Back()
+		{
+			mainWindowViewModel.CurrentPage = new WeaponOverviewViewModel(mainWindowViewModel);
+			//mainWindowViewModel.CurrentPage = new NewFullWeaponViewModel(mainWindowViewModel, dbid);
 		}
 
 
