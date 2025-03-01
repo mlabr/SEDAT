@@ -5,27 +5,45 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PC_GUI.Views.Weapon.WeaponDetailView">
   <StackPanel>
-    <TextBlock Text="Profile name: ">
-      <TextBlock Text="{Binding ProfileName}"/>
+    <TextBlock FontSize="28" FontWeight="DemiBold" Text="Profile name: ">
+      <TextBlock FontSize="28" FontWeight="DemiBold" Text="{Binding ProfileName}"/>
     </TextBlock>
-    <TextBlock Text="Weapon name: ">
-      <TextBlock Text="{Binding WeaponName}"/>
-    </TextBlock>
-    <TextBlock Text="Identification: ">
-      <TextBlock Text="{Binding Identification}"/>
-    </TextBlock>
-    <TextBlock Text="Weapon type: ">
-      <TextBlock Text="{Binding WeaponTypeName}"/>
-    </TextBlock>
-    <TextBlock Text="Firing mode: ">
-      <TextBlock Text="{Binding CFiringMode}"/>
-    </TextBlock>
-    <TextBlock Text="Power priciple: ">
-      <TextBlock Text="{Binding PowerPrinciple}"/>
-    </TextBlock>
-    <TextBlock Text="Profile Description: ">
-      <TextBlock Text="{Binding Description}"/>
-    </TextBlock>
+
+    <Grid ColumnDefinitions="280, 220, 250,230, 230" RowDefinitions="30, 30,30,30, 30, 30" >
+      <TextBlock Grid.Column="0" Grid.Row="0" Text="Weapon type: ">
+        <TextBlock Text="{Binding WeaponTypeName}"/>
+      </TextBlock>
+      <TextBlock Grid.Column="0" Grid.Row="1" Text="Firing mode: ">
+        <TextBlock Text="{Binding CFiringMode}"/>
+      </TextBlock>
+      <TextBlock Grid.Column="0" Grid.Row="2" Text="Power priciple: ">
+        <TextBlock Text="{Binding PowerPrinciple}"/>
+      </TextBlock>
+
+      <TextBlock Grid.Column="1" Grid.Row="0" Text="Weapon name: ">
+        <TextBlock Text="{Binding WeaponName}"/>
+      </TextBlock>
+      <TextBlock Grid.Column="1" Grid.Row="1"  Text="Identification: ">
+        <TextBlock Text="{Binding Identification}"/>
+      </TextBlock>
+      
+      
+      <TextBlock  Grid.Column="2" Grid.Row="0" Text="Description:"/>
+      <TextBox Background="#E7E8E3" Grid.Column="2" Width="230" HorizontalAlignment="Left" Grid.Row="1" Grid.RowSpan="3" IsReadOnly="True" Text="{Binding Description}"/>
+      
+      <TextBlock  Grid.Column="3" Grid.Row="0" Text="Note:"/>
+      <TextBox Grid.Column="3" Grid.Row="1" Width="230" HorizontalAlignment="Left" Grid.RowSpan="3" IsReadOnly="True" Text="{Binding Note}"/>
+
+
+
+    </Grid>
+    
+
+   
+   
+    
+    
+
     <Button Command="{Binding CreateNewProfileCommand}" 
             Margin="10" 
             Height="50" Width="100"
