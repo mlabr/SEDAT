@@ -80,9 +80,8 @@
         Height="50" Width="100"
         HorizontalAlignment="Right"
         VerticalAlignment="Center"
-        ToolTip.Tip="Back to previous">
-      <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">Back to 
-      weapons overview</TextBlock>
+        ToolTip.Tip="Back to weapons overview">
+      <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">Back to weapons overview</TextBlock>
     </Button>
     
     <Button Command="{Binding CreateNewProfileCommand}"
