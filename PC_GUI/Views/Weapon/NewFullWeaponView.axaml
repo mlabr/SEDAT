@@ -179,6 +179,9 @@
       <Button Grid.Column="2"  Grid.Row="1" Command="{Binding BtnSubmitOnClickCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Right">
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Submit</TextBlock>
       </Button>
+      <Button Grid.Column="1"  Grid.Row="1" Command="{Binding OpenFileCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Right">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Load</TextBlock>
+      </Button>
     </Grid>
   </StackPanel>
 </UserControl>

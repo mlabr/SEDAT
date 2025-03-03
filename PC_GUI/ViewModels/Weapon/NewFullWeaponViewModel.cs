@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Platform.Storage;
 using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
@@ -14,11 +16,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -324,6 +328,60 @@ namespace PC_GUI.ViewModels.Weapon
 		{
 			var sfsfs = CPowerPrincipleMenuItems;
 		}
+
+		[ObservableProperty] 
+		private string? _fileText;
+
+		[RelayCommand]
+		private async Task OpenFile(CancellationToken token)
+		{
+			//ErrorMessages?.Clear();
+			try
+			{
+				var file = await DoOpenFilePickerAsync();
+				if (file is null) return;
+
+				// Limit the text file to 1MB so that the demo won't lag.
+				if ((await file.GetBasicPropertiesAsync()).Size <= 1024 * 1024 * 1)
+				{
+					await using var readStream = await file.OpenReadAsync();
+					using var reader = new StreamReader(readStream);
+					FileText = await reader.ReadToEndAsync(token);
+				}
+				else
+				{
+					throw new Exception("File exceeded 1MB limit.");
+				}
+			}
+			catch (Exception e)
+			{
+				//ErrorMessages?.Add(e.Message);
+			}
+		}
+
+		private async Task<IStorageFile?> DoOpenFilePickerAsync()
+		{
+			// For learning purposes, we opted to directly get the reference
+			// for StorageProvider APIs here inside the ViewModel. 
+
+			// For your real-world apps, you should follow the MVVM principles
+			// by making service classes and locating them with DI/IoC.
+
+			// See IoCFileOps project for an example of how to accomplish this.
+			if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop ||
+				desktop.MainWindow?.StorageProvider is not { } provider)
+				throw new NullReferenceException("Missing StorageProvider instance.");
+
+			//There is no filter for multiplatform
+			var files = await provider.OpenFilePickerAsync(new FilePickerOpenOptions()
+			{
+				Title = "Open Text File",
+				AllowMultiple = false
+			});
+
+			return files?.Count >= 1 ? files[0] : null;
+		}
+
 
 	}
 }
