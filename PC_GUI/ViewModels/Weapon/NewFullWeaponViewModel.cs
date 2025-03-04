@@ -6,6 +6,7 @@ using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
 using Business.Handlers;
+using Business.Parsers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
@@ -355,67 +356,6 @@ namespace PC_GUI.ViewModels.Weapon
 					await using var readStream = await file.OpenReadAsync();
 					using var reader = new StreamReader(readStream);
 					FileText = await reader.ReadToEndAsync(token);
-
-
-					//TODO to business layer
-					WeaponBo bo; 
-					using (JsonDocument doc = JsonDocument.Parse(FileText))
-					{
-						bo = new WeaponBo();
-						// Ruční výběr jednotlivých uzlů
-						JsonElement root = doc.RootElement.GetProperty("WeaponProfile");
-						bo.WeaponName = root.GetProperty("WeaponBase").GetProperty("Name").GetString();
-						bo.ProfileName = root.GetProperty("Name").GetString();
-						bo.CWeaponTypeCode = root.GetProperty("CWeaponTypeId").GetInt32();
-						bo.CPowerPrincipleCode = root.GetProperty("CPowerPrincipleId").GetInt32();
-						bo.CFiringModeCode = root.GetProperty("CFiringModeId").GetInt32();
-
-						bo.Description = root.GetProperty("Description").GetString();
-						bo.Note = root.GetProperty("WeaponBase").GetProperty("Note").GetString();
-						var sights  = new SightsBo();
-						sights.Name = root.GetProperty("Sights").GetProperty("Name").GetString();
-						sights.CSightsTypeId = root.GetProperty("Sights").GetProperty("CSightsType").GetInt32();
-						sights.Description = root.GetProperty("Sights").GetProperty("Description").GetString();
-						sights.Note = root.GetProperty("Sights").GetProperty("Note").GetString();
-
-						bo.SightsBoList = new List<SightsBo>();
-						bo.SightsBoList.Add(sights);
-
-						var caliber = new CCaliberBo();
-						caliber.Name = root.GetProperty("Caliber").GetProperty("Name").GetString();
-						caliber.Description = root.GetProperty("Caliber").GetProperty("Description").GetString();
-						caliber.Note = root.GetProperty("Caliber").GetProperty("Note").GetString();
-						bo.CCaliberBoList = new List<CCaliberBo>();
-						bo.CCaliberBoList.Add(caliber);
-
-
-					}
-
-
-					//weapon mapping
-					WeaponName = bo.WeaponName;
-					ProfileName = bo.ProfileName;
-					Description = bo.Description;
-					bo.Note = bo.Note;
-					SelectedCWeaponTypeMenuItem = FindById(CWeaponTypeMenuItems, bo.CWeaponTypeCode);
-					SelectedCPowerPrincipleMenuItem = FindById(CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
-					SelectedFiringMode = CFiringModelList.FirstOrDefault(x => x.DbId == bo.CFiringModeCode);
-
-					SelectedCSightsType =  CSightsTypeModelList.FirstOrDefault(x=>x.DbId == bo.SightsBoList.FirstOrDefault().CSightsTypeId);
-					SightsName = bo.SightsBoList.FirstOrDefault().Name;
-					SightsDescription = bo.SightsBoList.FirstOrDefault().Description;
-					SightsNote = bo.SightsBoList.FirstOrDefault().Note;
-					IsExistingSightsSelected = false;
-					IsNewSightsSelected = true;
-
-					CaliberName = bo.CCaliberBoList.FirstOrDefault().Name;
-					CaliberDescription = bo.CCaliberBoList.FirstOrDefault().Description;
-					CaliberNote = bo.CCaliberBoList.FirstOrDefault().Note;
-					IsExistingCaliberSelected = false;
-					IsNewCaliberSelected = true;
-					//MaintenanceIntervalShots = 
-
-
 				}
 				else
 				{
@@ -426,6 +366,32 @@ namespace PC_GUI.ViewModels.Weapon
 			{
 				//ErrorMessages?.Add(e.Message);
 			}
+
+
+			WeaponBo bo = JsonParser.ConvertToWeaponBo(FileText);
+
+			//weapon mapping
+			WeaponName = bo.WeaponName;
+			ProfileName = bo.ProfileName;
+			Description = bo.Description;
+			bo.Note = bo.Note;
+			SelectedCWeaponTypeMenuItem = FindById(CWeaponTypeMenuItems, bo.CWeaponTypeCode);
+			SelectedCPowerPrincipleMenuItem = FindById(CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
+			SelectedFiringMode = CFiringModelList.FirstOrDefault(x => x.DbId == bo.CFiringModeCode);
+
+			SelectedCSightsType = CSightsTypeModelList.FirstOrDefault(x => x.DbId == bo.SightsBoList.FirstOrDefault().CSightsTypeId);
+			SightsName = bo.SightsBoList.FirstOrDefault().Name;
+			SightsDescription = bo.SightsBoList.FirstOrDefault().Description;
+			SightsNote = bo.SightsBoList.FirstOrDefault().Note;
+			IsExistingSightsSelected = false;
+			IsNewSightsSelected = true;
+
+			CaliberName = bo.CCaliberBoList.FirstOrDefault().Name;
+			CaliberDescription = bo.CCaliberBoList.FirstOrDefault().Description;
+			CaliberNote = bo.CCaliberBoList.FirstOrDefault().Note;
+			IsExistingCaliberSelected = false;
+			IsNewCaliberSelected = true;
+			//MaintenanceIntervalShots = 
 		}
 
 
