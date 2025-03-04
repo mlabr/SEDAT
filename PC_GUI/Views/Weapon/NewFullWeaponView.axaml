@@ -74,7 +74,7 @@
                 </DataTemplate>
               </ComboBox.ItemTemplate>
             </ComboBox>
-            <RadioButton Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" GroupName="SightsGroup"></RadioButton>
+            <RadioButton IsChecked="{Binding IsNewSightsSelected}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" GroupName="SightsGroup"></RadioButton>
             <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">New sights:</TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Name:</TextBlock>
             <TextBox Text="{Binding SightsName}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" ToolTip.Tip="This is a rectangle"></TextBox>
@@ -104,7 +104,7 @@
                 </DataTemplate>
               </ComboBox.ItemTemplate>
             </ComboBox>
-            <RadioButton Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" GroupName="CaliberGroup"></RadioButton>
+            <RadioButton IsChecked="{Binding IsNewCaliberSelected}" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" GroupName="CaliberGroup"></RadioButton>
             <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">New caliber:</TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Name:</TextBlock>
             <TextBox Text="{Binding CaliberName}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" ToolTip.Tip="This is a rectangle"></TextBox>

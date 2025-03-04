@@ -8,9 +8,11 @@ using Business.BusinessObjects.Weapon;
 using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PC_GUI.Helpers;
 using PC_GUI.Mapping;
+using PC_GUI.Models.CodeList;
 using PC_GUI.Models.Weapon;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ using System.Reflection;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -41,7 +44,7 @@ namespace PC_GUI.ViewModels.Weapon
 
 		[ObservableProperty]
 		public bool _isBasedOnExistingWeapon = false;
-
+		
 		[ObservableProperty]
 		public string _weaponName = "";
 
@@ -119,7 +122,9 @@ namespace PC_GUI.ViewModels.Weapon
 		//View specific
 		[ObservableProperty]
 		private bool _isExistingSightsSelected = true;
-
+		
+		[ObservableProperty]
+		private bool _isNewSightsSelected = false;
 
 		[ObservableProperty]
 		public string _caliberName = "";
@@ -132,6 +137,9 @@ namespace PC_GUI.ViewModels.Weapon
 
 		[ObservableProperty]
 		private bool _isExistingCaliberSelected = true;
+
+		[ObservableProperty]
+		private bool _isNewCaliberSelected = false;
 
 		[ObservableProperty]
 		private int _maintenanceIntervalDate;
@@ -341,12 +349,73 @@ namespace PC_GUI.ViewModels.Weapon
 				var file = await DoOpenFilePickerAsync();
 				if (file is null) return;
 
-				// Limit the text file to 1MB so that the demo won't lag.
+				// Limit the text file to 1MB =
 				if ((await file.GetBasicPropertiesAsync()).Size <= 1024 * 1024 * 1)
 				{
 					await using var readStream = await file.OpenReadAsync();
 					using var reader = new StreamReader(readStream);
 					FileText = await reader.ReadToEndAsync(token);
+
+
+					//TODO to business layer
+					WeaponBo bo; 
+					using (JsonDocument doc = JsonDocument.Parse(FileText))
+					{
+						bo = new WeaponBo();
+						// Ruční výběr jednotlivých uzlů
+						JsonElement root = doc.RootElement.GetProperty("WeaponProfile");
+						bo.WeaponName = root.GetProperty("WeaponBase").GetProperty("Name").GetString();
+						bo.ProfileName = root.GetProperty("Name").GetString();
+						bo.CWeaponTypeCode = root.GetProperty("CWeaponTypeId").GetInt32();
+						bo.CPowerPrincipleCode = root.GetProperty("CPowerPrincipleId").GetInt32();
+						bo.CFiringModeCode = root.GetProperty("CFiringModeId").GetInt32();
+
+						bo.Description = root.GetProperty("Description").GetString();
+						bo.Note = root.GetProperty("WeaponBase").GetProperty("Note").GetString();
+						var sights  = new SightsBo();
+						sights.Name = root.GetProperty("Sights").GetProperty("Name").GetString();
+						sights.CSightsTypeId = root.GetProperty("Sights").GetProperty("CSightsType").GetInt32();
+						sights.Description = root.GetProperty("Sights").GetProperty("Description").GetString();
+						sights.Note = root.GetProperty("Sights").GetProperty("Note").GetString();
+
+						bo.SightsBoList = new List<SightsBo>();
+						bo.SightsBoList.Add(sights);
+
+						var caliber = new CCaliberBo();
+						caliber.Name = root.GetProperty("Caliber").GetProperty("Name").GetString();
+						caliber.Description = root.GetProperty("Caliber").GetProperty("Description").GetString();
+						caliber.Note = root.GetProperty("Caliber").GetProperty("Note").GetString();
+						bo.CCaliberBoList = new List<CCaliberBo>();
+						bo.CCaliberBoList.Add(caliber);
+
+
+					}
+
+
+					//weapon mapping
+					WeaponName = bo.WeaponName;
+					ProfileName = bo.ProfileName;
+					Description = bo.Description;
+					bo.Note = bo.Note;
+					SelectedCWeaponTypeMenuItem = FindById(CWeaponTypeMenuItems, bo.CWeaponTypeCode);
+					SelectedCPowerPrincipleMenuItem = FindById(CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
+					SelectedFiringMode = CFiringModelList.FirstOrDefault(x => x.DbId == bo.CFiringModeCode);
+
+					SelectedCSightsType =  CSightsTypeModelList.FirstOrDefault(x=>x.DbId == bo.SightsBoList.FirstOrDefault().CSightsTypeId);
+					SightsName = bo.SightsBoList.FirstOrDefault().Name;
+					SightsDescription = bo.SightsBoList.FirstOrDefault().Description;
+					SightsNote = bo.SightsBoList.FirstOrDefault().Note;
+					IsExistingSightsSelected = false;
+					IsNewSightsSelected = true;
+
+					CaliberName = bo.CCaliberBoList.FirstOrDefault().Name;
+					CaliberDescription = bo.CCaliberBoList.FirstOrDefault().Description;
+					CaliberNote = bo.CCaliberBoList.FirstOrDefault().Note;
+					IsExistingCaliberSelected = false;
+					IsNewCaliberSelected = true;
+					//MaintenanceIntervalShots = 
+
+
 				}
 				else
 				{
@@ -359,15 +428,24 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 		}
 
+
+		private static MenuItemViewModel? FindById(ObservableCollection<MenuItemViewModel> items, int id)
+		{
+			foreach (var item in items)
+			{
+				if (item.DbId == id)
+					return item;
+
+				var found = FindById(item.Children, id);
+				if (found != null)
+					return found;
+			}
+			return null;
+		}
+
+		//Todo bussiness
 		private async Task<IStorageFile?> DoOpenFilePickerAsync()
 		{
-			// For learning purposes, we opted to directly get the reference
-			// for StorageProvider APIs here inside the ViewModel. 
-
-			// For your real-world apps, you should follow the MVVM principles
-			// by making service classes and locating them with DI/IoC.
-
-			// See IoCFileOps project for an example of how to accomplish this.
 			if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop ||
 				desktop.MainWindow?.StorageProvider is not { } provider)
 				throw new NullReferenceException("Missing StorageProvider instance.");
