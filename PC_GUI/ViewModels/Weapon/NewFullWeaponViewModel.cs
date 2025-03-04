@@ -326,7 +326,7 @@ namespace PC_GUI.ViewModels.Weapon
 
 			//TODO validate
 
-			//Show error message in modal window
+			//Show error message in foooter or in modal window
 
 			handler.SaveNewWeaponToDataBase(bo);
 			//this.FullWeaponName;
@@ -338,8 +338,8 @@ namespace PC_GUI.ViewModels.Weapon
 			var sfsfs = CPowerPrincipleMenuItems;
 		}
 
-		[ObservableProperty] 
-		private string? _fileText;
+		[ObservableProperty]
+		private string? _fileContent;
 
 		[RelayCommand]
 		private async Task OpenFile(CancellationToken token)
@@ -355,7 +355,7 @@ namespace PC_GUI.ViewModels.Weapon
 				{
 					await using var readStream = await file.OpenReadAsync();
 					using var reader = new StreamReader(readStream);
-					FileText = await reader.ReadToEndAsync(token);
+					FileContent = await reader.ReadToEndAsync(token);
 				}
 				else
 				{
@@ -367,46 +367,8 @@ namespace PC_GUI.ViewModels.Weapon
 				//ErrorMessages?.Add(e.Message);
 			}
 
-
-			WeaponBo bo = JsonParser.ConvertToWeaponBo(FileText);
-
-			//weapon mapping
-			WeaponName = bo.WeaponName;
-			ProfileName = bo.ProfileName;
-			Description = bo.Description;
-			bo.Note = bo.Note;
-			SelectedCWeaponTypeMenuItem = FindById(CWeaponTypeMenuItems, bo.CWeaponTypeCode);
-			SelectedCPowerPrincipleMenuItem = FindById(CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
-			SelectedFiringMode = CFiringModelList.FirstOrDefault(x => x.DbId == bo.CFiringModeCode);
-
-			SelectedCSightsType = CSightsTypeModelList.FirstOrDefault(x => x.DbId == bo.SightsBoList.FirstOrDefault().CSightsTypeId);
-			SightsName = bo.SightsBoList.FirstOrDefault().Name;
-			SightsDescription = bo.SightsBoList.FirstOrDefault().Description;
-			SightsNote = bo.SightsBoList.FirstOrDefault().Note;
-			IsExistingSightsSelected = false;
-			IsNewSightsSelected = true;
-
-			CaliberName = bo.CCaliberBoList.FirstOrDefault().Name;
-			CaliberDescription = bo.CCaliberBoList.FirstOrDefault().Description;
-			CaliberNote = bo.CCaliberBoList.FirstOrDefault().Note;
-			IsExistingCaliberSelected = false;
-			IsNewCaliberSelected = true;
-			//MaintenanceIntervalShots = 
-		}
-
-
-		private static MenuItemViewModel? FindById(ObservableCollection<MenuItemViewModel> items, int id)
-		{
-			foreach (var item in items)
-			{
-				if (item.DbId == id)
-					return item;
-
-				var found = FindById(item.Children, id);
-				if (found != null)
-					return found;
-			}
-			return null;
+			WeaponBo bo = JsonParser.ConvertToWeaponBo(FileContent);
+			Mapper.Weapon.UpdateWeaponViewModelByWeaponBo(this, bo);
 		}
 
 		//Todo bussiness

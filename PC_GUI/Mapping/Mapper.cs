@@ -8,6 +8,7 @@ using PC_GUI.ViewModels;
 using PC_GUI.ViewModels.Weapon;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -79,5 +80,19 @@ namespace PC_GUI.Mapping
 			return item;
 		}
 
+
+		private static MenuItemViewModel? FindById(ObservableCollection<MenuItemViewModel> items, int id)
+		{
+			foreach (var item in items)
+			{
+				if (item.DbId == id)
+					return item;
+
+				var found = FindById(item.Children, id);
+				if (found != null)
+					return found;
+			}
+			return null;
+		}
 	}
 }

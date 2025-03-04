@@ -1,7 +1,9 @@
-﻿using Business.BusinessObjects.CodeList;
+﻿using Avalonia;
+using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
 using PC_GUI.Models.Weapon;
 using PC_GUI.ViewModels;
+using PC_GUI.ViewModels.Weapon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,6 +119,34 @@ namespace PC_GUI.Mapping
 			{
 
 				return new WeaponBo();
+			}
+
+			internal static void UpdateWeaponViewModelByWeaponBo(NewFullWeaponViewModel model, WeaponBo bo)
+			{
+
+				//weapon mapping
+				model.WeaponName = bo.WeaponName;
+				model.ProfileName = bo.ProfileName;
+				model.Description = bo.Description;
+				//model..Note = bo.Note;
+				model.SelectedCWeaponTypeMenuItem = FindById(model.CWeaponTypeMenuItems, bo.CWeaponTypeCode);
+				model.SelectedCPowerPrincipleMenuItem = FindById(model.CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
+				model.SelectedFiringMode = model.CFiringModelList.FirstOrDefault(x => x.DbId == bo.CFiringModeCode);
+
+				model.SelectedCSightsType = model.CSightsTypeModelList.FirstOrDefault(x => x.DbId == bo.SightsBoList.FirstOrDefault().CSightsTypeId);
+				model.SightsName = bo.SightsBoList.FirstOrDefault().Name;
+				model.SightsDescription = bo.SightsBoList.FirstOrDefault().Description;
+				model.SightsNote = bo.SightsBoList.FirstOrDefault().Note;
+				model.IsExistingSightsSelected = false;
+				model.IsNewSightsSelected = true;
+
+				model.CaliberName = bo.CCaliberBoList.FirstOrDefault().Name;
+				model.CaliberDescription = bo.CCaliberBoList.FirstOrDefault().Description;
+				model.CaliberNote = bo.CCaliberBoList.FirstOrDefault().Note;
+				model.IsExistingCaliberSelected = false;
+				model.IsNewCaliberSelected = true;
+				//MaintenanceIntervalShots = 
+
 			}
 
 		}
