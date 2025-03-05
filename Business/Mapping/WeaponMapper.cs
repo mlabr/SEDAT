@@ -36,10 +36,10 @@ namespace Business.Mapping
 				return bo;
 			}
 
-			internal static CCaliberBo CCaliberToCCaliberBo(CCaliber item)
+			internal static CaliberBo CCaliberToCCaliberBo(Caliber item)
 			{
-				var bo = new CCaliberBo();
-				bo.DbId = item.CCaliberId.Value;
+				var bo = new CaliberBo();
+				bo.DbId = item.CaliberId.Value;
 				bo.Name = item.Name;
 				bo.Description = item.Description;
 				bo.Note = item.Note;
@@ -90,13 +90,13 @@ namespace Business.Mapping
 			#endregion
 
 			#region Bo to Entities
-			internal static CCaliber CCaliberBoToCCaliber(CCaliberBo bo)
+			internal static Caliber CCaliberBoToCCaliber(CaliberBo bo)
 			{
-				var cal = new CCaliber();
-				cal.CCaliberId = null;
+				var cal = new Caliber();
+				cal.CaliberId = null;
 				if (bo.IsExisting)
 				{
-					cal.CCaliberId = bo.DbId;
+					cal.CaliberId = bo.DbId;
 				}
 				cal.Name = bo.Name;
 				cal.Description = bo.Description;

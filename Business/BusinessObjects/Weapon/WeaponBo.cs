@@ -14,8 +14,8 @@ namespace Business.BusinessObjects.Weapon
 
 		public WeaponBo()
 		{
-			CCaliberBoList = new List<CCaliberBo>();
-			CCaliberBoList.Add(new CCaliberBo());
+			CCaliberBoList = new List<CaliberBo>();
+			CCaliberBoList.Add(new CaliberBo());
 			SightsBoList = new List<SightsBo>();
 			SightsBoList.Add(new SightsBo());
 		}
@@ -49,7 +49,7 @@ namespace Business.BusinessObjects.Weapon
 		public CFiringModeBo CFiringMode { get; set; }
 		public int CFiringModeCode { get; set; } = _defaultDbValue;
 
-		public List<CCaliberBo> CCaliberBoList { get; set; }
+		public List<CaliberBo> CCaliberBoList { get; set; }
 
 		public List<SightsBo> SightsBoList { get; set; }
 

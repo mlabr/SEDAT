@@ -96,9 +96,9 @@ namespace PC_GUI.Mapping
 				return model;
 			}
 
-			internal static CCaliberModel CCaliberBoToCCaliberModel(CCaliberBo bo)
+			internal static CaliberModel CCaliberBoToCCaliberModel(CaliberBo bo)
 			{
-				var model = new CCaliberModel();
+				var model = new CaliberModel();
 				model.DbId = bo.DbId;
 				model.Name = bo.Name;
 				model.Description = bo.Description;

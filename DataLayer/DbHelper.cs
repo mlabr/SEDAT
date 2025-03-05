@@ -27,7 +27,7 @@ namespace DataLayer
 
 				var idr = new InitialDataResources();
 				//Indenpendece Tables
-				db.CreateTable<CCaliber>();
+				db.CreateTable<Caliber>();
 				db.Insert(idr.GetDefaultCCaliber());
 
 				db.CreateTable<CSightsType>();
@@ -86,7 +86,7 @@ namespace DataLayer
 
 
 				db.Execute("Create Table Munition (MunitionId INTEGER PRIMARY KEY NOT NULL," +
-												"CCaliberId INTEGER References CCaliber (CCaliberId) NOT NULL," +
+												"CaliberId INTEGER References Caliber (CaliberId) NOT NULL," +
 												"Name String NOT NULL," +
 												"Description String," +
 												"Note String," +
@@ -174,9 +174,9 @@ namespace DataLayer
 												"IsUsed Boolean NOT NULL );");
 
 
-				db.Execute("Create Table ProfileCCaliber (ProfileCCaliberId INTEGER PRIMARY KEY NOT NULL," +
+				db.Execute("Create Table ProfileCaliber (ProfileCaliberId INTEGER PRIMARY KEY NOT NULL," +
 												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
-												"CCaliberId INTEGER References CCaliber (CCaliberId) NOT NULL);");
+												"CaliberId INTEGER References Caliber (CaliberId) NOT NULL);");
 
 
 

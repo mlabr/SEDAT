@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.BusinessObjects.CodeList
 {
-	public class CCaliberBo : CodeBoBase
+	public class CaliberBo : CodeBoBase
 	{
 		public bool IsExisting { get; set; } = true;
 	}

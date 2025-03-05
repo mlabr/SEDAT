@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Weapon
 {
-	internal class CCaliberModel : CodeBaseModel
+	internal class CaliberModel : CodeBaseModel
 	{
 	}
 }

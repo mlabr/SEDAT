@@ -57,7 +57,7 @@ namespace PC_GUI.ViewModels.Weapon
 		public string _note = "";
 
 
-		public ObservableCollection<CCaliberModel> CCaliberModelList { get; set; }
+		public ObservableCollection<CaliberModel> CCaliberModelList { get; set; }
 
 		public ObservableCollection<SightsModel> SightsModelList { get; set; }
 
@@ -75,17 +75,17 @@ namespace PC_GUI.ViewModels.Weapon
 			Note = w.Note;
 
 
-			var cList = new List<CCaliberModel>();
+			var cList = new List<CaliberModel>();
 			foreach (var cal in w.CCaliberBoList)
 			{
 				if (cal == null) continue;
-				var c = new CCaliberModel();
+				var c = new CaliberModel();
 				c.Name = cal.Name;
 				c.Description = cal.Description;
 				c.Note = cal.Note;
 				cList.Add(c);
 			}
-			CCaliberModelList = new ObservableCollection<CCaliberModel>(cList);
+			CCaliberModelList = new ObservableCollection<CaliberModel>(cList);
 
 			var sList = new List<SightsModel>();
 			foreach (var sig in w.SightsBoList)

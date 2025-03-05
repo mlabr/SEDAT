@@ -44,11 +44,11 @@ namespace Business.Parsers
 				bo.SightsBoList = new List<SightsBo>();
 				bo.SightsBoList.Add(sights);
 
-				var caliber = new CCaliberBo();
+				var caliber = new CaliberBo();
 				caliber.Name = root.GetProperty("Caliber").GetProperty("Name").GetString();
 				caliber.Description = root.GetProperty("Caliber").GetProperty("Description").GetString();
 				caliber.Note = root.GetProperty("Caliber").GetProperty("Note").GetString();
-				bo.CCaliberBoList = new List<CCaliberBo>();
+				bo.CCaliberBoList = new List<CaliberBo>();
 				bo.CCaliberBoList.Add(caliber);
 			}
 

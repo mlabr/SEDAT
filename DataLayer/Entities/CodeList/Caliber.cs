@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 namespace DataLayer.Entities.CodeList
 {
 
-    [Table("CCaliber")]
-    public class CCaliber : EntityCodeBase
+    [Table("Caliber")]
+    public class Caliber : EntityCodeBase
     {
         [PrimaryKey, AutoIncrement]
-        public int? CCaliberId { get; set; }
+        public int? CaliberId { get; set; }
 
 
         public float? ValueMetric { get; set; }

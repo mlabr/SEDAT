@@ -2,8 +2,8 @@
 
 namespace DataLayer.Entities
 {
-	[Table("ProfileCCaliber")]
-	public class ProfileCCaliber
+	[Table("ProfileCaliber")]
+	public class ProfileCaliber
 	{
 		[PrimaryKey, NotNull, AutoIncrement]
 		public int? ProfileCCaliberId { get; set; }
@@ -12,7 +12,7 @@ namespace DataLayer.Entities
         public int WeaponProfileId { get; set; }
 
 		[NotNull]
-		public int CCaliberId { get; set; }
+		public int CaliberId { get; set; }
 
     }
 }

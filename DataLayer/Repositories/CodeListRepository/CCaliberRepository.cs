@@ -17,12 +17,12 @@ namespace DataLayer.Repositories.CodeListRepository
 			helper = new DbHelper();
 		}
 
-		public CCaliber Get(int id)
+		public Caliber Get(int id)
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var item = from caliber in conn.Table<CCaliber>()
-						   where caliber.CCaliberId == id
+				var item = from caliber in conn.Table<Caliber>()
+						   where caliber.CaliberId == id
 						   select caliber;
 
 				return item.FirstOrDefault();
@@ -30,11 +30,11 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
-		public List<CCaliber> GetAllList()
+		public List<Caliber> GetAllList()
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var list = from caliber in conn.Table<CCaliber>()
+				var list = from caliber in conn.Table<Caliber>()
 						   select caliber;
 
 				return list.ToList();
@@ -42,11 +42,11 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
-		public List<CCaliber> GetUsedOnlyList()
+		public List<Caliber> GetUsedOnlyList()
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var list = from caliber in conn.Table<CCaliber>()
+				var list = from caliber in conn.Table<Caliber>()
 						   where caliber.IsUsed == true
 						   select caliber;
 
@@ -55,7 +55,7 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
-		public void InsertList(List<CCaliber> item)
+		public void InsertList(List<Caliber> item)
 		{
 			throw new NotImplementedException();
 		}

@@ -53,11 +53,11 @@ namespace Business.Handlers
 			w.Identification = result.Weapon.Identification;
 			w.Description = result.Description;
 
-			w.CCaliberBoList = new List<CCaliberBo>();
+			w.CCaliberBoList = new List<CaliberBo>();
 			foreach (var cal in result.CCaliberList)
 			{
 				if (cal == null) continue;
-				var c = new CCaliberBo();
+				var c = new CaliberBo();
 				c.Name = cal.Name;
 				c.Description = cal.Description;
 				c.Note = cal.Note;
@@ -116,7 +116,7 @@ namespace Business.Handlers
 		public void SaveNewWeaponToDataBase(WeaponBo bo)
 		{
 			var wp = new WeaponProfile();
-			wp.CCaliberList = new List<CCaliber>();
+			wp.CCaliberList = new List<Caliber>();
 			wp.SightsList = new List<Sights>();
 			wp.Name = bo.WeaponName + " " + bo.ProfileName;
 			wp.Description = bo.Description;
@@ -173,11 +173,11 @@ namespace Business.Handlers
 			return listBo;
 		}
 
-		public List<CCaliberBo> GetCCaliberBoList()
+		public List<CaliberBo> GetCCaliberBoList()
 		{
 			var repo = new CCightsRepository();
 			var list = repo.GetUsedOnlyList();
-			var listBo = new List<CCaliberBo>();
+			var listBo = new List<CaliberBo>();
 			foreach (var item in list)
 			{
 				var bo = Mapper.Weapon.CCaliberToCCaliberBo(item);

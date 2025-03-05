@@ -93,12 +93,12 @@ namespace DataLayer.Repositories
 					return null;
 				}
 
-				var caliberList = from profileCCaliber in conn.Table<ProfileCCaliber>()
-								  join caliber in conn.Table<CCaliber>() on profileCCaliber.CCaliberId equals caliber.CCaliberId
+				var caliberList = from profileCCaliber in conn.Table<ProfileCaliber>()
+								  join caliber in conn.Table<Caliber>() on profileCCaliber.CaliberId equals caliber.CaliberId
 								  where profileCCaliber.WeaponProfileId == id
-								  select new CCaliber()
+								  select new Caliber()
 								  {
-									  CCaliberId = caliber.CCaliberId,
+									  CaliberId = caliber.CaliberId,
 									  Name = caliber.Name,
 									  Description = caliber.Description,
 									  ValueMetric = caliber.ValueMetric,
@@ -125,7 +125,7 @@ namespace DataLayer.Repositories
 				sightsList.ToList();
 
 				var result = item.FirstOrDefault();
-				result.CCaliberList = new List<CCaliber>();
+				result.CCaliberList = new List<Caliber>();
 				result.CCaliberList.AddRange(caliberList);
 				result.SightsList = new List<Sights>();
 				result.SightsList.AddRange(sightsList);
@@ -215,12 +215,12 @@ namespace DataLayer.Repositories
 			ps.SightsId = sights.SightsId.Value;
 			
 			var ccaliber = wp.CCaliberList.FirstOrDefault();
-			if (!ccaliber.CCaliberId.HasValue)
+			if (!ccaliber.CaliberId.HasValue)
 			{
 				Insert(ccaliber);
 			}
-			var pc = new ProfileCCaliber();
-			pc.CCaliberId = ccaliber.CCaliberId.Value;
+			var pc = new ProfileCaliber();
+			pc.CaliberId = ccaliber.CaliberId.Value;
 
 			var weapon = wp.Weapon;
 			if (!weapon.WeaponId.HasValue)
@@ -262,9 +262,9 @@ namespace DataLayer.Repositories
 			}		
 		}
 
-		public void Insert(CCaliber cc)
+		public void Insert(Caliber cc)
 		{
-			cc.CCaliberId = null;
+			cc.CaliberId = null;
 			using (var conn = new SQLiteConnection(connectionString))
 			{
 				conn.Insert(cc);
@@ -280,7 +280,7 @@ namespace DataLayer.Repositories
 			}
 		}
 
-		private void Insert(ProfileCCaliber pc)
+		private void Insert(ProfileCaliber pc)
 		{
 			pc.ProfileCCaliberId= null;
 			using (var conn = new SQLiteConnection(connectionString))

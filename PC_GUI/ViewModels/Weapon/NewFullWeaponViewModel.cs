@@ -72,7 +72,7 @@ namespace PC_GUI.ViewModels.Weapon
 		public string _note = "";
 
 		[ObservableProperty]
-		private CCaliberModel _selectedCaliber;
+		private CaliberModel _selectedCaliber;
 
 		[ObservableProperty]
 		internal CSightsTypeModel _selectedCSightsType;
@@ -91,7 +91,7 @@ namespace PC_GUI.ViewModels.Weapon
 
 		public ObservableCollection<MenuItemViewModel> OwnerMenuItemViewModelList { get; set; }
 		
-		public ObservableCollection<CCaliberModel> CCaliberModelList { get; set; }
+		public ObservableCollection<CaliberModel> CCaliberModelList { get; set; }
 
 		public ObservableCollection<CSightsTypeModel> CSightsTypeModelList { get; set; }
 
@@ -189,7 +189,7 @@ namespace PC_GUI.ViewModels.Weapon
 			_selectedFiringMode = CFiringModelList.FirstOrDefault();
 
 			var cCaliberModelList = handler.GetCCaliberBoList();
-			var cmodelList = new List<CCaliberModel>();
+			var cmodelList = new List<CaliberModel>();
 
 			foreach (var item in cCaliberModelList)
 			{
@@ -197,7 +197,7 @@ namespace PC_GUI.ViewModels.Weapon
 				cmodelList.Add(model);
 			}
 
-			CCaliberModelList = new ObservableCollection<CCaliberModel>(cmodelList);
+			CCaliberModelList = new ObservableCollection<CaliberModel>(cmodelList);
 			SelectedCaliber = CCaliberModelList.FirstOrDefault();
 
 
@@ -297,8 +297,8 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 			else
 			{
-				bo.CCaliberBoList = new List<CCaliberBo>();
-				var cal = new CCaliberBo();
+				bo.CCaliberBoList = new List<CaliberBo>();
+				var cal = new CaliberBo();
 				cal.IsExisting = false;
 				cal.Name = model.CaliberName;
 				cal.Description = model.CaliberDescription;

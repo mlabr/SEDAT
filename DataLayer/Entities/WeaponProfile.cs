@@ -40,7 +40,7 @@ namespace DataLayer.Entities
         public CFiringMode CFiringMode { get; set; }
 
         [Ignore]
-        public List<CCaliber> CCaliberList { get; set; }
+        public List<Caliber> CCaliberList { get; set; }
 
         [Ignore]
         public List<Sights> SightsList { get; set; }

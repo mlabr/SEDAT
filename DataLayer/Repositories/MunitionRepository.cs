@@ -32,7 +32,7 @@ namespace DataLayer.Repositories
 			using (var conn = new SQLiteConnection(connectionString))
 			{
 				var item = from munition in conn.Table<Munition>()
-						   join caliber in conn.Table<CCaliber>() on munition.CCaliberId equals caliber.CCaliberId
+						   join caliber in conn.Table<Caliber>() on munition.CaliberId equals caliber.CaliberId
 						   where munition.MunitionId == id
 						   select new
 						   {
@@ -49,7 +49,7 @@ namespace DataLayer.Repositories
 				
 				if(result is not null)
 				{
-					result.CCaliber = item.Select(c => c.CCaliber).FirstOrDefault();
+					result.Caliber = item.Select(c => c.CCaliber).FirstOrDefault();
 				}
 
 				return result;

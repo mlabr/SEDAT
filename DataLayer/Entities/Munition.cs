@@ -10,13 +10,13 @@ namespace DataLayer.Entities
 		[PrimaryKey, AutoIncrement]
 		public int MunitionId { get; set; }
 
-        public int CCaliberId { get; set; }
+        public int CaliberId { get; set; }
 
         public string Name { get; set; }
 
 		public string Description { get; set; }
 
 		[Ignore]
-        public CCaliber CCaliber { get; set; }
+        public Caliber Caliber { get; set; }
     }
 }

@@ -354,16 +354,16 @@ namespace DataLayer.DataResources
 			munition.MunitionId = 1;
 			munition.Name = "Unknown";
 			munition.Description = "This is default munition";
-			munition.CCaliberId = 1;
+			munition.CaliberId = 1;
 			munition.IsUsed = true;
 
 			return munition;
 		}
 
-		internal CCaliber GetDefaultCCaliber()
+		internal Caliber GetDefaultCCaliber()
 		{
-			var ccaliber = new CCaliber();
-			ccaliber.CCaliberId = 1;
+			var ccaliber = new Caliber();
+			ccaliber.CaliberId = 1;
 			ccaliber.Name = "Unknown";
 			ccaliber.Description = "This is default caliber.";
 			ccaliber.Priority = 1;
