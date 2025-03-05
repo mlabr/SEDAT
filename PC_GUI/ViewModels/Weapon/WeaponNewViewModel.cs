@@ -32,7 +32,7 @@ using System.Windows.Input;
 
 namespace PC_GUI.ViewModels.Weapon
 {
-	internal partial class NewFullWeaponViewModel : ViewModelBase
+	internal partial class WeaponNewViewModel : ViewModelBase
 	{
 		[ObservableProperty]
 		private string? _dialogResult;
@@ -152,7 +152,7 @@ namespace PC_GUI.ViewModels.Weapon
 		private DateTimeOffset _maintenanceLastDate;
 
 
-		public NewFullWeaponViewModel(MainWindowViewModel main, int dbid)
+		public WeaponNewViewModel(MainWindowViewModel main, int dbid)
 		{
 			_isBasedOnExistingWeapon = true;
 			handler = new WeaponHandler();
@@ -163,7 +163,7 @@ namespace PC_GUI.ViewModels.Weapon
 			Identification = bo.Identification;
 		}
 
-		public NewFullWeaponViewModel(MainWindowViewModel main)
+		public WeaponNewViewModel(MainWindowViewModel main)
 		{
 			mainWindowViewModel = main;
 			handler = new WeaponHandler();

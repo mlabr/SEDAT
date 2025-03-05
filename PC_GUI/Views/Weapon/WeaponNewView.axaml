@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="900"
-             x:Class="PC_GUI.Views.Weapon.NewFullWeaponView">
+             x:Class="PC_GUI.Views.Weapon.WeaponNewView">
   <StackPanel Margin="10 0 10 10">
     <Grid ColumnDefinitions="auto, auto" RowDefinitions="45">
       <TextBlock FontSize="28" FontWeight="DemiBold" Padding="0 0 5 10" Grid.Column="0" Grid.Row="0">New weapon: </TextBlock>

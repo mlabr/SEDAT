@@ -1,4 +1,5 @@
 ﻿using PC_GUI.ViewModels;
+using PC_GUI.ViewModels.Weapon;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ namespace PC_GUI.Helpers
 		{
 
 			public const string WeaponOverview = "WeaponOverviewView";
-			public const string NewFullWeapon = "NewFullWeaponView";
+			public const string WeaponNew = "WeaponNewView";
 			
 		}
 

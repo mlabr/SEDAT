@@ -63,6 +63,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Weapon\WeaponNewView.axaml.cs">
+      <DependentUpon>WeaponNewView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Weapon\WeaponDetailView.axaml.cs">
       <DependentUpon>WeaponDetailView.axaml</DependentUpon>
     </Compile>

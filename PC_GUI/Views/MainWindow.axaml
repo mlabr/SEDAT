@@ -42,7 +42,7 @@
           </MenuItem>
 	      <MenuItem Header="Weapons">
 			    <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponOverviewView" ></MenuItem>
-				  <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="NewFullWeaponView" ></MenuItem>
+				  <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponNewView" ></MenuItem>
 		    </MenuItem>
           <MenuItem Header="Manage">
             <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverView" ></MenuItem>

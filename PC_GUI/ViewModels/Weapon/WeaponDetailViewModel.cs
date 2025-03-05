@@ -132,7 +132,7 @@ namespace PC_GUI.ViewModels.Weapon
 		public void CreateNewProfile(int dbid)
 		{
 			var i = dbid;
-			mainWindowViewModel.CurrentPage = new NewFullWeaponViewModel(mainWindowViewModel, dbid);
+			mainWindowViewModel.CurrentPage = new WeaponNewViewModel(mainWindowViewModel, dbid);
 		}
 
 		[RelayCommand]

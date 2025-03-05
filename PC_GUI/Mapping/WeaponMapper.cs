@@ -121,7 +121,7 @@ namespace PC_GUI.Mapping
 				return new WeaponBo();
 			}
 
-			internal static void UpdateWeaponViewModelByWeaponBo(NewFullWeaponViewModel model, WeaponBo bo)
+			internal static void UpdateWeaponViewModelByWeaponBo(WeaponNewViewModel model, WeaponBo bo)
 			{
 
 				//weapon mapping
