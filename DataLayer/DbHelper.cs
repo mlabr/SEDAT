@@ -184,6 +184,21 @@ namespace DataLayer
 												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
 												"SightsId INTEGER References Sights (SightsId) NOT NULL);");
 
+				db.Execute("Create Table Record (RecordId INTEGER PRIMARY KEY NOT NULL," +
+												"DisciplineId INTEGER References Discipline (DisciplineId) NOT NULL," +
+												"PersonId INTEGER References Person (PersonId) NOT NULL," +
+												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
+												"MunitionId INTEGER References Munition (MunitionId) NOT NULL," +
+												"SightsId INTEGER References Sights (SightsId) NOT NULL," +
+												"Score INTEGER NOT NULL," +
+												"ShotsCount INTEGER NOT NULL," +
+												"TimeStart," +
+												"TimeEnd," +
+												"Data" +
+												"Note"+
+												"IsUsed Boolean NOT NULL );");
+
+
 				Console.WriteLine("Done");
 			}
 		}
