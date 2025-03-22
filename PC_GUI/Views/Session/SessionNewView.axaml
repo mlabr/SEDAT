@@ -5,8 +5,9 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PC_GUI.Views.Session.SessionNewView">
   <StackPanel Margin="5 0 5 10">
-    <Border       BorderBrush="Black" BorderThickness="1" CornerRadius="2" Padding="10,10,10,10" Margin="5,10,5,10">
-      <Grid ColumnDefinitions="110, 200, 100, 180,70, 170, *" RowDefinitions="35, auto, auto" >
+    <!-- EVENT, Session -->
+    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2" Padding="5,10,5,5" Margin="5,10,5,10">
+      <Grid ColumnDefinitions="110, 200, 100, 180,70, 170, *" RowDefinitions="35,35,35,35" >
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Session name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
         <RadioButton IsChecked="false" Grid.Column="0" Grid.Row="1" GroupName="EventGroup"></RadioButton>
         <TextBlock Grid.Column="0" Grid.Row="1" Text="Event:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
@@ -23,11 +24,35 @@
         <TextBlock Grid.Column="4" Grid.Row="0" Text="Note:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
         <TextBox Grid.Column="5" Grid.Row="0" Grid.RowSpan="3" AcceptsReturn="True"/>
 
-        <TextBlock Grid.Column="6" Grid.Row="0" Text="Date start:" VerticalAlignment="Center" Padding="5,0,0,0"></TextBlock>
+        <TextBlock Grid.Column="6" Grid.Row="0" Text="Date start:" VerticalAlignment="Center" Padding="10,0,0,0"></TextBlock>
         <DatePicker Grid.Column="6" Grid.Row="1" SelectedDate="{Binding MaintenanceLastDate, Mode=TwoWay}" Padding="5"  DayFormat="ddd dd" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Grid.ColumnSpan="2"></DatePicker>
-        <TextBlock Grid.Column="6" Grid.Row="2" Text="Date end:" VerticalAlignment="Center" Padding="5,0,0,0"></TextBlock>
+        <CheckBox Grid.Column="6" Grid.Row="2" HorizontalAlignment="Left" Margin="5 0 0 0"></CheckBox>
+        <TextBlock Grid.Column="6" Grid.Row="2" Text="Date end:" VerticalAlignment="Center" Padding="30,0,0,0"></TextBlock>
         <DatePicker Grid.Column="6" Grid.Row="3" SelectedDate="{Binding MaintenanceLastDate, Mode=TwoWay}" Padding="5"  DayFormat="ddd dd" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Grid.ColumnSpan="2"></DatePicker>
       </Grid>
+    </Border>
+    
+    <!-- Discipline -->
+    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2" Padding="5,10,5,5" Margin="5,10,5,10">
+      <Grid ColumnDefinitions="110, 200, 100, 180,70, 170, *" RowDefinitions="35,35,35,30, 30" >
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Discipline name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Target:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Range:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Meters" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="Yards" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        
+        
+        <RadioButton Grid.Column="0" Grid.Row="3" IsChecked="True" GroupName="RangeUnits"></RadioButton>
+        <RadioButton Grid.Column="0" Grid.Row="4" IsChecked="False" GroupName="RangeUnits"></RadioButton>
+        <TextBox Grid.Column="1" Grid.Row="0" />
+        <ComboBox Grid.Column="1" Grid.Row="1" Width="200" MaxDropDownHeight="300"/>
+        <TextBox Grid.Column="1" Grid.Row="2"  Width="30" HorizontalAlignment="Left" />
+      </Grid>
+    </Border>
+
+    <!-- Record -->
+    <Border>
+
     </Border>
   </StackPanel>
 </UserControl>
