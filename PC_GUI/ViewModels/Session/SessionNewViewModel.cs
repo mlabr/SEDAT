@@ -19,19 +19,36 @@ namespace PC_GUI.ViewModels.Session
 		public string _sessionName = "";
 
 		[ObservableProperty]
-		public string _description = "";
+		public string _sessionDescription = "";
 
 		[ObservableProperty]
-		public string _note = "";
+		public string _sessionNote = "";
 
 		[ObservableProperty]
-		public DateTimeOffset _dateStart = new DateTimeOffset(DateTime.Now);
+		public DateTimeOffset _sessionDateStart = new DateTimeOffset(DateTime.Now);
 
 		[ObservableProperty]
-		public DateTimeOffset _dateEnd = new DateTimeOffset(DateTime.Now);
+		public DateTimeOffset _sessionDateEnd = new DateTimeOffset(DateTime.Now);
 
 		[ObservableProperty]
-		public bool _isDateEnd = false;
+		public bool _isSessionDateEndEnabled = false;
+
+
+
+
+		[ObservableProperty]
+		public string _disciplineDescription = "";
+
+		[ObservableProperty]
+		public string _disciplineNote = "";
+
+		[ObservableProperty]
+		public DateTimeOffset _eventDate = new DateTimeOffset(DateTime.Now);
+
+		[ObservableProperty]
+		public bool _isEventDateSameAsSessionDate = true;
+
+
 
 
 		public SessionNewViewModel(MainWindowViewModel model)
