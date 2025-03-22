@@ -101,15 +101,9 @@ namespace DataLayer
 				db.CreateTable<Session>();
 
 
-				//TODO after session
-				//db.Execute("Create Table SessionEvent (SessionEventId INTEGER PRIMARY KEY NOT NULL," +
-				//								"EventId References Event (EventdId) NOT NULL," +
-				//								"SessionId References Session (SessionId) NOT NULL," +
-				//								"Name String NOT NULL," +
-				//								"Note String," +
-				//								"IsUsed Boolean NOT NULL );");
-
-				//db.Insert(idr.GetDefaultSessionEvent());
+				db.Execute("Create Table SessionEvent (SessionEventId INTEGER PRIMARY KEY NOT NULL," +
+												"EventId INTEGER References Event (EventdId) NOT NULL," +
+												"SessionId INTEGER References Session (SessionId) NOT NULL );");
 
 
 				db.Execute("Create Table CPowerPrinciple (CPowerPrincipleId INTEGER PRIMARY KEY NOT NULL," +
