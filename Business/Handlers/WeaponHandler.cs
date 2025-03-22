@@ -59,6 +59,7 @@ namespace Business.Handlers
 				if (cal == null) continue;
 				var c = new CaliberBo();
 				c.Name = cal.Name;
+				c.DbId = cal.CaliberId.Value;
 				c.Description = cal.Description;
 				c.Note = cal.Note;
 				w.CCaliberBoList.Add(c);
