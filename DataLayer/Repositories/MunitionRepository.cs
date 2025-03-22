@@ -56,9 +56,55 @@ namespace DataLayer.Repositories
 			}
 		}
 
+		public List<Munition> GetUsedOnlyList()
+		{
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				var list = from munition in conn.Table<Munition>()
+						   where munition.IsUsed == true
+						   select munition;
+
+				if (list is null)
+				{
+					return null;
+				}
+
+				return list.ToList();
+			}
+
+		}
+
+		public List<Munition> GetAll()
+		{
+			throw new NotImplementedException();
+		}
+
+		public List<Munition> GetUsedOnlyListByCaliberList(List<int> idList)
+		{
+			var munitionList = new List<Munition>();
+
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+
+				foreach (var id in idList)
+				{
+					var list = from munition in conn.Table<Munition>()
+							   where munition.IsUsed == true &&
+							   munition.CaliberId == id
+							   select munition;
+
+					if (list is not null)
+					{
+						list.ToList();
+						munitionList.AddRange(list);
+					}
+
+					
+				}
 
 
-
-
+				return munitionList.ToList();
+			}
+		}
 	}
 }
