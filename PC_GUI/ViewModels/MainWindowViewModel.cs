@@ -6,6 +6,7 @@ using DataLayer.Repositories.CodeListRepository;
 using PC_GUI.Helpers;
 using PC_GUI.ViewModels.CodeList;
 using PC_GUI.ViewModels.Place;
+using PC_GUI.ViewModels.Session;
 using PC_GUI.ViewModels.Weapon;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,7 @@ namespace PC_GUI.ViewModels
 		{
 			CurrentPage = value switch
 			{
+				MenuHelper.Session.SessionNew => new SessionNewViewModel(this),
 				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),

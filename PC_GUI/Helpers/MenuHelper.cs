@@ -12,6 +12,13 @@ namespace PC_GUI.Helpers
 	public static class MenuHelper
 	{
 
+		public static class Session
+		{
+
+			public const string SessionNew = "SessionNewView";
+
+		}
+
 		public static class Weapon
 		{
 

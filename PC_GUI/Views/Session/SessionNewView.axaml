@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PC_GUI.Views.Session.SessionNewView">
+  <StackPanel Margin="5 0 5 10">
+    <Border       BorderBrush="Black" BorderThickness="1" CornerRadius="2" Padding="10,10,10,10" Margin="5,10,5,10">
+      <Grid ColumnDefinitions="110, 200, 100, 180,70, 170, *" RowDefinitions="35, auto, auto" >
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Session name:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <RadioButton IsChecked="false" Grid.Column="0" Grid.Row="1" GroupName="EventGroup"></RadioButton>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Event:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="New event:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <RadioButton IsChecked="false" Grid.Column="0" Grid.Row="2" GroupName="EventGroup"></RadioButton>
+        
+        <TextBox Grid.Column="1" Grid.Row="0" />
+        <ComboBox Grid.Column="1" Grid.Row="1" Width="200" MaxDropDownHeight="300"/>
+        <TextBox Grid.Column="1" Grid.Row="2" />
+
+        <TextBlock Grid.Column="2" Grid.Row="0"  Text="Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <TextBox Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" AcceptsReturn="True" />
+
+        <TextBlock Grid.Column="4" Grid.Row="0" Text="Note:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
+        <TextBox Grid.Column="5" Grid.Row="0" Grid.RowSpan="3" AcceptsReturn="True"/>
+
+        <TextBlock Grid.Column="6" Grid.Row="0" Text="Date start:" VerticalAlignment="Center" Padding="5,0,0,0"></TextBlock>
+        <DatePicker Grid.Column="6" Grid.Row="1" SelectedDate="{Binding MaintenanceLastDate, Mode=TwoWay}" Padding="5"  DayFormat="ddd dd" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Grid.ColumnSpan="2"></DatePicker>
+        <TextBlock Grid.Column="6" Grid.Row="2" Text="Date end:" VerticalAlignment="Center" Padding="5,0,0,0"></TextBlock>
+        <DatePicker Grid.Column="6" Grid.Row="3" SelectedDate="{Binding MaintenanceLastDate, Mode=TwoWay}" Padding="5"  DayFormat="ddd dd" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Grid.ColumnSpan="2"></DatePicker>
+      </Grid>
+    </Border>
+  </StackPanel>
+</UserControl>
