@@ -129,8 +129,10 @@ namespace DataLayer
 												"TargetId INTEGER References Target (TargetId) NOT NULL," +
 												"Name String NOT NULL," +
 												"Description String," +
-												"Range DECIMAL," +
-												"ScoreMax DECIMAL," +
+												"Range DECIMAL NOT NULL," +
+												"IsRangeMetric Boolean NOT NULL," +
+												"ScoreMax DECIMAL NOT NULL," +
+												"ShotsMax DECIMAL NOT NULL," +
 												"Date bigint," +
 												"TimeStart," +
 												"TimeEnd," +
