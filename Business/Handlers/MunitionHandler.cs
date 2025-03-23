@@ -52,6 +52,7 @@ namespace Business.Handlers
 				var m = new MunitionBo();
 				m.Name = item.Name;
 				m.CaliberId = item.CaliberId;
+				m.DbId = item.MunitionId;
 				m.Description = item.Description;
 				m.Note = item.Note;
 				list.Add(m);
