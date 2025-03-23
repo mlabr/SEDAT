@@ -63,6 +63,8 @@ namespace PC_GUI.ViewModels.Session
 
 
 
+
+
 		[ObservableProperty]
 		public List<DropDownItemModel> _weaponProfileList;
 
@@ -77,6 +79,12 @@ namespace PC_GUI.ViewModels.Session
 
 		[ObservableProperty]
 		public ObservableCollection<RecordModel> _recordModelList;
+
+		[ObservableProperty]
+		public int _score = 84;
+
+		[ObservableProperty]
+		public int _shots = 10;
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
@@ -156,13 +164,40 @@ namespace PC_GUI.ViewModels.Session
 
 
 		[RelayCommand]
-		private void BtnAddRecordOnClick()
+		private void btnAddRecordOnClick()
 		{
 			var tt = new RecordModel();
-			tt.Shots = 10;
-			tt.Score = 75;
+			tt.Shots = Shots;
+			tt.Score = Score;
+			tt.TempId = getTempId();
 
-			RecordModelList.Add(tt);
+
+			if (!(Shots < 1))
+			{
+				RecordModelList.Add(tt);
+			}
+			clearRecord();
+			//RecordModelList.Add(tt);
+		}
+
+		[RelayCommand]
+		private void btnDeleteRecord(int tempId)
+		{
+			var item = RecordModelList.FirstOrDefault(x => x.TempId.Equals(tempId));
+			RecordModelList.Remove(item);
+		}
+
+		private void clearRecord()
+		{
+			Shots = 10;
+			Score = 0;
+		}
+
+		private int tmpId = 0;
+		private int getTempId()
+		{
+			tmpId++;
+			return tmpId;
 		}
 	}
 }
