@@ -60,6 +60,11 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		public bool _isEventDateSameAsSessionDate = true;
 
+		[ObservableProperty]
+		public int _scoreMax = 0;
+
+		[ObservableProperty]
+		public int _roundsMax = 0;
 
 
 
@@ -81,10 +86,10 @@ namespace PC_GUI.ViewModels.Session
 		public ObservableCollection<RecordModel> _recordModelList;
 
 		[ObservableProperty]
-		public int _score = 84;
+		public int _score = 0;
 
 		[ObservableProperty]
-		public int _shots = 10;
+		public int _shots = 0;
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
@@ -136,6 +141,8 @@ namespace PC_GUI.ViewModels.Session
 			SelectedMunitionItem = _munitionList.FirstOrDefault();
 
 			RecordModelList = new ObservableCollection<RecordModel>();
+
+			setDefaultValues();
 		}
 
 		partial void OnSelectedWeaponProfileItemChanged(DropDownItemModel value)
@@ -191,6 +198,7 @@ namespace PC_GUI.ViewModels.Session
 		{
 			Shots = 10;
 			Score = 0;
+			
 		}
 
 		private int tmpId = 0;
@@ -198,6 +206,17 @@ namespace PC_GUI.ViewModels.Session
 		{
 			tmpId++;
 			return tmpId;
+		}
+
+		private void setDefaultValues()
+		{
+			ScoreMax = 10;
+			RoundsMax = 50;
+
+			Shots = 10;
+			Score = 0;
+
+
 		}
 	}
 }
