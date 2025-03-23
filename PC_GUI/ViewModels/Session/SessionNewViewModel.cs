@@ -1,5 +1,6 @@
 ﻿using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Models;
 using System;
 using System.Collections.Generic;
@@ -74,12 +75,15 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		public DropDownItemModel? _selectedMunitionItem;
 
+		[ObservableProperty]
+		public ObservableCollection<RecordModel> _recordModelList;
+
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
-			
+
 			wHandler = new WeaponHandler();
 			mHandler = new MunitionHandler();
-			
+
 			var pHandler = new PlaceHandler();
 			var placeBoList = pHandler.GetAll();
 
@@ -92,10 +96,10 @@ namespace PC_GUI.ViewModels.Session
 				place.DbId = item.PlaceId;
 				_placeList.Add(place);
 			}
-			_selectedPlaceItem = _placeList.FirstOrDefault();	
+			_selectedPlaceItem = _placeList.FirstOrDefault();
 
 
-			
+
 			var weaponBoList = wHandler.GetWeaponProfileList();
 			WeaponProfileList = new List<DropDownItemModel>();
 			foreach (var item in weaponBoList)
@@ -109,7 +113,7 @@ namespace PC_GUI.ViewModels.Session
 			SelectedWeaponProfileItem = _weaponProfileList.FirstOrDefault();
 
 
-			
+
 			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(SelectedWeaponProfileItem.DbId).CCaliberBoList);
 			MunitionList.Clear();
 			foreach (var item in munitionBoList)
@@ -123,12 +127,12 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedMunitionItem = _munitionList.FirstOrDefault();
 
-
+			RecordModelList = new ObservableCollection<RecordModel>();
 		}
 
 		partial void OnSelectedWeaponProfileItemChanged(DropDownItemModel value)
 		{
-			if(value == null)
+			if (value == null)
 			{
 				return;
 			}
@@ -148,6 +152,17 @@ namespace PC_GUI.ViewModels.Session
 			}
 			//_selectedMunitionItem = null;
 			SelectedMunitionItem = MunitionList.FirstOrDefault();
+		}
+
+
+		[RelayCommand]
+		private void BtnAddRecordOnClick()
+		{
+			var tt = new RecordModel();
+			tt.Shots = 10;
+			tt.Score = 75;
+
+			RecordModelList.Add(tt);
 		}
 	}
 }
