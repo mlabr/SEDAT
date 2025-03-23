@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using PC_GUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -68,13 +69,17 @@ namespace PC_GUI.ViewModels.Session
 		public DropDownItemModel? _selectedWeaponProfileItem;
 
 		[ObservableProperty]
-		public List<DropDownItemModel> _munitionList = new List<DropDownItemModel>();
+		public ObservableCollection<DropDownItemModel> _munitionList = new ObservableCollection<DropDownItemModel>();
 
 		[ObservableProperty]
 		public DropDownItemModel? _selectedMunitionItem;
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
+			
+			wHandler = new WeaponHandler();
+			mHandler = new MunitionHandler();
+			
 			var pHandler = new PlaceHandler();
 			var placeBoList = pHandler.GetAll();
 
@@ -90,9 +95,9 @@ namespace PC_GUI.ViewModels.Session
 			_selectedPlaceItem = _placeList.FirstOrDefault();	
 
 
-			wHandler = new WeaponHandler();
+			
 			var weaponBoList = wHandler.GetWeaponProfileList();
-			_weaponProfileList = new List<DropDownItemModel>();
+			WeaponProfileList = new List<DropDownItemModel>();
 			foreach (var item in weaponBoList)
 			{
 				var weapon = new DropDownItemModel();
@@ -101,11 +106,12 @@ namespace PC_GUI.ViewModels.Session
 				weapon.DbId = item.ProfileDdId;
 				_weaponProfileList.Add(weapon);
 			}
-			_selectedWeaponProfileItem = _weaponProfileList.FirstOrDefault();
+			SelectedWeaponProfileItem = _weaponProfileList.FirstOrDefault();
 
 
-			mHandler = new MunitionHandler();
-			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(_selectedWeaponProfileItem.DbId).CCaliberBoList);
+			
+			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(SelectedWeaponProfileItem.DbId).CCaliberBoList);
+			MunitionList.Clear();
 			foreach (var item in munitionBoList)
 			{
 				var m = new DropDownItemModel();
@@ -113,9 +119,9 @@ namespace PC_GUI.ViewModels.Session
 				m.Description = item.Description;
 				m.DbId = item.DbId;
 
-				_munitionList.Add(m);
+				MunitionList.Add(m);
 			}
-			_selectedMunitionItem = _munitionList.FirstOrDefault();
+			SelectedMunitionItem = _munitionList.FirstOrDefault();
 
 
 		}
@@ -127,8 +133,10 @@ namespace PC_GUI.ViewModels.Session
 				return;
 			}
 
+			var tt = wHandler.GetWeaponProfile(value.DbId).CCaliberBoList;
+			var aa = mHandler.GetUsedOnlyListByCaliberList(tt);
 			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(value.DbId).CCaliberBoList);
-			_munitionList.Clear();
+			MunitionList.Clear();
 			foreach (var item in munitionBoList)
 			{
 				var m = new DropDownItemModel();
@@ -136,10 +144,10 @@ namespace PC_GUI.ViewModels.Session
 				m.Description = item.Description;
 				m.DbId = item.DbId;
 
-				_munitionList.Add(m);
+				MunitionList.Add(m);
 			}
-			_selectedMunitionItem = null;
-			_selectedMunitionItem = _munitionList.FirstOrDefault();
+			//_selectedMunitionItem = null;
+			SelectedMunitionItem = MunitionList.FirstOrDefault();
 		}
 	}
 }
