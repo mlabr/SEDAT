@@ -1,6 +1,7 @@
 ﻿using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
 using DataLayer.Entities;
+using DataLayer.Entities.CodeList;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
 
@@ -45,6 +46,29 @@ namespace Business.Handlers
 			{
 				var cd = new CDisciplineBo();
 				cd.DbId = item.CDisciplineId;
+				cd.Name = item.Name;
+				cd.Description = item.Description;
+				cd.Note = item.Note;
+				cd.Priority = item.Priority;
+
+				list.Add(cd);
+
+			}
+			list.OrderBy(x => x.Priority);
+
+			return list;
+		}
+
+		public List<CShootingPositionBo> GetCShootingPositionUsedOnlyList()
+		{
+			var list = new List<CShootingPositionBo>();
+			var repo = new CShootingPositionRepository();
+			var items = repo.GetUsedOnlyList();
+
+			foreach (var item in items)
+			{
+				var cd = new CShootingPositionBo();
+				cd.DbId = item.CShootingPositionId;
 				cd.Name = item.Name;
 				cd.Description = item.Description;
 				cd.Note = item.Note;

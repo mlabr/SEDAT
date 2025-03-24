@@ -18,17 +18,17 @@ namespace DataLayer.Repositories.CodeListRepository
             helper = new DbHelper();
         }
 
-        public CDiscipline Get(int id)
-        {
-            throw new NotImplementedException();
-        }
+		public CDiscipline Get(int id)
+		{
+			throw new NotImplementedException();
+		}
 
-        public List<CDiscipline> GetAllList()
+		public List<CDiscipline> GetAllList()
         {
             using (var conn = new SQLiteConnection(helper.ConnectionString))
             {
-                var list = from caliber in conn.Table<CDiscipline>()
-                           select caliber;
+                var list = from cd in conn.Table<CDiscipline>()
+                           select cd;
 
                 return list.ToList();
 
@@ -39,9 +39,9 @@ namespace DataLayer.Repositories.CodeListRepository
         {
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var list = from cdiscipline in conn.Table<CDiscipline>()
-						   where cdiscipline.IsUsed == true
-						   select cdiscipline;
+				var list = from cd in conn.Table<CDiscipline>()
+						   where cd.IsUsed == true
+						   select cd;
 
 				return list.ToList();
 
@@ -62,5 +62,7 @@ namespace DataLayer.Repositories.CodeListRepository
 		{
 			throw new NotImplementedException();
 		}
+
+
 	}
 }

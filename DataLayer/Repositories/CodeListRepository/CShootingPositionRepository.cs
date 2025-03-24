@@ -4,11 +4,11 @@ using SQLite;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	internal class CShootingPostionRepository : ICodeRepository<CShootingPosition>
+	public class CShootingPositionRepository : ICodeRepository<CShootingPosition>
 	{
 		DbHelper helper;
 
-        public CShootingPostionRepository()
+        public CShootingPositionRepository()
         {
             helper = new DbHelper();
         }

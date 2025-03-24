@@ -62,6 +62,12 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		public DropDownItemModel _selectedCDisciplineItem;
 
+		[ObservableProperty]
+		public List<DropDownItemModel> _cShootingPositionList;
+
+		[ObservableProperty]
+		public DropDownItemModel _selectedCShootingPositionItem;
+
 
 		[ObservableProperty]
 		public DateTimeOffset _eventDate = new DateTimeOffset(DateTime.Now);
@@ -133,6 +139,19 @@ namespace PC_GUI.ViewModels.Session
 				CDisciplineList.Add(cd);
 			}
 			SelectedCDisciplineItem = CDisciplineList.FirstOrDefault();
+
+
+			var cspList = sHandler.GetCShootingPositionUsedOnlyList();
+			CShootingPositionList = new List<DropDownItemModel>();
+			foreach (var item in cspList)
+			{
+				var csp = new DropDownItemModel();
+				csp.Name = item.Name;
+				csp.Description = item.Description;
+				csp.DbId = item.DbId;
+				CShootingPositionList.Add(csp);
+			}
+			SelectedCShootingPositionItem = CShootingPositionList.FirstOrDefault();
 
 			var weaponBoList = wHandler.GetWeaponProfileList();
 			WeaponProfileList = new List<DropDownItemModel>();
