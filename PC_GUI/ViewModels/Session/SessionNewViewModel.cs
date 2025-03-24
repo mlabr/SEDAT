@@ -1,4 +1,5 @@
-﻿using Business.Handlers;
+﻿using Business.BusinessObjects.CodeList;
+using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Models;
@@ -16,6 +17,7 @@ namespace PC_GUI.ViewModels.Session
 	{
 		private MunitionHandler mHandler;
 		private WeaponHandler wHandler;
+		private SessionHandler sHandler;
 
 		[ObservableProperty]
 		public int _eventId;
@@ -53,6 +55,13 @@ namespace PC_GUI.ViewModels.Session
 
 		[ObservableProperty]
 		public string _disciplineNote = "";
+
+		[ObservableProperty]
+		public List<DropDownItemModel> _cDisciplineList;
+
+		[ObservableProperty]
+		public DropDownItemModel _selectedCDisciplineItem;
+
 
 		[ObservableProperty]
 		public DateTimeOffset _eventDate = new DateTimeOffset(DateTime.Now);
@@ -96,6 +105,7 @@ namespace PC_GUI.ViewModels.Session
 
 			wHandler = new WeaponHandler();
 			mHandler = new MunitionHandler();
+			sHandler = new SessionHandler();
 
 			var pHandler = new PlaceHandler();
 			var placeBoList = pHandler.GetAll();
@@ -112,6 +122,17 @@ namespace PC_GUI.ViewModels.Session
 			_selectedPlaceItem = _placeList.FirstOrDefault();
 
 
+			var cDList = sHandler.GetCDisciplineUsedOnlyList();
+			CDisciplineList = new List<DropDownItemModel>();
+			foreach (var item in cDList)
+			{
+				var cd = new DropDownItemModel();
+				cd.Name = item.Name;
+				cd.Description = item.Description;
+				cd.DbId	= item.DbId;
+				CDisciplineList.Add(cd);
+			}
+			SelectedCDisciplineItem = CDisciplineList.FirstOrDefault();
 
 			var weaponBoList = wHandler.GetWeaponProfileList();
 			WeaponProfileList = new List<DropDownItemModel>();
@@ -121,7 +142,7 @@ namespace PC_GUI.ViewModels.Session
 				weapon.Name = item.ProfileName;
 				weapon.Description = item.Description;
 				weapon.DbId = item.ProfileDdId;
-				_weaponProfileList.Add(weapon);
+				WeaponProfileList.Add(weapon);
 			}
 			SelectedWeaponProfileItem = _weaponProfileList.FirstOrDefault();
 

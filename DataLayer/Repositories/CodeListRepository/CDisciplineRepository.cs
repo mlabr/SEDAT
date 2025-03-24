@@ -37,8 +37,16 @@ namespace DataLayer.Repositories.CodeListRepository
 
         public List<CDiscipline> GetUsedOnlyList()
         {
-            throw new NotImplementedException();
-        }
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				var list = from cdiscipline in conn.Table<CDiscipline>()
+						   where cdiscipline.IsUsed == true
+						   select cdiscipline;
+
+				return list.ToList();
+
+			}
+		}
 
 		public void Insert(CDiscipline item)
 		{
