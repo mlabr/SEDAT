@@ -6,8 +6,8 @@
              x:Class="PC_GUI.Views.Weapon.WeaponOverviewView">
   <StackPanel>
     <TextBlock>Places overview</TextBlock>
-    <Button Command="{Binding NewPlaceCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Center">
-      <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">New Place</TextBlock>
+    <Button Command="{Binding NewWeaponProfileCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Center">
+      <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">New Weapon</TextBlock>
     </Button>
     <DataGrid Margin="20" ItemsSource="{Binding WeaponModelList}"
           IsReadOnly="True"

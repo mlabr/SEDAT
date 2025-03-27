@@ -47,9 +47,10 @@ namespace PC_GUI.ViewModels.Weapon
 		}
 
 		[RelayCommand]
-		protected void NewPlace()
+		protected void NewWeaponProfile()
 		{
-			//mainWindowViewModel.CurrentPage = new WeaponDetailViewModel(mainWindowViewModel);
+
+			mainWindowViewModel.CurrentPage = new WeaponNewViewModel(mainWindowViewModel);
 			//mainWindowViewModel.GoToPlaceDetail(id);
 		}
 	}
