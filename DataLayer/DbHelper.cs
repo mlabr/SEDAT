@@ -170,6 +170,10 @@ namespace DataLayer
 												"IsUsed Boolean NOT NULL );");
 
 
+				//TODO insert default weapon
+				//
+				db.Insert(idr.GetDefaultWeaponProfile());
+
 				db.Execute("Create Table ProfileCaliber (ProfileCaliberId INTEGER PRIMARY KEY NOT NULL," +
 												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
 												"CaliberId INTEGER References Caliber (CaliberId) NOT NULL);");

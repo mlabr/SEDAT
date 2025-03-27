@@ -336,6 +336,20 @@ namespace DataLayer.DataResources
 			return weapon;
 		}
 
+		internal WeaponProfile GetDefaultWeaponProfile()
+		{
+			var wp = new WeaponProfile();
+			wp.WeaponProfileId = 1;
+			wp.WeaponId = 1;
+			wp.Name = "Unknown";
+			wp.CWeaponTypeId = 1;
+			wp.CPowerPrincipleId = 1;
+			wp.CFiringModeId = 1;
+
+			return wp;
+		}
+
+
 		internal Sights GetDefaultSights()
 		{
 			var sights = new Sights();
