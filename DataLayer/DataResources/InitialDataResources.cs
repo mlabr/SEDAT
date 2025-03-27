@@ -385,6 +385,14 @@ namespace DataLayer.DataResources
 			return ccaliber;
 		}
 
+		internal ProfileCaliber GetDefaultProfileCaliber()
+		{
+			var pc = new ProfileCaliber();
+			pc.ProfileCCaliberId = 1;
+			pc.WeaponProfileId = 1;
+			pc.CaliberId = 1;
+			return pc;
+		}
 		internal Event GetDefaultEvent()
 		{
 			var group = new Event();

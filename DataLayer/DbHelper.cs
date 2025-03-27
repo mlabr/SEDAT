@@ -178,7 +178,7 @@ namespace DataLayer
 												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
 												"CaliberId INTEGER References Caliber (CaliberId) NOT NULL);");
 
-
+				db.Insert(idr.GetDefaultProfileCaliber());
 
 				db.Execute("Create Table ProfileSights (ProfileSightsId INTEGER PRIMARY KEY NOT NULL," +
 												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
