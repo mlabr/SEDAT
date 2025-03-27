@@ -184,6 +184,8 @@ namespace DataLayer
 												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
 												"SightsId INTEGER References Sights (SightsId) NOT NULL);");
 
+				db.Insert(idr.GetDefaultProfileSights());
+
 				db.Execute("Create Table Record (RecordId INTEGER PRIMARY KEY NOT NULL," +
 												"DisciplineId INTEGER References Discipline (DisciplineId) NOT NULL," +
 												"PersonId INTEGER References Person (PersonId) NOT NULL," +

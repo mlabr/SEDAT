@@ -355,11 +355,22 @@ namespace DataLayer.DataResources
 			var sights = new Sights();
 			sights.SightsId = 1;
 			sights.CSightsTypeId = 1;
+			sights.Description = "This are a default sights";
 			sights.Name = "Unknown";
 			sights.IsUsed = true;
 
 			return sights;
 
+		}
+
+		internal ProfileSights GetDefaultProfileSights()
+		{
+			var ps = new ProfileSights();
+			ps.ProfileSightsId = 1;
+			ps.SightsId= 1;
+			ps.WeaponProfileId = 1;
+
+			return ps;
 		}
 
 		internal Munition GetDefaultMunition()
@@ -416,6 +427,7 @@ namespace DataLayer.DataResources
 	
 			return place;
 		}
+
 
 	}
 }
