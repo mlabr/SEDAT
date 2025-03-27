@@ -327,9 +327,12 @@ namespace PC_GUI.ViewModels.Weapon
 			//TODO validate
 
 			//Show error message in foooter or in modal window
-
 			handler.SaveNewWeaponToDataBase(bo);
 			//this.FullWeaponName;
+
+			//return to overview
+			mainWindowViewModel.CurrentPage = new WeaponOverviewViewModel(mainWindowViewModel);
+
 		}
 
 		[RelayCommand]
