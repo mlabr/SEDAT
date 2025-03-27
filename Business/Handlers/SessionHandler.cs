@@ -1,5 +1,6 @@
 ﻿using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
+using Business.BusinessObjects.Weapon;
 using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
 using DataLayer.Repositories;
@@ -78,6 +79,24 @@ namespace Business.Handlers
 
 			}
 			list.OrderBy(x => x.Priority);
+
+			return list;
+		}
+
+		public List<TargetBo> GetTargetUsedOnlyList()
+		{
+			var list = new List<TargetBo>();
+			var repo = new TargetRepository();
+			var items = repo.GetUsedOnlyList();
+			foreach (var item in items)
+			{
+				var t = new TargetBo();
+				t.DbId = item.TargetId;
+				t.Name = item.Name;
+				t.Description = item.Description;
+				t.Note = item.Note;
+				list.Add(t);
+			}
 
 			return list;
 		}

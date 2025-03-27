@@ -19,92 +19,110 @@ namespace PC_GUI.ViewModels.Session
 		private WeaponHandler wHandler;
 		private SessionHandler sHandler;
 
-		[ObservableProperty]
-		public int _eventId;
 
+		/****************************
+		 * 
+		 *   SESSION
+		 * 
+		 ***************************/
 		[ObservableProperty]
-		public string _eventName = "";
-
-		[ObservableProperty]
-		public string _sessionName = "";
-
-		[ObservableProperty]
-		public string _sessionDescription = "";
+		private int _eventId;
 
 		[ObservableProperty]
-		public string _sessionNote = "";
+		private string _eventName = "";
 
 		[ObservableProperty]
-		public DateTimeOffset _sessionDateStart = new DateTimeOffset(DateTime.Now);
+		private string _sessionName = "";
 
 		[ObservableProperty]
-		public DateTimeOffset _sessionDateEnd = new DateTimeOffset(DateTime.Now);
+		private string _sessionDescription = "";
 
 		[ObservableProperty]
-		public bool _isSessionDateEndEnabled = false;
+		private string _sessionNote = "";
 
 		[ObservableProperty]
-		public List<DropDownItemModel> _placeList;
+		private DateTimeOffset _sessionDateStart = new DateTimeOffset(DateTime.Now);
 
 		[ObservableProperty]
-		public DropDownItemModel? _selectedPlaceItem;
-
-
-		[ObservableProperty]
-		public string _disciplineDescription = "";
+		private DateTimeOffset _sessionDateEnd = new DateTimeOffset(DateTime.Now);
 
 		[ObservableProperty]
-		public string _disciplineNote = "";
+		private bool _isSessionDateEndEnabled = false;
 
 		[ObservableProperty]
-		public List<DropDownItemModel> _cDisciplineList;
+		private List<DropDownItemModel> _placeList;
 
 		[ObservableProperty]
-		public DropDownItemModel _selectedCDisciplineItem;
+		private DropDownItemModel? _selectedPlaceItem;
+
+		/****************************
+		 * 
+		 *   DISCIPLINE
+		 * 
+		 ***************************/
+		[ObservableProperty]
+		private string _disciplineDescription = "";
 
 		[ObservableProperty]
-		public List<DropDownItemModel> _cShootingPositionList;
+		private string _disciplineNote = "";
 
 		[ObservableProperty]
-		public DropDownItemModel _selectedCShootingPositionItem;
-
-
-		[ObservableProperty]
-		public DateTimeOffset _eventDate = new DateTimeOffset(DateTime.Now);
+		private List<DropDownItemModel> _cDisciplineList;
 
 		[ObservableProperty]
-		public bool _isEventDateSameAsSessionDate = true;
+		private DropDownItemModel _selectedCDisciplineItem;
 
 		[ObservableProperty]
-		public int _scoreMax = 0;
+		private List<DropDownItemModel> _cShootingPositionList;
 
 		[ObservableProperty]
-		public int _roundsMax = 0;
-
-
-
+		private DropDownItemModel _selectedCShootingPositionItem;
 
 
 		[ObservableProperty]
-		public List<DropDownItemModel> _weaponProfileList;
+		private DateTimeOffset _eventDate = new DateTimeOffset(DateTime.Now);
 
 		[ObservableProperty]
-		public DropDownItemModel? _selectedWeaponProfileItem;
+		private bool _isEventDateSameAsSessionDate = true;
 
 		[ObservableProperty]
-		public ObservableCollection<DropDownItemModel> _munitionList = new ObservableCollection<DropDownItemModel>();
+		private int _scoreMax = 0;
 
 		[ObservableProperty]
-		public DropDownItemModel? _selectedMunitionItem;
+		private int _roundsMax = 0;
 
 		[ObservableProperty]
-		public ObservableCollection<RecordModel> _recordModelList;
+		private List<DropDownItemModel> _targetList;
 
 		[ObservableProperty]
-		public int _score = 0;
+		private DropDownItemModel _selectedTargetItem;
+
+
+		/****************************
+		 * 
+		 *   RECORD
+		 * 
+		 ***************************/
+		[ObservableProperty]
+		private List<DropDownItemModel> _weaponProfileList;
 
 		[ObservableProperty]
-		public int _shots = 0;
+		private DropDownItemModel? _selectedWeaponProfileItem;
+
+		[ObservableProperty]
+		private ObservableCollection<DropDownItemModel> _munitionList = new ObservableCollection<DropDownItemModel>();
+
+		[ObservableProperty]
+		private DropDownItemModel? _selectedMunitionItem;
+
+		[ObservableProperty]
+		private ObservableCollection<RecordModel> _recordModelList;
+
+		[ObservableProperty]
+		private int _score = 0;
+
+		[ObservableProperty]
+		private int _shots = 0;
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
@@ -116,6 +134,12 @@ namespace PC_GUI.ViewModels.Session
 			var pHandler = new PlaceHandler();
 			var placeBoList = pHandler.GetAll();
 
+
+			/****************************
+			 * 
+			 *   SESSION
+			 * 
+			 ***************************/   
 			_placeList = new List<DropDownItemModel>();
 			foreach (var item in placeBoList)
 			{
@@ -127,7 +151,11 @@ namespace PC_GUI.ViewModels.Session
 			}
 			_selectedPlaceItem = _placeList.FirstOrDefault();
 
-
+			/****************************
+			 * 
+			 *   DISCIPLINE
+			 * 
+			 ***************************/
 			var cDList = sHandler.GetCDisciplineUsedOnlyList();
 			CDisciplineList = new List<DropDownItemModel>();
 			foreach (var item in cDList)
@@ -140,6 +168,17 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedCDisciplineItem = CDisciplineList.FirstOrDefault();
 
+			var tList = sHandler.GetTargetUsedOnlyList();
+			TargetList = new List<DropDownItemModel>();
+			foreach (var item in tList)
+			{
+				 var t = new DropDownItemModel();
+				t.Name = item.Name;
+				t.Description = item.Description;
+				t.DbId = item.DbId;
+				TargetList.Add(t);
+			}
+			SelectedTargetItem = TargetList.FirstOrDefault();
 
 			var cspList = sHandler.GetCShootingPositionUsedOnlyList();
 			CShootingPositionList = new List<DropDownItemModel>();
@@ -153,6 +192,13 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedCShootingPositionItem = CShootingPositionList.FirstOrDefault();
 
+
+
+			/****************************
+			 * 
+			 *   RECORD
+			 * 
+			 ***************************/
 			var weaponBoList = wHandler.GetWeaponProfileList();
 			WeaponProfileList = new List<DropDownItemModel>();
 			foreach (var item in weaponBoList)
