@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.BusinessObjects.Weapon
+namespace Business.BusinessObjects
 {
 	public class TargetBo : CodeBoBase
 	{

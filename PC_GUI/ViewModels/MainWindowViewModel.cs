@@ -8,6 +8,7 @@ using PC_GUI.ViewModels.CodeList;
 using PC_GUI.ViewModels.Place;
 using PC_GUI.ViewModels.Session;
 using PC_GUI.ViewModels.Weapon;
+using PC_GUI.ViewModels.Target;
 using System;
 using System.Collections.Generic;
 
@@ -63,6 +64,7 @@ namespace PC_GUI.ViewModels
 			{
 				MenuHelper.Session.SessionNew => new SessionNewViewModel(this),
 				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
+				MenuHelper.Manage.TargetsOverView => new TargetOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),
 				MenuHelper.Settings.CodeList.CSightsOverview => new CSightsOverviewViewModel(this),

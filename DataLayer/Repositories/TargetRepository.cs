@@ -19,6 +19,18 @@ namespace DataLayer.Repositories
 			connectionString = helper.ConnectionString;
 		}
 
+		public List<Target> GetUsedAllList()
+		{
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				var list = from place in conn.Table<Target>()
+						   select place;
+
+				return list.ToList();
+
+			}
+		}
+
 		public List<Target> GetUsedOnlyList()
 		{
 			using (var conn = new SQLiteConnection(connectionString))

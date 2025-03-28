@@ -30,6 +30,7 @@ namespace PC_GUI.Helpers
 		public static class Manage
 		{
 			public const string PlacesOverview = "PlacesOverView";
+			public const string TargetsOverView = "TargetsOverView";
 
 			public static class Weapon
 			{

@@ -56,9 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Target\" />
     <Folder Include="ViewModels\Overviews\" />
-    <Folder Include="Views\Target\" />
     <Folder Include="Views\Overviews\" />
   </ItemGroup>
 
