@@ -1,4 +1,5 @@
 ﻿using Business.Handlers;
+using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.ViewModels.Target
 {
-	internal class TargetOverviewViewModel : ViewModelBase
+	internal partial class TargetOverviewViewModel : ViewModelBase
 	{
 		private bool isActionConfirmed = false;
 
@@ -38,6 +39,12 @@ namespace PC_GUI.ViewModels.Target
 			}
 			TargetModelList = new ObservableCollection<TargetModel>(modelList);
 
+		}
+
+		[RelayCommand]
+		protected void NewTarget()
+		{
+			mainWindowViewModel.CurrentPage = new TargetNewViewModel(mainWindowViewModel);
 		}
 	}
 }

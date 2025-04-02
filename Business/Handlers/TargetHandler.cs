@@ -1,4 +1,5 @@
 ﻿using Business.BusinessObjects;
+using DataLayer.Entities;
 using DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,19 @@ namespace Business.Handlers
 				tList.Add(t);
 			}
 			return tList;
+		}
+
+		public void Insert(TargetBo bo)
+		{
+
+			var repo = new TargetRepository();
+			var t = new Target();
+			t.Name = bo.Name;
+			t.Description = bo.Description;
+			t.Note = bo.Note;
+			t.IsUsed = bo.IsUsed;
+
+			repo.Insert(t);
 		}
 	}
 }

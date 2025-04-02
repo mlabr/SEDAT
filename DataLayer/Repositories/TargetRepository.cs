@@ -44,5 +44,13 @@ namespace DataLayer.Repositories
 			}
 
 		}
+
+		public void Insert(Target target)
+		{
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(target);
+			}
+		}
 	}
 }
