@@ -34,9 +34,9 @@
           <MenuItem Header="Sessions">
             <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="SessionNewView" ></MenuItem>
             <MenuItem Header="New type">
-              <MenuItem Header="Trainig" Command="{Binding NewSessionCommand}" ></MenuItem>
-              <MenuItem Header="Competition" Command="{Binding NewSessionCommand}" ></MenuItem>
-              <MenuItem Header="Custom" Command="{Binding NewSessionCommand}" ></MenuItem>
+              <MenuItem Header="Trainig" ></MenuItem>
+              <MenuItem Header="Competition"  ></MenuItem>
+              <MenuItem Header="Custom"  ></MenuItem>
             </MenuItem>
             <MenuItem Header="Overview"></MenuItem>
             <MenuItem Header="Calendar"></MenuItem>
