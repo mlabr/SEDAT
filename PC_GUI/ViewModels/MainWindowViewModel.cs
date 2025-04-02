@@ -86,12 +86,6 @@ namespace PC_GUI.ViewModels
 		}
 
 		[RelayCommand]
-		public void NewSession()
-		{
-			CurrentPage = new NewSessionViewModel();
-		}
-
-		[RelayCommand]
 		public async void OpenInfoDialog()
 		{
 			var message = "SEDAT - Shooter's Electronic Data Analysis Tool" +
