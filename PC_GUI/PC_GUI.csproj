@@ -56,11 +56,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Overviews\" />
     <Folder Include="Views\Overviews\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Place\PlaceNewView.axaml.cs">
+      <DependentUpon>PlaceNewView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Weapon\WeaponNewView.axaml.cs">
       <DependentUpon>WeaponNewView.axaml</DependentUpon>
     </Compile>

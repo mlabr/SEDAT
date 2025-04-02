@@ -47,15 +47,6 @@ namespace PC_GUI.ViewModels
 			CurrentPage = (ViewModelBase)instance;
 		}
 
-
-
-		[RelayCommand]
-		public void NewPlace()
-		{
-			CurrentPage = new NewPlaceViewModel(this);
-		}
-
-
 		//Takhle volat veskere menu, umre nejmene kotatek
 		[RelayCommand]
 		public void ChangeView(string value)

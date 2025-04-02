@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace PC_GUI.Views.Place;
 
-public partial class NewPlaceView : UserControl
+public partial class PlaceNewView : UserControl
 {
-    public NewPlaceView()
+    public PlaceNewView()
     {
         InitializeComponent();
     }

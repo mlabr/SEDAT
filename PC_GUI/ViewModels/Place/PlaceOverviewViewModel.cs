@@ -63,7 +63,7 @@ namespace PC_GUI.ViewModels.Place
 		[RelayCommand]
 		protected void NewPlace()
 		{
-			mainWindowViewModel.NewPlace();	
+			mainWindowViewModel.CurrentPage = new PlaceNewViewModel(mainWindowViewModel);
 		}
 
 

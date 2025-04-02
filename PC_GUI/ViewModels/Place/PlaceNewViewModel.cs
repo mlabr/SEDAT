@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace PC_GUI.ViewModels.Place
 {
-	internal partial class NewPlaceViewModel : ViewModelBase
+	internal partial class PlaceNewViewModel : ViewModelBase
 	{
 		[ObservableProperty]
 		public string _name = "";
@@ -29,7 +29,7 @@ namespace PC_GUI.ViewModels.Place
 		private MainWindowViewModel mainWindowViewModel;
 
 
-		public NewPlaceViewModel(MainWindowViewModel main)
+		public PlaceNewViewModel(MainWindowViewModel main)
 		{
 			mainWindowViewModel = main;
 		}
