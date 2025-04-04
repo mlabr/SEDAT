@@ -50,6 +50,9 @@
 		    </MenuItem>
           <MenuItem Header="Manage">
             <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverView" ></MenuItem>
+            <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="CSightsOverView" />
+            <MenuItem Header="Disciplines"/>
+            <MenuItem Header="Shooting Positions"/>
 			<MenuItem Header="Targets" Command="{Binding ChangeViewCommand}"  CommandParameter="TargetsOverView" ></MenuItem>
 			<MenuItem Header="Weapon" >
 				<MenuItem Header="Caliber" ></MenuItem>
@@ -57,14 +60,8 @@
         <MenuItem Header="Sights" ></MenuItem>
 			</MenuItem>
             <!--<MenuItem Header="Weapons" Command="{Binding ChangeViewCommand}" CommandParameter="{x:static PC_GUI.Helpers:MenuHelper.MyParam}" ></MenuItem>-->
-          </MenuItem>
-		    <MenuItem Header="Settings" >
-            <MenuItem Header="Code lists" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverView" >
-				      <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="CSightsOverView" />
-			        <MenuItem Header="Disciplines"/>
-			        <MenuItem Header="Shooting Positions"/>
-	          </MenuItem>
        </MenuItem>
+
        <MenuItem Header="About" Command="{Binding OpenInfoDialogCommand}" >
        </MenuItem>
      </Menu>

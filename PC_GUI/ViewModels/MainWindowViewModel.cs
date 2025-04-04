@@ -56,11 +56,12 @@ namespace PC_GUI.ViewModels
 			{
 				MenuHelper.Event.EventOverview => new EventOverviewViewModel(this),
 				MenuHelper.Session.SessionNew => new SessionNewViewModel(this),
-				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
-				MenuHelper.Manage.TargetsOverView => new TargetOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),
-				MenuHelper.Settings.CodeList.CSightsOverview => new CSightsOverviewViewModel(this),
+				MenuHelper.Manage.CSightsOverview => new CSightsOverviewViewModel(this),
+				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
+				MenuHelper.Manage.TargetsOverView => new TargetOverviewViewModel(this),
+
 				//"PlacesOverView" => new PlaceOverviewViewModel(this),
 				_ => new HomePageViewModel()
 			}; 
