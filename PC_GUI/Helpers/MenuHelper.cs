@@ -11,6 +11,11 @@ namespace PC_GUI.Helpers
 {
 	public static class MenuHelper
 	{
+		public static class Event
+		{
+			public const string EventOverview = "EventOverviewView";
+			public const string EventNew = "EventNewView";
+		}
 
 		public static class Session
 		{

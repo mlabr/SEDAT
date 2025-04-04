@@ -11,6 +11,7 @@ using PC_GUI.ViewModels.Weapon;
 using PC_GUI.ViewModels.Target;
 using System;
 using System.Collections.Generic;
+using PC_GUI.ViewModels.Event;
 
 namespace PC_GUI.ViewModels
 {
@@ -53,6 +54,7 @@ namespace PC_GUI.ViewModels
 		{
 			CurrentPage = value switch
 			{
+				MenuHelper.Event.EventOverview => new EventOverviewViewModel(this),
 				MenuHelper.Session.SessionNew => new SessionNewViewModel(this),
 				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
 				MenuHelper.Manage.TargetsOverView => new TargetOverviewViewModel(this),
