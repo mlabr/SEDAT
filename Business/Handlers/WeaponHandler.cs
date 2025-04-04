@@ -4,6 +4,7 @@ using Business.BusinessObjects.Weapon;
 using Business.Mapping;
 using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
+using DataLayer.Interfaces;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
 using System;
@@ -176,7 +177,7 @@ namespace Business.Handlers
 
 		public List<CaliberBo> GetCCaliberBoList()
 		{
-			var repo = new CCightsRepository();
+			ICodeRepository<Caliber> repo = new CCightsRepository();
 			var list = repo.GetUsedOnlyList();
 			var listBo = new List<CaliberBo>();
 			foreach (var item in list)
@@ -191,7 +192,7 @@ namespace Business.Handlers
 
 		public List<CSightsTypeBo> GetCSightsTypeBoList()
 		{
-			var repo = new CSightsTypeRepository();
+			ICodeRepository<CSightsType> repo = new CSightsTypeRepository();
 			var list = repo.GetUsedOnlyList();
 			var listBo = new List<CSightsTypeBo>();
 			foreach (var sights in list)
@@ -236,7 +237,7 @@ namespace Business.Handlers
 		public CPowerPrincipleBo GetCPowerPrincipleById(int id)
 		{
 			var repo = new CPowerPrincipleRepository();
-			var bo = Mapper.Weapon.CPowerPrincipleToCPowerPrincipleBo(repo.Get(id));
+			var bo = Mapper.Weapon.CPowerPrincipleToCPowerPrincipleBo(repo.GetByID(id));
 
 			return bo;
 		}
@@ -287,7 +288,7 @@ namespace Business.Handlers
 
 		public List<CFiringModeBo> GetCFiringModeBoUsedOnlyList()
 		{
-			var repo = new CFiringModeRepository();
+			ICodeRepository<CFiringMode> repo = new CFiringModeRepository();
 			var list = repo.GetUsedOnlyList();
 			var boList = new List<CFiringModeBo>();
 

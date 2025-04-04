@@ -3,6 +3,7 @@ using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
 using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
+using DataLayer.Interfaces;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
 
@@ -40,7 +41,7 @@ namespace Business.Handlers
 		public List<CDisciplineBo> GetCDisciplineUsedOnlyList()
 		{
 			var list = new List<CDisciplineBo>();
-			var repo = new CDisciplineRepository();
+			ICodeRepository<CDiscipline> repo = new CDisciplineRepository();
 			var items = repo.GetUsedOnlyList();
 
 			foreach (var item in items)
@@ -63,7 +64,7 @@ namespace Business.Handlers
 		public List<CShootingPositionBo> GetCShootingPositionUsedOnlyList()
 		{
 			var list = new List<CShootingPositionBo>();
-			var repo = new CShootingPositionRepository();
+			ICodeRepository<CShootingPosition> repo = new CShootingPositionRepository();
 			var items = repo.GetUsedOnlyList();
 
 			foreach (var item in items)

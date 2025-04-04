@@ -16,7 +16,7 @@ namespace DataLayer.Repositories.CodeListRepository
 			connectionString = helper.ConnectionString;
 		}
 
-		public CSightsType Get(int id)
+		public CSightsType GetByID(int id)
 		{
 			throw new NotImplementedException();
 		}

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	public class CCightsRepository
+	public class CCightsRepository : ICodeRepository<Caliber>
 	{
 		DbHelper helper;
 		public CCightsRepository()
@@ -17,7 +17,7 @@ namespace DataLayer.Repositories.CodeListRepository
 			helper = new DbHelper();
 		}
 
-		public Caliber Get(int id)
+		public Caliber GetByID(int id)
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
@@ -42,6 +42,8 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
+
+
 		public List<Caliber> GetUsedOnlyList()
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
@@ -55,7 +57,17 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
+		public void Insert(Caliber item)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void InsertList(List<Caliber> item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Update(Caliber item)
 		{
 			throw new NotImplementedException();
 		}

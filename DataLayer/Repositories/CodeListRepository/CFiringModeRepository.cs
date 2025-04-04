@@ -28,7 +28,7 @@ namespace DataLayer.Repositories.CodeListRepository
 		}
 
 
-		public CFiringMode Get(int id)
+		public CFiringMode GetByID(int id)
 		{
 			throw new NotImplementedException();
 		}

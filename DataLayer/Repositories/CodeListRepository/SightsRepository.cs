@@ -21,7 +21,7 @@ namespace DataLayer.Repositories.CodeListRepository
 			connectionString = helper.ConnectionString;
 		}
 
-		public Sights Get(int id)
+		public Sights GetByID(int id)
 		{
 			throw new NotImplementedException();
 		}

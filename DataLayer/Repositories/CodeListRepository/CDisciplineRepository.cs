@@ -18,7 +18,7 @@ namespace DataLayer.Repositories.CodeListRepository
             helper = new DbHelper();
         }
 
-		public CDiscipline Get(int id)
+		public CDiscipline GetByID(int id)
 		{
 			throw new NotImplementedException();
 		}

@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities.CodeList;
+using DataLayer.Interfaces;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	public class CWeaponTypeRepository
+	public class CWeaponTypeRepository : ICodeRepository<CWeaponType>
 	{
 
 		DbHelper helper;
@@ -31,7 +32,26 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
-		public CWeaponType Get(int id)
+		public List<CWeaponType> GetAllParrents(int id)
+		{
+			var list = new List<CWeaponType>();
+
+			var isTopParrent = false;
+			while(!isTopParrent)
+			{
+				var item = GetByID(id);
+				list.Add(item);
+				if (item.CWeaponTypeParrentId == item.CWeaponTypeId)
+				{
+					isTopParrent = true;
+					break;
+				}
+				id = item.CWeaponTypeParrentId;
+			}
+			return list;
+		}
+
+		public CWeaponType GetByID(int id)
 		{
 			CWeaponType type;
 
@@ -56,25 +76,24 @@ namespace DataLayer.Repositories.CodeListRepository
 			return type;
 		}
 
-
-		public List<CWeaponType> GetAllParrents(int id)
+		public List<CWeaponType> GetAllList()
 		{
-			var list = new List<CWeaponType>();
-
-			var isTopParrent = false;
-			while(!isTopParrent)
-			{
-				var item = Get(id);
-				list.Add(item);
-				if (item.CWeaponTypeParrentId == item.CWeaponTypeId)
-				{
-					isTopParrent = true;
-					break;
-				}
-				id = item.CWeaponTypeParrentId;
-			}
-			return list;
+			throw new NotImplementedException();
 		}
 
+		public void Insert(CWeaponType item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Update(CWeaponType item)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void InsertList(List<CWeaponType> item)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

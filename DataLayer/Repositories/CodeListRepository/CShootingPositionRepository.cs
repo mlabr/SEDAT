@@ -13,7 +13,7 @@ namespace DataLayer.Repositories.CodeListRepository
             helper = new DbHelper();
         }
 
-        public CShootingPosition Get(int id)
+        public CShootingPosition GetByID(int id)
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{

@@ -1,6 +1,7 @@
 ﻿using Business.BusinessObjects;
 using DataLayer.Entities;
 using DataLayer.Repositories;
+using DataLayer.Repositories.CodeListRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,10 @@ namespace Business.Handlers
 
         public List<PlaceBo> GetAll()
         {
+            //var repo = new PlaceRepository();
             var repo = new PlaceRepository();
+            var placeList = repo.GetAllList();
 
-            var placeList = repo.GetAll();
 
             var placeBoList = new List<PlaceBo>();
             foreach (var item in placeList)

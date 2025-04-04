@@ -4,7 +4,7 @@ namespace DataLayer.Interfaces
 {
 	public interface ICodeRepository<T>
 	{
-		T Get(int id);
+		T GetByID(int id);
 
 		List<T> GetAllList();
 

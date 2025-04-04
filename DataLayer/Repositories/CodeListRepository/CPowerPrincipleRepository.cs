@@ -20,7 +20,7 @@ namespace DataLayer.Repositories.CodeListRepository
 			connectionString = helper.ConnectionString;
 		}
 
-		public CPowerPrinciple Get(int id)
+		public CPowerPrinciple GetByID(int id)
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
@@ -51,7 +51,7 @@ namespace DataLayer.Repositories.CodeListRepository
 			var isTopParrent = false;
 			while (!isTopParrent)
 			{
-				var item = Get(id);
+				var item = GetByID(id);
 				list.Add(item);
 				if (item.CPowerPrincipleParrentId == item.CPowerPrincipleId)
 				{

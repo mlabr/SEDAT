@@ -48,7 +48,7 @@ namespace DataLayer.Repositories
 		}
 
 
-		public List<Place> GetAll()
+		public List<Place> GetAllList()
 		{
 			using (var conn = new SQLiteConnection(connectionString))
 			{
