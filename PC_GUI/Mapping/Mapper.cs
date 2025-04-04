@@ -3,6 +3,7 @@ using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
 using DataLayer.Entities.CodeList;
 using PC_GUI.Models;
+using PC_GUI.Models.CodeList;
 using PC_GUI.Models.Weapon;
 using PC_GUI.ViewModels;
 using PC_GUI.ViewModels.Weapon;
@@ -18,13 +19,34 @@ namespace PC_GUI.Mapping
 {
 	internal static partial class Mapper
 	{
+		internal static EventModel EventBoToEventModel(EventBo bo)
+		{
+			var model = new EventModel();
+			model.DbId = bo.DbId;
+			model.Name = bo.Name;
+			model.Description = bo.Description;
+			model.Note = bo.Note;
+			//model.Order = bo.
+			return model;
+		}
 
-		
+		internal static List<EventModel> EventBoListToEventModelList(List<EventBo> list)
+		{
+			var modelList = new List<EventModel>();
+			foreach (var item in list)
+			{
+				var model = Mapper.EventBoToEventModel(item);
+				modelList.Add(model);
+			}
+
+			return modelList;
+		}
+
 		internal static PlaceModel PlaceBoToPlaceModel(PlaceBo bo)
 		{
 			var model = new PlaceModel();
 			
-			model.DbId = bo.PlaceId;
+			model.DbId = bo.DbId;
 			model.Name = bo.Name;
 			model.Description = bo.Description;
 			model.Note = bo.Note;
@@ -36,7 +58,7 @@ namespace PC_GUI.Mapping
 		{
 			var bo = new PlaceBo();
 
-			bo.PlaceId = item.DbId;
+			bo.DbId = item.DbId;
 			bo.Name = item.Name;
 			bo.Description = item.Description;
 			bo.Note = item.Note;
@@ -81,14 +103,14 @@ namespace PC_GUI.Mapping
 		}
 
 
-		private static MenuItemViewModel? FindById(ObservableCollection<MenuItemViewModel> items, int id)
+		private static MenuItemViewModel? findById(ObservableCollection<MenuItemViewModel> items, int id)
 		{
 			foreach (var item in items)
 			{
 				if (item.DbId == id)
 					return item;
 
-				var found = FindById(item.Children, id);
+				var found = findById(item.Children, id);
 				if (found != null)
 					return found;
 			}

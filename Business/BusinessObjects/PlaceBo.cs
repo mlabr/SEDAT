@@ -8,7 +8,7 @@ namespace Business.BusinessObjects
 {
 	public class PlaceBo
 	{
-		public int PlaceId { get; set; }
+		public int DbId { get; set; }
 
 		public string Name { get; set; }
 

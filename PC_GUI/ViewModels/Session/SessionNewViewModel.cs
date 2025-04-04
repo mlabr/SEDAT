@@ -2,7 +2,9 @@
 using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using PC_GUI.Mapping;
 using PC_GUI.Models;
+using PC_GUI.Models.CodeList;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,9 +17,11 @@ namespace PC_GUI.ViewModels.Session
 {
 	internal partial class SessionNewViewModel : ViewModelBase
 	{
+		private EventDbHandler eHandler;
 		private MunitionHandler mHandler;
 		private WeaponHandler wHandler;
 		private SessionHandler sHandler;
+
 
 
 		/****************************
@@ -25,6 +29,12 @@ namespace PC_GUI.ViewModels.Session
 		 *   SESSION
 		 * 
 		 ***************************/
+
+		public ObservableCollection<DropDownItemModel> EventDropdownModelList { get; set; }
+
+		[ObservableProperty]
+		private DropDownItemModel _selectedEvent;
+
 		[ObservableProperty]
 		private int _eventId;
 
@@ -126,7 +136,7 @@ namespace PC_GUI.ViewModels.Session
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
-
+			eHandler = new EventDbHandler();
 			wHandler = new WeaponHandler();
 			mHandler = new MunitionHandler();
 			sHandler = new SessionHandler();
@@ -139,14 +149,22 @@ namespace PC_GUI.ViewModels.Session
 			 * 
 			 *   SESSION
 			 * 
-			 ***************************/   
+			 ***************************/
+
+			var list = eHandler.GetUsedOnlyList();
+			var modelList = Mapper.DropDown.EventBoListToEventDropDownModelList(list);
+
+			EventDropdownModelList = new ObservableCollection<DropDownItemModel>(modelList);
+			SelectedEvent = EventDropdownModelList.FirstOrDefault();
+
+
 			_placeList = new List<DropDownItemModel>();
 			foreach (var item in placeBoList)
 			{
 				var place = new DropDownItemModel();
 				place.Name = item.Name;
 				place.Description = item.Description;
-				place.DbId = item.PlaceId;
+				place.DbId = item.DbId;
 				_placeList.Add(place);
 			}
 			_selectedPlaceItem = _placeList.FirstOrDefault();

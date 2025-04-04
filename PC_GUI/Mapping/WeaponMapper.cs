@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
+using PC_GUI.Models.CodeList;
 using PC_GUI.Models.Weapon;
 using PC_GUI.ViewModels;
 using PC_GUI.ViewModels.Weapon;
@@ -14,6 +15,8 @@ namespace PC_GUI.Mapping
 {
 	internal static partial class Mapper
 	{
+
+
 		internal static class Weapon
 		{
 			internal static MenuItemViewModel CPowerPrincipleBoToMenuItemModel(CPowerPrincipleBo bo)
@@ -129,8 +132,8 @@ namespace PC_GUI.Mapping
 				model.ProfileName = bo.ProfileName;
 				model.Description = bo.Description;
 				//model..Note = bo.Note;
-				model.SelectedCWeaponTypeMenuItem = FindById(model.CWeaponTypeMenuItems, bo.CWeaponTypeCode);
-				model.SelectedCPowerPrincipleMenuItem = FindById(model.CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
+				model.SelectedCWeaponTypeMenuItem = findById(model.CWeaponTypeMenuItems, bo.CWeaponTypeCode);
+				model.SelectedCPowerPrincipleMenuItem = findById(model.CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
 				model.SelectedFiringMode = model.CFiringModelList.FirstOrDefault(x => x.DbId == bo.CFiringModeCode);
 
 				model.SelectedCSightsType = model.CSightsTypeModelList.FirstOrDefault(x => x.DbId == bo.SightsBoList.FirstOrDefault().CSightsTypeId);

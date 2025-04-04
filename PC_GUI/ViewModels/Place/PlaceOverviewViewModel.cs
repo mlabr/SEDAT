@@ -47,7 +47,7 @@ namespace PC_GUI.ViewModels.Place
 			foreach (var item in list)
 			{
 				var model = new PlaceModel();
-				model.DbId = item.PlaceId;
+				model.DbId = item.DbId;
 				model.Name = item.Name;
 				model.Description = item.Description;
 				model.Note = item.Note;

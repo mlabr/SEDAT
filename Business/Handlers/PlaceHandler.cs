@@ -45,7 +45,7 @@ namespace Business.Handlers
             { 
                 var bo = new PlaceBo();
                 bo.Name = item.Name;
-                bo.PlaceId = item.PlaceId;
+                bo.DbId = item.PlaceId;
                 bo.Description = item.Description;
                 bo.Note = item.Note;
                 bo.IsUsed = item.IsUsed;
@@ -62,7 +62,7 @@ namespace Business.Handlers
 
 			var bo = new PlaceBo();
 			bo.Name = item.Name;
-			bo.PlaceId = item.PlaceId;
+			bo.DbId = item.PlaceId;
 			bo.Description = item.Description;
 			bo.Note = item.Note;
 			bo.IsUsed = item.IsUsed;
@@ -82,7 +82,7 @@ namespace Business.Handlers
 
             var item = new Place();
             item.Name = bo.Name;
-            item.PlaceId = bo.PlaceId;
+            item.PlaceId = bo.DbId;
             item.Description = bo.Description;
             item.Note = bo.Note;
             item.IsUsed = bo.IsUsed;
