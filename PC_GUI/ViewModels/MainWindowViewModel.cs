@@ -12,6 +12,8 @@ using PC_GUI.ViewModels.Target;
 using System;
 using System.Collections.Generic;
 using PC_GUI.ViewModels.Event;
+using PC_GUI.Views.CodeList.CDiscipline;
+using PC_GUI.ViewModels.CodeList.CDiscipline;
 
 namespace PC_GUI.ViewModels
 {
@@ -59,6 +61,7 @@ namespace PC_GUI.ViewModels
 				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),
 				MenuHelper.Manage.CSightsOverview => new CSightsOverviewViewModel(this),
+				MenuHelper.Manage.CDisciplineOverView => new CDisciplineOverviewViewModel(this),
 				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
 				MenuHelper.Manage.TargetsOverView => new TargetOverviewViewModel(this),
 

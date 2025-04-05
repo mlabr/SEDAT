@@ -1,9 +1,7 @@
-﻿
+﻿using Business.Handlers;
 using Business.Handlers.CodeHandler;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PC_GUI.Helpers;
-using PC_GUI.Models;
-using PC_GUI.Models.CodeList;
 using PC_GUI.Models.Weapon;
 using System;
 using System.Collections.Generic;
@@ -12,35 +10,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PC_GUI.ViewModels.CodeList
+namespace PC_GUI.ViewModels.CodeList.CDiscipline
 {
-	internal partial class CSightsOverviewViewModel : ViewModelBase
+	internal partial class CDisciplineOverviewViewModel : ViewModelBase
 	{
 		[ObservableProperty]
 		private string? _dialogResult;
 
-		public ObservableCollection<CDisciplineTypeModel> CDisciplineTypeModelList { get; set; }
-
-		//public Interaction<>
 
 		private MainWindowViewModel mainWindowViewModel;
 
 		private bool isActionConfirmed = false;
 
-		public CSightsOverviewViewModel(MainWindowViewModel mainWindow)
+		public ObservableCollection<CSightsTypeModel> CDisciplineModelList { get; set; }
+
+		public CDisciplineOverviewViewModel(MainWindowViewModel mainWindow)
 		{
 			Label = MenuHelper.Manage.Weapon.SightsOverview;
 
 			mainWindowViewModel = mainWindow;
 
-			var handler = new CSightsHandler();
+			var handler = new SessionHandler();
 
-			var list = handler.GetAll();
+			var list = handler.GetCDisciplineAllList();
 
-			var modelList = new List<CDisciplineTypeModel>();
+			var modelList = new List<CSightsTypeModel>();
 			foreach (var item in list)
 			{
-				var model = new CDisciplineTypeModel();
+				var model = new CSightsTypeModel();
 				model.DbId = item.DbId;
 				model.Name = item.Name;
 				model.Description = item.Description;
@@ -49,8 +46,7 @@ namespace PC_GUI.ViewModels.CodeList
 
 			}
 
-			CDisciplineTypeModelList = new ObservableCollection<CDisciplineTypeModel>(modelList);
+			CDisciplineModelList = new ObservableCollection<CSightsTypeModel>(modelList);
 		}
-
 	}
 }

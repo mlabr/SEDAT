@@ -38,15 +38,15 @@ namespace Business.Handlers
 			repo.InsertSession(session);
 		}
 
-		public List<CDisciplineBo> GetCDisciplineUsedOnlyList()
+		public List<CDisciplineTypeBo> GetCDisciplineUsedOnlyList()
 		{
-			var list = new List<CDisciplineBo>();
+			var list = new List<CDisciplineTypeBo>();
 			ICodeRepository<CDiscipline> repo = new CDisciplineRepository();
 			var items = repo.GetUsedOnlyList();
 
 			foreach (var item in items)
 			{
-				var cd = new CDisciplineBo();
+				var cd = new CDisciplineTypeBo();
 				cd.DbId = item.CDisciplineId;
 				cd.Name = item.Name;
 				cd.Description = item.Description;
@@ -60,6 +60,30 @@ namespace Business.Handlers
 
 			return list;
 		}
+
+		public List<CDisciplineTypeBo> GetCDisciplineAllList()
+		{
+			var list = new List<CDisciplineTypeBo>();
+			ICodeRepository<CDiscipline> repo = new CDisciplineRepository();
+			var items = repo.GetAllList();
+
+			foreach (var item in items)
+			{
+				var cd = new CDisciplineTypeBo();
+				cd.DbId = item.CDisciplineId;
+				cd.Name = item.Name;
+				cd.Description = item.Description;
+				cd.Note = item.Note;
+				cd.Priority = item.Priority;
+
+				list.Add(cd);
+
+			}
+			list.OrderBy(x => x.Priority);
+
+			return list;
+		}
+
 
 		public List<CShootingPositionBo> GetCShootingPositionUsedOnlyList()
 		{

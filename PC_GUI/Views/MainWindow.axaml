@@ -51,7 +51,7 @@
           <MenuItem Header="Manage">
             <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverView" ></MenuItem>
             <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="CSightsOverView" />
-            <MenuItem Header="Disciplines"/>
+            <MenuItem Header="Disciplines" Command="{Binding ChangeViewCommand}" CommandParameter="CDisciplineOverView"/>
             <MenuItem Header="Shooting Positions"/>
 			<MenuItem Header="Targets" Command="{Binding ChangeViewCommand}"  CommandParameter="TargetsOverView" ></MenuItem>
 			<MenuItem Header="Weapon" >

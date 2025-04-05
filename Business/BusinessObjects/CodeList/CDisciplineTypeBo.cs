@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.BusinessObjects.CodeList
 {
-	public class CDisciplineBo : CodeBoBase
+	public class CDisciplineTypeBo : CodeBoBase
 	{
 	}
 }
