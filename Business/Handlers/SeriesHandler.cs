@@ -10,24 +10,24 @@ using System.Threading.Tasks;
 
 namespace Business.Handlers
 {
-	public class EventDbHandler
+	public class SeriesHandler
 	{
-		private ICodeRepository<Event> repo;
+		private ICodeRepository<Series> repo;
 
-		public EventDbHandler()
+		public SeriesHandler()
 		{
 			repo = new EventRepository();
 		}
 
-		public List<EventBo> GetUsedOnlyList()
+		public List<SeriesBo> GetUsedOnlyList()
 		{
 			var items = repo.GetUsedOnlyList();
-			var list = new List<EventBo>();
+			var list = new List<SeriesBo>();
 			foreach (var item in items)
 			{
-				var bo = new EventBo();
+				var bo = new SeriesBo();
 				bo.Name = item.Name;
-				bo.DbId = item.EventId;
+				bo.DbId = item.SeriesId;
 				list.Add(bo);
 			}
 

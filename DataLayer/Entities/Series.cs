@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-	public class Event : EntityBase
+	public class Series : EntityBase
 	{
 		[PrimaryKey, AutoIncrement]
-        public int EventId { get; set; }
+        public int SeriesId { get; set; }
 
 		public string Name { get; set; }
     }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PC_GUI.Models.CodeList
+namespace Business.BusinessObjects.CodeList
 {
-	internal class EventModel : CodeBaseModel
+	public class SeriesBo : CodeBoBase
 	{
 	}
 }

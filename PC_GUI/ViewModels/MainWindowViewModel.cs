@@ -1,19 +1,15 @@
-﻿using Business.BusinessObjects.CodeList;
-using Business.Mapping;
+﻿using Business.Mapping;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DataLayer.Repositories.CodeListRepository;
 using PC_GUI.Helpers;
 using PC_GUI.ViewModels.CodeList;
-using PC_GUI.ViewModels.Place;
-using PC_GUI.ViewModels.Session;
-using PC_GUI.ViewModels.Weapon;
-using PC_GUI.ViewModels.Target;
-using System;
-using System.Collections.Generic;
-using PC_GUI.ViewModels.Event;
-using PC_GUI.Views.CodeList.CDiscipline;
 using PC_GUI.ViewModels.CodeList.CDiscipline;
+using PC_GUI.ViewModels.Place;
+using PC_GUI.ViewModels.Series;
+using PC_GUI.ViewModels.Session;
+using PC_GUI.ViewModels.Target;
+using PC_GUI.ViewModels.Weapon;
+using System;
 
 namespace PC_GUI.ViewModels
 {
@@ -56,7 +52,7 @@ namespace PC_GUI.ViewModels
 		{
 			CurrentPage = value switch
 			{
-				MenuHelper.Event.EventOverview => new EventOverviewViewModel(this),
+				MenuHelper.Event.EventOverview => new SeriesOverviewViewModel(this),
 				MenuHelper.Session.SessionNew => new SessionNewViewModel(this),
 				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),

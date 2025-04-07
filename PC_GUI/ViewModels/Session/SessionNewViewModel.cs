@@ -17,7 +17,7 @@ namespace PC_GUI.ViewModels.Session
 {
 	internal partial class SessionNewViewModel : ViewModelBase
 	{
-		private EventDbHandler eHandler;
+		private SeriesHandler eHandler;
 		private MunitionHandler mHandler;
 		private WeaponHandler wHandler;
 		private SessionHandler sHandler;
@@ -36,10 +36,14 @@ namespace PC_GUI.ViewModels.Session
 		private DropDownItemModel _selectedEvent;
 
 		[ObservableProperty]
-		private int _eventId;
+		private int _seriesId;
 
 		[ObservableProperty]
-		private string _eventName = "";
+		private string _seriesName = "";
+
+		[ObservableProperty]
+		private bool _isNewSeries = true;
+
 
 		[ObservableProperty]
 		private string _sessionName = "";
@@ -134,9 +138,19 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private int _shots = 0;
 
+		//Auxiliery values, not stored in db.
+		[ObservableProperty]
+		private int _scoreTotal = 0;
+
+		[ObservableProperty]
+		private int _scorePercent = 0;
+
+		[ObservableProperty]
+		private int _shotsTotal = 0;
+
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
-			eHandler = new EventDbHandler();
+			eHandler = new SeriesHandler();
 			wHandler = new WeaponHandler();
 			mHandler = new MunitionHandler();
 			sHandler = new SessionHandler();
@@ -158,7 +172,7 @@ namespace PC_GUI.ViewModels.Session
 			SelectedEvent = EventDropdownModelList.FirstOrDefault();
 
 
-			_placeList = new List<DropDownItemModel>();
+			PlaceList = new List<DropDownItemModel>();
 			foreach (var item in placeBoList)
 			{
 				var place = new DropDownItemModel();
@@ -167,7 +181,7 @@ namespace PC_GUI.ViewModels.Session
 				place.DbId = item.DbId;
 				_placeList.Add(place);
 			}
-			_selectedPlaceItem = _placeList.FirstOrDefault();
+			SelectedPlaceItem = PlaceList.FirstOrDefault();
 
 			/****************************
 			 * 
@@ -288,6 +302,16 @@ namespace PC_GUI.ViewModels.Session
 				RecordModelList.Add(tt);
 			}
 			clearRecord();
+
+			ScoreTotal = 0;
+			ShotsTotal = 0;
+			foreach (var item in RecordModelList)
+			{
+				ScoreTotal += item.Score;
+				ShotsTotal += item.Shots;
+			}
+
+			
 			//RecordModelList.Add(tt);
 		}
 

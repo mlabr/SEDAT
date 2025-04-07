@@ -59,6 +59,9 @@
     <Compile Update="Views\Place\PlaceNewView.axaml.cs">
       <DependentUpon>PlaceNewView.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Series\SeriesOverviewView.axaml.cs">
+      <DependentUpon>SeriesOverviewView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Weapon\WeaponNewView.axaml.cs">
       <DependentUpon>WeaponNewView.axaml</DependentUpon>
     </Compile>

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	public class EventRepository : ICodeRepository<Event>
+	public class EventRepository : ICodeRepository<Series>
 	{
 
 		DbHelper helper;
@@ -27,27 +27,27 @@ namespace DataLayer.Repositories.CodeListRepository
 			this.connectionString = connectionString;
 		}
 
-		public List<Event> GetAllList()
+		public List<Series> GetAllList()
 		{
 			using (var conn = new SQLiteConnection(connectionString))
 			{
-				var list = from eventTable in conn.Table<Event>() 
+				var list = from eventTable in conn.Table<Series>() 
 						   select eventTable;
 
 				return list.ToList();
 			}
 		}
 
-		public Event GetByID(int id)
+		public Series GetByID(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public List<Event> GetUsedOnlyList()
+		public List<Series> GetUsedOnlyList()
 		{
 			using (var conn = new SQLiteConnection(connectionString))
 			{
-				var list = from eventTable in conn.Table<Event>()
+				var list = from eventTable in conn.Table<Series>()
 						   where eventTable.IsUsed == true
 						   select eventTable;
 
@@ -56,17 +56,17 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
-		public void Insert(Event item)
+		public void Insert(Series item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void InsertList(List<Event> item)
+		public void InsertList(List<Series> item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Update(Event item)
+		public void Update(Series item)
 		{
 			throw new NotImplementedException();
 		}

@@ -11,26 +11,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PC_GUI.ViewModels.Event
+namespace PC_GUI.ViewModels.Series
 {
-	internal partial class EventOverviewViewModel : ViewModelBase
+	internal partial class SeriesOverviewViewModel : ViewModelBase
 	{
 		private MainWindowViewModel mainWindowViewModel;
 
 		[ObservableProperty]
 		private string? _dialogResult;
 
-		public ObservableCollection<EventModel> EventModelList { get; set; }
+		public ObservableCollection<SeriesModel> EventModelList { get; set; }
 
-		public EventOverviewViewModel(MainWindowViewModel mainView )
+		public SeriesOverviewViewModel(MainWindowViewModel mainView )
 		{
 			mainWindowViewModel = mainView;
 
-			var handler = new EventDbHandler();
+			var handler = new SeriesHandler();
 			var list = handler.GetUsedOnlyList();
-			var modelList = Mapper.EventBoListToEventModelList(list);
+			var modelList = Mapper.EventBoListToSeriesModelList(list);
 
-			EventModelList = new ObservableCollection<EventModel>(modelList);
+			EventModelList = new ObservableCollection<SeriesModel>(modelList);
 
 
 		}

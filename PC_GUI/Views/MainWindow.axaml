@@ -31,7 +31,7 @@
             <MenuItem Header="Backup database"></MenuItem>
             <MenuItem Header="Restore database"></MenuItem>
           </MenuItem>
-          <MenuItem Header="Event" Foreground="Black" >
+          <MenuItem Header="Series" Foreground="Black" >
             <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="EventOverviewView" ></MenuItem>
           </MenuItem>
           <MenuItem Header="Sessions">

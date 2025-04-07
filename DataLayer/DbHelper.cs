@@ -94,15 +94,15 @@ namespace DataLayer
 				db.Insert(idr.GetDefaultMunition());
 
 
-				db.CreateTable<Event>();
-				db.Insert(idr.GetDefaultEvent());
+				db.CreateTable<Series>();
+				db.Insert(idr.GetDefaultSeries());
 
 
 				db.CreateTable<Session>();
 
 
-				db.Execute("Create Table SessionEvent (SessionEventId INTEGER PRIMARY KEY NOT NULL," +
-												"EventId INTEGER References Event (EventdId) NOT NULL," +
+				db.Execute("Create Table SeriesSession (SeriesSessionId INTEGER PRIMARY KEY NOT NULL," +
+												"SeriesId INTEGER References Series (SeriesId) NOT NULL," +
 												"SessionId INTEGER References Session (SessionId) NOT NULL );");
 
 

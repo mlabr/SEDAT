@@ -404,10 +404,10 @@ namespace DataLayer.DataResources
 			pc.CaliberId = 1;
 			return pc;
 		}
-		internal Event GetDefaultEvent()
+		internal Series GetDefaultSeries()
 		{
-			var group = new Event();
-			group.EventId = 1;
+			var group = new Series();
+			group.SeriesId = 1;
 			group.Name = "Not set";
 			group.IsUsed = true;
 			return group;
