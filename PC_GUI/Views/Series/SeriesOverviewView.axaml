@@ -5,10 +5,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PC_GUI.Views.Series.SeriesOverviewView">
   <StackPanel>
-    <TextBlock>Event overview</TextBlock>
-    <Button Command="{Binding CSightsCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Center">
+    <TextBlock>Series overview</TextBlock>
+    <TextBlock Text="Series"></TextBlock>
+    <TextBox Text="{Binding SeriesNewName}"></TextBox>
+    <Button Command="{Binding AddNewSeriesCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Center">
       <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">New Place</TextBlock>
     </Button>
+    
+    
     <DataGrid Margin="20" ItemsSource="{Binding EventModelList}"
           IsReadOnly="True"
           CanUserReorderColumns="True"

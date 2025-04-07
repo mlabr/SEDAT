@@ -1,6 +1,8 @@
-﻿using Business.BusinessObjects.CodeList;
+﻿using Business.BusinessObjects;
+using Business.BusinessObjects.CodeList;
 using DataLayer.Entities;
 using DataLayer.Interfaces;
+using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,7 @@ namespace Business.Handlers
 
 		public SeriesHandler()
 		{
-			repo = new EventRepository();
+			repo = new SeriesRepository();
 		}
 
 		public List<SeriesBo> GetUsedOnlyList()
@@ -32,6 +34,15 @@ namespace Business.Handlers
 			}
 
 			return list;
+		}
+
+		public void InsertSeries(SeriesBo bo)
+		{
+			var series = new Series();
+			series.Name = bo.Name;
+			series.Note = bo.Note;
+			series.IsUsed = true;
+			repo.Insert(series);
 		}
 
 	}

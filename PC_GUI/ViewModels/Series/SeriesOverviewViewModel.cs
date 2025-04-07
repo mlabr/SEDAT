@@ -1,6 +1,8 @@
-﻿using Business.Handlers;
+﻿using Business.BusinessObjects.CodeList;
+using Business.Handlers;
 using Business.Handlers.CodeHandler;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Mapping;
 using PC_GUI.Models.CodeList;
 using PC_GUI.Models.Weapon;
@@ -20,13 +22,18 @@ namespace PC_GUI.ViewModels.Series
 		[ObservableProperty]
 		private string? _dialogResult;
 
+		[ObservableProperty]
+		private string? _seriesNewName;
+
 		public ObservableCollection<SeriesModel> EventModelList { get; set; }
+
+		private SeriesHandler handler;
 
 		public SeriesOverviewViewModel(MainWindowViewModel mainView )
 		{
 			mainWindowViewModel = mainView;
 
-			var handler = new SeriesHandler();
+			handler = new SeriesHandler();
 			var list = handler.GetUsedOnlyList();
 			var modelList = Mapper.EventBoListToSeriesModelList(list);
 
@@ -34,5 +41,17 @@ namespace PC_GUI.ViewModels.Series
 
 
 		}
+
+		[RelayCommand]
+		private void AddNewSeries()
+		{
+			var bo = new SeriesBo();
+			bo.Name = SeriesNewName;
+			handler.InsertSeries(bo);
+
+			//reset page to update
+			mainWindowViewModel.CurrentPage = new SeriesOverviewViewModel(mainWindowViewModel);
+		}
+
 	}
 }

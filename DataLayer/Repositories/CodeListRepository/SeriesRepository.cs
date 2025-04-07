@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	public class EventRepository : ICodeRepository<Series>
+	public class SeriesRepository : ICodeRepository<Series>
 	{
 
 		DbHelper helper;
 		private string connectionString;
 
-		public EventRepository()
+		public SeriesRepository()
 		{
 			helper = new DbHelper();
 			connectionString = helper.ConnectionString;
 		}
 
-		public EventRepository(string connectionString)
+		public SeriesRepository(string connectionString)
 		{
 			this.connectionString = connectionString;
 		}
@@ -58,7 +58,10 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public void Insert(Series item)
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(item);
+			}
 		}
 
 		public void InsertList(List<Series> item)
