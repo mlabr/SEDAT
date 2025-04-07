@@ -25,15 +25,6 @@
       <Image Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"  Source="resm:PC_GUI.Assets.Icons.target.ico?assembly=SEDAT" Width="25" Height="25"/>
       <DockPanel Grid.Column="2" >
         <Menu DockPanel.Dock="Top" Margin="10" >
-          <MenuItem Header="File" Foreground="Black" >
-            <MenuItem Header="Import"></MenuItem>
-            <MenuItem Header="Export"></MenuItem>
-            <MenuItem Header="Backup database"></MenuItem>
-            <MenuItem Header="Restore database"></MenuItem>
-          </MenuItem>
-          <MenuItem Header="Series" Foreground="Black" >
-            <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="EventOverviewView" ></MenuItem>
-          </MenuItem>
           <MenuItem Header="Sessions">
             <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="SessionNewView" ></MenuItem>
             <MenuItem Header="New type">
@@ -41,6 +32,7 @@
               <MenuItem Header="Competition"  ></MenuItem>
               <MenuItem Header="Custom"  ></MenuItem>
             </MenuItem>
+            <MenuItem Header="Series" Command="{Binding ChangeViewCommand}" CommandParameter="EventOverviewView" ></MenuItem>
             <MenuItem Header="Overview"></MenuItem>
             <MenuItem Header="Calendar"></MenuItem>
           </MenuItem>
@@ -61,8 +53,13 @@
 			</MenuItem>
             <!--<MenuItem Header="Weapons" Command="{Binding ChangeViewCommand}" CommandParameter="{x:static PC_GUI.Helpers:MenuHelper.MyParam}" ></MenuItem>-->
        </MenuItem>
-
-       <MenuItem Header="About" Command="{Binding OpenInfoDialogCommand}" >
+     <MenuItem Header="File" Foreground="Black" >
+        <MenuItem Header="Import"></MenuItem>
+        <MenuItem Header="Export"></MenuItem>
+        <MenuItem Header="Backup database"></MenuItem>
+        <MenuItem Header="Restore database"></MenuItem>
+       </MenuItem>
+      <MenuItem Header="About" Command="{Binding OpenInfoDialogCommand}" >
        </MenuItem>
      </Menu>
       </DockPanel>
