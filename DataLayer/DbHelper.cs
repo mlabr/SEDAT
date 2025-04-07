@@ -43,8 +43,8 @@ namespace DataLayer
 				}
 
 
-				db.CreateTable<CDiscipline>();
-				foreach (var s in idr.GetCDisciplineIEnumerable())
+				db.CreateTable<CDisciplineType>();
+				foreach (var s in idr.GetCDisciplineTypeIEnumerable())
 				{
 					db.Insert(s);
 				}

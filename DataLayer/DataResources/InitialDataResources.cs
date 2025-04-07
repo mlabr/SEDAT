@@ -90,15 +90,15 @@ namespace DataLayer.DataResources
 		}
 
 
-		public IEnumerable<CDiscipline> GetCDisciplineIEnumerable()
+		public IEnumerable<CDisciplineType> GetCDisciplineTypeIEnumerable()
 		{
 			string[] names = { "Not defined", "Training", "Competition", "Other", };
 
 			var i = 1;
 			foreach (string name in names)
 			{
-				var item = new CDiscipline();
-				item.CDisciplineId = i;
+				var item = new CDisciplineType();
+				item.CDisciplineTypeId = i;
 				item.Name = name;
 				item.Priority = i;
 				item.Note = "";

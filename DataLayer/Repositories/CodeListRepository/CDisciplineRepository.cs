@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-    public class CDisciplineRepository : ICodeRepository<CDiscipline>
+    public class CDisciplineRepository : ICodeRepository<CDisciplineType>
     {
         DbHelper helper;
 
@@ -18,16 +18,16 @@ namespace DataLayer.Repositories.CodeListRepository
             helper = new DbHelper();
         }
 
-		public CDiscipline GetByID(int id)
+		public CDisciplineType GetByID(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public List<CDiscipline> GetAllList()
+		public List<CDisciplineType> GetAllList()
         {
             using (var conn = new SQLiteConnection(helper.ConnectionString))
             {
-                var list = from cd in conn.Table<CDiscipline>()
+                var list = from cd in conn.Table<CDisciplineType>()
                            select cd;
 
                 return list.ToList();
@@ -35,11 +35,11 @@ namespace DataLayer.Repositories.CodeListRepository
             }
         }
 
-        public List<CDiscipline> GetUsedOnlyList()
+        public List<CDisciplineType> GetUsedOnlyList()
         {
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-				var list = from cd in conn.Table<CDiscipline>()
+				var list = from cd in conn.Table<CDisciplineType>()
 						   where cd.IsUsed == true
 						   select cd;
 
@@ -48,17 +48,17 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
-		public void Insert(CDiscipline item)
+		public void Insert(CDisciplineType item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void InsertList(List<CDiscipline> item)
+		public void InsertList(List<CDisciplineType> item)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Update(CDiscipline item)
+		public void Update(CDisciplineType item)
 		{
 			throw new NotImplementedException();
 		}

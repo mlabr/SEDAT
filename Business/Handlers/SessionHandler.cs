@@ -41,13 +41,13 @@ namespace Business.Handlers
 		public List<CDisciplineTypeBo> GetCDisciplineUsedOnlyList()
 		{
 			var list = new List<CDisciplineTypeBo>();
-			ICodeRepository<CDiscipline> repo = new CDisciplineRepository();
+			ICodeRepository<CDisciplineType> repo = new CDisciplineRepository();
 			var items = repo.GetUsedOnlyList();
 
 			foreach (var item in items)
 			{
 				var cd = new CDisciplineTypeBo();
-				cd.DbId = item.CDisciplineId;
+				cd.DbId = item.CDisciplineTypeId;
 				cd.Name = item.Name;
 				cd.Description = item.Description;
 				cd.Note = item.Note;
@@ -64,13 +64,13 @@ namespace Business.Handlers
 		public List<CDisciplineTypeBo> GetCDisciplineAllList()
 		{
 			var list = new List<CDisciplineTypeBo>();
-			ICodeRepository<CDiscipline> repo = new CDisciplineRepository();
+			ICodeRepository<CDisciplineType> repo = new CDisciplineRepository();
 			var items = repo.GetAllList();
 
 			foreach (var item in items)
 			{
 				var cd = new CDisciplineTypeBo();
-				cd.DbId = item.CDisciplineId;
+				cd.DbId = item.CDisciplineTypeId;
 				cd.Name = item.Name;
 				cd.Description = item.Description;
 				cd.Note = item.Note;

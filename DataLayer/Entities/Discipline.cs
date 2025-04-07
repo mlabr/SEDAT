@@ -30,7 +30,7 @@ namespace DataLayer.Entities
         public TimeOnly TimeEnd { get; set;}
 
         [Ignore]
-        public CDiscipline  CDiscipline { get; set; }
+        public CDisciplineType  CDiscipline { get; set; }
 
         [Ignore]
         public Target Target { get; set; }
