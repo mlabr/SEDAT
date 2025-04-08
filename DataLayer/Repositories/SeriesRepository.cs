@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Repositories.CodeListRepository
+namespace DataLayer.Repositories
 {
 	public class SeriesRepository : ICodeRepository<Series>
 	{
@@ -31,7 +31,7 @@ namespace DataLayer.Repositories.CodeListRepository
 		{
 			using (var conn = new SQLiteConnection(connectionString))
 			{
-				var list = from eventTable in conn.Table<Series>() 
+				var list = from eventTable in conn.Table<Series>()
 						   select eventTable;
 
 				return list.ToList();
@@ -40,7 +40,18 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public Series GetByID(int id)
 		{
-			throw new NotImplementedException();
+			var s = new Series();
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+
+				var item = from series in conn.Table<Series>()
+						   where series.SeriesId == id
+						   select series;
+
+				s = item.FirstOrDefault();
+			}
+			return s;
+
 		}
 
 		public List<Series> GetUsedOnlyList()
@@ -71,7 +82,10 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public void Update(Series item)
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Update(item);
+			}
 		}
 	}
 }

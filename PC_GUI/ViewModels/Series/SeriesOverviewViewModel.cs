@@ -34,8 +34,19 @@ namespace PC_GUI.ViewModels.Series
 			mainWindowViewModel = mainView;
 
 			handler = new SeriesHandler();
-			var list = handler.GetUsedOnlyList();
-			var modelList = Mapper.EventBoListToSeriesModelList(list);
+			var list = handler.GetAllList();
+			var modelList = Mapper.SeriesBoListToSeriesModelList(list);
+
+			foreach (SeriesModel model in modelList)
+			{
+				model.VisibleIconPath = "resm:PC_GUI.Assets.Icons.eye_inactive.ico?assembly=SEDAT";
+				if(model.IsUsed)
+				{
+					//model.VisibleIconPath = "resm:PC_GUI.Assets.Icons.eye_active.ico?assembly=SEDAT";
+					model.VisibleIconPath = "Assets/Icons/eye_active.ico";
+					//model.VisibleIconPath = "resm:PC_GUI.Assets.Icons.eye_inactive.ico?assembly=SEDAT";
+				}
+			}
 
 			EventModelList = new ObservableCollection<SeriesModel>(modelList);
 
@@ -51,6 +62,12 @@ namespace PC_GUI.ViewModels.Series
 
 			//reset page to update
 			mainWindowViewModel.CurrentPage = new SeriesOverviewViewModel(mainWindowViewModel);
+		}
+
+		[RelayCommand]
+		private void CheckVisibility(int id)
+		{
+			handler.TogleVisibility(id);
 		}
 
 	}

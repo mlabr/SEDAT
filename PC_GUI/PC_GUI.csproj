@@ -17,12 +17,20 @@
   <ItemGroup>
     <AvaloniaResource Remove="Assets\Icons\detail.ico" />
     <AvaloniaResource Remove="Assets\Icons\edit.ico" />
+    <AvaloniaResource Remove="Assets\Icons\eye_active.ico" />
+    <AvaloniaResource Remove="Assets\Icons\eye_inactive.ico" />
     <AvaloniaResource Remove="Assets\Icons\target.ico" />
     <AvaloniaResource Remove="Assets\Icons\target.png" />
     <AvaloniaResource Remove="Assets\Icons\trash.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Icons\eye_active.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Icons\eye_inactive.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Assets\Icons\target.ico" />
   </ItemGroup>
 

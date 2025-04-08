@@ -19,23 +19,24 @@ namespace PC_GUI.Mapping
 {
 	internal static partial class Mapper
 	{
-		internal static SeriesModel SeriesBoToEventModel(SeriesBo bo)
+		internal static SeriesModel SeriesBoToSeriesModel(SeriesBo bo)
 		{
 			var model = new SeriesModel();
 			model.DbId = bo.DbId;
 			model.Name = bo.Name;
 			model.Description = bo.Description;
 			model.Note = bo.Note;
+			model.IsUsed = bo.IsUsed;
 			//model.Order = bo.
 			return model;
 		}
 
-		internal static List<SeriesModel> EventBoListToSeriesModelList(List<SeriesBo> list)
+		internal static List<SeriesModel> SeriesBoListToSeriesModelList(List<SeriesBo> list)
 		{
 			var modelList = new List<SeriesModel>();
 			foreach (var item in list)
 			{
-				var model = Mapper.SeriesBoToEventModel(item);
+				var model = Mapper.SeriesBoToSeriesModel(item);
 				modelList.Add(model);
 			}
 
@@ -49,7 +50,6 @@ namespace PC_GUI.Mapping
 			model.DbId = bo.DbId;
 			model.Name = bo.Name;
 			model.Description = bo.Description;
-			model.Note = bo.Note;
 			//model.Order = bo.
 			return model;
 		}

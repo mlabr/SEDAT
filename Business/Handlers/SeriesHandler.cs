@@ -21,6 +21,24 @@ namespace Business.Handlers
 			repo = new SeriesRepository();
 		}
 
+
+
+		public List<SeriesBo> GetAllList()
+		{
+			var items = repo.GetAllList();
+			var list = new List<SeriesBo>();
+			foreach (var item in items)
+			{
+				var bo = new SeriesBo();
+				bo.Name = item.Name;
+				bo.DbId = item.SeriesId;
+				bo.IsUsed = item.IsUsed;
+				list.Add(bo);
+			}
+
+			return list;
+		}
+
 		public List<SeriesBo> GetUsedOnlyList()
 		{
 			var items = repo.GetUsedOnlyList();
@@ -30,6 +48,7 @@ namespace Business.Handlers
 				var bo = new SeriesBo();
 				bo.Name = item.Name;
 				bo.DbId = item.SeriesId;
+				bo.IsUsed = item.IsUsed;
 				list.Add(bo);
 			}
 
@@ -45,5 +64,14 @@ namespace Business.Handlers
 			repo.Insert(series);
 		}
 
+		public void TogleVisibility(int id)
+		{
+			var item = repo.GetByID(id);
+			if (item != null)
+			{
+				item.IsUsed = !item.IsUsed;
+				repo.Update(item);
+			}
+		}
 	}
 }
