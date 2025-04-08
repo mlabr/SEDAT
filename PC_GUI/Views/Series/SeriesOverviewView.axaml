@@ -12,7 +12,7 @@
       <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">New Series</TextBlock>
     </Button>
     
-    <DataGrid Margin="20" ItemsSource="{Binding EventModelList}"
+    <DataGrid Margin="20" ItemsSource="{Binding SeriesModelList}"
           IsReadOnly="True"
           CanUserReorderColumns="True"
           CanUserResizeColumns="True"
@@ -21,8 +21,6 @@
           BorderThickness="1" BorderBrush="Gray">
       <DataGrid.Columns>
         <DataGridTextColumn Header="Name"  Binding="{Binding Name}"/>
-        <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-        <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
         <DataGridTemplateColumn Header="Availability">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>

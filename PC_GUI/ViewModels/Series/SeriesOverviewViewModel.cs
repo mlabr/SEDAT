@@ -25,7 +25,7 @@ namespace PC_GUI.ViewModels.Series
 		[ObservableProperty]
 		private string? _seriesNewName;
 
-		public ObservableCollection<SeriesModel> EventModelList { get; set; }
+		public ObservableCollection<SeriesModel> SeriesModelList { get; set; }
 
 		private SeriesHandler handler;
 
@@ -48,7 +48,7 @@ namespace PC_GUI.ViewModels.Series
 				}
 			}
 
-			EventModelList = new ObservableCollection<SeriesModel>(modelList);
+			SeriesModelList = new ObservableCollection<SeriesModel>(modelList);
 
 
 		}

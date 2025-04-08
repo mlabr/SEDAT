@@ -15,9 +15,6 @@ namespace PC_GUI.ViewModels
 {
 	public partial class MainWindowViewModel : ViewModelBase
 	{
-		private readonly MapperService _mapService;
-
-
 		[ObservableProperty]
 		private bool _isPaneOpen = true;
 

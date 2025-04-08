@@ -13,7 +13,6 @@ namespace Business.Handlers.CodeHandler
 {
 	public class CSightsHandler : CodeBoBase
 	{
-		private readonly MapperService _mapService;
 		public List<CSightsTypeBo> GetAll()
 		{
 			ICodeRepository<CSightsType> repo = new CSightsTypeRepository();
