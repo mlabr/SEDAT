@@ -65,9 +65,27 @@ namespace PC_GUI.ViewModels.Series
 		}
 
 		[RelayCommand]
-		private void CheckVisibility(int id)
+		private void TogleVisibility(int id)
 		{
+			if(id <= 1)
+			{
+				//no hiding default item allowed, hehe
+				return;
+			}
+
 			handler.TogleVisibility(id);
+		}
+
+		[RelayCommand]
+		private void Delete(int id)
+		{
+			if (id <= 1)
+			{
+				//no deleting default item allowed
+				return;
+			}
+
+			//handler.Delete(id);
 		}
 
 	}

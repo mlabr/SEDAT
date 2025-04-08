@@ -21,7 +21,13 @@ namespace Business.Handlers
 			repo = new SeriesRepository();
 		}
 
+		public void Delete(int id)
+		{
+			//need more work
+			throw new NotImplementedException();
 
+
+		}
 
 		public List<SeriesBo> GetAllList()
 		{
