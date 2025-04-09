@@ -10,5 +10,7 @@ namespace PC_GUI.Models.CodeList
 	internal class SeriesModel : CodeBaseModel
 	{
 		public string VisibleIconPath;
+
+
 	}
 }

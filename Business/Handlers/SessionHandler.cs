@@ -18,13 +18,10 @@ namespace Business.Handlers
 
 		public void InsertSession(SessionBo bo)
 		{
+			//Session
 			var repo = new SessionRepository();
-
 			var session = new Session();
-
-
-			//mapping
-
+			//mapping  
 			session.Name = bo.Name;
 			session.PlaceId = bo.PlaceId;
 			session.Description = bo.Description;
@@ -32,10 +29,14 @@ namespace Business.Handlers
 			session.DateEnd = bo.DateEnd.ToString(format: ("yyyy-MM-dd"));
 			session.Note = bo.Note;
 			session.IsUsed = bo.IsUsed;
-			
-
-
 			repo.InsertSession(session);
+
+			//Series
+			var serRepo = new SeriesRepository();
+
+			//serRepo.Insert()
+
+
 		}
 
 		public List<CDisciplineTypeBo> GetCDisciplineUsedOnlyList()

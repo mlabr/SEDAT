@@ -31,10 +31,10 @@ namespace PC_GUI.ViewModels.Session
 		 * 
 		 ***************************/
 
-		public ObservableCollection<DropDownItemModel> EventDropdownModelList { get; set; }
+		public ObservableCollection<DropDownItemModel> SeriesDropdownModelList { get; set; }
 
 		[ObservableProperty]
-		private DropDownItemModel _selectedEvent;
+		private DropDownItemModel _selectedSeries;
 
 		[ObservableProperty]
 		private int _seriesId;
@@ -43,7 +43,7 @@ namespace PC_GUI.ViewModels.Session
 		private string _seriesName = "";
 
 		[ObservableProperty]
-		private bool _isNewSeries = true;
+		private bool _isNewSeries = false;
 
 
 		[ObservableProperty]
@@ -172,8 +172,8 @@ namespace PC_GUI.ViewModels.Session
 			var list = serHandler.GetUsedOnlyList();
 			var modelList = Mapper.DropDown.EventBoListToEventDropDownModelList(list);
 
-			EventDropdownModelList = new ObservableCollection<DropDownItemModel>(modelList);
-			SelectedEvent = EventDropdownModelList.FirstOrDefault();
+			SeriesDropdownModelList = new ObservableCollection<DropDownItemModel>(modelList);
+			SelectedSeries = SeriesDropdownModelList.FirstOrDefault();
 
 
 			PlaceList = new List<DropDownItemModel>();
@@ -294,13 +294,37 @@ namespace PC_GUI.ViewModels.Session
 		[RelayCommand]
 		private void btnSaveSession()
 		{
+
 			var sbo = new SessionBo();
+			/****************************
+			 * 
+			 *   Session
+			 * 
+			 ***************************/
 			sbo.Name = SessionName;
 			sbo.Description = SessionDescription;
 			sbo.Note = SessionNote;
 			sbo.DateStart = SessionDateStart;
 			sbo.DateEnd = SessionDateEnd;
-			sesHandler.InsertSession(sbo);
+			//sesHandler.InsertSession(sbo);
+
+			/****************************
+			 * 
+			 *   Series
+			 * 
+			 ***************************/
+			var seriesBo = new SeriesBo();
+			var seriesSelected = SelectedSeries;
+			seriesBo.Name = seriesSelected.Name;
+			seriesBo.DbId = seriesSelected.DbId;
+			if(IsNewSeries)
+			{
+				seriesBo = new SeriesBo();
+				seriesBo.Name = SeriesName;
+			}
+			serHandler.InsertSeries(seriesBo);
+
+
 		}
 
 

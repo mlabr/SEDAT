@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Handlers
 {
-	public class SeriesHandler
+	public class SeriesHandler : HandlerBase
 	{
 		private SeriesRepository repo;
 		private SessionRepository sessionRepo;
@@ -77,11 +77,15 @@ namespace Business.Handlers
 
 		public void InsertSeries(SeriesBo bo)
 		{
-			var series = new Series();
-			series.Name = bo.Name;
-			series.Note = bo.Note;
-			series.IsUsed = true;
-			repo.Insert(series);
+			if(IsNewItem(bo.DbId))
+			{
+				var series = new Series();
+				series.Name = bo.Name;
+				series.Note = bo.Note;
+				series.IsUsed = true;
+				repo.Insert(series);
+			}
+
 		}
 
 		public void TogleVisibility(int id)
