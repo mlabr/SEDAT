@@ -14,19 +14,33 @@ namespace Business.Handlers
 {
 	public class SeriesHandler
 	{
-		private ICodeRepository<Series> repo;
+		private SeriesRepository repo;
+		private SessionRepository sessionRepo;
 
 		public SeriesHandler()
 		{
 			repo = new SeriesRepository();
+			sessionRepo = new SessionRepository();
 		}
 
 		public void Delete(int id)
 		{
-			//need more work
-			throw new NotImplementedException();
 
+			if (id <= 1)
+			{
+				//no deleting default item allowed
+				return;
+			}
 
+			List<Session> list = sessionRepo.GetListBySeriesId(id);
+			if(list != null)
+			{
+				if (list.Count > 0)
+				{
+					return;
+				}
+			}
+			repo.Delete(id);
 		}
 
 		public List<SeriesBo> GetAllList()

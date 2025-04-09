@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
-	public class SeriesRepository : ICodeRepository<Series>
+	public class SeriesRepository
 	{
 
 		DbHelper helper;
@@ -85,6 +85,14 @@ namespace DataLayer.Repositories
 			using (var conn = new SQLiteConnection(connectionString))
 			{
 				conn.Update(item);
+			}
+		}
+
+		public void Delete(int id)
+		{
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Delete<Series>(id);
 			}
 		}
 	}

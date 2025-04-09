@@ -413,7 +413,7 @@ namespace DataLayer.DataResources
 			return group;
 		}
 
-		internal SessionGroup GetDefaultSessionEvent()
+		internal SeriesSession GetDefaultSessionEvent()
 		{
 			throw new NotImplementedException();
 		}

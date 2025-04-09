@@ -79,13 +79,8 @@ namespace PC_GUI.ViewModels.Series
 		[RelayCommand]
 		private void Delete(int id)
 		{
-			if (id <= 1)
-			{
-				//no deleting default item allowed
-				return;
-			}
-
-			//handler.Delete(id);
+			handler.Delete(id);
+			mainWindowViewModel.CurrentPage = new SeriesOverviewViewModel(mainWindowViewModel);
 		}
 
 	}

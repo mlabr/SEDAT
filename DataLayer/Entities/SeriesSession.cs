@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-	public class SessionGroup : EntityBase
+	public class SeriesSession : EntityBase
 	{
 		[PrimaryKey, AutoIncrement]
-		public int SessionGroupId { get; set; }
+		public int SeriesSessionId { get; set; }
 
 		public int SessionId { get; set; }
 
-		public int GroupId { get; set; }	
+		public int SeriesId { get; set; }	
     }
 }
