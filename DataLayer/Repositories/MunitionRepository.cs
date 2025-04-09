@@ -2,6 +2,7 @@
 using DataLayer.Entities.CodeList;
 using SQLite;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -102,6 +103,22 @@ namespace DataLayer.Repositories
 					
 				}
 
+
+				return munitionList.ToList();
+			}
+		}
+
+		public List<Munition> GetDefaultAmunition()
+		{
+			var munitionList = new List<Munition>();
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+
+				var defaultMunition = from munition in conn.Table<Munition>()
+						   where munition.MunitionId == 1
+						   select munition;
+				defaultMunition.ToList().FirstOrDefault();
+				munitionList.AddRange(defaultMunition);
 
 				return munitionList.ToList();
 			}

@@ -47,6 +47,13 @@ namespace Business.Handlers
 
 
 			var result = repo.GetUsedOnlyListByCaliberList(idList);
+
+
+			if(result.Count < 1)
+			{
+				result = repo.GetDefaultAmunition();
+			}
+
 			foreach (var item in result)
 			{
 				var m = new MunitionBo();

@@ -322,7 +322,7 @@ namespace PC_GUI.ViewModels.Session
 				seriesBo = new SeriesBo();
 				seriesBo.Name = SeriesName;
 			}
-			serHandler.Insert(seriesBo);
+			//serHandler.Insert(seriesBo);
 
 
 		}
