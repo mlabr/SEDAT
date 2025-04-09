@@ -28,8 +28,8 @@ namespace Business.Handlers
 			session.Name = bo.Name;
 			session.PlaceId = bo.PlaceId;
 			session.Description = bo.Description;
-			session.DateStart = bo.DateStart;
-			session.DateEnd = bo.DateEnd;
+			session.DateStart = bo.DateStart.ToString(format: ("yyyy-MM-dd"));
+			session.DateEnd = bo.DateEnd.ToString(format: ("yyyy-MM-dd"));
 			session.Note = bo.Note;
 			session.IsUsed = bo.IsUsed;
 			

@@ -1,4 +1,5 @@
-﻿using Business.BusinessObjects.CodeList;
+﻿using Business.BusinessObjects;
+using Business.BusinessObjects.CodeList;
 using Business.Handlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -17,10 +18,10 @@ namespace PC_GUI.ViewModels.Session
 {
 	internal partial class SessionNewViewModel : ViewModelBase
 	{
-		private SeriesHandler eHandler;
+		private SeriesHandler serHandler;
 		private MunitionHandler mHandler;
 		private WeaponHandler wHandler;
-		private SessionHandler sHandler;
+		private SessionHandler sesHandler;
 
 
 
@@ -103,6 +104,9 @@ namespace PC_GUI.ViewModels.Session
 		private int _scoreMax = 0;
 
 		[ObservableProperty]
+		private string _range = "10.0";
+
+		[ObservableProperty]
 		private int _roundsMax = 0;
 
 		[ObservableProperty]
@@ -150,10 +154,10 @@ namespace PC_GUI.ViewModels.Session
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
-			eHandler = new SeriesHandler();
+			serHandler = new SeriesHandler();
 			wHandler = new WeaponHandler();
 			mHandler = new MunitionHandler();
-			sHandler = new SessionHandler();
+			sesHandler = new SessionHandler();
 
 			var pHandler = new PlaceHandler();
 			var placeBoList = pHandler.GetAll();
@@ -165,7 +169,7 @@ namespace PC_GUI.ViewModels.Session
 			 * 
 			 ***************************/
 
-			var list = eHandler.GetUsedOnlyList();
+			var list = serHandler.GetUsedOnlyList();
 			var modelList = Mapper.DropDown.EventBoListToEventDropDownModelList(list);
 
 			EventDropdownModelList = new ObservableCollection<DropDownItemModel>(modelList);
@@ -188,7 +192,7 @@ namespace PC_GUI.ViewModels.Session
 			 *   DISCIPLINE
 			 * 
 			 ***************************/
-			var cDList = sHandler.GetCDisciplineUsedOnlyList();
+			var cDList = sesHandler.GetCDisciplineUsedOnlyList();
 			CDisciplineList = new List<DropDownItemModel>();
 			foreach (var item in cDList)
 			{
@@ -200,7 +204,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedCDisciplineItem = CDisciplineList.FirstOrDefault();
 
-			var tList = sHandler.GetTargetUsedOnlyList();
+			var tList = sesHandler.GetTargetUsedOnlyList();
 			TargetList = new List<DropDownItemModel>();
 			foreach (var item in tList)
 			{
@@ -212,7 +216,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedTargetItem = TargetList.FirstOrDefault();
 
-			var cspList = sHandler.GetCShootingPositionUsedOnlyList();
+			var cspList = sesHandler.GetCShootingPositionUsedOnlyList();
 			CShootingPositionList = new List<DropDownItemModel>();
 			foreach (var item in cspList)
 			{
@@ -287,9 +291,21 @@ namespace PC_GUI.ViewModels.Session
 			SelectedMunitionItem = MunitionList.FirstOrDefault();
 		}
 
+		[RelayCommand]
+		private void btnSaveSession()
+		{
+			var sbo = new SessionBo();
+			sbo.Name = SessionName;
+			sbo.Description = SessionDescription;
+			sbo.Note = SessionNote;
+			sbo.DateStart = SessionDateStart;
+			sbo.DateEnd = SessionDateEnd;
+			sesHandler.InsertSession(sbo);
+		}
+
 
 		[RelayCommand]
-		private void btnAddRecordOnClick()
+		private void btnAddTempRecordOnClick()
 		{
 			var tt = new RecordModel();
 			tt.Shots = Shots;
@@ -301,7 +317,7 @@ namespace PC_GUI.ViewModels.Session
 			{
 				RecordModelList.Add(tt);
 			}
-			clearRecord();
+			clearTempRecord();
 
 			ScoreTotal = 0;
 			ShotsTotal = 0;
@@ -316,17 +332,25 @@ namespace PC_GUI.ViewModels.Session
 		}
 
 		[RelayCommand]
-		private void btnDeleteRecord(int tempId)
+		private void btnDeleteTempRecord(int tempId)
 		{
 			var item = RecordModelList.FirstOrDefault(x => x.TempId.Equals(tempId));
 			RecordModelList.Remove(item);
+			refreshTempRecordList();
 		}
 
-		private void clearRecord()
+		private void refreshTempRecordList()
 		{
-			Shots = 10;
-			Score = 0;
-			
+			var list = new List<RecordModel>();
+			var count = 0;
+			foreach (var model in RecordModelList)
+			{
+				count++;
+				model.TempId = count;
+				list.Add(model);
+			}
+			tmpId = 0;
+			RecordModelList = new ObservableCollection<RecordModel>(list);
 		}
 
 		private int tmpId = 0;
@@ -334,6 +358,14 @@ namespace PC_GUI.ViewModels.Session
 		{
 			tmpId++;
 			return tmpId;
+		}
+
+
+		private void clearTempRecord()
+		{
+			Shots = 10;
+			Score = 0;
+
 		}
 
 		private void setDefaultValues()

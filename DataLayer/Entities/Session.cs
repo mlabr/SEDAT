@@ -14,9 +14,9 @@ namespace DataLayer.Entities
 
 		public string Description { get; set; }
 
-        public DateTime DateStart { get; set; }
+        public string DateStart { get; set; }
 
-		public DateTime DateEnd { get; set; }
+		public string DateEnd { get; set; }
 
 		[Ignore]
 		public Place Place { get; set; }

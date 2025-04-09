@@ -17,9 +17,9 @@ namespace Business.BusinessObjects
 
         public string Note { get; set; }
 
-        public DateTime DateStart { get; set; }
+        public DateTimeOffset DateStart { get; set; }
 
-		public DateTime DateEnd { get; set; }
+		public DateTimeOffset DateEnd { get; set; }
 
         public bool IsUsed { get; set; } = true;
 

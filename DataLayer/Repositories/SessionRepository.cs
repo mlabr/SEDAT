@@ -43,15 +43,7 @@ namespace DataLayer.Repositories
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
-
 				conn.Insert(session);
-
-				//var list = from place in conn.Table<Place>()
-				//		   where place.IsUsed == true
-				//		   select place;
-
-				//return list.ToList();
-
 			}
 		}
     }
