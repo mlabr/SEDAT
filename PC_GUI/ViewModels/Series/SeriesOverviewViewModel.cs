@@ -58,7 +58,7 @@ namespace PC_GUI.ViewModels.Series
 		{
 			var bo = new SeriesBo();
 			bo.Name = SeriesNewName;
-			handler.InsertSeries(bo);
+			handler.Insert(bo);
 
 			//reset page to update
 			mainWindowViewModel.CurrentPage = new SeriesOverviewViewModel(mainWindowViewModel);

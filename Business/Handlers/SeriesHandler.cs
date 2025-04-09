@@ -75,7 +75,7 @@ namespace Business.Handlers
 			return list;
 		}
 
-		public void InsertSeries(SeriesBo bo)
+		public void Insert(SeriesBo bo)
 		{
 			if(IsNewItem(bo.DbId))
 			{
