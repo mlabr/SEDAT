@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.BusinessObjects.CodeList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace Business.BusinessObjects
 {
 	public class SessionBo
 	{
+		public SessionBo()
+		{
+			SeriesBoList = new List<SeriesBo>();
+			DisciplineBoList = new List<DisciplineBo>();
+		}
 
 		public int PlaceId { get; set; }
 
@@ -21,11 +27,16 @@ namespace Business.BusinessObjects
 
 		public DateTimeOffset DateEnd { get; set; }
 
+		public List<SeriesBo> SeriesBoList { get; set; }
+
+		public List<DisciplineBo> DisciplineBoList { get; set; }
+
         public bool IsUsed { get; set; } = true;
 
 		private string _errorMessageDate = "Start date cannot be after end date.";
 
 		private string _errorMessageName = "Name cannot be empty";
+
 
 
 		public bool IsValid()

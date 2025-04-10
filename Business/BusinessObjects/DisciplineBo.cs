@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Business.BusinessObjects
+{
+	public class DisciplineBo
+	{
+		public int DbId { get; set; }
+
+
+		public int CDisciplineTypeId { get; set; }
+
+		public int CShootingPositionId { get; set; }
+
+		public int TargetId { get; set; }
+
+		public string Name { get; set; }
+
+		public string Description { get; set; }
+
+		public string Note { get; set; }
+
+		public string Range { get; set; }
+
+		public bool RangeIsInMeters { get; set; }
+
+		public float ScoreMax { get; set; }
+
+		public int RoundsMax { get; set; }
+
+	}
+}

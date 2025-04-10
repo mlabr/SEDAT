@@ -1,18 +1,15 @@
 ﻿using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
 using Business.Handlers;
+using Business.Parsers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Mapping;
 using PC_GUI.Models;
-using PC_GUI.Models.CodeList;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PC_GUI.ViewModels.Session
 {
@@ -75,6 +72,10 @@ namespace PC_GUI.ViewModels.Session
 		 *   DISCIPLINE
 		 * 
 		 ***************************/
+
+		[ObservableProperty]
+		private string _disciplineName = "";
+
 		[ObservableProperty]
 		private string _disciplineDescription = "";
 
@@ -101,13 +102,13 @@ namespace PC_GUI.ViewModels.Session
 		private bool _isEventDateSameAsSessionDate = true;
 
 		[ObservableProperty]
-		private int _scoreMax = 0;
+		private string _scoreMax = "0";
 
 		[ObservableProperty]
 		private string _range = "10.0";
 
 		[ObservableProperty]
-		private int _roundsMax = 0;
+		private string _roundsMax = "0";
 
 		[ObservableProperty]
 		private List<DropDownItemModel> _targetList;
@@ -294,19 +295,20 @@ namespace PC_GUI.ViewModels.Session
 		[RelayCommand]
 		private void btnSaveSession()
 		{
-
-			var sbo = new SessionBo();
+			SessionNewViewModel model = this;
+			var sessionBo = new SessionBo();
 			/****************************
 			 * 
 			 *   Session
 			 * 
 			 ***************************/
-			sbo.Name = SessionName;
-			sbo.Description = SessionDescription;
-			sbo.Note = SessionNote;
-			sbo.DateStart = SessionDateStart;
-			sbo.DateEnd = SessionDateEnd;
-			//sesHandler.InsertSession(sbo);
+			sessionBo.Name = model.SessionName;
+			sessionBo.Description = model.SessionDescription;
+			sessionBo.Note = model.SessionNote;
+			sessionBo.DateStart = model.SessionDateStart;
+			sessionBo.DateEnd = model.SessionDateEnd;
+			sessionBo.PlaceId = model.SelectedPlaceItem.DbId;
+			
 
 			/****************************
 			 * 
@@ -314,7 +316,7 @@ namespace PC_GUI.ViewModels.Session
 			 * 
 			 ***************************/
 			var seriesBo = new SeriesBo();
-			var seriesSelected = SelectedSeries;
+			var seriesSelected = model.SelectedSeries;
 			seriesBo.Name = seriesSelected.Name;
 			seriesBo.DbId = seriesSelected.DbId;
 			if(IsNewSeries)
@@ -322,9 +324,29 @@ namespace PC_GUI.ViewModels.Session
 				seriesBo = new SeriesBo();
 				seriesBo.Name = SeriesName;
 			}
-			//serHandler.Insert(seriesBo);
 
+			sessionBo.SeriesBoList.Add(seriesBo);
 
+			/****************************
+			 * 
+			 *   Disciplines
+			 * 
+			 ***************************/
+			var disciplineBo = new DisciplineBo();
+			disciplineBo.Name = model.DisciplineName;
+			disciplineBo.CDisciplineTypeId = model.SelectedCDisciplineItem.DbId;
+			disciplineBo.TargetId = model.SelectedTargetItem.DbId;
+			disciplineBo.CShootingPositionId = model.SelectedCShootingPositionItem.DbId;
+			disciplineBo.Description = model.DisciplineDescription;
+			disciplineBo.Note = model.DisciplineNote;
+			disciplineBo.Range = "";
+			disciplineBo.RangeIsInMeters = true;
+			disciplineBo.ScoreMax = NumberParser.StringToFloat(model.ScoreMax);
+			disciplineBo.RoundsMax = NumberParser.StringToInt(model.RoundsMax);
+
+			sessionBo.DisciplineBoList.Add(disciplineBo);
+
+			//sesHandler.InsertSession(sessionBo);
 		}
 
 
@@ -363,6 +385,7 @@ namespace PC_GUI.ViewModels.Session
 			refreshTempRecordList();
 		}
 
+
 		private void refreshTempRecordList()
 		{
 			var list = new List<RecordModel>();
@@ -394,8 +417,8 @@ namespace PC_GUI.ViewModels.Session
 
 		private void setDefaultValues()
 		{
-			ScoreMax = 10;
-			RoundsMax = 50;
+			ScoreMax = "10";
+			RoundsMax = "50";
 
 			Shots = 10;
 			Score = 0;
