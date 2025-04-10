@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,6 +22,17 @@ namespace Business.Parsers
 			return result;
 		}
 
+		public static float StringToFloat(string str)
+		{
+			str = removeMessFromString(str);
+			str = removeUselessSeparatorsExceptFirst(str);
+			float result = 0.0f;
+
+			result = Convert.ToSingle(str, new CultureInfo("en-US"));
+
+			return result;
+		}
+
 
 		private static string removeMessFromString(string input)
 		{
@@ -38,7 +50,7 @@ namespace Business.Parsers
 			return result;
 		}
 
-		private static string removeUselessSeparatorsExcepFirst(string input)
+		private static string removeUselessSeparatorsExceptFirst(string input)
 		{
 			input = input.Trim();
 			input = input.Replace(",", ".");
@@ -47,13 +59,20 @@ namespace Business.Parsers
 			// no dots
 			if (firstDotIndex < 0)
 			{
-				
 				return input;
 			}
 
-			var result = input.Remove(firstDotIndex).Replace(".", "");
-			// return dot on position
-			result = result.Insert(firstDotIndex, ".");
+			char[] resultArray = input.ToCharArray();
+			for (int i = 0; i < resultArray.Length; i++)
+			{
+				if (i != firstDotIndex && resultArray[i] == '.')
+				{
+					resultArray[i] = '\0'; // Odebereme ostatní tečky (nahradíme nulovým znakem)
+				}
+			}
+
+			// Vytvoříme finální čistý řetězec
+			string result = new string(resultArray).Replace("\0", "");
 
 			return result;
 		}
