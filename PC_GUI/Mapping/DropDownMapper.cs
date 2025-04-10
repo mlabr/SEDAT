@@ -23,7 +23,7 @@ namespace PC_GUI.Mapping
 				return model;
 			}
 
-			internal static List<DropDownItemModel> EventBoListToEventDropDownModelList(List<SeriesBo> list)
+			internal static List<DropDownItemModel> SeriesBoListToSeriesDropDownModelList(List<SeriesBo> list)
 			{
 				var modelList = new List<DropDownItemModel>();
 				foreach (var item in list)

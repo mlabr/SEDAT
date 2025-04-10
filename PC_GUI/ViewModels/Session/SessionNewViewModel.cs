@@ -13,145 +13,20 @@ using System.Linq;
 
 namespace PC_GUI.ViewModels.Session
 {
-	internal partial class SessionNewViewModel : ViewModelBase
+	internal partial class SessionNewViewModel : SessionViewModelBase
 	{
 		private SeriesHandler serHandler;
 		private MunitionHandler mHandler;
 		private WeaponHandler wHandler;
 		private SessionHandler sesHandler;
 
-
-
-		/****************************
-		 * 
-		 *   SESSION
-		 * 
-		 ***************************/
-
-		public ObservableCollection<DropDownItemModel> SeriesDropdownModelList { get; set; }
-
-		[ObservableProperty]
-		private DropDownItemModel _selectedSeries;
-
-		[ObservableProperty]
-		private int _seriesId;
-
-		[ObservableProperty]
-		private string _seriesName = "";
-
-		[ObservableProperty]
-		private bool _isNewSeries = false;
-
-
-		[ObservableProperty]
-		private string _sessionName = "";
-
-		[ObservableProperty]
-		private string _sessionDescription = "";
-
-		[ObservableProperty]
-		private string _sessionNote = "";
-
-		[ObservableProperty]
-		private DateTimeOffset _sessionDateStart = new DateTimeOffset(DateTime.Now);
-
-		[ObservableProperty]
-		private DateTimeOffset _sessionDateEnd = new DateTimeOffset(DateTime.Now);
-
-		[ObservableProperty]
-		private bool _isSessionDateEndEnabled = false;
-
-		[ObservableProperty]
-		private List<DropDownItemModel> _placeList;
-
-		[ObservableProperty]
-		private DropDownItemModel? _selectedPlaceItem;
-
-		/****************************
-		 * 
-		 *   DISCIPLINE
-		 * 
-		 ***************************/
-
-		[ObservableProperty]
-		private string _disciplineName = "";
-
-		[ObservableProperty]
-		private string _disciplineDescription = "";
-
-		[ObservableProperty]
-		private string _disciplineNote = "";
-
-		[ObservableProperty]
-		private List<DropDownItemModel> _cDisciplineList;
-
-		[ObservableProperty]
-		private DropDownItemModel _selectedCDisciplineItem;
-
-		[ObservableProperty]
-		private List<DropDownItemModel> _cShootingPositionList;
-
-		[ObservableProperty]
-		private DropDownItemModel _selectedCShootingPositionItem;
-
-
-		[ObservableProperty]
-		private DateTimeOffset _eventDate = new DateTimeOffset(DateTime.Now);
-
-		[ObservableProperty]
-		private bool _isEventDateSameAsSessionDate = true;
-
-		[ObservableProperty]
-		private string _scoreMax = "0";
-
-		[ObservableProperty]
-		private string _range = "10.0";
-
-		[ObservableProperty]
-		private string _roundsMax = "0";
-
-		[ObservableProperty]
-		private List<DropDownItemModel> _targetList;
-
-		[ObservableProperty]
-		private DropDownItemModel _selectedTargetItem;
-
-
-		/****************************
-		 * 
-		 *   RECORD
-		 * 
-		 ***************************/
-		[ObservableProperty]
-		private List<DropDownItemModel> _weaponProfileList;
-
+		//Note: workaround
 		[ObservableProperty]
 		private DropDownItemModel? _selectedWeaponProfileItem;
 
-		[ObservableProperty]
-		private ObservableCollection<DropDownItemModel> _munitionList = new ObservableCollection<DropDownItemModel>();
 
-		[ObservableProperty]
-		private DropDownItemModel? _selectedMunitionItem;
 
-		[ObservableProperty]
-		private ObservableCollection<RecordModel> _recordModelList;
 
-		[ObservableProperty]
-		private int _score = 0;
-
-		[ObservableProperty]
-		private int _shots = 0;
-
-		//Auxiliery values, not stored in db.
-		[ObservableProperty]
-		private int _scoreTotal = 0;
-
-		[ObservableProperty]
-		private int _scorePercent = 0;
-
-		[ObservableProperty]
-		private int _shotsTotal = 0;
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
@@ -171,7 +46,7 @@ namespace PC_GUI.ViewModels.Session
 			 ***************************/
 
 			var list = serHandler.GetUsedOnlyList();
-			var modelList = Mapper.DropDown.EventBoListToEventDropDownModelList(list);
+			var modelList = Mapper.DropDown.SeriesBoListToSeriesDropDownModelList(list);
 
 			SeriesDropdownModelList = new ObservableCollection<DropDownItemModel>(modelList);
 			SelectedSeries = SeriesDropdownModelList.FirstOrDefault();
@@ -184,7 +59,7 @@ namespace PC_GUI.ViewModels.Session
 				place.Name = item.Name;
 				place.Description = item.Description;
 				place.DbId = item.DbId;
-				_placeList.Add(place);
+				PlaceList.Add(place);
 			}
 			SelectedPlaceItem = PlaceList.FirstOrDefault();
 
@@ -246,7 +121,7 @@ namespace PC_GUI.ViewModels.Session
 				weapon.DbId = item.ProfileDdId;
 				WeaponProfileList.Add(weapon);
 			}
-			SelectedWeaponProfileItem = _weaponProfileList.FirstOrDefault();
+			SelectedWeaponProfileItem = WeaponProfileList.FirstOrDefault();
 
 
 
@@ -261,7 +136,7 @@ namespace PC_GUI.ViewModels.Session
 
 				MunitionList.Add(m);
 			}
-			SelectedMunitionItem = _munitionList.FirstOrDefault();
+			SelectedMunitionItem = MunitionList.FirstOrDefault();
 
 			RecordModelList = new ObservableCollection<RecordModel>();
 
@@ -295,57 +170,18 @@ namespace PC_GUI.ViewModels.Session
 		[RelayCommand]
 		private void btnSaveSession()
 		{
-			SessionNewViewModel model = this;
-			var sessionBo = new SessionBo();
-			/****************************
-			 * 
-			 *   Session
-			 * 
-			 ***************************/
-			sessionBo.Name = model.SessionName;
-			sessionBo.Description = model.SessionDescription;
-			sessionBo.Note = model.SessionNote;
-			sessionBo.DateStart = model.SessionDateStart;
-			sessionBo.DateEnd = model.SessionDateEnd;
-			sessionBo.PlaceId = model.SelectedPlaceItem.DbId;
-			
-
-			/****************************
-			 * 
-			 *   Series
-			 * 
-			 ***************************/
-			var seriesBo = new SeriesBo();
-			var seriesSelected = model.SelectedSeries;
-			seriesBo.Name = seriesSelected.Name;
-			seriesBo.DbId = seriesSelected.DbId;
-			if(IsNewSeries)
+			//SessionNewViewModel model = this;
+			var sessionBo = Mapper.SessionMapper.SessionNewViewModelToSessionBo(this);
+			foreach (var item in RecordModelList)
 			{
-				seriesBo = new SeriesBo();
-				seriesBo.Name = SeriesName;
+				var bo = new RecordBo();
+				bo.Score = item.Score;
+				bo.ShotsCount = item.ShotsCount;
+				bo.WeaponProfileId = SelectedWeaponProfileItem.DbId;
+				sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bo);
 			}
-
-			sessionBo.SeriesBoList.Add(seriesBo);
-
-			/****************************
-			 * 
-			 *   Disciplines
-			 * 
-			 ***************************/
-			var disciplineBo = new DisciplineBo();
-			disciplineBo.Name = model.DisciplineName;
-			disciplineBo.CDisciplineTypeId = model.SelectedCDisciplineItem.DbId;
-			disciplineBo.TargetId = model.SelectedTargetItem.DbId;
-			disciplineBo.CShootingPositionId = model.SelectedCShootingPositionItem.DbId;
-			disciplineBo.Description = model.DisciplineDescription;
-			disciplineBo.Note = model.DisciplineNote;
-			disciplineBo.Range = "";
-			disciplineBo.RangeIsInMeters = true;
-			disciplineBo.ScoreMax = NumberParser.StringToFloat(model.ScoreMax);
-			disciplineBo.RoundsMax = NumberParser.StringToInt(model.RoundsMax);
-
-			sessionBo.DisciplineBoList.Add(disciplineBo);
-
+			var stop = 0;
+			
 			//sesHandler.InsertSession(sessionBo);
 		}
 
@@ -354,7 +190,7 @@ namespace PC_GUI.ViewModels.Session
 		private void btnAddTempRecordOnClick()
 		{
 			var tt = new RecordModel();
-			tt.Shots = Shots;
+			tt.ShotsCount = Shots;
 			tt.Score = Score;
 			tt.TempId = getTempId();
 
@@ -370,7 +206,7 @@ namespace PC_GUI.ViewModels.Session
 			foreach (var item in RecordModelList)
 			{
 				ScoreTotal += item.Score;
-				ShotsTotal += item.Shots;
+				ShotsTotal += item.ShotsCount;
 			}
 
 			

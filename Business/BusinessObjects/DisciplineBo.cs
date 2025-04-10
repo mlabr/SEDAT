@@ -8,8 +8,12 @@ namespace Business.BusinessObjects
 {
 	public class DisciplineBo
 	{
-		public int DbId { get; set; }
+		public DisciplineBo()
+		{
+			RecordBoList = new List<RecordBo>();
+		}
 
+		public int DbId { get; set; }
 
 		public int CDisciplineTypeId { get; set; }
 
@@ -31,5 +35,9 @@ namespace Business.BusinessObjects
 
 		public int RoundsMax { get; set; }
 
+		public DateTimeOffset Date { get; set; }
+
+
+		public List<RecordBo> RecordBoList { get; set; }
 	}
 }

@@ -80,7 +80,7 @@
 
         <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding DisciplineDescription}" Grid.RowSpan="3" AcceptsReturn="True" />
         <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding Range}" Height="30" Margin="0 5 0 0" Width="30" HorizontalAlignment="Left" />
-        <RadioButton Grid.Column="3" Grid.Row="3" IsChecked="True" Margin="70 0 0 0" GroupName="RangeUnits"></RadioButton>
+        <RadioButton Grid.Column="3" Grid.Row="3" IsChecked="{Binding RangeIsInMeters}" Margin="70 0 0 0" GroupName="RangeUnits"></RadioButton>
         <RadioButton Grid.Column="3" Grid.Row="3" IsChecked="False" Margin="120 0 0 0" GroupName="RangeUnits"></RadioButton>
         <TextBlock Grid.Column="3" Grid.Row="3" Text="m" Margin="95 0 0 0"  VerticalAlignment="Center" Padding="0,0,10,0"/>
         <TextBlock Grid.Column="3" Grid.Row="3" Text="yd" Margin="145 0 0 0"  VerticalAlignment="Center" Padding="0,0,10,0"/>
@@ -99,9 +99,9 @@
         
         <TextBox Grid.Column="5" Grid.Row="0" Text="{Binding DisciplineNote}" Grid.RowSpan="3" AcceptsReturn="True"/>
                 
-        <CheckBox Grid.Column="6" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 0 0" IsChecked="{Binding IsEventDateSameAsSessionDate}"></CheckBox>
+        <CheckBox Grid.Column="6" Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 0 0" IsChecked="{Binding IsDisciplineDateSameAsSessionDate}"></CheckBox>
         <TextBlock Grid.Column="6" Grid.Row="0" Text="Is same date" VerticalAlignment="Center" Padding="30,0,0,0"></TextBlock>
-        <DatePicker Grid.Column="6" Grid.Row="1" SelectedDate="{Binding EventDate, Mode=TwoWay}" IsEnabled="{Binding !IsEventDateSameAsSessionDate}" Padding="5"  DayFormat="ddd dd" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Grid.ColumnSpan="2"></DatePicker>
+        <DatePicker Grid.Column="6" Grid.Row="1" SelectedDate="{Binding DisciplineDate, Mode=TwoWay}" IsEnabled="{Binding !IsDisciplineDateSameAsSessionDate}" Padding="5"  DayFormat="ddd dd" HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Grid.ColumnSpan="2"></DatePicker>
         <TextBlock Grid.Column="6" Grid.Row="2"  Text="Time start:" HorizontalAlignment="Left"  VerticalAlignment="Top" Padding="5,0,0,5"/>
         <TimePicker Grid.Column="6" Grid.Row="2" Grid.RowSpan="2" Padding="5,15,0,15"  VerticalAlignment="Center" ClockIdentifier="24HourClock" MinuteIncrement="5"></TimePicker>
         <TextBlock Grid.Column="6" Grid.Row="3"  Text="Time end:" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Padding="5,0,0,5"/>

@@ -12,7 +12,7 @@ namespace PC_GUI.Models
 
 		public int Score { get; set; }
 
-		public int Shots { get; set; }
+		public int ShotsCount { get; set; }
 
 
 	}
