@@ -39,11 +39,58 @@ namespace DataLayer.Repositories
 			}
 		}
 
-		public void InsertSession(Session session)
+		public Series GetSeriesById(int id)
+		{
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				var list = from series in conn.Table<Series>()
+						   where series.SeriesId == id
+						   select series;
+
+				return list.ToList().FirstOrDefault();
+			}
+		}
+
+		public void InsertFullSession(Session session)
+		{
+			Insert(session);
+			foreach (var series in session.SeriesList)
+			{
+				//series exits?
+				if(series.SeriesId < 1)
+				{
+					insert(series);
+				}
+				var serses = new SeriesSession();
+				serses.SeriesId = series.SeriesId;
+				serses.SessionId = session.SessionId.Value;
+				insert(serses);
+
+			}
+		}
+
+
+		public void Insert(Session session)
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
 				conn.Insert(session);
+			}
+		}
+
+		private void insert(Series series)
+		{
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				conn.Insert(series);
+			}
+		}
+
+		private void insert(SeriesSession serses)
+		{
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				conn.Insert(serses);
 			}
 		}
     }

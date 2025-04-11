@@ -182,7 +182,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			var stop = 0;
 			
-			//sesHandler.InsertSession(sessionBo);
+			sesHandler.InsertSession(sessionBo);
 		}
 
 

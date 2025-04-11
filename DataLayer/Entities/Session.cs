@@ -21,5 +21,9 @@ namespace DataLayer.Entities
 		[Ignore]
 		public Place Place { get; set; }
 
+		[Ignore]
+
+		public List<Series> SeriesList { get; set; } = new List<Series>();
+
     }
 }

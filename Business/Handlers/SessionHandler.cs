@@ -29,7 +29,22 @@ namespace Business.Handlers
 			session.DateEnd = bo.DateEnd.ToString(format: ("yyyy-MM-dd"));
 			session.Note = bo.Note;
 			session.IsUsed = bo.IsUsed;
-			repo.InsertSession(session);
+
+			foreach (var item in bo.SeriesBoList)
+			{
+				var ser = new Series();
+				ser.Name = item.Name;
+				ser.IsUsed = item.IsUsed;
+				session.SeriesList.Add(ser);
+				//Item is new
+				if (item.DbId > 0)
+				{
+					ser.SeriesId = item.DbId;
+				}
+			}
+
+
+			repo.InsertFullSession(session);
 
 			//Series
 			var serRepo = new SeriesRepository();

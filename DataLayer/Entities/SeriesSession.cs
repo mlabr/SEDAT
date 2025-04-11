@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-	public class SeriesSession : EntityBase
+	public class SeriesSession
 	{
 		[PrimaryKey, AutoIncrement]
 		public int SeriesSessionId { get; set; }
