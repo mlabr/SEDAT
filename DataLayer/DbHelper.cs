@@ -124,19 +124,20 @@ namespace DataLayer
 
 				db.Execute("Create Table Discipline (DisciplineId INTEGER PRIMARY KEY NOT NULL," +
 												"SessionId INTEGER References Session (SessionId) NOT NULL," +
-												"CDisciplineId INTEGER References CDiscipline (CDisciplineId) NOT NULL," +
+												"CDisciplineTypeId INTEGER References CDisciplineType (CDisciplineTypeId) NOT NULL," +
 												"CShootingPositionId INTEGER References CShootingPosition (CShootingPositionId) NOT NULL," +
 												"TargetId INTEGER References Target (TargetId) NOT NULL," +
 												"Name String NOT NULL," +
 												"Description String," +
 												"Range DECIMAL NOT NULL," +
-												"IsRangeMetric Boolean NOT NULL," +
+												"IsRangeInMeters Boolean NOT NULL," +
 												"ScoreMax DECIMAL NOT NULL," +
 												"ShotsMax DECIMAL NOT NULL," +
-												"Date bigint," +
-												"TimeStart," +
-												"TimeEnd," +
-												"Note String" +
+												"Date TEXT," +
+												"TimeStart TEXT," +
+												"TimeEnd TEXT," +
+												"Note String," +
+												"IsUsed Boolean NOT NULL" +
 												" );" +
 												"");
 

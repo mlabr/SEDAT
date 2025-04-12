@@ -62,10 +62,10 @@ namespace PC_GUI.Mapping
 				disciplineBo.CShootingPositionId = model.SelectedCShootingPositionItem.DbId;
 				disciplineBo.Description = model.DisciplineDescription;
 				disciplineBo.Note = model.DisciplineNote;
-				disciplineBo.Range = model.Range;
-				disciplineBo.RangeIsInMeters = model.RangeIsInMeters;
+				disciplineBo.Range = NumberParser.StringToFloat(model.Range);
+				disciplineBo.IsRangeInMeters = model.RangeIsInMeters;
 				disciplineBo.ScoreMax = NumberParser.StringToFloat(model.ScoreMax);
-				disciplineBo.RoundsMax = NumberParser.StringToInt(model.RoundsMax);
+				disciplineBo.ShotsMax = NumberParser.StringToInt(model.RoundsMax);
 				disciplineBo.Date = model.DisciplineDate;
 
 				sessionBo.DisciplineBoList.Add(disciplineBo);

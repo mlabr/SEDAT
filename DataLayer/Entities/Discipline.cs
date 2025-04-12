@@ -11,7 +11,7 @@ namespace DataLayer.Entities
 
         public int SessionId { get; set; }
 
-        public int CDisciplineId { get; set; }
+        public int CDisciplineTypeId { get; set; }
 
         public int CShootingPositionId { get; set; }
 
@@ -21,15 +21,19 @@ namespace DataLayer.Entities
 
         public string Description { get; set; }
 
-        public int Range { get; set; }
+        public float Range { get; set; }
 
-        public double ScoreMax { get; set; }
+        public bool IsRangeInMeters { get; set; }
 
-        public DateOnly Date { get; set; }
+		public float ScoreMax { get; set; }
 
-        public TimeOnly TimeStart { get; set; }
+		public int Shotsmax { get; set; }
 
-        public TimeOnly TimeEnd { get; set;}
+		public string Date { get; set; }
+
+        public string TimeStart { get; set; }
+
+        public string TimeEnd { get; set;}
 
         [Ignore]
         public CDisciplineType  CDiscipline { get; set; }
@@ -43,7 +47,5 @@ namespace DataLayer.Entities
         [Ignore]
         public CShootingPosition CShootingPosition { get; set; }
 
-
-
-    }
+	}
 }

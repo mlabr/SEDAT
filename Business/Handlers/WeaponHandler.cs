@@ -127,7 +127,6 @@ namespace Business.Handlers
 			wp.CFiringModeId = bo.CFiringModeCode;
 			wp.MaintenanceIntervalDate = bo.MaintenanceIntervalDate;
 			wp.MaintenanceIntervalShots = bo.MaintenanceIntervalShots;
-			//wp.MaintenanceLastDate = bo.MaintenanceLastDate;
 			wp.MaintenanceLastDate = bo.MaintenanceLastDate.ToString(format:("yyyy-MM-dd"));
 
 			var weapon = new Weapon();

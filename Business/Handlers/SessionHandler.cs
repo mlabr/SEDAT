@@ -29,6 +29,7 @@ namespace Business.Handlers
 			session.DateEnd = bo.DateEnd.ToString(format: ("yyyy-MM-dd"));
 			session.Note = bo.Note;
 			session.IsUsed = bo.IsUsed;
+			session.DisciplineList = new List<Discipline>();
 
 			foreach (var item in bo.SeriesBoList)
 			{
@@ -41,6 +42,29 @@ namespace Business.Handlers
 				{
 					ser.SeriesId = item.DbId;
 				}
+			}
+
+			foreach (var item in bo.DisciplineBoList)
+			{
+				var dis = new Discipline();
+				dis.DisciplineId = item.DbId;
+				dis.Name = item.Name;
+				dis.CDisciplineTypeId = item.CDisciplineTypeId;
+				dis.CShootingPositionId = item.CShootingPositionId;
+				dis.Description = item.Description;
+				dis.TargetId = item.TargetId;
+				dis.Range = item.Range;
+				dis.IsRangeInMeters = item.IsRangeInMeters;
+				dis.ScoreMax = item.ScoreMax;
+				dis.Shotsmax = item.ShotsMax;
+				dis.Date = item.Date.ToString(format: ("yyyy-MM-dd"));
+				dis.IsUsed = true;
+				dis.Note = item.Note;
+				//dis.TimeStart
+				//dis.TimeEnd
+
+
+				session.DisciplineList.Add(dis);
 			}
 
 

@@ -27,13 +27,13 @@ namespace Business.BusinessObjects
 
 		public string Note { get; set; }
 
-		public string Range { get; set; }
+		public float Range { get; set; }
 
-		public bool RangeIsInMeters { get; set; }
+		public bool IsRangeInMeters { get; set; }
 
 		public float ScoreMax { get; set; }
 
-		public int RoundsMax { get; set; }
+		public int ShotsMax { get; set; }
 
 		public DateTimeOffset Date { get; set; }
 
