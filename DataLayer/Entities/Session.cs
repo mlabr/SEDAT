@@ -25,5 +25,8 @@ namespace DataLayer.Entities
 
 		public List<Series> SeriesList { get; set; } = new List<Series>();
 
+		[Ignore]
+		public List<Discipline> DisciplineList { get; set; }
+
     }
 }

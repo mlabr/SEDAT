@@ -9,6 +9,8 @@ namespace DataLayer.Entities
 		[PrimaryKey, AutoIncrement]
 		public int DisciplineId { get; set; }
 
+        public int SessionId { get; set; }
+
         public int CDisciplineId { get; set; }
 
         public int CShootingPositionId { get; set; }

@@ -50,13 +50,14 @@ namespace PC_GUI.ViewModels
 			CurrentPage = value switch
 			{
 				MenuHelper.Event.EventOverview => new SeriesOverviewViewModel(this),
+				MenuHelper.Session.SessionOverview => new SessionOverviewViewModel(this),
 				MenuHelper.Session.SessionNew => new SessionNewViewModel(this),
 				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),
 				MenuHelper.Manage.CSightsOverview => new CSightsOverviewViewModel(this),
-				MenuHelper.Manage.CDisciplineOverView => new CDisciplineOverviewViewModel(this),
+				MenuHelper.Manage.CDisciplineOverview => new CDisciplineOverviewViewModel(this),
 				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
-				MenuHelper.Manage.TargetsOverView => new TargetOverviewViewModel(this),
+				MenuHelper.Manage.TargetsOverview => new TargetOverviewViewModel(this),
 
 				//"PlacesOverView" => new PlaceOverviewViewModel(this),
 				_ => new HomePageViewModel()

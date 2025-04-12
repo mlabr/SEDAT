@@ -26,26 +26,27 @@
       <DockPanel Grid.Column="2" >
         <Menu DockPanel.Dock="Top" Margin="10" >
           <MenuItem Header="Sessions">
-            <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="SessionNewView" ></MenuItem>
+            <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="SessionOverview" ></MenuItem>
+            <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="SessionNew" ></MenuItem>
             <MenuItem Header="New type">
               <MenuItem Header="Trainig" ></MenuItem>
               <MenuItem Header="Competition"  ></MenuItem>
               <MenuItem Header="Custom"  ></MenuItem>
             </MenuItem>
-            <MenuItem Header="Series" Command="{Binding ChangeViewCommand}" CommandParameter="EventOverviewView" ></MenuItem>
+            <MenuItem Header="Series" Command="{Binding ChangeViewCommand}" CommandParameter="EventOverview" ></MenuItem>
             <MenuItem Header="Overview"></MenuItem>
             <MenuItem Header="Calendar"></MenuItem>
           </MenuItem>
 	      <MenuItem Header="Weapons">
-			    <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponOverviewView" ></MenuItem>
-				  <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponNewView" ></MenuItem>
+			    <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponOverview" ></MenuItem>
+				  <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponNew" ></MenuItem>
 		    </MenuItem>
           <MenuItem Header="Manage">
-            <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverView" ></MenuItem>
-            <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="CSightsOverView" />
-            <MenuItem Header="Disciplines" Command="{Binding ChangeViewCommand}" CommandParameter="CDisciplineOverView"/>
+            <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverview" ></MenuItem>
+            <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="CSightsOverview" />
+            <MenuItem Header="Disciplines" Command="{Binding ChangeViewCommand}" CommandParameter="CDisciplineOverview"/>
             <MenuItem Header="Shooting Positions"/>
-			<MenuItem Header="Targets" Command="{Binding ChangeViewCommand}"  CommandParameter="TargetsOverView" ></MenuItem>
+			<MenuItem Header="Targets" Command="{Binding ChangeViewCommand}"  CommandParameter="TargetsOverview" ></MenuItem>
 			<MenuItem Header="Weapon" >
 				<MenuItem Header="Caliber" ></MenuItem>
 		    <MenuItem Header="Munition" ></MenuItem>

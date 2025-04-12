@@ -1,4 +1,6 @@
-﻿using DataLayer.Entities;
+﻿using Avalonia.Controls;
+using DataLayer.Entities;
+using DataLayer.Entities.CodeList;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -93,5 +95,81 @@ namespace DataLayer.Repositories
 				conn.Insert(serses);
 			}
 		}
-    }
+
+		public List<Session> GetSessionListByParams()
+		{
+			var yearOfSession = "";
+			var sessionList = new List<Session>();
+			//filter Sesion name, Series, Place
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+
+
+
+				var itemList = from seriesSession in conn.Table<SeriesSession>()
+							   join session in conn.Table<Session>() on seriesSession.SessionId equals session.SessionId
+							   join series in conn.Table<Series>() on seriesSession.SeriesId equals series.SeriesId
+							   where session.DateStart.StartsWith(yearOfSession)
+							   //where seriesSession.SeriesId == session.
+
+							   //join discipline in conn.Table<Discipline>() on session.SessionId equals discipline.SessionId
+							   select new
+							   { 
+								   SeriesSession = seriesSession,
+								   Session = session,
+								   Series = series,
+							   };
+
+
+
+
+
+				if (itemList is null)
+				{
+					//return list;
+				}
+				itemList.ToList();
+
+
+				
+
+				foreach (var item in itemList)
+				{
+					var ses = sessionList.Find(x => x.SessionId == item.Session.SessionId);
+					if(ses is null)
+					{
+						sessionList.Add(item.Session);
+
+					}
+					item.Session.SeriesList.Add(item.Series);
+				}
+
+
+				
+
+
+				//var list = new List<WeaponProfile>();
+				//foreach (var item in sessionEntity)
+				//{
+				//	list.Add(item);
+				//}
+
+				//var result = item.Select(m => m.Weapon).FirstOrDefault();
+
+				//if (result is not null)
+				//{
+				//	if (result.Person is not null)
+				//	{
+				//		result.Person = item.Select(c => c.Person).FirstOrDefault();
+				//	}
+
+				//}
+
+				
+			}
+
+
+			return sessionList;
+		}
+	}
 }

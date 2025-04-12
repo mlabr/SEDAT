@@ -142,5 +142,11 @@ namespace Business.Handlers
 			return list;
 		}
 
+		public void GetSessionOverviewList()
+		{
+
+			var repo = new SessionRepository();
+			var lsit = repo.GetSessionListByParams();
+		}
 	}
 }

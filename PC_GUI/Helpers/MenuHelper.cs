@@ -13,35 +13,36 @@ namespace PC_GUI.Helpers
 	{
 		public static class Event
 		{
-			public const string EventOverview = "EventOverviewView";
-			public const string EventNew = "EventNewView";
+			public const string EventOverview = "EventOverview";
+			public const string EventNew = "EventNew";
 		}
 
 		public static class Session
 		{
 
-			public const string SessionNew = "SessionNewView";
+			public const string SessionNew = "SessionNew";
+			public const string SessionOverview = "SessionOverview";
 
 		}
 
 		public static class Weapon
 		{
 
-			public const string WeaponOverview = "WeaponOverviewView";
-			public const string WeaponNew = "WeaponNewView";
+			public const string WeaponOverview = "WeaponOverview";
+			public const string WeaponNew = "WeaponNew";
 			
 		}
 
 		public static class Manage
 		{
-			public const string PlacesOverview = "PlacesOverView";
-			public const string TargetsOverView = "TargetsOverView";
-			public const string CSightsOverview = "CSightsOverView";
-			public const string CDisciplineOverView = "CDisciplineOverView";
+			public const string PlacesOverview = "PlacesOverview";
+			public const string TargetsOverview = "TargetsOverview";
+			public const string CSightsOverview = "CSightsOverview";
+			public const string CDisciplineOverview = "CDisciplineOverview";
 
 			public static class Weapon
 			{
-				public const string SightsOverview = "SightsOverView";
+				public const string SightsOverview = "SightsOverview";
 			}
 		}
 
@@ -49,7 +50,7 @@ namespace PC_GUI.Helpers
 		{
 			public static class CodeList
 			{
-				public const string CSightsOverview = "CSightsOverView";
+				public const string CSightsOverview = "CSightsOverview";
 				
 			}
 		}
