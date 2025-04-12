@@ -98,19 +98,28 @@ namespace DataLayer.Repositories
 
 		public List<Session> GetSessionListByParams()
 		{
+			//conditions
+			var skipCount = 0;
+			var takeCount = 10000;
 			var yearOfSession = "";
+			if (string.IsNullOrEmpty(yearOfSession))
+			{
+				yearOfSession = null;
+			}
+
+
+
 			var sessionList = new List<Session>();
 			//filter Sesion name, Series, Place
 			using (var conn = new SQLiteConnection(connectionString))
 			{
-
-
-
-				var itemList = from seriesSession in conn.Table<SeriesSession>()
+				var itemList = (from seriesSession in conn.Table<SeriesSession>()
 							   join session in conn.Table<Session>() on seriesSession.SessionId equals session.SessionId
 							   join series in conn.Table<Series>() on seriesSession.SeriesId equals series.SeriesId
-							   where session.DateStart.StartsWith(yearOfSession)
-							   //where seriesSession.SeriesId == session.
+							   where yearOfSession == null || session.DateStart.StartsWith(yearOfSession)
+							   
+							   //add another conditions here
+
 
 							   //join discipline in conn.Table<Discipline>() on session.SessionId equals discipline.SessionId
 							   select new
@@ -118,7 +127,8 @@ namespace DataLayer.Repositories
 								   SeriesSession = seriesSession,
 								   Session = session,
 								   Series = series,
-							   };
+							   }).Skip(skipCount)
+							   .Take(takeCount);
 
 
 
@@ -143,7 +153,7 @@ namespace DataLayer.Repositories
 					}
 					item.Session.SeriesList.Add(item.Series);
 				}
-
+				//Now we have all session with its series
 
 				
 
