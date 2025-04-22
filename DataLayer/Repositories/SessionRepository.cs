@@ -74,7 +74,16 @@ namespace DataLayer.Repositories
 				{
 					discipline.SessionId = session.SessionId.Value;
 					insert(discipline);
+
+					foreach (var record in discipline.RecordList)
+					{
+						record.DisciplineId = discipline.DisciplineId;
+						insert(record);
+					}
 				}
+
+
+
 			}
 
 		}
@@ -109,6 +118,14 @@ namespace DataLayer.Repositories
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
 			{
 				conn.Insert(discipline);
+			}
+		}
+
+		private void insert(Record record)
+		{
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				conn.Insert(record);
 			}
 		}
 

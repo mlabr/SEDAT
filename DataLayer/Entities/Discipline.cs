@@ -35,7 +35,10 @@ namespace DataLayer.Entities
 
         public string TimeEnd { get; set;}
 
-        [Ignore]
+		[Ignore]
+		public List<Record> RecordList { get; set; } = new List<Record>();
+
+		[Ignore]
         public CDisciplineType  CDiscipline { get; set; }
 
         [Ignore]

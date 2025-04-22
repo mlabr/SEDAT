@@ -193,12 +193,12 @@ namespace DataLayer
 												"WeaponProfileId INTEGER References WeaponProfile (WeaponProfileId) NOT NULL," +
 												"MunitionId INTEGER References Munition (MunitionId) NOT NULL," +
 												"SightsId INTEGER References Sights (SightsId) NOT NULL," +
-												"Score INTEGER NOT NULL," +
+												"Score DECIMAL NOT NULL," +
 												"ShotsCount INTEGER NOT NULL," +
-												"TimeStart," +
-												"TimeEnd," +
-												"Data" +
-												"Note"+
+												"TimeStart TEXT," +
+												"TimeEnd TEXT," +
+												"Data TEXT," +
+												"Note TEXT," +
 												"IsUsed Boolean NOT NULL );");
 
 

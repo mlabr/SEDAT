@@ -64,6 +64,23 @@ namespace Business.Handlers
 				//dis.TimeEnd
 
 
+				foreach (var bor in item.RecordBoList)
+				{
+					//TODO get weapon profile info
+					var rec = new Record();
+					rec.DisciplineId = item.DbId;
+					rec.PersonId = 1;
+					rec.WeaponProfileId = bor.WeaponProfileId;
+					rec.MunitionId = 1;
+					rec.SightsId = 1;
+					rec.Score = bor.Score;
+					rec.ShotsCount = bor.ShotsCount;
+					rec.IsUsed = bor.IsUsed;
+					rec.Note = bor.Note;
+
+					dis.RecordList.Add(rec);
+				}
+
 				session.DisciplineList.Add(dis);
 			}
 
