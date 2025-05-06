@@ -38,6 +38,12 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private int _shots = 0;
 
+		[ObservableProperty]
+		private TimeSpan? _timeStart;
+
+		[ObservableProperty]
+		private TimeSpan? _timeEnd;
+
 		//Auxiliery values, not stored in db.
 		[ObservableProperty]
 		private int _scoreTotal = 0;

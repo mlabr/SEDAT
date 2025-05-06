@@ -189,15 +189,19 @@ namespace PC_GUI.ViewModels.Session
 		[RelayCommand]
 		private void btnAddTempRecordOnClick()
 		{
-			var tt = new RecordModel();
-			tt.ShotsCount = Shots;
-			tt.Score = Score;
-			tt.TempId = getTempId();
+			var rm = new RecordModel();
+			rm.ShotsCount = Shots;
+			rm.Score = Score;
+			rm.TimeStartSpan = TimeStart;
+			rm.TimeEndSpan = TimeEnd;
+			//rm.TimeStart = "";
+			//rm.TimeEnd = "";
+			rm.TempId = getTempId();
 
 
 			if (!(Shots < 1))
 			{
-				RecordModelList.Add(tt);
+				RecordModelList.Add(rm);
 			}
 			clearTempRecord();
 

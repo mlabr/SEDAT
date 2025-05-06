@@ -14,6 +14,40 @@ namespace PC_GUI.Models
 
 		public int ShotsCount { get; set; }
 
+		public string TimeStart
+		{
+			get
+			{
+				if (TimeStartSpan.HasValue)
+				{
+					//@"dd\.hh\:mm\:ss"
+					return TimeStartSpan.Value.ToString(@"hh\:mm");
+				}
+
+				return string.Empty;
+			}
+			private set { }
+		}
+
+		public string TimeEnd
+		{
+			get
+			{
+				if (TimeStartSpan.HasValue)
+				{
+					return TimeEndSpan.Value.ToString(@"hh\:mm");
+				}
+
+				return string.Empty;
+			}
+			private set { }
+		}
+
+
+		public TimeSpan? TimeStartSpan { get; set; }
+
+		public TimeSpan? TimeEndSpan { get; set; }
+
 
 	}
 }
