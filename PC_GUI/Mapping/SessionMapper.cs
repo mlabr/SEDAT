@@ -41,13 +41,12 @@ namespace PC_GUI.Mapping
 				var seriesSelected = model.SelectedSeries;
 				seriesBo.Name = seriesSelected.Name;
 				seriesBo.DbId = seriesSelected.DbId;
-				seriesBo.IsUsed = true;
 				if (model.IsNewSeries)
 				{
 					seriesBo = new SeriesBo();
 					seriesBo.Name = model.SeriesName;
 				}
-
+				seriesBo.IsUsed = true;
 				sessionBo.SeriesBoList.Add(seriesBo);
 
 				/****************************
