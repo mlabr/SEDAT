@@ -61,6 +61,12 @@ namespace PC_GUI.ViewModels.Weapon
 
 		public ObservableCollection<SightsModel> SightsModelList { get; set; }
 
+		[ObservableProperty]
+		internal string totalShots = "";
+
+		[ObservableProperty]
+		internal string totalShootinTime = "";
+
 		public WeaponDetailViewModel(MainWindowViewModel model, int id)
 		{
 			handler = new WeaponHandler();
@@ -122,6 +128,8 @@ namespace PC_GUI.ViewModels.Weapon
 
 			_cFiringMode = w.CFiringMode.Name;
 
+
+			handler.GetWeaponStats(id);
 
 			mainWindowViewModel = model;
 			FullWeaponName = id.ToString();

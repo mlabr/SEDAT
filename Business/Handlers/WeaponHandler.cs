@@ -317,5 +317,48 @@ namespace Business.Handlers
 		}
 
 
+		//statistics
+		public void GetWeaponStats(int weaponProfileId)
+		{
+			var repo = new RecordRepository();
+			var list = repo.GetRecordListByWeaponProfile(weaponProfileId);
+
+			int totalShots = 0;
+			int totalTimeInMinutes = 0;
+			int totalTimeInMinutesAprox = 0;
+
+			foreach (var item in list)
+			{
+				totalShots += item.ShotsCount;
+
+				totalTimeInMinutes += calculateTotalTime(item);
+
+			}
+
+		}
+
+
+		private int calculateTotalTime(Record record)
+		{
+			int totalTime = 0;
+			if(string.IsNullOrEmpty(record.TimeStart))
+			{
+				return 0;
+			}
+
+			if (string.IsNullOrEmpty(record.TimeEnd))
+			{
+				return 0;
+			}
+			totalTime = (int)(DateTime.Parse(record.TimeEnd) - DateTime.Parse(record.TimeStart)).TotalMinutes;
+
+			if(totalTime < 0)
+			{
+				totalTime = 0;
+			}
+
+
+			return totalTime;	
+		}
 	}
 }

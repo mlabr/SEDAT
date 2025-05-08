@@ -38,7 +38,7 @@
 
     </Grid>
     
-    <Grid ColumnDefinitions="500, 500" RowDefinitions="25, 600" >
+    <Grid ColumnDefinitions="500, 500" RowDefinitions="25, auto, 30, 30" >
     <TextBlock Grid.Column="0" Grid.Row="0"  Margin="5" Text="Sights:"/>
     <DataGrid Grid.Column="0" Grid.Row="1" Margin="5" ItemsSource="{Binding SightsModelList }"
       IsReadOnly="True"         
@@ -89,6 +89,9 @@
         CommandParameter="{Binding WeaponId}">
       <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">new profile</TextBlock>
     </Button>
-    
+    <TextBlock  Grid.Column="0" Grid.Row="3">Total shots: </TextBlock>
+    <TextBlock  Grid.Column="0" Grid.Row="4">Total time: </TextBlock>
+    <TextBlock  Grid.Column="1" Grid.Row="1" Binding="{}">Total time: </TextBlock>
+    <TextBlock  Grid.Column="1" Grid.Row="4">Total time: </TextBlock>
   </StackPanel>
 </UserControl>
