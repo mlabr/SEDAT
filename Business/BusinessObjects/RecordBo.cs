@@ -22,9 +22,9 @@ namespace Business.BusinessObjects
 
 		public int ShotsCount { get; set; }
 
-		public DateTimeOffset TimeStart { get; set; }
+		public TimeSpan? TimeStart { get; set; }
 
-		public DateTimeOffset TimeEnd { get; set; }
+		public TimeSpan? TimeEnd { get; set; }
 
 		public string Data { get; set; }
 

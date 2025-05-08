@@ -6,6 +6,7 @@ using DataLayer.Entities.CodeList;
 using DataLayer.Interfaces;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
+using Newtonsoft.Json.Linq;
 
 namespace Business.Handlers
 {
@@ -75,6 +76,8 @@ namespace Business.Handlers
 					rec.SightsId = 1;
 					rec.Score = bor.Score;
 					rec.ShotsCount = bor.ShotsCount;
+					rec.TimeStart = bor.TimeStart.HasValue ? bor.TimeStart.Value.ToString(@"hh\:mm") : string.Empty;
+					rec.TimeEnd = bor.TimeEnd.HasValue ? bor.TimeEnd.Value.ToString(@"hh\:mm") : string.Empty;
 					rec.IsUsed = bor.IsUsed;
 					rec.Note = bor.Note;
 

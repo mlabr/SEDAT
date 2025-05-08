@@ -24,8 +24,11 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private DropDownItemModel? _selectedWeaponProfileItem;
 
+		[ObservableProperty]
+		private TimeSpan? _recordTimeStart;
 
-
+		[ObservableProperty]
+		private TimeSpan? _recordTimeEnd;
 
 
 		public SessionNewViewModel(MainWindowViewModel model)
@@ -172,14 +175,31 @@ namespace PC_GUI.ViewModels.Session
 		{
 			//SessionNewViewModel model = this;
 			var sessionBo = Mapper.SessionMapper.SessionNewViewModelToSessionBo(this);
-			foreach (var item in RecordModelList)
+			
+
+			//No record is added
+			if(sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Count < 1)
 			{
 				var bo = new RecordBo();
-				bo.Score = item.Score;
-				bo.ShotsCount = item.ShotsCount;
+				bo.Score = Score;
+				bo.ShotsCount = Shots;
 				bo.WeaponProfileId = SelectedWeaponProfileItem.DbId;
+				bo.TimeStart = RecordTimeStart;
+				bo.TimeEnd = RecordTimeEnd;
 				sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bo);
 			}
+			else
+			{
+				foreach (var item in RecordModelList)
+				{
+					var bo = new RecordBo();
+					bo.Score = item.Score;
+					bo.ShotsCount = item.ShotsCount;
+					bo.WeaponProfileId = SelectedWeaponProfileItem.DbId;
+					sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bo);
+				}
+			}
+
 			var stop = 0;
 			
 			sesHandler.InsertSession(sessionBo);
@@ -192,8 +212,8 @@ namespace PC_GUI.ViewModels.Session
 			var rm = new RecordModel();
 			rm.ShotsCount = Shots;
 			rm.Score = Score;
-			rm.TimeStartSpan = TimeStart;
-			rm.TimeEndSpan = TimeEnd;
+			rm.TimeStartSpan = RecordTimeStart;
+			rm.TimeEndSpan = RecordTimeEnd;
 			//rm.TimeStart = "";
 			//rm.TimeEnd = "";
 			rm.TempId = getTempId();

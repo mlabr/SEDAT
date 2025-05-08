@@ -140,8 +140,8 @@
         </ComboBox>
 
 
-        <TimePicker Grid.Column="1" Grid.Row="4" SelectedTime="{Binding TimeStart}" Grid.ColumnSpan="3"  Padding="0,3,0,3" ClockIdentifier="24HourClock" MinuteIncrement="5"></TimePicker>
-        <TimePicker Grid.Column="1" Grid.Row="5" SelectedTime="{Binding TimeEnd}" Grid.ColumnSpan="3" Padding="0,3,0,3" ClockIdentifier="24HourClock" MinuteIncrement="5"></TimePicker>
+        <TimePicker Grid.Column="1" Grid.Row="4" SelectedTime="{Binding RecordTimeStart}" Grid.ColumnSpan="3"  Padding="0,3,0,3" ClockIdentifier="24HourClock" MinuteIncrement="5"></TimePicker>
+        <TimePicker Grid.Column="1" Grid.Row="5" SelectedTime="{Binding RecordTimeEnd}" Grid.ColumnSpan="3" Padding="0,3,0,3" ClockIdentifier="24HourClock" MinuteIncrement="5"></TimePicker>
         
         <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding ScoreTotal}:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
 
