@@ -37,6 +37,19 @@
         <DataGridTemplateColumn>
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
+              <Button Command="{Binding Path=DataContext.GoToDetailCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                  CommandParameter="{Binding ProfileDbId}"
+                  ToolTip.Tip="Create new session with this weapon."
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <TextBlock>New Session</TextBlock>
+              </Button>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTemplateColumn>
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
               <Button Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                   CommandParameter="{Binding ProfileDdId}"
                   ToolTip.Tip="Delete this place permanently."

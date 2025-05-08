@@ -19,7 +19,9 @@
       <TextBlock Grid.Column="0" Grid.Row="2" Text="Power priciple: ">
         <TextBlock Text="{Binding PowerPrinciple}"/>
       </TextBlock>
-
+      <Button Grid.Column="0" Grid.Row="3">
+        <TextBlock>New Sesison</TextBlock>
+      </Button>
       <TextBlock Grid.Column="1" Grid.Row="0" Text="Weapon name: ">
         <TextBlock Text="{Binding WeaponName}"/>
       </TextBlock>
