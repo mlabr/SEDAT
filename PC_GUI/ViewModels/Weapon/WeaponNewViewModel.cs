@@ -188,12 +188,12 @@ namespace PC_GUI.ViewModels.Weapon
 			CFiringModelList = new ObservableCollection<CFiringModeModel>(modelList);
 			_selectedFiringMode = CFiringModelList.FirstOrDefault();
 
-			var cCaliberModelList = handler.GetCCaliberBoList();
+			var cCaliberModelList = handler.GetCaliberBoList();
 			var cmodelList = new List<CaliberModel>();
 
 			foreach (var item in cCaliberModelList)
 			{
-				var model = Mapper.Weapon.CCaliberBoToCCaliberModel(item);
+				var model = Mapper.Weapon.CaliberBoToCaliberModel(item);
 				cmodelList.Add(model);
 			}
 

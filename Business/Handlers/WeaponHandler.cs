@@ -174,14 +174,14 @@ namespace Business.Handlers
 			return listBo;
 		}
 
-		public List<CaliberBo> GetCCaliberBoList()
+		public List<CaliberBo> GetCaliberBoList()
 		{
-			ICodeRepository<Caliber> repo = new CCightsRepository();
+			ICodeRepository<Caliber> repo = new CaliberRepository();
 			var list = repo.GetUsedOnlyList();
 			var listBo = new List<CaliberBo>();
 			foreach (var item in list)
 			{
-				var bo = Mapper.Weapon.CCaliberToCCaliberBo(item);
+				var bo = Mapper.Weapon.CaliberToCaliberBo(item);
 				listBo.Add(bo);
 			}
 

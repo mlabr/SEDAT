@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Helpers;
+using PC_GUI.ViewModels.Caliber;
 using PC_GUI.ViewModels.CodeList;
 using PC_GUI.ViewModels.CodeList.CDiscipline;
 using PC_GUI.ViewModels.Place;
@@ -57,6 +58,7 @@ namespace PC_GUI.ViewModels
 				MenuHelper.Manage.CSightsOverview => new CSightsOverviewViewModel(this),
 				MenuHelper.Manage.CDisciplineOverview => new CDisciplineOverviewViewModel(this),
 				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
+				MenuHelper.Manage.CaliberOverview => new CaliberOverviewViewModel(this),
 				MenuHelper.Manage.TargetsOverview => new TargetOverviewViewModel(this),
 
 				//"PlacesOverView" => new PlaceOverviewViewModel(this),

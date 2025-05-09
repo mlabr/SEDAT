@@ -112,7 +112,7 @@
 
     <!-- Record -->
     <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2" Padding="5,10,5,5" Margin="5,10,5,10">
-      <Grid ColumnDefinitions="110, 50, 100, 150,150, *" RowDefinitions="30,30,30,30, 30, 30,30" >
+      <Grid ColumnDefinitions="110, 50, 100, 150,150, 270, *" RowDefinitions="30,30,30,30, 30, 30,30" >
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Score:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
         <TextBlock Grid.Column="0" Grid.Row="1" Text="Shots:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Weapon:" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0"/>
@@ -188,7 +188,7 @@
         </DataGrid>
 
 
-        <Button Grid.Column="5"  Grid.Row="1" Command="{Binding btnSaveSessionCommand}"  Margin="5" Height="40" Width="140" HorizontalAlignment="Center">
+        <Button Grid.Column="6"  Grid.Row="6" Command="{Binding btnSaveSessionCommand}"  Margin="5" Height="40" Width="140" HorizontalAlignment="Right">
           <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Save session"/>
         </Button>
 

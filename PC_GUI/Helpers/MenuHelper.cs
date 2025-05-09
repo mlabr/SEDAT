@@ -40,6 +40,8 @@ namespace PC_GUI.Helpers
 			public const string CSightsOverview = "CSightsOverview";
 			public const string CDisciplineOverview = "CDisciplineOverview";
 
+			public const string CaliberOverview = "CaliberOverview";
+
 			public static class Weapon
 			{
 				public const string SightsOverview = "SightsOverview";

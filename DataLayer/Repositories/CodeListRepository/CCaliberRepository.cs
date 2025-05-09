@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	public class CCightsRepository : ICodeRepository<Caliber>
+	public class CaliberRepository : ICodeRepository<Caliber>
 	{
 		DbHelper helper;
-		public CCightsRepository()
+		public CaliberRepository()
 		{
 			helper = new DbHelper();
 		}

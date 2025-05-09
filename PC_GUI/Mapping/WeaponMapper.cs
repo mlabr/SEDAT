@@ -99,7 +99,7 @@ namespace PC_GUI.Mapping
 				return model;
 			}
 
-			internal static CaliberModel CCaliberBoToCCaliberModel(CaliberBo bo)
+			internal static CaliberModel CaliberBoToCaliberModel(CaliberBo bo)
 			{
 				var model = new CaliberModel();
 				model.DbId = bo.DbId;

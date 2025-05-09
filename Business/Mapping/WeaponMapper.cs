@@ -36,7 +36,7 @@ namespace Business.Mapping
 				return bo;
 			}
 
-			internal static CaliberBo CCaliberToCCaliberBo(Caliber item)
+			internal static CaliberBo CaliberToCaliberBo(Caliber item)
 			{
 				var bo = new CaliberBo();
 				bo.DbId = item.CaliberId.Value;
