@@ -20,7 +20,9 @@ namespace PC_GUI.ViewModels.Caliber
 	{
 		private MainWindowViewModel mainWindowViewModel;
 		WeaponHandler handler;
-		public ObservableCollection<CaliberModel> CaliberModelList { get; set; }
+
+		[ObservableProperty]
+		private ObservableCollection<CaliberModel> _caliberModelList;
 
 		[ObservableProperty]
 		private string _name;
@@ -36,6 +38,7 @@ namespace PC_GUI.ViewModels.Caliber
 		{
 			mainWindowViewModel = mainWindow;
 			Label = MenuHelper.Manage.Caliber.Overview;
+			CaliberModelList = new ObservableCollection<CaliberModel>();
 			updateCaliberList();
 		}
 
@@ -56,13 +59,19 @@ namespace PC_GUI.ViewModels.Caliber
 
 		private void updateCaliberList()
 		{
-			CaliberModelList = new ObservableCollection<CaliberModel>();
+			var listModel = new List<CaliberModel>();
 			handler = new WeaponHandler();
 			List<CaliberBo> listBo = handler.GetCaliberBoList();
 			foreach (CaliberBo item in listBo)
 			{
-				CaliberModelList.Add(Mapper.Weapon.CaliberBoToCaliberModel(item));
+				listModel.Add(Mapper.Weapon.CaliberBoToCaliberModel(item));
 			}
+
+			CaliberModelList = new ObservableCollection<CaliberModel>(listModel);
+
+			Name = "";
+			Description = "";
+			Note = "";
 		}
 	}
 }
