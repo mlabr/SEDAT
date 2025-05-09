@@ -59,7 +59,11 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public void Insert(Caliber item)
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				conn.Insert(item);
+
+			}
 		}
 
 		public void InsertList(List<Caliber> item)
@@ -70,6 +74,18 @@ namespace DataLayer.Repositories.CodeListRepository
 		public void Update(Caliber item)
 		{
 			throw new NotImplementedException();
+		}
+
+		public int GetTotalItemsCount()
+		{
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				var list = from caliber in conn.Table<Caliber>()
+						   select caliber;
+
+				return list.Count();
+
+			}
 		}
 	}
 }

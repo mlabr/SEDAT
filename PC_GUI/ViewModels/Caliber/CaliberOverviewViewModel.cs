@@ -1,6 +1,8 @@
 ﻿using Avalonia.Controls;
 using Business.BusinessObjects.CodeList;
 using Business.Handlers;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Helpers;
 using PC_GUI.Mapping;
 using PC_GUI.Models;
@@ -19,10 +21,41 @@ namespace PC_GUI.ViewModels.Caliber
 		private MainWindowViewModel mainWindowViewModel;
 		WeaponHandler handler;
 		public ObservableCollection<CaliberModel> CaliberModelList { get; set; }
+
+		[ObservableProperty]
+		private string _name;
+
+		[ObservableProperty]
+		private string _description;
+
+		[ObservableProperty]
+		private string _note;
+
+
 		public CaliberOverviewViewModel(MainWindowViewModel mainWindow)
 		{
 			mainWindowViewModel = mainWindow;
-			Label = MenuHelper.Manage.CaliberOverview;
+			Label = MenuHelper.Manage.Caliber.Overview;
+			updateCaliberList();
+		}
+
+
+		[RelayCommand]
+		protected void AddNewCaliber()
+		{
+			var bo = new CaliberBo();
+			bo.Name = Name;
+			bo.Description = Description;
+			bo.Note = Note;
+			bo.IsUsed = true;
+			handler.SaveNewCaliber(bo);
+			updateCaliberList();
+			//mainWindowViewModel.ChangeView(MenuHelper.Manage.Caliber.New);
+		}
+
+
+		private void updateCaliberList()
+		{
 			CaliberModelList = new ObservableCollection<CaliberModel>();
 			handler = new WeaponHandler();
 			List<CaliberBo> listBo = handler.GetCaliberBoList();
@@ -30,11 +63,6 @@ namespace PC_GUI.ViewModels.Caliber
 			{
 				CaliberModelList.Add(Mapper.Weapon.CaliberBoToCaliberModel(item));
 			}
-			
-
-
-
 		}
-
 	}
 }

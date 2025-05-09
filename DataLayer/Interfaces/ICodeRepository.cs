@@ -15,6 +15,6 @@ namespace DataLayer.Interfaces
 		public void Update(T item);
 
 		void InsertList(List<T> item);
-
+		int GetTotalItemsCount();
 	}
 }

@@ -55,7 +55,7 @@ namespace Business.Handlers
 			w.Description = result.Description;
 
 			w.CCaliberBoList = new List<CaliberBo>();
-			foreach (var cal in result.CCaliberList)
+			foreach (var cal in result.CaliberList)
 			{
 				if (cal == null) continue;
 				var c = new CaliberBo();
@@ -118,7 +118,7 @@ namespace Business.Handlers
 		public void SaveNewWeaponToDataBase(WeaponBo bo)
 		{
 			var wp = new WeaponProfile();
-			wp.CCaliberList = new List<Caliber>();
+			wp.CaliberList = new List<Caliber>();
 			wp.SightsList = new List<Sights>();
 			wp.Name = bo.WeaponName + " " + bo.ProfileName;
 			wp.Description = bo.Description;
@@ -146,7 +146,7 @@ namespace Business.Handlers
 			var calBo = bo.CCaliberBoList.FirstOrDefault();
 
 			var cal = Mapper.Weapon.CCaliberBoToCCaliber(calBo);
-			wp.CCaliberList.Add(cal);
+			wp.CaliberList.Add(cal);
 
 			var sightsBo = bo.SightsBoList.FirstOrDefault();
 			var sights = Mapper.Weapon.SightsBoToSights(sightsBo);
@@ -159,6 +159,7 @@ namespace Business.Handlers
 			repo.Insert(wp);
 			
 		}
+
 
 
 		public List<CFiringModeBo> GetCFiringModeBoList()
@@ -186,6 +187,22 @@ namespace Business.Handlers
 			}
 
 			return listBo;
+		}
+
+		public void SaveNewCaliber(CaliberBo bo)
+		{
+			ICodeRepository<Caliber> repo = new CaliberRepository();
+			var cal = new Caliber();
+			cal.Name = bo.Name;
+			cal.Description = bo.Description;
+			cal.Note = bo.Note;
+			cal.IsUsed = bo.IsUsed;
+
+			var priority = repo.GetTotalItemsCount();
+			cal.Priority = priority;
+
+			repo.Insert(cal);
+
 		}
 
 
@@ -317,6 +334,8 @@ namespace Business.Handlers
 		}
 
 
+
+
 		//statistics
 		public void GetWeaponStats(int weaponProfileId)
 		{
@@ -360,5 +379,7 @@ namespace Business.Handlers
 
 			return totalTime;	
 		}
+
+
 	}
 }

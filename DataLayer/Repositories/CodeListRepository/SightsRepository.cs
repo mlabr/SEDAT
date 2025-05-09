@@ -57,5 +57,10 @@ namespace DataLayer.Repositories.CodeListRepository
 		{
 			throw new NotImplementedException();
 		}
+
+		public int GetTotalItemsCount()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

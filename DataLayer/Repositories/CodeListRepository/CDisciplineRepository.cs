@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-    public class CDisciplineRepository : ICodeRepository<CDisciplineType>
+	public class CDisciplineRepository : ICodeRepository<CDisciplineType>
     {
         DbHelper helper;
 
@@ -63,6 +63,9 @@ namespace DataLayer.Repositories.CodeListRepository
 			throw new NotImplementedException();
 		}
 
-
+		public int GetTotalItemsCount()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

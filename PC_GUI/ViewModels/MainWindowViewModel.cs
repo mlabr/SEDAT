@@ -57,8 +57,8 @@ namespace PC_GUI.ViewModels
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),
 				MenuHelper.Manage.CSightsOverview => new CSightsOverviewViewModel(this),
 				MenuHelper.Manage.CDisciplineOverview => new CDisciplineOverviewViewModel(this),
-				MenuHelper.Manage.PlacesOverview => new PlaceOverviewViewModel(this),
-				MenuHelper.Manage.CaliberOverview => new CaliberOverviewViewModel(this),
+				MenuHelper.Manage.Place.Overview => new PlaceOverviewViewModel(this),
+				MenuHelper.Manage.Caliber.Overview => new CaliberOverviewViewModel(this),
 				MenuHelper.Manage.TargetsOverview => new TargetOverviewViewModel(this),
 
 				//"PlacesOverView" => new PlaceOverviewViewModel(this),
@@ -90,6 +90,10 @@ namespace PC_GUI.ViewModels
 			}
 		}
 
+		internal void ChangeView(object caliberNew)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class ListItemTemplate

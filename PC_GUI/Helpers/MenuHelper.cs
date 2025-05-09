@@ -35,12 +35,23 @@ namespace PC_GUI.Helpers
 
 		public static class Manage
 		{
-			public const string PlacesOverview = "PlacesOverview";
+			
 			public const string TargetsOverview = "TargetsOverview";
 			public const string CSightsOverview = "CSightsOverview";
 			public const string CDisciplineOverview = "CDisciplineOverview";
 
-			public const string CaliberOverview = "CaliberOverview";
+			public static class Place
+			{
+				public const string Overview = "PlacesOverview";
+			}
+
+
+			public static class Caliber
+			{
+				public const string Overview = "CaliberOverview";
+				public const string New = "CaliberNew";
+			}
+
 
 			public static class Weapon
 			{

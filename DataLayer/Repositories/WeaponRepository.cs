@@ -125,8 +125,8 @@ namespace DataLayer.Repositories
 				sightsList.ToList();
 
 				var result = item.FirstOrDefault();
-				result.CCaliberList = new List<Caliber>();
-				result.CCaliberList.AddRange(caliberList);
+				result.CaliberList = new List<Caliber>();
+				result.CaliberList.AddRange(caliberList);
 				result.SightsList = new List<Sights>();
 				result.SightsList.AddRange(sightsList);
 
@@ -214,7 +214,7 @@ namespace DataLayer.Repositories
 			var ps = new ProfileSights();
 			ps.SightsId = sights.SightsId.Value;
 			
-			var ccaliber = wp.CCaliberList.FirstOrDefault();
+			var ccaliber = wp.CaliberList.FirstOrDefault();
 			if (!ccaliber.CaliberId.HasValue)
 			{
 				Insert(ccaliber);

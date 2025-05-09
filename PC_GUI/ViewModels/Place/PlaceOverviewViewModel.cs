@@ -33,7 +33,7 @@ namespace PC_GUI.ViewModels.Place
 
 		public PlaceOverviewViewModel(MainWindowViewModel mainWindow)
 		{
-			Label = MenuHelper.Manage.PlacesOverview;
+			Label = MenuHelper.Manage.Place.Overview;
 			
 			mainWindowViewModel = mainWindow;
 			//get list here
@@ -64,6 +64,8 @@ namespace PC_GUI.ViewModels.Place
 		protected void NewPlace()
 		{
 			mainWindowViewModel.CurrentPage = new PlaceNewViewModel(mainWindowViewModel);
+			//mainWindowViewModel.ChangeView(MenuHelper.Manage.Place.New);
+
 		}
 
 
