@@ -91,7 +91,7 @@
     </Button>
     <TextBlock  Grid.Column="0" Grid.Row="3">Total shots: </TextBlock>
     <TextBlock  Grid.Column="0" Grid.Row="4">Total time: </TextBlock>
-    <TextBlock  Grid.Column="1" Grid.Row="1" Binding="{}">Total time: </TextBlock>
+    <TextBlock  Grid.Column="1" Grid.Row="1">Total time: </TextBlock>
     <TextBlock  Grid.Column="1" Grid.Row="4">Total time: </TextBlock>
   </StackPanel>
 </UserControl>

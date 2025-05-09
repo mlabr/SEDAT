@@ -190,7 +190,10 @@ namespace Business.Handlers
 		{
 
 			var repo = new SessionRepository();
-			var lsit = repo.GetSessionListByParams();
+			var list = repo.GetSessionListByParams();
+
+
+
 		}
 	}
 }

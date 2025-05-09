@@ -30,7 +30,7 @@
         <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
         <Setter Property="Background" Value="{DynamicResource GridBackgroundColor}" />
         <Setter Property="RowHeight" Value="40"/>
-        <Setter Property="RowBackground" Value="{DynamicResource SystemControlBackgroundBaseLowBrush}" />
+        <Setter Property="RowBackground" Value="{DynamicResource GridRowBackgroundColor}" />
         <!--<Setter Property="AlternatingRowBackground" Value="{DynamicResource SystemControlBackgroundAltLowMediumBrush}" />-->
         <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -53,5 +53,6 @@
     <SolidColorBrush x:Key="DynamicBackgroundBrush" Color="{DynamicResource PrimaryColorLight}" />
     <SolidColorBrush x:Key="BaseColorBackground" Color="{DynamicResource BaseColorLight}" />
     <SolidColorBrush x:Key="GridBackgroundColor" Color="{DynamicResource RegionColorLight}" />
+    <SolidColorBrush x:Key="GridRowBackgroundColor" Color="{DynamicResource RegionColorLight}" />
   </Application.Resources>
 </Application>

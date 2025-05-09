@@ -58,9 +58,9 @@ namespace DataLayer.Repositories
 		{
 			using (var conn = new SQLiteConnection(connectionString))
 			{
-				var list = from eventTable in conn.Table<Series>()
-						   where eventTable.IsUsed == true
-						   select eventTable;
+				var list = from series in conn.Table<Series>()
+						   where series.IsUsed == true
+						   select series;
 
 				return list.ToList();
 
