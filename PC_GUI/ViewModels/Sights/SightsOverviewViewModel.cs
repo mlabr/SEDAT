@@ -49,6 +49,7 @@ namespace PC_GUI.ViewModels.Sights
 				model.Name = item.Name;
 				model.Description = item.Description;
 				model.Note = item.Note;
+				model.CSightsType.Name = item.CSightsType.Name;
 				modelList.Add(model);
 
 			}

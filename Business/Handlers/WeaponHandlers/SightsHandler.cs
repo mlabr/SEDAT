@@ -61,6 +61,7 @@ namespace Business.Handlers.WeaponHandlers
 				bo.Description = csight.Description;
 				bo.Note = csight.Note;
 				bo.IsUsed = csight.IsUsed;
+				bo.CSightsType = Mapper.Weapon.CSightsTypeToCSightsTypeBo(cstRepo.GetByID(csight.CSightsTypeId));
 				boList.Add(bo);
 			}
 

@@ -19,7 +19,7 @@
       <DataGrid.Columns>
         <DataGridTextColumn Header="Name"  Binding="{Binding Name}"/>
         <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-        <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
+        <DataGridTextColumn Header="Type" Binding="{Binding CSightsType.Name}" />
         <DataGridTextColumn Header="IsUsed" Binding="{Binding IsUsed}" />
         <DataGridTemplateColumn>
           <DataGridTemplateColumn.CellTemplate>

@@ -9,6 +9,6 @@ namespace PC_GUI.Models.Weapon
 {
 	internal class SightsModel : CodeBaseModel
 	{
-		
+		internal CSightsTypeModel CSightsType { get; set; } = new CSightsTypeModel();
 	}
 }

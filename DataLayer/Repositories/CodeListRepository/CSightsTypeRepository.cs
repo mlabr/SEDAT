@@ -18,8 +18,18 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public CSightsType GetByID(int id)
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				var item = from type in conn.Table<CSightsType>()
+						   where type.CSightsTypeId == id
+						   select type;
+
+				var result = item.ToList().FirstOrDefault();
+				return result;
+			}
 		}
+				
+
 
 		public List<CSightsType> GetAllList()
 		{
