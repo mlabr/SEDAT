@@ -25,6 +25,12 @@ namespace PC_GUI.ViewModels.Place
 		[ObservableProperty]
 		private string _note = "";
 
+		[ObservableProperty]
+		private bool _isEditEnabled = false;
+
+		[ObservableProperty]
+		private bool _isFieldReadOnly = true;
+
 		public PlaceDetailViewModel(MainWindowViewModel main, int id)
 		{
 			var handler = new PlaceHandler();
@@ -57,6 +63,11 @@ namespace PC_GUI.ViewModels.Place
 				handler.Update(Mapper.PlaceModelToPlaceBo(model));
 				mainWindowViewModel.GoToPlaceOverview();
 			}
+		}
+
+		partial void OnIsEditEnabledChanged(bool oldValue, bool newValue)
+		{
+			IsFieldReadOnly = !newValue;
 		}
 	}
 }

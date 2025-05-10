@@ -33,7 +33,7 @@
         <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
         <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
         <DataGridTextColumn Header="IsUsed" Binding="{Binding IsUsed}" />
-        <DataGridTemplateColumn>
+        <DataGridTemplateColumn  Header="Detail">
           <DataGridTemplateColumn.CellTemplate>
 			  <DataTemplate>
 				  <Button Command="{Binding Path=DataContext.GoToDetailCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -46,7 +46,7 @@
 			  </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-		 <DataGridTemplateColumn>
+		 <DataGridTemplateColumn  Header="Delete">
 		  <DataGridTemplateColumn.CellTemplate>
 			<DataTemplate>
 				<Button Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
