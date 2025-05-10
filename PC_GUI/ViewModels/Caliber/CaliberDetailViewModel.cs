@@ -3,19 +3,18 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Helpers;
 using PC_GUI.Mapping;
-using PC_GUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PC_GUI.ViewModels.Place
+namespace PC_GUI.ViewModels.Caliber
 {
-	internal partial class PlaceDetailViewModel : ViewModelBase
+	internal partial class CaliberDetailViewModel : ViewModelBase
 	{
 		private MainWindowViewModel mainWindowViewModel;
-		private PlaceModel model;
 
 		[ObservableProperty]
 		private string _description = "";
@@ -32,21 +31,22 @@ namespace PC_GUI.ViewModels.Place
 		[ObservableProperty]
 		private bool _isFieldReadOnly = true;
 
-		public PlaceDetailViewModel(MainWindowViewModel main, int id)
-		{
-			var handler = new PlaceHandler();
-			mainWindowViewModel = main;
-			model = Mapper.PlaceBoToPlaceModel(handler.GetById(id));
-			_description = model.Description;
-			_name = model.Name;
-			_note = model.Note;
-		}
+		WeaponHandler handler;
 
+		public CaliberDetailViewModel(MainWindowViewModel main, int id)
+		{
+			handler = new WeaponHandler();
+			mainWindowViewModel = main;
+			var bo = handler.GetCaliberById(id);
+			Name = bo.Name;
+			Description = bo.Description;
+			Note = bo.Note;
+		}
 
 		[RelayCommand]
 		internal void ReturnToOverView()
 		{
-			mainWindowViewModel.ChangeView(MenuHelper.Manage.Place.Overview);
+			mainWindowViewModel.ChangeView(MenuHelper.Manage.Caliber.Overview);
 		}
 
 
@@ -57,14 +57,15 @@ namespace PC_GUI.ViewModels.Place
 			bool isActionConfirmed = await OpenYesNoDialogAsync("Warning", "Are you sure to store changes into database?");
 			if (isActionConfirmed)
 			{
-				model.Name = _name;
-				model.Description = _description;
-				model.Note = _note;
-				var handler = new PlaceHandler();
-				handler.Update(Mapper.PlaceModelToPlaceBo(model));
-				mainWindowViewModel.ChangeView(MenuHelper.Manage.Place.Overview);
+				//model.Name = _name;
+				//model.Description = _description;
+				//model.Note = _note;
+				//var handler = new PlaceHandler();
+				//handler.Update(Mapper.PlaceModelToPlaceBo(model));
+				//mainWindowViewModel.GoToPlaceOverview();
 			}
 		}
+
 
 		partial void OnIsEditEnabledChanged(bool oldValue, bool newValue)
 		{

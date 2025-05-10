@@ -66,11 +66,6 @@ namespace PC_GUI.ViewModels
 			}; 
 		}
 
-		[RelayCommand]
-		public void GoToPlaceOverview()
-		{
-			CurrentPage = new PlaceOverviewViewModel(this);
-		}
 
 		[RelayCommand]
 		public void GoToMainWindow()

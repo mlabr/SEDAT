@@ -93,7 +93,6 @@ namespace PC_GUI.ViewModels.Place
 		protected void GoToDetail(int id)
 		{
 			mainWindowViewModel.CurrentPage = new PlaceDetailViewModel(mainWindowViewModel, id);
-			//mainWindowViewModel.GoToPlaceDetail(id);
 		}
 
         [RelayCommand]
@@ -107,7 +106,7 @@ namespace PC_GUI.ViewModels.Place
 			{ 
 				var handler = new PlaceHandler();
 				handler.Delete(id);
-				mainWindowViewModel.GoToPlaceOverview();
+				mainWindowViewModel.ChangeView(MenuHelper.Manage.Place.Overview);
 			}
 		}
 
