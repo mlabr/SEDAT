@@ -28,7 +28,13 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public List<Sights> GetAllList()
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				var list = from sights in conn.Table<Sights>()
+						   select sights;
+
+				return list.ToList();
+			}
 		}
 
 		public List<Sights> GetUsedOnlyList()
