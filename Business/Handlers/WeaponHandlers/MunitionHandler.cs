@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Handlers
+namespace Business.Handlers.WeaponHandlers
 {
 	public class MunitionHandler
 	{
@@ -49,7 +49,7 @@ namespace Business.Handlers
 			var result = repo.GetUsedOnlyListByCaliberList(idList);
 
 
-			if(result.Count < 1)
+			if (result.Count < 1)
 			{
 				result = repo.GetDefaultAmunition();
 			}

@@ -1,12 +1,13 @@
 ﻿using Avalonia.Controls;
 using Business.BusinessObjects.CodeList;
-using Business.Handlers;
+using Business.Handlers.WeaponHandlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Helpers;
 using PC_GUI.Mapping;
 using PC_GUI.Models;
 using PC_GUI.Models.Weapon;
+using PC_GUI.ViewModels.Place;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,6 +44,13 @@ namespace PC_GUI.ViewModels.Caliber
 		}
 
 
+
+		[RelayCommand]
+		protected void GoToDetail(int id)
+		{
+			mainWindowViewModel.CurrentPage = new CaliberDetailViewModel(mainWindowViewModel, id);
+		}
+
 		[RelayCommand]
 		protected void AddNewCaliber()
 		{
@@ -53,7 +61,6 @@ namespace PC_GUI.ViewModels.Caliber
 			bo.IsUsed = true;
 			handler.SaveNewCaliber(bo);
 			updateCaliberList();
-			//mainWindowViewModel.ChangeView(MenuHelper.Manage.Caliber.New);
 		}
 
 

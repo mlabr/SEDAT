@@ -90,7 +90,7 @@ namespace Business.Mapping
 			#endregion
 
 			#region Bo to Entities
-			internal static Caliber CCaliberBoToCCaliber(CaliberBo bo)
+			internal static Caliber CaliberBoToCCaliber(CaliberBo bo)
 			{
 				var cal = new Caliber();
 				cal.CaliberId = null;

@@ -1,4 +1,4 @@
-﻿using Business.Handlers;
+﻿using Business.Handlers.WeaponHandlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DataLayer.Entities.CodeList;

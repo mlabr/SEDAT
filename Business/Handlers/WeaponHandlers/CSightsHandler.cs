@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Handlers.CodeHandler
+namespace Business.Handlers.WeaponHandlers
 {
-	public class CSightsHandler : CodeBoBase
+	public class CSightsHandler
 	{
 		public List<CSightsTypeBo> GetAll()
 		{

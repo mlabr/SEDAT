@@ -1,16 +1,9 @@
-﻿
-using Business.Handlers.CodeHandler;
+﻿using Business.Handlers.WeaponHandlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PC_GUI.Helpers;
-using PC_GUI.Models;
 using PC_GUI.Models.CodeList;
-using PC_GUI.Models.Weapon;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PC_GUI.ViewModels.CodeList
 {

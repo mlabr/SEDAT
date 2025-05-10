@@ -1,4 +1,5 @@
-﻿using Business.Handlers;
+﻿using Business.BusinessObjects.CodeList;
+using Business.Handlers.WeaponHandlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Helpers;
@@ -31,13 +32,15 @@ namespace PC_GUI.ViewModels.Caliber
 		[ObservableProperty]
 		private bool _isFieldReadOnly = true;
 
-		WeaponHandler handler;
+		CaliberHandler handler;
+
+		CaliberBo bo;
 
 		public CaliberDetailViewModel(MainWindowViewModel main, int id)
 		{
-			handler = new WeaponHandler();
+			handler = new CaliberHandler();
 			mainWindowViewModel = main;
-			var bo = handler.GetCaliberById(id);
+			bo = handler.GetCaliberById(id);
 			Name = bo.Name;
 			Description = bo.Description;
 			Note = bo.Note;
@@ -57,12 +60,11 @@ namespace PC_GUI.ViewModels.Caliber
 			bool isActionConfirmed = await OpenYesNoDialogAsync("Warning", "Are you sure to store changes into database?");
 			if (isActionConfirmed)
 			{
-				//model.Name = _name;
-				//model.Description = _description;
-				//model.Note = _note;
-				//var handler = new PlaceHandler();
-				//handler.Update(Mapper.PlaceModelToPlaceBo(model));
-				//mainWindowViewModel.GoToPlaceOverview();
+				bo.Name = Name;
+				bo.Description = Description;
+				bo.Note = Note;
+				handler.Update(bo);
+				ReturnToOverView();
 			}
 		}
 

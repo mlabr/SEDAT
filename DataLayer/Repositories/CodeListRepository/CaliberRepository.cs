@@ -73,7 +73,10 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public void Update(Caliber item)
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				conn.Update(item);
+			}
 		}
 
 		public int GetTotalItemsCount()

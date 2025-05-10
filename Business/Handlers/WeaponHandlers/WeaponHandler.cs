@@ -7,14 +7,8 @@ using DataLayer.Entities.CodeList;
 using DataLayer.Interfaces;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Handlers
+namespace Business.Handlers.WeaponHandlers
 {
 	public class WeaponHandler
 	{
@@ -127,7 +121,7 @@ namespace Business.Handlers
 			wp.CFiringModeId = bo.CFiringModeCode;
 			wp.MaintenanceIntervalDate = bo.MaintenanceIntervalDate;
 			wp.MaintenanceIntervalShots = bo.MaintenanceIntervalShots;
-			wp.MaintenanceLastDate = bo.MaintenanceLastDate.ToString(format:("yyyy-MM-dd"));
+			wp.MaintenanceLastDate = bo.MaintenanceLastDate.ToString(format: "yyyy-MM-dd");
 
 			var weapon = new Weapon();
 			weapon.PersonId = 1; //TODO, for test purposes
@@ -145,7 +139,7 @@ namespace Business.Handlers
 
 			var calBo = bo.CCaliberBoList.FirstOrDefault();
 
-			var cal = Mapper.Weapon.CCaliberBoToCCaliber(calBo);
+			var cal = Mapper.Weapon.CaliberBoToCCaliber(calBo);
 			wp.CaliberList.Add(cal);
 
 			var sightsBo = bo.SightsBoList.FirstOrDefault();
@@ -157,7 +151,7 @@ namespace Business.Handlers
 
 
 			repo.Insert(wp);
-			
+
 		}
 
 
@@ -177,32 +171,14 @@ namespace Business.Handlers
 
 		public List<CaliberBo> GetCaliberBoList()
 		{
-			ICodeRepository<Caliber> repo = new CaliberRepository();
-			var list = repo.GetUsedOnlyList();
-			var listBo = new List<CaliberBo>();
-			foreach (var item in list)
-			{
-				var bo = Mapper.Weapon.CaliberToCaliberBo(item);
-				listBo.Add(bo);
-			}
-
-			return listBo;
+			var handler = new CaliberHandler();
+			return handler.GetUsedOnlyList();
 		}
 
 		public void SaveNewCaliber(CaliberBo bo)
 		{
-			ICodeRepository<Caliber> repo = new CaliberRepository();
-			var cal = new Caliber();
-			cal.Name = bo.Name;
-			cal.Description = bo.Description;
-			cal.Note = bo.Note;
-			cal.IsUsed = bo.IsUsed;
-
-			var priority = repo.GetTotalItemsCount();
-			cal.Priority = priority;
-
-			repo.Insert(cal);
-
+			var handler = new CaliberHandler();
+			handler.Insert(bo);
 		}
 
 
@@ -258,6 +234,12 @@ namespace Business.Handlers
 			return bo;
 		}
 
+		public CaliberBo GetCaliberById(int id)
+		{
+			var handler = new CaliberHandler();
+			return handler.GetCaliberById(id);
+		}
+
 		public List<CPowerPrincipleBo> GetCPowerPrincipleBoAllParrentsList(int id)
 		{
 			var repo = new CPowerPrincipleRepository();
@@ -308,7 +290,7 @@ namespace Business.Handlers
 			var list = repo.GetUsedOnlyList();
 			var boList = new List<CFiringModeBo>();
 
-			foreach(var item in list)
+			foreach (var item in list)
 			{
 				var bo = Mapper.Weapon.CFiringModeToCFiringModeBo(item);
 				boList.Add(bo);
@@ -316,6 +298,8 @@ namespace Business.Handlers
 
 			return boList;
 		}
+
+
 
 
 		public List<PersonBo> GetPersonBoUsedOnlyList()
@@ -360,7 +344,7 @@ namespace Business.Handlers
 		private int calculateTotalTime(Record record)
 		{
 			int totalTime = 0;
-			if(string.IsNullOrEmpty(record.TimeStart))
+			if (string.IsNullOrEmpty(record.TimeStart))
 			{
 				return 0;
 			}
@@ -371,13 +355,13 @@ namespace Business.Handlers
 			}
 			totalTime = (int)(DateTime.Parse(record.TimeEnd) - DateTime.Parse(record.TimeStart)).TotalMinutes;
 
-			if(totalTime < 0)
+			if (totalTime < 0)
 			{
 				totalTime = 0;
 			}
 
 
-			return totalTime;	
+			return totalTime;
 		}
 
 

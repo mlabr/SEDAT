@@ -83,10 +83,6 @@ namespace DataLayer.Repositories
 		{
 			using (var conn = new SQLiteConnection(connectionString))
 			{
-				//var list = from place in conn.Table<Place>()
-				//		   where place.IsUsed == true
-				//		   select place;
-
 				conn.Update(item);
 			}
 		}

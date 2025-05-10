@@ -1,6 +1,7 @@
 ﻿using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
 using Business.Handlers;
+using Business.Handlers.WeaponHandlers;
 using Business.Parsers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

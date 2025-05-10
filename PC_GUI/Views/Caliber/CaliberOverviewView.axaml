@@ -17,17 +17,12 @@
       <TextBlock Grid.Column="2" Grid.Row="0" Margin="10 0 10 0" VerticalAlignment="Center">Note </TextBlock>
       <TextBox Grid.Column="2" Grid.Row="1" Margin="10 0 10 0" AcceptsReturn="True" Text="{Binding Note}" ></TextBox>
       
-      <Button Grid.Column="3" Grid.Row="1"  Command="{Binding AddNewCaliberCommand}" Margin="10" Height="40" Width="100" HorizontalAlignment="Center">
+      <Button Grid.Column="3" Grid.Row="1"  Command="{Binding AddNewCaliberCommand}" Margin="10" Height="40" Width="120" HorizontalAlignment="Center">
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Add new caliber</TextBlock>
       </Button>
-    
-    
     </Grid>
     
-    
 
-    
-    
     <DataGrid Margin="20" ItemsSource="{Binding CaliberModelList}"
           IsReadOnly="True"
           CanUserReorderColumns="True"
@@ -40,7 +35,7 @@
         <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
         <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
         <DataGridTextColumn Header="IsUsed" Binding="{Binding IsUsed}" />
-        <DataGridTemplateColumn>
+        <DataGridTemplateColumn Header="Detail">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
               <Button Command="{Binding Path=DataContext.GoToDetailCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -53,7 +48,7 @@
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-        <DataGridTemplateColumn>
+        <DataGridTemplateColumn Header="Delete">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
               <Button Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
