@@ -198,16 +198,8 @@ namespace Business.Handlers.WeaponHandlers
 
 		public List<SightsBo> GetSightsBoList()
 		{
-			var repo = new SightsRepository();
-			var list = repo.GetUsedOnlyList();
-			var listBo = new List<SightsBo>();
-			foreach (var sights in list)
-			{
-				var bo = Mapper.Weapon.SightsToSightsBo(sights);
-				listBo.Add(bo);
-			}
-
-			return listBo;
+			var handler = new SightsHandler();
+			return handler.GetSightsusedOnlyList();
 
 		}
 

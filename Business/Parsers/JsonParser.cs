@@ -37,7 +37,7 @@ namespace Business.Parsers
 				bo.Note = root.GetProperty("WeaponBase").GetProperty("Note").GetString();
 				var sights = new SightsBo();
 				sights.Name = root.GetProperty("Sights").GetProperty("Name").GetString();
-				sights.CSightsTypeId = root.GetProperty("Sights").GetProperty("CSightsType").GetInt32();
+				sights.CSightsType.DbId = root.GetProperty("Sights").GetProperty("CSightsType").GetInt32();
 				sights.Description = root.GetProperty("Sights").GetProperty("Description").GetString();
 				sights.Note = root.GetProperty("Sights").GetProperty("Note").GetString();
 

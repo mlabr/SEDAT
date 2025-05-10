@@ -17,8 +17,5 @@ namespace DataLayer.Entities
 
 		[Ignore]
         public CSightsType CSightsType { get; set; }
-
-		[Ignore]
-		public int Id { get; set; }
     }
 }

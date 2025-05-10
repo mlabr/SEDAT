@@ -33,13 +33,22 @@ namespace Business.Handlers.WeaponHandlers
 
 			foreach (var csight in csightsList)
 			{
+				var bo = Mapper.Weapon.CSightsTypeToCSightsTypeBo(csight);
+				boList.Add(bo);
+			}
 
-				//var bo = _mapService.CSightToCSightsBo(csight);
-				var bo = new CSightsTypeBo();
-				bo.Name = csight.Name;
-				bo.Description = csight.Description;
-				bo.Note = csight.Note;
-				bo.IsUsed = csight.IsUsed;
+			return boList;
+		}
+
+		public List<CSightsTypeBo> GetCSightsTypeUsedOnlyList()
+		{
+			var csightsList = cstRepo.GetUsedOnlyList();
+
+			var boList = new List<CSightsTypeBo>();
+
+			foreach (var csight in csightsList)
+			{
+				var bo = Mapper.Weapon.CSightsTypeToCSightsTypeBo(csight);
 				boList.Add(bo);
 			}
 
@@ -69,7 +78,31 @@ namespace Business.Handlers.WeaponHandlers
 		}
 
 
+		public void Insert(SightsBo bo)
+		{
+			sRepo.Insert(Mapper.Weapon.SightsBoToSights(bo));
+		}
 
+		internal List<SightsBo> GetSightsusedOnlyList()
+		{
+			var sightsList = sRepo.GetUsedOnlyList();
 
+			var boList = new List<SightsBo>();
+
+			foreach (var csight in sightsList)
+			{
+
+				//var bo = _mapService.CSightToCSightsBo(csight);
+				var bo = new SightsBo();
+				bo.Name = csight.Name;
+				bo.Description = csight.Description;
+				bo.Note = csight.Note;
+				bo.IsUsed = csight.IsUsed;
+				bo.CSightsType = Mapper.Weapon.CSightsTypeToCSightsTypeBo(cstRepo.GetByID(csight.CSightsTypeId));
+				boList.Add(bo);
+			}
+
+			return boList;
+		}
 	}
 }

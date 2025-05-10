@@ -6,6 +6,6 @@ namespace DataLayer.Entities.CodeList
 	public class CSightsType : EntityCodeBase
 	{
 		[PrimaryKey]
-        public int CSightsTypeId { get; set; }
+        public int? CSightsTypeId { get; set; }
     }
 }

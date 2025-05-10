@@ -63,7 +63,7 @@ namespace Business.Mapping
 			internal static CSightsTypeBo CSightsTypeToCSightsTypeBo(CSightsType item)
 			{
 				var bo = new CSightsTypeBo();
-				bo.DbId = item.CSightsTypeId;
+				bo.DbId = item.CSightsTypeId.Value;
 				bo.Name = item.Name;
 				bo.Description = item.Description;
 				bo.Note = item.Note;
@@ -122,6 +122,34 @@ namespace Business.Mapping
 				sights.CSightsTypeId = bo.CSightsType.DbId;
 
 				return sights;
+			}
+
+			internal static CSightsType CSightsTypeBoToCSightsType(SightsBo bo)
+			{
+				var sights = new CSightsType();
+				sights.CSightsTypeId = null;
+				if (bo.IsExisting)
+				{
+					sights.CSightsTypeId = bo.DbId;
+				}
+				sights.Name = bo.Name;
+				sights.Description = bo.Description;
+				sights.Note = bo.Note;
+				sights.IsUsed = true;
+				sights.CSightsTypeId = bo.CSightsType.DbId;
+
+				return sights;
+			}
+
+			internal static CSightsTypeBo CSightToCSightsBo(CSightsType csight)
+			{
+				var bo = new CSightsTypeBo();
+				bo.DbId = csight.CSightsTypeId.Value;
+				bo.Name = csight.Name;
+				bo.Description = csight.Description;
+				bo.Note = csight.Note;
+				bo.IsUsed = csight.IsUsed;
+				return bo;
 			}
 
 			#endregion

@@ -51,7 +51,10 @@ namespace DataLayer.Repositories.CodeListRepository
 
 		public void Insert(Sights item)
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(item);
+			}
 		}
 
 		public void InsertList(List<Sights> item)

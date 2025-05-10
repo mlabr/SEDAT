@@ -136,7 +136,7 @@ namespace PC_GUI.Mapping
 				model.SelectedCPowerPrincipleMenuItem = findById(model.CPowerPrincipleMenuItems, bo.CPowerPrincipleCode);
 				model.SelectedFiringMode = model.CFiringModelList.FirstOrDefault(x => x.DbId == bo.CFiringModeCode);
 
-				model.SelectedCSightsType = model.CSightsTypeModelList.FirstOrDefault(x => x.DbId == bo.SightsBoList.FirstOrDefault().CSightsTypeId);
+				model.SelectedCSightsType = model.CSightsTypeModelList.FirstOrDefault(x => x.DbId == bo.SightsBoList.FirstOrDefault().CSightsType.DbId);
 				model.SightsName = bo.SightsBoList.FirstOrDefault().Name;
 				model.SightsDescription = bo.SightsBoList.FirstOrDefault().Description;
 				model.SightsNote = bo.SightsBoList.FirstOrDefault().Note;

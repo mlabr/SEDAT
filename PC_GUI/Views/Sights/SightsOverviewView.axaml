@@ -5,10 +5,32 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="PC_GUI.Views.Sights.SightsOverviewView">
   <StackPanel>
-    <TextBlock>CSights overview</TextBlock>
-    <Button Command="{Binding CSightsCommand}" Margin="10" Height="50" Width="100" HorizontalAlignment="Center">
-      <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">New Place</TextBlock>
-    </Button>
+    <TextBlock>Sights overview</TextBlock>
+    <Grid ColumnDefinitions="150, 250, 250, 200 ,130" RowDefinitions="30, 50">
+      <TextBlock Grid.Column="0" Grid.Row="0" Margin="10 0 10 0" VerticalAlignment="Center">Name </TextBlock>
+      <TextBox Grid.Column="0" Grid.Row="1" Margin="10 0 10 0" Text="{Binding Name}"></TextBox>
+
+      <TextBlock Grid.Column="1" Grid.Row="0" Margin="10 0 10 0" VerticalAlignment="Center">Description </TextBlock>
+      <TextBox Grid.Column="1" Grid.Row="1"  Margin="10 0 10 0" AcceptsReturn="True" Text="{Binding Description}" ></TextBox>
+
+      <TextBlock Grid.Column="2" Grid.Row="0" Margin="10 0 10 0" VerticalAlignment="Center">Note </TextBlock>
+      <TextBox Grid.Column="2" Grid.Row="1" Margin="10 0 10 0" AcceptsReturn="True" Text="{Binding Note}" ></TextBox>
+
+      <TextBlock Grid.Column="3" Grid.Row="0" Margin="10 0 10 0" VerticalAlignment="Center">Type </TextBlock>
+      <ComboBox Grid.Column="3" Grid.Row="1"  Margin="10 0 10 0" Width="190"  HorizontalAlignment="Left"  VerticalAlignment="Top" ItemsSource="{Binding CSightsTypeModelList}" SelectedItem="{Binding SelectedCSightsType}"  MaxDropDownHeight="300">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Name}" FontFamily="{Binding}" ToolTip.Tip="{Binding Description}" >
+            </TextBlock>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+      <Button Grid.Column="4" Grid.Row="1"  Command="{Binding AddNewSightsCommand}" Margin="10" Height="40" Width="120" HorizontalAlignment="Center">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Add new sights</TextBlock>
+      </Button>
+    </Grid>
+    
+    
     <DataGrid Margin="20" ItemsSource="{Binding SightsModelList}"
           IsReadOnly="True"
           CanUserReorderColumns="True"
