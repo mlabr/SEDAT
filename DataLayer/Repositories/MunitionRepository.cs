@@ -75,9 +75,20 @@ namespace DataLayer.Repositories
 
 		}
 
-		public List<Munition> GetAll()
+		public List<Munition> GetAllList()
 		{
-			throw new NotImplementedException();
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				var list = from munition in conn.Table<Munition>()
+						   select munition;
+
+				if (list is null)
+				{
+					return null;
+				}
+
+				return list.ToList();
+			}
 		}
 
 		public List<Munition> GetUsedOnlyListByCaliberList(List<int> idList)

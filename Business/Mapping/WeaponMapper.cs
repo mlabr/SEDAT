@@ -107,6 +107,17 @@ namespace Business.Mapping
 				return cal;
 			}
 
+			internal static MunitionBo MunitionToMunitionBo(Munition item)
+			{
+				var m = new MunitionBo();
+				m.Name = item.Name;
+				m.CaliberId = item.CaliberId;
+				m.Description = item.Description;
+				m.Note = item.Note;
+
+				return m;
+			}
+
 			internal static Sights SightsBoToSights(SightsBo bo)
 			{
 				var sights = new Sights();

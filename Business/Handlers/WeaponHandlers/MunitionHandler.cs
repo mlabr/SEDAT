@@ -1,6 +1,8 @@
 ﻿using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
+using Business.Mapping;
 using DataLayer.Repositories;
+using DataLayer.Repositories.CodeListRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,12 @@ namespace Business.Handlers.WeaponHandlers
 	public class MunitionHandler
 	{
 		private MunitionRepository repo;
+		private CaliberRepository crepo; 
 
 		public MunitionHandler()
 		{
 			repo = new MunitionRepository();
+			crepo = new CaliberRepository();
 		}
 
 		public List<MunitionBo> GetUsedOnlyList()
@@ -25,13 +29,26 @@ namespace Business.Handlers.WeaponHandlers
 			var result = repo.GetUsedOnlyList();
 			foreach (var item in result)
 			{
-				var m = new MunitionBo();
-				m.Name = item.Name;
-				m.CaliberId = item.CaliberId;
-				m.Description = item.Description;
-				m.Note = item.Note;
+				var bo = Mapper.Weapon.MunitionToMunitionBo(item);
+				bo.CaliberBo = Mapper.Weapon.CaliberToCaliberBo(crepo.GetByID(item.CaliberId));
+				list.Add(bo);
 			}
 
+
+			return list;
+		}
+
+		public List<MunitionBo> GetAllList()
+		{
+			var list = new List<MunitionBo>();
+
+			var result = repo.GetAllList();
+			foreach (var item in result)
+			{
+				var bo = Mapper.Weapon.MunitionToMunitionBo(item);
+				bo.CaliberBo = Mapper.Weapon.CaliberToCaliberBo(crepo.GetByID(item.CaliberId));
+				list.Add(bo);
+			}
 
 			return list;
 		}

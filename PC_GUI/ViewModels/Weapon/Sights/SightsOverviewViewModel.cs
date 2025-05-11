@@ -65,7 +65,7 @@ namespace PC_GUI.ViewModels.Sights
 			}
 
 			CSightsTypeModelList = new ObservableCollection<CSightsTypeModel>(csightsTypeList);
-			_selectedCSightsType = CSightsTypeModelList.FirstOrDefault();
+			SelectedCSightsType = CSightsTypeModelList.FirstOrDefault();
 		}
 
 

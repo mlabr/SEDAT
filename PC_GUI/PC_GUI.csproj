@@ -63,7 +63,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Sights\SightsOverviewView.axaml.cs">
+    <Compile Update="Views\Weapon\Sights\SightsOverviewView.axaml.cs">
       <DependentUpon>SightsOverviewView.axaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Series\SeriesOverviewView.axaml.cs">

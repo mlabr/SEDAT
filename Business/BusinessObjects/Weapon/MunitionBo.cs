@@ -10,5 +10,7 @@ namespace Business.BusinessObjects.Weapon
 	public class MunitionBo : CodeBoBase
 	{
 		public int CaliberId { get; set; }
+
+		public CaliberBo CaliberBo { get; set; }
 	}
 }

@@ -11,6 +11,7 @@ using PC_GUI.ViewModels.Session;
 using PC_GUI.ViewModels.Sights;
 using PC_GUI.ViewModels.Target;
 using PC_GUI.ViewModels.Weapon;
+using PC_GUI.ViewModels.Weapon.Munition;
 using System;
 
 namespace PC_GUI.ViewModels
@@ -58,6 +59,7 @@ namespace PC_GUI.ViewModels
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),
 				MenuHelper.Weapon.Caliber.Overview => new CaliberOverviewViewModel(this),
 				MenuHelper.Weapon.Sights.Overview => new SightsOverviewViewModel(this),
+				MenuHelper.Weapon.Munition.Overview => new MunitionOverviewViewModel(this),
 				MenuHelper.Manage.CDisciplineOverview => new CDisciplineOverviewViewModel(this),
 				MenuHelper.Manage.Place.Overview => new PlaceOverviewViewModel(this),
 

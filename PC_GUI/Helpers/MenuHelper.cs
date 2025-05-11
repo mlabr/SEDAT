@@ -42,6 +42,11 @@ namespace PC_GUI.Helpers
 				public const string New = "CaliberNew";
 			}
 
+			public static class Munition
+			{
+				public const string Overview = "MunitionOverview";
+			}
+
 		}
 
 		public static class Manage
