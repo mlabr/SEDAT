@@ -49,7 +49,7 @@ namespace PC_GUI.ViewModels.Sights
 		public SightsOverviewViewModel(MainWindowViewModel mainWindow)
 		{
 			handler = new SightsHandler();
-			Label = MenuHelper.Manage.Weapon.SightsOverview;
+			Label = MenuHelper.Weapon.Sights.Overview;
 
 			mainWindowViewModel = mainWindow;
 

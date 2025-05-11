@@ -56,10 +56,11 @@ namespace PC_GUI.ViewModels
 				MenuHelper.Session.SessionNew => new SessionNewViewModel(this),
 				MenuHelper.Weapon.WeaponOverview => new WeaponOverviewViewModel(this),
 				MenuHelper.Weapon.WeaponNew => new WeaponNewViewModel(this),
-				MenuHelper.Manage.CSightsOverview => new SightsOverviewViewModel(this),
+				MenuHelper.Weapon.Caliber.Overview => new CaliberOverviewViewModel(this),
+				MenuHelper.Weapon.Sights.Overview => new SightsOverviewViewModel(this),
 				MenuHelper.Manage.CDisciplineOverview => new CDisciplineOverviewViewModel(this),
 				MenuHelper.Manage.Place.Overview => new PlaceOverviewViewModel(this),
-				MenuHelper.Manage.Caliber.Overview => new CaliberOverviewViewModel(this),
+
 				MenuHelper.Manage.TargetsOverview => new TargetOverviewViewModel(this),
 
 				//"PlacesOverView" => new PlaceOverviewViewModel(this),

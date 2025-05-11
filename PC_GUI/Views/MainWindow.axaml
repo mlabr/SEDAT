@@ -40,19 +40,16 @@
 	      <MenuItem Header="Weapons">
 			    <MenuItem Header="Overview" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponOverview" ></MenuItem>
 				  <MenuItem Header="New" Command="{Binding ChangeViewCommand}" CommandParameter="WeaponNew" ></MenuItem>
-		    </MenuItem>
+          <MenuItem Header="Calibers" Command="{Binding ChangeViewCommand}" CommandParameter="CaliberOverview" />
+          <MenuItem Header="Munition" Command="{Binding ChangeViewCommand}" CommandParameter="MunitionOverview" />
+          <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="SightsOverview" />
+        </MenuItem>
           <MenuItem Header="Manage">
             <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverview" ></MenuItem>
-            <MenuItem Header="Sights" Command="{Binding ChangeViewCommand}" CommandParameter="CSightsOverview" />
-            <MenuItem Header="Caliber" Command="{Binding ChangeViewCommand}" CommandParameter="CaliberOverview" />
             <MenuItem Header="Disciplines" Command="{Binding ChangeViewCommand}" CommandParameter="CDisciplineOverview"/>
             <MenuItem Header="Shooting Positions"/>
-			<MenuItem Header="Targets" Command="{Binding ChangeViewCommand}"  CommandParameter="TargetsOverview" ></MenuItem>
-			<MenuItem Header="Weapon" >
-				<MenuItem Header="Caliber" ></MenuItem>
-		    <MenuItem Header="Munition" ></MenuItem>
-        <MenuItem Header="Sights" ></MenuItem>
-			</MenuItem>
+            <MenuItem Header="Shooting Supports"/>
+			      <MenuItem Header="Targets" Command="{Binding ChangeViewCommand}"  CommandParameter="TargetsOverview" ></MenuItem>
             <!--<MenuItem Header="Weapons" Command="{Binding ChangeViewCommand}" CommandParameter="{x:static PC_GUI.Helpers:MenuHelper.MyParam}" ></MenuItem>-->
        </MenuItem>
      <MenuItem Header="File" Foreground="Black" >

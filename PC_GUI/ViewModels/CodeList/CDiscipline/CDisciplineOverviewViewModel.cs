@@ -28,7 +28,7 @@ namespace PC_GUI.ViewModels.CodeList.CDiscipline
 
 		public CDisciplineOverviewViewModel(MainWindowViewModel mainWindow)
 		{
-			Label = MenuHelper.Manage.Weapon.SightsOverview;
+			Label = MenuHelper.Weapon.Sights.Overview;
 
 			mainWindowViewModel = mainWindow;
 

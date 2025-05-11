@@ -38,7 +38,7 @@ namespace PC_GUI.ViewModels.Caliber
 		public CaliberOverviewViewModel(MainWindowViewModel mainWindow)
 		{
 			mainWindowViewModel = mainWindow;
-			Label = MenuHelper.Manage.Caliber.Overview;
+			Label = MenuHelper.Weapon.Caliber.Overview;
 			CaliberModelList = new ObservableCollection<CaliberModel>();
 			updateCaliberList();
 		}

@@ -30,7 +30,18 @@ namespace PC_GUI.Helpers
 
 			public const string WeaponOverview = "WeaponOverview";
 			public const string WeaponNew = "WeaponNew";
-			
+
+			public static class Sights
+			{
+				public const string Overview = "SightsOverview";
+			}
+
+			public static class Caliber
+			{
+				public const string Overview = "CaliberOverview";
+				public const string New = "CaliberNew";
+			}
+
 		}
 
 		public static class Manage
@@ -45,18 +56,6 @@ namespace PC_GUI.Helpers
 				public const string Overview = "PlacesOverview";
 			}
 
-
-			public static class Caliber
-			{
-				public const string Overview = "CaliberOverview";
-				public const string New = "CaliberNew";
-			}
-
-
-			public static class Weapon
-			{
-				public const string SightsOverview = "SightsOverview";
-			}
 		}
 
 		public static class Settings

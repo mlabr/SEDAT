@@ -49,7 +49,7 @@ namespace PC_GUI.ViewModels.Caliber
 		[RelayCommand]
 		internal void ReturnToOverView()
 		{
-			mainWindowViewModel.ChangeView(MenuHelper.Manage.Caliber.Overview);
+			mainWindowViewModel.ChangeView(MenuHelper.Weapon.Caliber.Overview);
 		}
 
 
