@@ -15,10 +15,10 @@
           GridLinesVisibility="All"
           BorderThickness="1">
       <DataGrid.Columns>
-        <DataGridTextColumn Header="Date" Binding="{Binding DateStart}" />
+        <DataGridTextColumn Header="Date" Binding="{Binding DateStart, StringFormat='yyyy-MM-dd'}"  />
         <DataGridTextColumn Header="Place" Binding="{Binding PlaceName}" />
         <DataGridTextColumn Header="Series" Binding="{Binding SeriesName}" />
-        <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
+        <DataGridTextColumn Header="Disciplines" Binding="{Binding Disciplines}" />
         <DataGridTextColumn Header="IsUsed" Binding="{Binding IsUsed}" />
         <DataGridTemplateColumn  Header="Detail">
           <DataGridTemplateColumn.CellTemplate>

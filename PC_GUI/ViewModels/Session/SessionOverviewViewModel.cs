@@ -15,7 +15,7 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private ObservableCollection<SessionOverviewModel> _sessionModelList;
 
-		//Filter: Sesion name, Series, Place
+		//Filter: Sesion name, Series, Place, DateStart-DateEnd
 
 		public SessionOverviewViewModel(MainWindowViewModel mainWindow)
 		{
@@ -27,6 +27,7 @@ namespace PC_GUI.ViewModels.Session
 			foreach (var bo in boList)
 			{
 				var model = new SessionOverviewModel();
+				model.DateStart = bo.DateStart;
 				model.Name = bo.Name;
 				model.PlaceName = bo.PlaceBo.Name;
 
