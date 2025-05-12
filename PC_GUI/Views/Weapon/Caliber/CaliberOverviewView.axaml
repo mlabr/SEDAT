@@ -25,9 +25,9 @@
 
     <DataGrid Margin="20" ItemsSource="{Binding CaliberModelList}"
           IsReadOnly="True"
-          CanUserReorderColumns="True"
+          CanUserReorderColumns="False"
           CanUserResizeColumns="True"
-          CanUserSortColumns="False"
+          CanUserSortColumns="True"
           GridLinesVisibility="All"
           BorderThickness="1">
       <DataGrid.Columns>

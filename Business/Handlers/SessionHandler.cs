@@ -186,13 +186,33 @@ namespace Business.Handlers
 			return list;
 		}
 
-		public void GetSessionOverviewList()
+		public List<SessionBo> GetSessionOverviewList()
 		{
 
 			var repo = new SessionRepository();
-			var list = repo.GetSessionListByParams();
+			var list = repo.GetSessionListByCriterion();
+			var listBo = new List<SessionBo>();
+
+			foreach (var item in list)
+			{
+				var bo = new SessionBo();
+				foreach (var ser in item.SeriesList)
+				{
+					var seriesBo = new SeriesBo();
+					seriesBo.Name = ser.Name;
+					seriesBo.DbId = ser.SeriesId;
+					bo.SeriesBoList.Add(seriesBo);
+				}
+				
+				bo.DateStart = DateTimeOffset.Parse(item.DateStart);
+				bo.DateEnd = DateTimeOffset.Parse(item.DateEnd);
+				bo.PlaceBo.DbId = item.Place.PlaceId;
+				bo.PlaceBo.Name = item.Place.Name;
+				listBo.Add(bo);
+			}
 
 
+			return listBo;
 
 		}
 	}

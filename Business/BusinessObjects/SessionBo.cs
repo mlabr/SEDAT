@@ -27,9 +27,11 @@ namespace Business.BusinessObjects
 
 		public DateTimeOffset DateEnd { get; set; }
 
-		public List<SeriesBo> SeriesBoList { get; set; }
+		public List<SeriesBo> SeriesBoList { get; set; } = new List<SeriesBo>();
 
-		public List<DisciplineBo> DisciplineBoList { get; set; }
+		public List<DisciplineBo> DisciplineBoList { get; set; } = new List<DisciplineBo>();
+
+		public PlaceBo PlaceBo { get; set; } = new PlaceBo();
 
         public bool IsUsed { get; set; } = true;
 

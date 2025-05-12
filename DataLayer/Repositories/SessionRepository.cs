@@ -129,7 +129,7 @@ namespace DataLayer.Repositories
 			}
 		}
 
-		public List<Session> GetSessionListByParams()
+		public List<Session> GetSessionListByCriterion()
 		{
 			//conditions
 			var skipCount = 0;
@@ -149,6 +149,7 @@ namespace DataLayer.Repositories
 				var itemList = (from seriesSession in conn.Table<SeriesSession>()
 							   join session in conn.Table<Session>() on seriesSession.SessionId equals session.SessionId
 							   join series in conn.Table<Series>() on seriesSession.SeriesId equals series.SeriesId
+							   join place in conn.Table<Place>() on session.PlaceId equals place.PlaceId
 							   where yearOfSession == null || session.DateStart.StartsWith(yearOfSession)
 							   
 							   //add another conditions here
@@ -160,6 +161,7 @@ namespace DataLayer.Repositories
 								   SeriesSession = seriesSession,
 								   Session = session,
 								   Series = series,
+								   Place = place,
 							   }).Skip(skipCount)
 							   .Take(takeCount);
 
@@ -185,6 +187,7 @@ namespace DataLayer.Repositories
 
 					}
 					item.Session.SeriesList.Add(item.Series);
+					item.Session.Place = item.Place;
 				}
 				//Now we have all session with its series
 

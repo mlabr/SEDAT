@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Session
 {
-	internal class SessionOverviewModel
+	public class SessionOverviewModel
 	{
 		public string Name { get; set; }
 
-		public string SeriesName = "";
+		public string SeriesName { get; set; }
 
-		public string SeriesToolTip = "";
+		public string SeriesToolTip { get; set; }
 
-		public DateTimeOffset DateStart;
+		public DateTimeOffset DateStart { get; set; }
 
-		public DateTimeOffset DateEnd;
+		public DateTimeOffset DateEnd { get; set; }
 
-		public string DisciplineName = "";
+		public string DisciplineName { get; set; }
 
-		public string DisciplineTooltip = "";
+		public string DisciplineTooltip { get; set; }
 
-		public string PlaceName = "";
+		public string PlaceName { get; set; }
 	}
 }
