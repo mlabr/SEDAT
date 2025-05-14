@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities;
+﻿using Avalonia.Input.TextInput;
+using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
 using SQLite;
 using System;
@@ -72,8 +73,8 @@ namespace DataLayer.Repositories
 
 				return list.ToList();
 			}
-
 		}
+
 
 		public List<Munition> GetAllList()
 		{

@@ -41,8 +41,7 @@
       <DataGrid.Columns>
         <DataGridTextColumn Header="Name"  Binding="{Binding Name}"/>
         <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-        <DataGridTextColumn Header="Type" Binding="{Binding CSightsType.Name}" />
-        <DataGridTextColumn Header="IsUsed" Binding="{Binding IsUsed}" />
+        <DataGridTextColumn Header="Caliber" Binding="{Binding CaliberModel.Name}" />
         <DataGridTemplateColumn>
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
