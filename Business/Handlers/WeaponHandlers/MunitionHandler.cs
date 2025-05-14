@@ -76,7 +76,7 @@ namespace Business.Handlers.WeaponHandlers
 				var m = new MunitionBo();
 				m.Name = item.Name;
 				m.CaliberId = item.CaliberId;
-				m.DbId = item.MunitionId;
+				m.DbId = item.MunitionId.Value;
 				m.Description = item.Description;
 				m.Note = item.Note;
 				list.Add(m);
@@ -84,6 +84,14 @@ namespace Business.Handlers.WeaponHandlers
 
 
 			return list;
+		}
+
+		public void Insert(MunitionBo bo)
+		{
+			var item = Mapper.Weapon.MunitionBoToMunition(bo);
+			item.MunitionId = null;
+			repo.Insert(item);
+			
 		}
 	}
 }

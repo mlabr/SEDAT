@@ -1,5 +1,7 @@
-﻿using Business.Handlers.WeaponHandlers;
+﻿using Business.BusinessObjects.Weapon;
+using Business.Handlers.WeaponHandlers;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Helpers;
 using PC_GUI.Mapping;
 using PC_GUI.Models.Weapon;
@@ -83,6 +85,27 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 
 			}
 			MunitionModelList = new ObservableCollection<MunitionModel>(modelList);
+		}
+
+
+		[RelayCommand]
+		protected void AddNewMunitionCommand()
+		{
+			//var bo = new SightsBo();
+			//bo.Name = Name;
+			//bo.Description = Description;
+			//bo.Note = Note;
+			//bo.IsUsed = true;
+			//bo.CSightsType.DbId = SelectedCSightsType.DbId;
+			//handler.Insert(bo);
+			var bo = new MunitionBo();
+			bo.Name = Name;
+			bo.Description = Description;
+			bo.Note = Note;
+			bo.CaliberId = SelectedCaliber.DbId;
+			handler.Insert(bo);
+
+			updateMunitionModelList();
 		}
 	}
 }

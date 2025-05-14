@@ -8,7 +8,7 @@ namespace DataLayer.Entities
 	public class Munition : EntityBase
 	{
 		[PrimaryKey, AutoIncrement]
-		public int MunitionId { get; set; }
+		public int? MunitionId { get; set; }
 
         public int CaliberId { get; set; }
 

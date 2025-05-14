@@ -54,6 +54,7 @@ namespace Business.Handlers.WeaponHandlers
 				bo.Description = cal.Description;
 				bo.Note = cal.Note;
 				bo.IsUsed = cal.IsUsed;
+				bo.DbId = cal.CaliberId.Value;
 				boList.Add(bo);
 			}
 

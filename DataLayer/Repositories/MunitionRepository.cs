@@ -134,5 +134,13 @@ namespace DataLayer.Repositories
 				return munitionList.ToList();
 			}
 		}
+
+		public void Insert(Munition munition)
+		{
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+				conn.Insert(munition);
+			}
+		}
 	}
 }
