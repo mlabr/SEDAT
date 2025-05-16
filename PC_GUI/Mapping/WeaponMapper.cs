@@ -108,6 +108,8 @@ namespace PC_GUI.Mapping
 				return model;
 			}
 
+
+
 			internal static CFiringModeModel CFiringModeBoToCFiringModeModel(CFiringModeBo bo)
 			{
 				var model = new CFiringModeModel();

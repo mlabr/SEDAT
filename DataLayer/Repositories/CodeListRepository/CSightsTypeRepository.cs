@@ -73,5 +73,10 @@ namespace DataLayer.Repositories.CodeListRepository
 		{
 			throw new NotImplementedException();
 		}
+
+		public List<CSightsType> GetReferencedList()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

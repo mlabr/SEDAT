@@ -16,5 +16,6 @@ namespace DataLayer.Interfaces
 
 		void InsertList(List<T> item);
 		int GetTotalItemsCount();
+		List<T> GetReferencedList();
 	}
 }

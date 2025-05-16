@@ -70,5 +70,10 @@ namespace DataLayer.Repositories.CodeListRepository
 		{
 			throw new NotImplementedException();
 		}
+
+		public List<CFiringMode> GetReferencedList()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

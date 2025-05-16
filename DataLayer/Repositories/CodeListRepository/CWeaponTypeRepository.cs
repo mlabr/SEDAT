@@ -100,5 +100,10 @@ namespace DataLayer.Repositories.CodeListRepository
 		{
 			throw new NotImplementedException();
 		}
+
+		public List<CWeaponType> GetReferencedList()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

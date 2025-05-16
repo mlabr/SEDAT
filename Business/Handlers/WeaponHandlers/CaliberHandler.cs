@@ -75,6 +75,20 @@ namespace Business.Handlers.WeaponHandlers
 			return listBo;
 		}
 
+		public List<CaliberBo> GetMunitionCaliberList()
+		{
+			ICodeRepository<Caliber> repo = new CaliberRepository();
+			var list = repo.GetReferencedList();
+			var listBo = new List<CaliberBo>();
+			foreach (var item in list)
+			{
+				var bo = Mapper.Weapon.CaliberToCaliberBo(item);
+				listBo.Add(bo);
+			}
+
+			return listBo;
+		}
+
 
 
 

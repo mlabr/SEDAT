@@ -94,5 +94,10 @@ namespace DataLayer.Repositories.CodeListRepository
 		{
 			throw new NotImplementedException();
 		}
+
+		public List<CPowerPrinciple> GetReferencedList()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

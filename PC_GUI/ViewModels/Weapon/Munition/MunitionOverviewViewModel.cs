@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Helpers;
 using PC_GUI.Mapping;
+using PC_GUI.Models;
 using PC_GUI.Models.Weapon;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,18 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 
 		private bool isActionConfirmed = false;
 
-		public ObservableCollection<CaliberModel> CaliberModelList { get; set; }
+		[ObservableProperty]
+		public ObservableCollection<DropDownItemModel> _caliberDropDownModelList = new ObservableCollection<DropDownItemModel>();
 
 		[ObservableProperty]
-		internal CaliberModel _selectedCaliber;
+		public ObservableCollection<DropDownItemModel> _filterCaliberDropDownModelList = new ObservableCollection<DropDownItemModel>(); 
 
+		[ObservableProperty]
+		private DropDownItemModel _selectedCaliber;
+
+
+		[ObservableProperty]
+		private DropDownItemModel _selectedFilterCaliber; //new ObservableCollection<DropDownItemModel>();
 
 
 		[ObservableProperty]
@@ -53,38 +61,22 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 
 			mainWindowViewModel = mainWindow;
 			updateMunitionModelList();
-
+			updateFilter();
 			var cCaliberBoList = chandler.GetAllList();
-			var cCaliberModelList = new List<CaliberModel>();
+			//var cCaliberDropDownItemList = new List<DropDownItemModel>();
 
 			foreach (var c in cCaliberBoList)
 			{
-				var model = Mapper.Weapon.CaliberBoToCaliberModel(c);
-				cCaliberModelList.Add(model);
+				var model = new DropDownItemModel();
+				model.Name = c.Name;
+				model.Description = c.Description;
+				model.DbId = c.DbId;
+				CaliberDropDownModelList.Add(model);
 			}
-			CaliberModelList = new ObservableCollection<CaliberModel>(cCaliberModelList);
-			SelectedCaliber = CaliberModelList.FirstOrDefault();
+			//CaliberDropDownModelList = new ObservableCollection<DropDownItemModel>(cCaliberDropDownItemList);
+			SelectedCaliber = CaliberDropDownModelList.FirstOrDefault();
 			//var 
 
-		}
-
-		private void updateMunitionModelList()
-		{
-			var list = handler.GetAllList();
-			var modelList = new List<MunitionModel>();
-			foreach (var item in list)
-			{
-				var model = new MunitionModel();
-				model.DbId = item.DbId;
-				model.Name = item.Name;
-				model.Description = item.Description;
-				model.Note = item.Note;
-				model.CaliberModel.Name = item.CaliberBo.Name;
-				model.CaliberModel.DbId = item.CaliberBo.DbId;
-				modelList.Add(model);
-
-			}
-			MunitionModelList = new ObservableCollection<MunitionModel>(modelList);
 		}
 
 
@@ -106,6 +98,52 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 			handler.Insert(bo);
 
 			updateMunitionModelList();
+			updateFilter();
 		}
+
+		private void updateMunitionModelList()
+		{
+			var list = handler.GetAllList();
+			var modelList = new List<MunitionModel>();
+
+			foreach (var item in list)
+			{
+				var model = new MunitionModel();
+				model.DbId = item.DbId;
+				model.Name = item.Name;
+				model.Description = item.Description;
+				model.Note = item.Note;
+				model.CaliberModel.Name = item.CaliberBo.Name;
+				model.CaliberModel.DbId = item.CaliberBo.DbId;
+				modelList.Add(model);
+
+			}
+			MunitionModelList = new ObservableCollection<MunitionModel>(modelList);
+		}
+
+		private void updateFilter()
+		{
+			FilterCaliberDropDownModelList.Clear();
+			var chandler = new CaliberHandler();
+			var boList = chandler.GetMunitionCaliberList();
+
+			//var cCaliberModelList = new List<DropDownItemModel>();
+			//var modelList = new List<CaliberModel>();
+			foreach (var item in boList)
+			{
+	
+				var model = new DropDownItemModel();
+				model.Name = item.Name;
+				model.Description = item.Description;
+				model.DbId = item.DbId;
+				FilterCaliberDropDownModelList.Add(model);
+			}
+
+			//FilterCaliberModelList = new ObservableCollection<CaliberModel>(modelList);
+			SelectedFilterCaliber = FilterCaliberDropDownModelList.FirstOrDefault();
+			var ttt = FilterCaliberDropDownModelList.FirstOrDefault();
+		}
+
+
 	}
 }

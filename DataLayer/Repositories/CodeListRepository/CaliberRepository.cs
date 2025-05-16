@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities.CodeList;
+﻿using DataLayer.Entities;
+using DataLayer.Entities.CodeList;
 using DataLayer.Interfaces;
 using SQLite;
 using System;
@@ -57,6 +58,31 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
+		public List<Caliber> GetReferencedList()
+		{
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
+				var mlist = from munition in conn.Table<Munition>()
+						   select munition;
+
+				var calIdList = (from item in mlist
+								   select item.CaliberId).Distinct().ToList();
+
+				var list = new List<Caliber>();
+				foreach (var id in calIdList)
+				{
+					var item = from caliber in conn.Table<Caliber>()
+							   where caliber.CaliberId == id
+							   select caliber;
+
+					list.Add(item.FirstOrDefault());
+				}
+
+				return list;
+
+			}
+		}
+
 		public void Insert(Caliber item)
 		{
 			using (var conn = new SQLiteConnection(helper.ConnectionString))
@@ -90,5 +116,7 @@ namespace DataLayer.Repositories.CodeListRepository
 
 			}
 		}
+
+
 	}
 }
