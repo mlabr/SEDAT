@@ -1,4 +1,5 @@
 ﻿using Business.Handlers;
+using Business.Handlers.CodeHandlers;
 using Business.Handlers.WeaponHandlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using PC_GUI.Helpers;
@@ -28,13 +29,13 @@ namespace PC_GUI.ViewModels.CodeList.CDiscipline
 
 		public CDisciplineOverviewViewModel(MainWindowViewModel mainWindow)
 		{
-			Label = MenuHelper.Weapon.Sights.Overview;
+			//Label = MenuHelper.
 
 			mainWindowViewModel = mainWindow;
 
-			var handler = new SightsHandler();
+			var handler = new CDisciplineTypeHandler();
 
-			var list = handler.GetCSightsTypeAllList();
+			var list = handler.GetAllList();
 
 			var modelList = new List<CDisciplineTypeModel>();
 			foreach (var item in list)
