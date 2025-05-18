@@ -1,4 +1,5 @@
 ﻿using Business.BusinessObjects.Weapon;
+using Business.Filters;
 using Business.Handlers.WeaponHandlers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -63,14 +64,10 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 			updateMunitionModelList();
 			updateFilter();
 			var cCaliberBoList = chandler.GetAllList();
-			//var cCaliberDropDownItemList = new List<DropDownItemModel>();
 
 			foreach (var c in cCaliberBoList)
 			{
-				var model = new DropDownItemModel();
-				model.Name = c.Name;
-				model.Description = c.Description;
-				model.DbId = c.DbId;
+				var model = Mapper.Weapon.CaliberBoToDropDownItemModel(c);
 				CaliberDropDownModelList.Add(model);
 			}
 			//CaliberDropDownModelList = new ObservableCollection<DropDownItemModel>(cCaliberDropDownItemList);
@@ -103,7 +100,17 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 
 		private void updateMunitionModelList()
 		{
-			var list = handler.GetAllList();
+			MunitionFilter filter = new MunitionFilter();
+			filter.CaliberId = 0;
+			if (SelectedFilterCaliber != null)
+			{
+				filter.CaliberId = SelectedFilterCaliber.DbId;
+			}
+
+			var list = handler.GetListByFilter(filter);
+
+
+			//var list = handler.GetAllList();
 			var modelList = new List<MunitionModel>();
 
 			foreach (var item in list)
@@ -124,6 +131,12 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 		private void updateFilter()
 		{
 			FilterCaliberDropDownModelList.Clear();
+			var defaultValue = new DropDownItemModel();
+			defaultValue.Name = "All";
+			defaultValue.Description = "Show all calibers";
+			defaultValue.DbId = 0;
+			FilterCaliberDropDownModelList.Add(defaultValue);
+
 			var chandler = new CaliberHandler();
 			var boList = chandler.GetMunitionCaliberList();
 
@@ -131,11 +144,7 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 			//var modelList = new List<CaliberModel>();
 			foreach (var item in boList)
 			{
-	
-				var model = new DropDownItemModel();
-				model.Name = item.Name;
-				model.Description = item.Description;
-				model.DbId = item.DbId;
+				var model = Mapper.Weapon.CaliberBoToDropDownItemModel(item);
 				FilterCaliberDropDownModelList.Add(model);
 			}
 
@@ -144,6 +153,24 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 			var ttt = FilterCaliberDropDownModelList.FirstOrDefault();
 		}
 
+		partial void OnSelectedFilterCaliberChanged(DropDownItemModel item)
+		{
+			var tt = item;
+			//updateView();
+			updateMunitionModelList();
+		}
 
+
+		private void updateView()
+		{
+			MunitionFilter filter = new MunitionFilter();
+			filter.CaliberId = 0;
+			if (SelectedFilterCaliber != null)
+			{
+				filter.CaliberId = SelectedFilterCaliber.DbId;
+			}
+			
+			var list = handler.GetListByFilter(filter);
+		}
 	}
 }

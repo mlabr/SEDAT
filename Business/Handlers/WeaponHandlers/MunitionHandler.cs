@@ -1,6 +1,8 @@
 ﻿using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
+using Business.Filters;
 using Business.Mapping;
+using DataLayer.Criteria;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
 using System;
@@ -53,6 +55,23 @@ namespace Business.Handlers.WeaponHandlers
 			return list;
 		}
 
+		public List<MunitionBo> GetListByFilter(MunitionFilter filter)
+		{
+			var criteria = new MunitionCriteria();
+			criteria.CaliberId = filter.CaliberId;
+
+			var list = new List<MunitionBo>();
+			var result = repo.GetMunitionListByCriteria(criteria);
+			foreach (var item in result)
+			{
+				var bo = Mapper.Weapon.MunitionToMunitionBo(item);
+				bo.CaliberBo = Mapper.Weapon.CaliberToCaliberBo(crepo.GetByID(item.CaliberId));
+				list.Add(bo);
+			}
+
+			return list;
+		}
+
 		public List<MunitionBo> GetUsedOnlyListByCaliberList(List<CaliberBo> caliberList)
 		{
 			var list = new List<MunitionBo>();
@@ -93,5 +112,7 @@ namespace Business.Handlers.WeaponHandlers
 			repo.Insert(item);
 			
 		}
+
+
 	}
 }

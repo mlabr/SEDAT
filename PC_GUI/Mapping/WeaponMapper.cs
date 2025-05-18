@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Business.BusinessObjects.CodeList;
 using Business.BusinessObjects.Weapon;
+using PC_GUI.Models;
 using PC_GUI.Models.CodeList;
 using PC_GUI.Models.Weapon;
 using PC_GUI.ViewModels;
@@ -15,8 +16,6 @@ namespace PC_GUI.Mapping
 {
 	internal static partial class Mapper
 	{
-
-
 		internal static class Weapon
 		{
 			internal static MenuItemViewModel CPowerPrincipleBoToMenuItemModel(CPowerPrincipleBo bo)
@@ -108,6 +107,14 @@ namespace PC_GUI.Mapping
 				return model;
 			}
 
+			internal static DropDownItemModel CaliberBoToDropDownItemModel(CaliberBo bo)
+			{
+				var model = new DropDownItemModel();
+				model.DbId = bo.DbId;
+				model.Name = bo.Name;
+				model.Description = bo.Description;
+				return model;
+			}
 
 
 			internal static CFiringModeModel CFiringModeBoToCFiringModeModel(CFiringModeBo bo)

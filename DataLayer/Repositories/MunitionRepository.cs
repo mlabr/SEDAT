@@ -1,4 +1,5 @@
 ﻿using Avalonia.Input.TextInput;
+using DataLayer.Criteria;
 using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
 using SQLite;
@@ -110,15 +111,30 @@ namespace DataLayer.Repositories
 					{
 						list.ToList();
 						munitionList.AddRange(list);
-					}
-
-					
+					}					
 				}
-
 
 				return munitionList.ToList();
 			}
 		}
+
+		public List<Munition> GetMunitionListByCriteria(MunitionCriteria criteria)
+		{
+			//var munitionList = new List<Munition>();
+			using (var conn = new SQLiteConnection(connectionString))
+			{
+
+				var munitionList = from munition in conn.Table<Munition>()
+									  where !criteria.IsCaliberSelected || munition.CaliberId == criteria.CaliberId
+									  select munition;
+
+				return munitionList.ToList();
+			}
+
+
+			//return new List<Munition>();
+		}
+
 
 		public List<Munition> GetDefaultAmunition()
 		{
