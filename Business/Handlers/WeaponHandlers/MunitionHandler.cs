@@ -28,7 +28,11 @@ namespace Business.Handlers.WeaponHandlers
 		{
 			var list = new List<MunitionBo>();
 
-			var result = repo.GetUsedOnlyList();
+			//var result = repo.GetUsedOnlyList();
+			var crit = new MunitionCriteria();
+			crit.IsUsedOnlySelected = true;
+			var result = repo.GetMunitionListByCriteria(crit);
+
 			foreach (var item in result)
 			{
 				var bo = Mapper.Weapon.MunitionToMunitionBo(item);

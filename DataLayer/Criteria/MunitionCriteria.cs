@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Criteria
 {
-	public class MunitionCriteria
+	public class MunitionCriteria : CriteriaBase
 	{
 		private int caliberId;
 

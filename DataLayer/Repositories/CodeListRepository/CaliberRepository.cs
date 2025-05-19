@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities;
+﻿using DataLayer.Criteria;
+using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
 using DataLayer.Interfaces;
 using SQLite;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repositories.CodeListRepository
 {
-	public class CaliberRepository : ICodeRepository<Caliber>
+	public class CaliberRepository
 	{
 		DbHelper helper;
 		public CaliberRepository()
@@ -43,7 +44,19 @@ namespace DataLayer.Repositories.CodeListRepository
 			}
 		}
 
+		public List<Caliber> GetListByCriteria(CriteriaBase criteria)
+		{
+			using (var conn = new SQLiteConnection(helper.ConnectionString))
+			{
 
+				var munitionList = from caliber in conn.Table<Caliber>()
+								   where !criteria.IsDbIdSelected || caliber.CaliberId == criteria.DbId
+								   where !criteria.IsUsedOnlySelected || caliber.IsUsed == true
+								   select caliber;
+
+				return munitionList.ToList();
+			}
+		}
 
 		public List<Caliber> GetUsedOnlyList()
 		{

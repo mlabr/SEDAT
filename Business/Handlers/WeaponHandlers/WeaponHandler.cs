@@ -172,7 +172,7 @@ namespace Business.Handlers.WeaponHandlers
 		public List<CaliberBo> GetCaliberBoList()
 		{
 			var handler = new CaliberHandler();
-			return handler.GetUsedOnlyList();
+			return handler.GetAllList();
 		}
 
 		public void SaveNewCaliber(CaliberBo bo)

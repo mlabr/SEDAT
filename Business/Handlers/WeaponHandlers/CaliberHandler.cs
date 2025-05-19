@@ -1,5 +1,6 @@
 ﻿using Business.BusinessObjects.CodeList;
 using Business.Mapping;
+using DataLayer.Criteria;
 using DataLayer.Entities.CodeList;
 using DataLayer.Interfaces;
 using DataLayer.Repositories.CodeListRepository;
@@ -24,7 +25,7 @@ namespace Business.Handlers.WeaponHandlers
 
 		public void Insert(CaliberBo bo)
 		{
-			ICodeRepository<Caliber> repo = new CaliberRepository();
+			var repo = new CaliberRepository();
 			var cal = new Caliber();
 			cal.Name = bo.Name;
 			cal.Description = bo.Description;
@@ -39,7 +40,7 @@ namespace Business.Handlers.WeaponHandlers
 
 		public List<CaliberBo> GetAllList()
 		{
-			ICodeRepository<Caliber> repo = new CaliberRepository();
+			var repo = new CaliberRepository();
 
 			var caliberList = repo.GetAllList();
 
@@ -63,8 +64,11 @@ namespace Business.Handlers.WeaponHandlers
 
 		public List<CaliberBo> GetUsedOnlyList()
 		{
-			ICodeRepository<Caliber> repo = new CaliberRepository();
-			var list = repo.GetUsedOnlyList();
+
+			var repo = new CaliberRepository();
+			var crit = new CriteriaBase();
+			crit.IsUsedOnlySelected = true;
+			var list = repo.GetListByCriteria(crit);
 			var listBo = new List<CaliberBo>();
 			foreach (var item in list)
 			{
@@ -77,7 +81,7 @@ namespace Business.Handlers.WeaponHandlers
 
 		public List<CaliberBo> GetMunitionCaliberList()
 		{
-			ICodeRepository<Caliber> repo = new CaliberRepository();
+			var repo = new CaliberRepository();
 			var list = repo.GetReferencedList();
 			var listBo = new List<CaliberBo>();
 			foreach (var item in list)
@@ -94,7 +98,7 @@ namespace Business.Handlers.WeaponHandlers
 
 		public void Update(CaliberBo bo)
 		{
-			ICodeRepository<Caliber> repo = new CaliberRepository();
+			var repo = new CaliberRepository();
 			repo.Update(Mapper.Weapon.CaliberBoToCCaliber(bo));
 		}
 

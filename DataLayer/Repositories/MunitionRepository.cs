@@ -125,6 +125,7 @@ namespace DataLayer.Repositories
 			{
 
 				var munitionList = from munition in conn.Table<Munition>()
+									  where !criteria.IsDbIdSelected || munition.MunitionId == criteria.DbId
 									  where !criteria.IsCaliberSelected || munition.CaliberId == criteria.CaliberId
 									  select munition;
 

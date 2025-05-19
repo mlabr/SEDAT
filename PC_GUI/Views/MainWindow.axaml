@@ -46,7 +46,7 @@
         </MenuItem>
           <MenuItem Header="Manage">
             <MenuItem Header="Places" Command="{Binding ChangeViewCommand}" CommandParameter="PlacesOverview" ></MenuItem>
-            <MenuItem Header="Disciplines" Command="{Binding ChangeViewCommand}" CommandParameter="CDisciplineOverview"/>
+            <MenuItem Header="Discipline types" Command="{Binding ChangeViewCommand}" CommandParameter="CDisciplineOverview"/>
             <MenuItem Header="Shooting Positions"/>
             <MenuItem Header="Shooting Supports"/>
 			      <MenuItem Header="Targets" Command="{Binding ChangeViewCommand}"  CommandParameter="TargetsOverview" ></MenuItem>

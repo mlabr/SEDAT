@@ -63,7 +63,7 @@ namespace PC_GUI.ViewModels.Weapon.Munition
 			mainWindowViewModel = mainWindow;
 			updateMunitionModelList();
 			updateFilter();
-			var cCaliberBoList = chandler.GetAllList();
+			var cCaliberBoList = chandler.GetUsedOnlyList();
 
 			foreach (var c in cCaliberBoList)
 			{
