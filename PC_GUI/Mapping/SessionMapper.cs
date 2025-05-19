@@ -68,6 +68,12 @@ namespace PC_GUI.Mapping
 				disciplineBo.Date = model.DisciplineDate;
 
 				sessionBo.DisciplineBoList.Add(disciplineBo);
+				/****************************
+				 * 
+				 *   Disciplines
+				 * 
+				 ***************************/
+
 
 
 				return sessionBo;

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using PC_GUI.Models;
+using PC_GUI.Models.Session;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,5 +54,39 @@ namespace PC_GUI.ViewModels.Session
 
 		[ObservableProperty]
 		private int _shotsTotal = 0;
+
+		public string TimeStartString
+		{
+			get
+			{
+				if (TimeStartSpan.HasValue)
+				{
+					//@"dd\.hh\:mm\:ss"
+					return TimeStartSpan.Value.ToString(@"hh\:mm");
+				}
+
+				return string.Empty;
+			}
+			private set { }
+		}
+
+		public string TimeEndString
+		{
+			get
+			{
+				if (TimeStartSpan.HasValue)
+				{
+					return TimeEndSpan.Value.ToString(@"hh\:mm");
+				}
+
+				return string.Empty;
+			}
+			private set { }
+		}
+
+
+		public TimeSpan? TimeStartSpan { get; set; }
+
+		public TimeSpan? TimeEndSpan { get; set; }
 	}
 }

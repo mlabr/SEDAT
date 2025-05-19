@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PC_GUI.Mapping;
 using PC_GUI.Models;
+using PC_GUI.Models.Session;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -203,7 +204,7 @@ namespace PC_GUI.ViewModels.Session
 
 			var stop = 0;
 			
-			sesHandler.InsertSession(sessionBo);
+			//sesHandler.InsertSession(sessionBo);
 		}
 
 
@@ -213,8 +214,8 @@ namespace PC_GUI.ViewModels.Session
 			var rm = new RecordModel();
 			rm.ShotsCount = Shots;
 			rm.Score = Score;
-			rm.TimeStartSpan = RecordTimeStart;
-			rm.TimeEndSpan = RecordTimeEnd;
+			//rm.TimeStartSpan = RecordTimeStart;
+			//rm.TimeEndSpan = RecordTimeEnd;
 			//rm.TimeStart = "";
 			//rm.TimeEnd = "";
 			rm.TempId = getTempId();

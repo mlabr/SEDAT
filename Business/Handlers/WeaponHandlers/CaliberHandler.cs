@@ -26,12 +26,7 @@ namespace Business.Handlers.WeaponHandlers
 		public void Insert(CaliberBo bo)
 		{
 			var repo = new CaliberRepository();
-			var cal = new Caliber();
-			cal.Name = bo.Name;
-			cal.Description = bo.Description;
-			cal.Note = bo.Note;
-			cal.IsUsed = bo.IsUsed;
-
+			var cal = Mapper.Weapon.CaliberBoToCCaliber(bo);
 			var priority = repo.GetTotalItemsCount();
 			cal.Priority = priority;
 
@@ -41,21 +36,12 @@ namespace Business.Handlers.WeaponHandlers
 		public List<CaliberBo> GetAllList()
 		{
 			var repo = new CaliberRepository();
-
 			var caliberList = repo.GetAllList();
-
 			var boList = new List<CaliberBo>();
 
 			foreach (var cal in caliberList)
 			{
-
-				//var bo = _mapService.CSightToCSightsBo(csight);
-				var bo = new CaliberBo();
-				bo.Name = cal.Name;
-				bo.Description = cal.Description;
-				bo.Note = cal.Note;
-				bo.IsUsed = cal.IsUsed;
-				bo.DbId = cal.CaliberId.Value;
+				var bo = Mapper.Weapon.CaliberToCaliberBo(cal);
 				boList.Add(bo);
 			}
 
@@ -92,8 +78,6 @@ namespace Business.Handlers.WeaponHandlers
 
 			return listBo;
 		}
-
-
 
 
 		public void Update(CaliberBo bo)
