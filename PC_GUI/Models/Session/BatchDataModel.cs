@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Session
 {
-	internal class RecordModel
+	internal class BatchDataModel
 	{
 		public int TempId { get; set; }
 

@@ -143,7 +143,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedMunitionItem = MunitionList.FirstOrDefault();
 
-			RecordModelList = new ObservableCollection<RecordModel>();
+			BatchDataModelList = new ObservableCollection<BatchDataModel>();
 
 			setDefaultValues();
 		}
@@ -177,30 +177,44 @@ namespace PC_GUI.ViewModels.Session
 		{
 			//SessionNewViewModel model = this;
 			var sessionBo = Mapper.SessionMapper.SessionNewViewModelToSessionBo(this);
-			
 
-			//No record is added
-			if(sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Count < 1)
+			var bor = new RecordBo();
+			bor.WeaponProfileId = SelectedWeaponProfileItem.DbId;
+
+			if (BatchDataModelList.Any())
 			{
-				var bo = new RecordBo();
-				bo.Score = Score;
-				bo.ShotsCount = Shots;
-				bo.WeaponProfileId = SelectedWeaponProfileItem.DbId;
-				bo.TimeStart = RecordTimeStart;
-				bo.TimeEnd = RecordTimeEnd;
-				sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bo);
+				if(BatchDataModelList.Count < 2)
+				{
+					//no data
+					//bor.Score = BatchDataModelList.FirstOrDefault().Score;
+					//bor.ShotsCount = BatchDataModelList.FirstOrDefault().ShotsCount;
+					//bor.XCount = BatchDataModelList.FirstOrDefault().XCount;
+				}
+				else
+				{
+					// batch type data
+					foreach (var item in BatchDataModelList)
+					{
+						//bor.Score += item.Score;
+						//bor.ShotsCount += item.ShotsCount;
+						//bor.XCount += item.Score;
+					}
+					//TODO: Make this to data json
+
+				}
 			}
 			else
 			{
-				foreach (var item in RecordModelList)
-				{
-					var bo = new RecordBo();
-					bo.Score = item.Score;
-					bo.ShotsCount = item.ShotsCount;
-					bo.WeaponProfileId = SelectedWeaponProfileItem.DbId;
-					sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bo);
-				}
+				//bor.Score = Score;
+				//bor.ShotsCount = Shots;
+				//bor.XCount = BatchDataModelList.FirstOrDefault().XCount;
 			}
+			bor.Score = ScoreTotal;
+			bor.ShotsCount = ShotsTotal;
+			bor.TimeStart = RecordTimeStart;
+			bor.TimeEnd = RecordTimeEnd;
+			sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bor);
+
 
 			var stop = 0;
 			
@@ -209,9 +223,9 @@ namespace PC_GUI.ViewModels.Session
 
 
 		[RelayCommand]
-		private void btnAddTempRecordOnClick()
+		private void btnAddBatchDataOnClick()
 		{
-			var rm = new RecordModel();
+			var rm = new BatchDataModel();
 			rm.ShotsCount = Shots;
 			rm.Score = Score;
 			//rm.TimeStartSpan = RecordTimeStart;
@@ -223,13 +237,13 @@ namespace PC_GUI.ViewModels.Session
 
 			if (!(Shots < 1))
 			{
-				RecordModelList.Add(rm);
+				BatchDataModelList.Add(rm);
 			}
 			clearTempRecord();
 
 			ScoreTotal = 0;
 			ShotsTotal = 0;
-			foreach (var item in RecordModelList)
+			foreach (var item in BatchDataModelList)
 			{
 				ScoreTotal += item.Score;
 				ShotsTotal += item.ShotsCount;
@@ -242,24 +256,24 @@ namespace PC_GUI.ViewModels.Session
 		[RelayCommand]
 		private void btnDeleteTempRecord(int tempId)
 		{
-			var item = RecordModelList.FirstOrDefault(x => x.TempId.Equals(tempId));
-			RecordModelList.Remove(item);
+			var item = BatchDataModelList.FirstOrDefault(x => x.TempId.Equals(tempId));
+			BatchDataModelList.Remove(item);
 			refreshTempRecordList();
 		}
 
 
 		private void refreshTempRecordList()
 		{
-			var list = new List<RecordModel>();
+			var list = new List<BatchDataModel>();
 			var count = 0;
-			foreach (var model in RecordModelList)
+			foreach (var model in BatchDataModelList)
 			{
 				count++;
 				model.TempId = count;
 				list.Add(model);
 			}
 			tmpId = 0;
-			RecordModelList = new ObservableCollection<RecordModel>(list);
+			BatchDataModelList = new ObservableCollection<BatchDataModel>(list);
 		}
 
 		private int tmpId = 0;

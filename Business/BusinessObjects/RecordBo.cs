@@ -22,6 +22,8 @@ namespace Business.BusinessObjects
 
 		public int ShotsCount { get; set; }
 
+		public int XCount { get; set; }
+
 		public TimeSpan? TimeStart { get; set; }
 
 		public TimeSpan? TimeEnd { get; set; }
