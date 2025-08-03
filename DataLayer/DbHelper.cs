@@ -202,6 +202,10 @@ namespace DataLayer
 												"IsUsed Boolean NOT NULL );");
 
 				db.CreateTable<CDatasetType>();
+				foreach (var s in idr.GetCDatasetType())
+				{
+					db.Insert(s);
+				}
 
 				db.Execute("Create Table Dataset (DatasetId INTEGER PRIMARY KEY NOT NULL," +
 								"CDatasetTypeId INTEGER References CDatasetType (CDatasetTypeId) NOT NULL," +

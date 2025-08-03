@@ -1,14 +1,17 @@
-﻿using DataLayer.Entities;
+﻿using Avalonia.Media;
+using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Sources;
 using System.Xml.Linq;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace DataLayer.DataResources
 {
@@ -418,7 +421,7 @@ namespace DataLayer.DataResources
 			throw new NotImplementedException();
 		}
 
-		internal object GetDefaultPlace()
+		internal Place GetDefaultPlace()
 		{
 			var place = new Place();
 			place.PlaceId = 1;
@@ -428,6 +431,37 @@ namespace DataLayer.DataResources
 			return place;
 		}
 
+		internal IEnumerable<CDatasetType> GetCDatasetType()
+		{
+			string[] names = { "Batch", "Set", "Aim path", "Triger path", "Personal", "Other", };
+
+
+
+			Tuple<string, string, bool>[] types =
+			{
+				Tuple.Create("Batch","Partial score, number of partial shots, number of partial shots in inner ten X ring. Summary of score is equal to total score. Also number of hits and shots in X", true),
+				Tuple.Create("Set", "Each hit is represented individualy with score with optional position on target.", true),
+				Tuple.Create("Aim path", "Each hit is represented individualy with score with recorded aiming path.", false),
+				Tuple.Create("Triger path", "", false),
+				Tuple.Create("Breathing", "", false),
+				Tuple.Create("Personal", "", true),
+				Tuple.Create("Other", "", false)
+			}; 
+
+			var i = 1;
+			foreach (string name in names)
+			{
+				var item = new CDatasetType();
+				item.CDatasetTypeId = i;
+				item.Name = types[i-1].Item1;
+				item.Priority = i;
+				item.Note = "";
+				item.Description = types[i - 1].Item2;
+				item.IsUsed = types[i - 1].Item3;
+				i++;
+				yield return item;
+			}
+		}
 
 	}
 }

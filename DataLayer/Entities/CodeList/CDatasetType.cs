@@ -11,6 +11,7 @@ namespace DataLayer.Entities.CodeList
 	public class CDatasetType : EntityCodeBase
 	{
 		[PrimaryKey]
-		public int DatasetId { get; set; }
+		public int CDatasetTypeId { get; set; }
+
 	}
 }
