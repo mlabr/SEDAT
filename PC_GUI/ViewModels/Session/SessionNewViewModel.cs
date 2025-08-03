@@ -240,16 +240,10 @@ namespace PC_GUI.ViewModels.Session
 				BatchDataModelList.Add(rm);
 			}
 			clearTempRecord();
+			updateTemporaryRecordValues();
 
-			ScoreTotal = 0;
-			ShotsTotal = 0;
-			foreach (var item in BatchDataModelList)
-			{
-				ScoreTotal += item.Score;
-				ShotsTotal += item.ShotsCount;
-			}
 
-			
+
 			//RecordModelList.Add(tt);
 		}
 
@@ -274,6 +268,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			tmpId = 0;
 			BatchDataModelList = new ObservableCollection<BatchDataModel>(list);
+			updateTemporaryRecordValues();
 		}
 
 		private int tmpId = 0;
@@ -291,13 +286,32 @@ namespace PC_GUI.ViewModels.Session
 
 		}
 
+		private void updateTemporaryRecordValues()
+		{
+			ScoreTotal = 0;
+			ShotsTotal = 0;
+			foreach (var item in BatchDataModelList)
+			{
+				ScoreTotal += item.Score;
+				ShotsTotal += item.ShotsCount;
+			}
+			ScorePercent = 0;
+			if (ShotsTotal > 0)
+			{
+				ScorePercent = (ScoreTotal * 10) / ShotsTotal;
+			}
+			
+		}
+
 		private void setDefaultValues()
 		{
 			ScoreMax = "10";
 			RoundsMax = "50";
+			
 
 			Shots = 10;
 			Score = 0;
+
 
 
 		}
