@@ -16,8 +16,6 @@ Supported platforms:
 
 Whether you're a recreational shooter, competitive marksman, or professional, you're always looking for ways to storage your records, improve your skills and keep your firearms in top condition. That’s exactly why I created SEDAT, your personal digital shooting diary, designed to help you achieve your shooting goals more efficiently than ever before.
 
-## Who AM I?
-I am IT specialist who is interested in shooting and I am tired of using Libre Calc (or MS Excel, whatever) to keeping my shooting records (they barely keep steps with my needs). So I decided to create SEDAT, the ultimate Shooting logbook. I also like Free software, so SEDAT is under GPL license, which is mean is free to use.
 
 ## Key Features:
 

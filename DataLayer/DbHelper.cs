@@ -195,11 +195,20 @@ namespace DataLayer
 												"SightsId INTEGER References Sights (SightsId) NOT NULL," +
 												"Score DECIMAL NOT NULL," +
 												"ShotsCount INTEGER NOT NULL," +
+												"XCount INTEGER NOT NULL," +
 												"TimeStart TEXT," +
 												"TimeEnd TEXT," +
-												"Data TEXT," +
 												"Note TEXT," +
 												"IsUsed Boolean NOT NULL );");
+
+				db.CreateTable<CDatasetType>();
+
+				db.Execute("Create Table Dataset (DatasetId INTEGER PRIMARY KEY NOT NULL," +
+								"CDatasetTypeId INTEGER References CDatasetType (CDatasetTypeId) NOT NULL," +
+								"RecordId INTEGER References Record (RecordId) NOT NULL," +
+								"Data TEXT NOT NULL);");
+
+
 
 
 				Console.WriteLine("Done");

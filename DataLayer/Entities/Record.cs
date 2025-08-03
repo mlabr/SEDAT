@@ -22,6 +22,8 @@ namespace DataLayer.Entities
 
 		public int ShotsCount { get; set; }
 
+		public int XCount { get; set; }
+
 		public string TimeStart { get; set; }
 
 		public string TimeEnd { get; set; }
