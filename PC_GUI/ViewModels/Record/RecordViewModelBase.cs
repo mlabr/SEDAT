@@ -49,8 +49,8 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private int _scoreTotal = 0;
 
-		[ObservableProperty]
-		private float _scorePercent = 0;
+		//[ObservableProperty]
+		//private float _scorePercent = 0;
 
 		[ObservableProperty]
 		private int _shotsTotal = 0;

@@ -144,7 +144,7 @@
         
         <TextBox Grid.Column="3" Grid.Row="0"  Margin="0 5 0 0" />
         <Button Grid.Column="3"  Grid.Row="1" Command="{Binding btnAddBatchDataOnClickCommand}"  Margin="0 5 0 0" Height="35" Width="120" HorizontalAlignment="Right">
-          <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Add as batch ->"/>
+          <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Add"/>
         </Button>
 
         <DataGrid Grid.Column="4"  Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="7" Margin="5" RowHeight="30"  ItemsSource="{Binding BatchDataModelList }"

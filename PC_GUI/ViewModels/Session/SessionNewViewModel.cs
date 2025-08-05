@@ -32,6 +32,9 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private TimeSpan? _recordTimeEnd;
 
+		[ObservableProperty]
+		private string _scorePercent;
+
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
@@ -295,10 +298,10 @@ namespace PC_GUI.ViewModels.Session
 				ScoreTotal += item.Score;
 				ShotsTotal += item.ShotsCount;
 			}
-			ScorePercent = 0;
+			ScorePercent = "0 %";
 			if (ShotsTotal > 0)
 			{
-				ScorePercent = (ScoreTotal * 10) / ShotsTotal;
+				ScorePercent = ((ScoreTotal * 10) / ShotsTotal).ToString() +" %";
 			}
 			
 		}
