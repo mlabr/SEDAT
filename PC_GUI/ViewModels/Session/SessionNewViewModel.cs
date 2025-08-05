@@ -1,4 +1,5 @@
-﻿using Business.BusinessObjects;
+﻿using Avalonia.Controls;
+using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
 using Business.Handlers;
 using Business.Handlers.WeaponHandlers;
@@ -32,9 +33,19 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private TimeSpan? _recordTimeEnd;
 
-		[ObservableProperty]
-		private string _scorePercent;
 
+
+		//summary
+		private RecordSummaryModel summary;
+
+		[ObservableProperty]
+		private string _scorePercent = "0 %";
+
+		[ObservableProperty]
+		private string _scoreTotal = "0/0";
+
+		[ObservableProperty]
+		private string _shotsTotal = "0/0";
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
@@ -119,6 +130,7 @@ namespace PC_GUI.ViewModels.Session
 			 *   RECORD
 			 * 
 			 ***************************/
+			summary = new RecordSummaryModel();
 			var weaponBoList = wHandler.GetWeaponProfileList();
 			WeaponProfileList = new List<DropDownItemModel>();
 			foreach (var item in weaponBoList)
@@ -182,6 +194,7 @@ namespace PC_GUI.ViewModels.Session
 			var sessionBo = Mapper.SessionMapper.SessionNewViewModelToSessionBo(this);
 
 			var bor = new RecordBo();
+
 			bor.WeaponProfileId = SelectedWeaponProfileItem.DbId;
 
 			if (BatchDataModelList.Any())
@@ -198,9 +211,9 @@ namespace PC_GUI.ViewModels.Session
 					// batch type data
 					foreach (var item in BatchDataModelList)
 					{
-						//bor.Score += item.Score;
-						//bor.ShotsCount += item.ShotsCount;
-						//bor.XCount += item.Score;
+						bor.Score += item.Score;
+						bor.ShotsCount += item.ShotsCount;
+						bor.XCount += item.Score;
 					}
 					//TODO: Make this to data json
 
@@ -212,8 +225,8 @@ namespace PC_GUI.ViewModels.Session
 				//bor.ShotsCount = Shots;
 				//bor.XCount = BatchDataModelList.FirstOrDefault().XCount;
 			}
-			bor.Score = ScoreTotal;
-			bor.ShotsCount = ShotsTotal;
+			//bor.Score = ScoreTotal;
+			//bor.ShotsCount = ShotsTotal;
 			bor.TimeStart = RecordTimeStart;
 			bor.TimeEnd = RecordTimeEnd;
 			sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bor);
@@ -242,7 +255,7 @@ namespace PC_GUI.ViewModels.Session
 			{
 				BatchDataModelList.Add(rm);
 			}
-			clearTempRecord();
+			//clearTempRecord();
 			updateTemporaryRecordValues();
 
 
@@ -286,24 +299,32 @@ namespace PC_GUI.ViewModels.Session
 		{
 			Shots = 10;
 			Score = 0;
-
+			ScorePercent = "0.00 %";
+			ShotsTotal = "0";
+			summary.Shots = 0;
+			summary.Score = 0;
+			summary.Shots = 0;
 		}
 
 		private void updateTemporaryRecordValues()
 		{
-			ScoreTotal = 0;
-			ShotsTotal = 0;
+			clearTempRecord();
+			
 			foreach (var item in BatchDataModelList)
 			{
-				ScoreTotal += item.Score;
-				ShotsTotal += item.ShotsCount;
-			}
-			ScorePercent = "0 %";
-			if (ShotsTotal > 0)
-			{
-				ScorePercent = ((ScoreTotal * 10) / ShotsTotal).ToString() +" %";
+				summary.Shots += item.ShotsCount;
+				summary.Score += item.Score;
+				
 			}
 			
+			if (summary.Shots > 0)
+			{
+				ScorePercent = ((summary.Score * 10.0) / summary.Shots).ToString("F2") +" %";
+			}
+
+			ScoreTotal = summary.Score.ToString();
+			ShotsTotal = summary.Shots.ToString();
+
 		}
 
 		private void setDefaultValues()
