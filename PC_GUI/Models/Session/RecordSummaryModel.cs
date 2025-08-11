@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Session
 {
-	internal class RecordSummaryModel
+	internal class RecordSummaryModel : RecordBatchDataModel
 	{
-		public float Score { get; set; }
+		public float ScoreCurrent { get; set; }
 
-		public float ScoreMax { get; set; }
-
-		public int Xcount { get; set; }
-
-		public int Shots { get; set; }
+		public int ShotsCurrentCount { get; set; }
 
 		
 

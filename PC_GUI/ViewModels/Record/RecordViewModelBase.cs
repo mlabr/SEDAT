@@ -31,13 +31,19 @@ namespace PC_GUI.ViewModels.Session
 		private DropDownItemModel? _selectedMunitionItem;
 
 		[ObservableProperty]
-		private ObservableCollection<BatchDataModel> _batchDataModelList;
+		private ObservableCollection<RecordBatchDataModel> _batchDataModelList;
 
 		[ObservableProperty]
-		private int _score = 0;
+		private float _score = 0;
 
 		[ObservableProperty]
-		private int _shots = 0;
+		private int _XCount = 0;
+
+		[ObservableProperty]
+		private int _ShotsCount = 0;
+
+		//[ObservableProperty]
+		//private int _shots = 0;
 
 		[ObservableProperty]
 		private TimeSpan? _timeStart;
@@ -45,8 +51,6 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private TimeSpan? _timeEnd;
 
-		[ObservableProperty]
-		private int _shotsTotal = 0;
 
 		public string TimeStartString
 		{

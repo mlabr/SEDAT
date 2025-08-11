@@ -47,6 +47,9 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private string _shotsTotal = "0/0";
 
+		[ObservableProperty]
+		private RecordBatchDataModel _batchData;
+
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
 			serHandler = new SeriesHandler();
@@ -131,7 +134,9 @@ namespace PC_GUI.ViewModels.Session
 			 * 
 			 ***************************/
 			summary = new RecordSummaryModel();
-			var weaponBoList = wHandler.GetWeaponProfileList();
+			_batchData = new RecordBatchDataModel();
+
+		var weaponBoList = wHandler.GetWeaponProfileList();
 			WeaponProfileList = new List<DropDownItemModel>();
 			foreach (var item in weaponBoList)
 			{
@@ -158,7 +163,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedMunitionItem = MunitionList.FirstOrDefault();
 
-			BatchDataModelList = new ObservableCollection<BatchDataModel>();
+			BatchDataModelList = new ObservableCollection<RecordBatchDataModel>();
 
 			setDefaultValues();
 		}
@@ -241,25 +246,19 @@ namespace PC_GUI.ViewModels.Session
 		[RelayCommand]
 		private void btnAddBatchDataOnClick()
 		{
-			var rm = new BatchDataModel();
-			rm.ShotsCount = Shots;
-			rm.Score = Score;
-			//rm.TimeStartSpan = RecordTimeStart;
-			//rm.TimeEndSpan = RecordTimeEnd;
-			//rm.TimeStart = "";
-			//rm.TimeEnd = "";
+			var rm = new RecordBatchDataModel();
+			rm.ShotsCount = BatchData.ShotsCount;
+			rm.Score = BatchData.Score;
+			rm.XCount = BatchData.XCount;
 			rm.TempId = getTempId();
 
-
-			if (!(Shots < 1))
+			if (!(BatchData.ShotsCount < 1))
 			{
 				BatchDataModelList.Add(rm);
 			}
 			//clearTempRecord();
 			updateTemporaryRecordValues();
-
-
-
+			
 			//RecordModelList.Add(tt);
 		}
 
@@ -274,7 +273,7 @@ namespace PC_GUI.ViewModels.Session
 
 		private void refreshTempRecordList()
 		{
-			var list = new List<BatchDataModel>();
+			var list = new List<RecordBatchDataModel>();
 			var count = 0;
 			foreach (var model in BatchDataModelList)
 			{
@@ -283,7 +282,7 @@ namespace PC_GUI.ViewModels.Session
 				list.Add(model);
 			}
 			tmpId = 0;
-			BatchDataModelList = new ObservableCollection<BatchDataModel>(list);
+			BatchDataModelList = new ObservableCollection<RecordBatchDataModel>(list);
 			updateTemporaryRecordValues();
 		}
 
@@ -297,13 +296,13 @@ namespace PC_GUI.ViewModels.Session
 
 		private void clearTempRecord()
 		{
-			Shots = 10;
-			Score = 0;
+			BatchData.ShotsCount = 10;
+			BatchData.Score = 0;
 			ScorePercent = "0.00 %";
 			ShotsTotal = "0";
-			summary.Shots = 0;
+			summary.ShotsCurrentCount = 0;
 			summary.Score = 0;
-			summary.Shots = 0;
+			summary.XCount = 0;
 		}
 
 		private void updateTemporaryRecordValues()
@@ -312,18 +311,18 @@ namespace PC_GUI.ViewModels.Session
 			
 			foreach (var item in BatchDataModelList)
 			{
-				summary.Shots += item.ShotsCount;
+				summary.ShotsCurrentCount += item.ShotsCount;
 				summary.Score += item.Score;
 				
 			}
 			
-			if (summary.Shots > 0)
+			if (summary.ShotsCurrentCount > 0)
 			{
-				ScorePercent = ((summary.Score * 10.0) / summary.Shots).ToString("F2") +" %";
+				ScorePercent = ((summary.Score * 10.0) / summary.ShotsCurrentCount).ToString("F2") +" %";
 			}
 
 			ScoreTotal = summary.Score.ToString();
-			ShotsTotal = summary.Shots.ToString();
+			ShotsTotal = summary.ShotsCurrentCount.ToString();
 
 		}
 
@@ -331,10 +330,10 @@ namespace PC_GUI.ViewModels.Session
 		{
 			ScoreMax = "10";
 			RoundsMax = "50";
-			
 
-			Shots = 10;
-			Score = 0;
+
+			BatchData.ShotsCount = 10;
+			BatchData.Score = 0;
 
 
 

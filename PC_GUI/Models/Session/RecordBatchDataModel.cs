@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Session
 {
-	internal class BatchDataModel
+	internal class RecordBatchDataModel
 	{
 		public int TempId { get; set; }
 
@@ -17,9 +18,5 @@ namespace PC_GUI.Models.Session
 		public int ShotsCount { get; set; }
 
 		public string Data { get; set; }
-
-
-
-
 	}
 }
