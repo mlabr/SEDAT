@@ -31,7 +31,7 @@ namespace PC_GUI.ViewModels.Session
 		private DropDownItemModel? _selectedMunitionItem;
 
 		[ObservableProperty]
-		private ObservableCollection<RecordBatchDataModel> _batchDataModelList;
+		private ObservableCollection<BatchDataViewModel> _batchDataModelList;
 
 		[ObservableProperty]
 		private float _score = 0;

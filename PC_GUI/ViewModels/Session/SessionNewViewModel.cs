@@ -48,7 +48,7 @@ namespace PC_GUI.ViewModels.Session
 		private string _shotsTotal = "0/0";
 
 		[ObservableProperty]
-		private RecordBatchDataModel _batchData;
+		private BatchDataViewModel _batchData;
 
 		public SessionNewViewModel(MainWindowViewModel model)
 		{
@@ -134,7 +134,7 @@ namespace PC_GUI.ViewModels.Session
 			 * 
 			 ***************************/
 			summary = new RecordSummaryModel();
-			_batchData = new RecordBatchDataModel();
+			_batchData = new BatchDataViewModel();
 
 		var weaponBoList = wHandler.GetWeaponProfileList();
 			WeaponProfileList = new List<DropDownItemModel>();
@@ -163,7 +163,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedMunitionItem = MunitionList.FirstOrDefault();
 
-			BatchDataModelList = new ObservableCollection<RecordBatchDataModel>();
+			BatchDataModelList = new ObservableCollection<BatchDataViewModel>();
 
 			setDefaultValues();
 		}
@@ -246,15 +246,15 @@ namespace PC_GUI.ViewModels.Session
 		[RelayCommand]
 		private void btnAddBatchDataOnClick()
 		{
-			var rm = new RecordBatchDataModel();
-			rm.ShotsCount = BatchData.ShotsCount;
-			rm.Score = BatchData.Score;
-			rm.XCount = BatchData.XCount;
-			rm.TempId = getTempId();
+			var batch = new BatchDataViewModel();
+			batch.ShotsCount = BatchData.ShotsCount;
+			batch.Score = BatchData.Score;
+			batch.XCount = BatchData.XCount;
+			batch.TempId = getTempId();
 
 			if (!(BatchData.ShotsCount < 1))
 			{
-				BatchDataModelList.Add(rm);
+				BatchDataModelList.Add(batch);
 			}
 			//clearTempRecord();
 			updateTemporaryRecordValues();
@@ -273,7 +273,7 @@ namespace PC_GUI.ViewModels.Session
 
 		private void refreshTempRecordList()
 		{
-			var list = new List<RecordBatchDataModel>();
+			var list = new List<BatchDataViewModel>();
 			var count = 0;
 			foreach (var model in BatchDataModelList)
 			{
@@ -282,7 +282,7 @@ namespace PC_GUI.ViewModels.Session
 				list.Add(model);
 			}
 			tmpId = 0;
-			BatchDataModelList = new ObservableCollection<RecordBatchDataModel>(list);
+			BatchDataModelList = new ObservableCollection<BatchDataViewModel>(list);
 			updateTemporaryRecordValues();
 		}
 
@@ -298,6 +298,7 @@ namespace PC_GUI.ViewModels.Session
 		{
 			BatchData.ShotsCount = 10;
 			BatchData.Score = 0;
+			BatchData.XCount = 0;
 			ScorePercent = "0.00 %";
 			ShotsTotal = "0";
 			summary.ShotsCurrentCount = 0;

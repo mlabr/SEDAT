@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Session
 {
-	internal class RecordSummaryModel : RecordBatchDataModel
+	internal class RecordSummaryModel : BatchDataViewModel
 	{
 		public float ScoreCurrent { get; set; }
 

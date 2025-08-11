@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using PC_GUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,19 @@ using System.Threading.Tasks;
 
 namespace PC_GUI.Models.Session
 {
-	internal class RecordBatchDataModel
+	internal partial class BatchDataViewModel : ViewModelBase
 	{
 		public int TempId { get; set; }
 
-		public int Score { get; set; }
+		[ObservableProperty]
+		private int _score;
 
-		public int XCount { get; set; }
+		[ObservableProperty]
+		private int _xCount;
 
-		public int ShotsCount { get; set; }
+		[ObservableProperty]
+		
+		private int _shotsCount;
 
 		public string Data { get; set; }
 	}
