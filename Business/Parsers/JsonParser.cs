@@ -21,12 +21,19 @@ namespace Business.Parsers
 			}
 			WeaponBo bo;
 
+			if(!IsCorrectJsonFile(json))
+			{
+				return null;
+			}
+
 
 			using (JsonDocument doc = JsonDocument.Parse(json))
 			{
+				
+
 				bo = new WeaponBo();
 				// Ruční výběr jednotlivých uzlů
-				JsonElement root = doc.RootElement.GetProperty("WeaponProfile");
+				JsonElement root = doc.RootElement.GetProperty("Profile");
 				bo.WeaponName = root.GetProperty("WeaponBase").GetProperty("Name").GetString();
 				bo.ProfileName = root.GetProperty("Name").GetString();
 				bo.CWeaponTypeCode = root.GetProperty("CWeaponTypeId").GetInt32();
@@ -54,6 +61,36 @@ namespace Business.Parsers
 
 			
 			return bo;
+		}
+
+
+		static bool IsCorrectJsonFile(string json)
+		{
+			try
+			{
+				using (JsonDocument doc = JsonDocument.Parse(json))
+				{
+					string appName = doc.RootElement.GetProperty("Application").GetString();
+					if (!appName.Equals("SEDAT"))
+					{
+						return false;
+					}
+
+					string dataType = doc.RootElement.GetProperty("DataType").GetString().ToLower();
+					if (!dataType.Equals("weaponprofile"))
+					{
+						return false;
+					}
+				}
+			}
+			catch(Exception e)
+			{
+				return false;
+			}
+
+
+
+			return true;
 		}
 	}
 }

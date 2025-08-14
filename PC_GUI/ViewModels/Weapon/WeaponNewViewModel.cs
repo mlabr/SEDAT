@@ -371,7 +371,11 @@ namespace PC_GUI.ViewModels.Weapon
 			}
 
 			WeaponBo bo = JsonParser.ConvertToWeaponBo(FileContent);
-			Mapper.Weapon.UpdateWeaponViewModelByWeaponBo(this, bo);
+
+			if (bo != null)
+			{
+				Mapper.Weapon.UpdateWeaponViewModelByWeaponBo(this, bo);
+			}
 		}
 
 		//Todo bussiness

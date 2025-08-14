@@ -19,7 +19,6 @@ namespace PC_GUI.Models.Session
 		private int _xCount;
 
 		[ObservableProperty]
-		
 		private int _shotsCount;
 
 		public string Data { get; set; }
