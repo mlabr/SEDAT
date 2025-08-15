@@ -1,4 +1,5 @@
 ﻿using Business.BusinessObjects.CodeList;
+using Business.BusinessObjects.Json;
 using Business.BusinessObjects.Weapon;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ namespace Business.Parsers
 					}
 
 					string dataType = doc.RootElement.GetProperty("DataType").GetString().ToLower();
-					if (!dataType.Equals("weaponprofile"))
+					if (!dataType.Equals(JsonDataType.WeaponProfile.ToLower()))
 					{
 						return false;
 					}
