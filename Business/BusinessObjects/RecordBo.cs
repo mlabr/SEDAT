@@ -14,6 +14,8 @@ namespace Business.BusinessObjects
 
 		public int MunitionId { get; set; }
 
+		public int SightsId { get; set; }
+
 		public string Name { get; set; }
 
 		public string Description { get; set; }

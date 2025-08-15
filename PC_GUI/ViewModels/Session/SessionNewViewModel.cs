@@ -185,6 +185,7 @@ namespace PC_GUI.ViewModels.Session
 
 			recordBo.WeaponProfileId = SelectedWeaponProfileItem.DbId;
 			recordBo.MunitionId = SelectedMunitionItem.DbId;
+			recordBo.SightsId = SelectedSightsItem.DbId;
 
 			if (BatchDataModelList.Any())
 			{
