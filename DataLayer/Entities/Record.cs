@@ -29,7 +29,7 @@ namespace DataLayer.Entities
 		public string TimeEnd { get; set; }
 
 
-		public string Data { get; set; }
+		//public string Data { get; set; }
 
 	}
 }

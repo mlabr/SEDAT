@@ -31,7 +31,6 @@ namespace PC_GUI.Mapping
 				sessionBo.PlaceId = model.SelectedPlaceItem.DbId;
 				sessionBo.IsUsed = true;
 
-
 				/****************************
 				 * 
 				 *   Series

@@ -34,33 +34,33 @@ namespace Business.Handlers
 
 			foreach (var item in bo.SeriesBoList)
 			{
-				var ser = new Series();
-				ser.Name = item.Name;
-				ser.IsUsed = item.IsUsed;
-				session.SeriesList.Add(ser);
+				var series = new Series();
+				series.Name = item.Name;
+				series.IsUsed = item.IsUsed;
+				session.SeriesList.Add(series);
 				//Item is new
 				if (item.DbId > 0)
 				{
-					ser.SeriesId = item.DbId;
+					series.SeriesId = item.DbId;
 				}
 			}
 
 			foreach (var item in bo.DisciplineBoList)
 			{
-				var dis = new Discipline();
-				dis.DisciplineId = item.DbId;
-				dis.Name = item.Name;
-				dis.CDisciplineTypeId = item.CDisciplineTypeId;
-				dis.CShootingPositionId = item.CShootingPositionId;
-				dis.Description = item.Description;
-				dis.TargetId = item.TargetId;
-				dis.Range = item.Range;
-				dis.IsRangeInMeters = item.IsRangeInMeters;
-				dis.ScoreMax = item.ScoreMax;
-				dis.Shotsmax = item.ShotsMax;
-				dis.Date = item.Date.ToString(format: ("yyyy-MM-dd"));
-				dis.IsUsed = true;
-				dis.Note = item.Note;
+				var discipline = new Discipline();
+				discipline.DisciplineId = item.DbId;
+				discipline.Name = item.Name;
+				discipline.CDisciplineTypeId = item.CDisciplineTypeId;
+				discipline.CShootingPositionId = item.CShootingPositionId;
+				discipline.Description = item.Description;
+				discipline.TargetId = item.TargetId;
+				discipline.Range = item.Range;
+				discipline.IsRangeInMeters = item.IsRangeInMeters;
+				discipline.ScoreMax = item.ScoreMax;
+				discipline.Shotsmax = item.ShotsMax;
+				discipline.Date = item.Date.ToString(format: ("yyyy-MM-dd"));
+				discipline.IsUsed = true;
+				discipline.Note = item.Note;
 				//dis.TimeStart
 				//dis.TimeEnd
 
@@ -81,10 +81,10 @@ namespace Business.Handlers
 					rec.IsUsed = bor.IsUsed;
 					rec.Note = bor.Note;
 
-					dis.RecordList.Add(rec);
+					discipline.RecordList.Add(rec);
 				}
 
-				session.DisciplineList.Add(dis);
+				session.DisciplineList.Add(discipline);
 			}
 
 
