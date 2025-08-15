@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.BusinessObjects.Json
 {
-	public static class JsonDataType
+	public static class JsonBoDataType
 	{
 		public static string WeaponProfile => "WeaponProfile";
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.BusinessObjects.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Business.BusinessObjects
 
 		public string Description { get; set; }
 
-		public string Note {  get; set; }
+		public string Note { get; set; }
 
 		public float Score { get; set; }
 
@@ -36,5 +37,6 @@ namespace Business.BusinessObjects
 
 		public bool IsUsed { get; set; }
 
+		public HitBatchBo HitBatch {get;set;}
 	}
 }

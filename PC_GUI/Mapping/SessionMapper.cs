@@ -1,6 +1,8 @@
 ﻿using Business.BusinessObjects;
 using Business.BusinessObjects.CodeList;
+using Business.BusinessObjects.Json;
 using Business.Parsers;
+using PC_GUI.Models.Session;
 using PC_GUI.ViewModels.Session;
 using System;
 using System.Collections.Generic;
@@ -76,6 +78,24 @@ namespace PC_GUI.Mapping
 
 
 				return sessionBo;
+			}
+
+			internal static HitBatchBo BatchDataViewModelListToHitBatchBo(List<BatchDataViewModel> list)
+			{
+				var bo = new HitBatchBo();
+
+				var i = 0;
+				foreach (var item in list)
+				{
+					var batch = new HitBaseBo();
+					batch.Order = i++;
+					batch.Score = item.Score;
+					batch.ShotsCount = item.ShotsCount;
+					batch.XCount = item.XCount;
+					bo.BatchList.Add(batch);
+				}
+
+				return bo;
 			}
 
 

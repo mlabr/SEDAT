@@ -6,6 +6,7 @@ using DataLayer.Entities.CodeList;
 using DataLayer.Interfaces;
 using DataLayer.Repositories;
 using DataLayer.Repositories.CodeListRepository;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Business.Handlers
@@ -80,6 +81,8 @@ namespace Business.Handlers
 					rec.TimeEnd = bor.TimeEnd.HasValue ? bor.TimeEnd.Value.ToString(@"hh\:mm") : string.Empty;
 					rec.IsUsed = bor.IsUsed;
 					rec.Note = bor.Note;
+					//TODO: Test
+					var jsn = JsonConvert.SerializeObject(bor.HitBatch, Formatting.Indented); 
 
 					discipline.RecordList.Add(rec);
 				}

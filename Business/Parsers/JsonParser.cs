@@ -78,7 +78,7 @@ namespace Business.Parsers
 					}
 
 					string dataType = doc.RootElement.GetProperty("DataType").GetString().ToLower();
-					if (!dataType.Equals(JsonDataType.WeaponProfile.ToLower()))
+					if (!dataType.Equals(JsonBoDataType.WeaponProfile.ToLower()))
 					{
 						return false;
 					}

@@ -204,10 +204,11 @@ namespace PC_GUI.ViewModels.Session
 						recordBo.XCount += item.Score;
 					}
 					//TODO: Make this to data json
+					recordBo.HitBatch = Mapper.SessionMapper.BatchDataViewModelListToHitBatchBo(BatchDataModelList.ToList());
 
 				}
 			}
-			else //no data in batch list
+			else //TODO: no data in batch list
 			{
 				//recordBo.Score = Score;
 				//recordBo.ShotsCount = Shots;
