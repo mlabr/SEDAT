@@ -148,7 +148,7 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedWeaponProfileItem = WeaponProfileList.FirstOrDefault();
 
-
+			//var sightsBoList = 
 
 			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(SelectedWeaponProfileItem.DbId).CCaliberBoList);
 			MunitionList.Clear();
