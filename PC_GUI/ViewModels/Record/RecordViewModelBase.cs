@@ -31,6 +31,12 @@ namespace PC_GUI.ViewModels.Session
 		private DropDownItemModel? _selectedMunitionItem;
 
 		[ObservableProperty]
+		private ObservableCollection<DropDownItemModel> _sightsList = new ObservableCollection<DropDownItemModel>();
+
+		[ObservableProperty]
+		private DropDownItemModel? _selectedSightsItem;
+
+		[ObservableProperty]
 		private ObservableCollection<BatchDataViewModel> _batchDataModelList;
 
 		[ObservableProperty]

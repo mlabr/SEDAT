@@ -93,7 +93,7 @@ namespace Business.Mapping
 				return sights;
 			}
 
-			internal static CSightsTypeBo CSightsTypeToCSightsTypeBo(CSightsType item)
+			internal static CSightsTypeBo SightsTypeToCSightsTypeBo(CSightsType item)
 			{
 				var bo = new CSightsTypeBo();
 				bo.DbId = item.CSightsTypeId.Value;

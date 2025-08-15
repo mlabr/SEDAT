@@ -6,6 +6,7 @@ using Business.Handlers.WeaponHandlers;
 using Business.Parsers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json.Linq;
 using PC_GUI.Mapping;
 using PC_GUI.Models;
 using PC_GUI.Models.Session;
@@ -22,6 +23,7 @@ namespace PC_GUI.ViewModels.Session
 		private MunitionHandler mHandler;
 		private WeaponHandler wHandler;
 		private SessionHandler sesHandler;
+		private SightsHandler sigHandler;
 
 		//Note: workaround
 		[ObservableProperty]
@@ -55,6 +57,7 @@ namespace PC_GUI.ViewModels.Session
 			serHandler = new SeriesHandler();
 			wHandler = new WeaponHandler();
 			mHandler = new MunitionHandler();
+			sigHandler = new SightsHandler();
 			sesHandler = new SessionHandler();
 
 			var pHandler = new PlaceHandler();
@@ -148,20 +151,9 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedWeaponProfileItem = WeaponProfileList.FirstOrDefault();
 
-			//var sightsBoList = 
-
-			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(SelectedWeaponProfileItem.DbId).CCaliberBoList);
-			MunitionList.Clear();
-			foreach (var item in munitionBoList)
-			{
-				var m = new DropDownItemModel();
-				m.Name = item.Name;
-				m.Description = item.Description;
-				m.DbId = item.DbId;
-
-				MunitionList.Add(m);
-			}
-			SelectedMunitionItem = MunitionList.FirstOrDefault();
+			var profileId = wHandler.GetWeaponProfile(SelectedWeaponProfileItem.DbId).ProfileDdId;
+			refreshMunitionList(profileId);
+			refreshSightsList(profileId);
 
 			BatchDataModelList = new ObservableCollection<BatchDataViewModel>();
 
@@ -175,21 +167,12 @@ namespace PC_GUI.ViewModels.Session
 				return;
 			}
 
-			var tt = wHandler.GetWeaponProfile(value.DbId).CCaliberBoList;
-			var aa = mHandler.GetUsedOnlyListByCaliberList(tt);
-			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(value.DbId).CCaliberBoList);
-			MunitionList.Clear();
-			foreach (var item in munitionBoList)
-			{
-				var m = new DropDownItemModel();
-				m.Name = item.Name;
-				m.Description = item.Description;
-				m.DbId = item.DbId;
+			
 
-				MunitionList.Add(m);
-			}
-			//_selectedMunitionItem = null;
-			SelectedMunitionItem = MunitionList.FirstOrDefault();
+			refreshMunitionList(value.DbId);
+			refreshSightsList(value.DbId);
+
+
 		}
 
 		[RelayCommand]
@@ -334,9 +317,38 @@ namespace PC_GUI.ViewModels.Session
 
 			BatchData.ShotsCount = 10;
 			BatchData.Score = 0;
+		}
 
+		private void refreshMunitionList(int dbid)
+		{
+			var munitionBoList = mHandler.GetUsedOnlyListByCaliberList(wHandler.GetWeaponProfile(dbid).CCaliberBoList);
+			MunitionList.Clear();
+			foreach (var item in munitionBoList)
+			{
+				var m = new DropDownItemModel();
+				m.Name = item.Name;
+				m.Description = item.Description;
+				m.DbId = item.DbId;
 
+				MunitionList.Add(m);
+			}
+			//_selectedMunitionItem = null;
+			SelectedMunitionItem = MunitionList.FirstOrDefault();
+		}
 
+		private void refreshSightsList(int dbid)
+		{
+			var sightsBoList = sigHandler.GetSightsUsedOnlyByWeaponProfileId(dbid);
+			SightsList.Clear();
+			foreach (var item in sightsBoList)
+			{
+				var s = new DropDownItemModel();
+				s.Name = item.Name;
+				s.Description = item.Description;
+				s.DbId = item.DbId;
+				SightsList.Add(s);
+			}
+			SelectedSightsItem = SightsList.FirstOrDefault();
 		}
 	}
 }

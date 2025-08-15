@@ -17,7 +17,7 @@ namespace Business.Handlers.WeaponHandlers
 	{
 		ICodeRepository<CSightsType> cstRepo;
 
-		ICodeRepository<Sights> sRepo;
+		SightsRepository sRepo;
 
 		public SightsHandler()
 		{
@@ -33,7 +33,7 @@ namespace Business.Handlers.WeaponHandlers
 
 			foreach (var csight in csightsList)
 			{
-				var bo = Mapper.Weapon.CSightsTypeToCSightsTypeBo(csight);
+				var bo = Mapper.Weapon.SightsTypeToCSightsTypeBo(csight);
 				boList.Add(bo);
 			}
 
@@ -48,7 +48,7 @@ namespace Business.Handlers.WeaponHandlers
 
 			foreach (var csight in csightsList)
 			{
-				var bo = Mapper.Weapon.CSightsTypeToCSightsTypeBo(csight);
+				var bo = Mapper.Weapon.SightsTypeToCSightsTypeBo(csight);
 				boList.Add(bo);
 			}
 
@@ -61,18 +61,37 @@ namespace Business.Handlers.WeaponHandlers
 
 			var boList = new List<SightsBo>();
 
-			foreach (var csight in sightsList)
+			foreach (var sight in sightsList)
 			{
 
 				//var bo = _mapService.CSightToCSightsBo(csight);
 				var bo = new SightsBo();
-				bo.Name = csight.Name;
-				bo.Description = csight.Description;
-				bo.Note = csight.Note;
-				bo.IsUsed = csight.IsUsed;
-				bo.CSightsType = Mapper.Weapon.CSightsTypeToCSightsTypeBo(cstRepo.GetByID(csight.CSightsTypeId));
+				bo.Name = sight.Name;
+				bo.Description = sight.Description;
+				bo.Note = sight.Note;
+				bo.IsUsed = sight.IsUsed;
+				bo.CSightsType = Mapper.Weapon.SightsTypeToCSightsTypeBo(cstRepo.GetByID(sight.CSightsTypeId));
 				boList.Add(bo);
 			}
+
+			return boList;
+		}
+
+		public List<SightsBo> GetSightsUsedOnlyByWeaponProfileId(int weaponProfileid)
+		{
+			var sightsList = sRepo.GetListByWeaponProfileId(weaponProfileid);
+
+			var boList = new List<SightsBo>();
+
+			foreach(var sights in sightsList)
+			{
+				if(sights.IsUsed)
+				{
+					var bo = Mapper.Weapon.SightsToSightsBo(sights);
+					boList.Add(bo);
+				}
+			}
+
 
 			return boList;
 		}
@@ -98,11 +117,13 @@ namespace Business.Handlers.WeaponHandlers
 				bo.Description = csight.Description;
 				bo.Note = csight.Note;
 				bo.IsUsed = csight.IsUsed;
-				bo.CSightsType = Mapper.Weapon.CSightsTypeToCSightsTypeBo(cstRepo.GetByID(csight.CSightsTypeId));
+				bo.CSightsType = Mapper.Weapon.SightsTypeToCSightsTypeBo(cstRepo.GetByID(csight.CSightsTypeId));
 				boList.Add(bo);
 			}
 
 			return boList;
 		}
+
+
 	}
 }

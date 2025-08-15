@@ -189,7 +189,7 @@ namespace Business.Handlers.WeaponHandlers
 			var listBo = new List<CSightsTypeBo>();
 			foreach (var sights in list)
 			{
-				var bo = Mapper.Weapon.CSightsTypeToCSightsTypeBo(sights);
+				var bo = Mapper.Weapon.SightsTypeToCSightsTypeBo(sights);
 				listBo.Add(bo);
 			}
 
