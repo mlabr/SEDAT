@@ -12,6 +12,8 @@ namespace Business.BusinessObjects
 
 		public int WeaponProfileId { get; set; }
 
+		public int MunitionId { get; set; }
+
 		public string Name { get; set; }
 
 		public string Description { get; set; }

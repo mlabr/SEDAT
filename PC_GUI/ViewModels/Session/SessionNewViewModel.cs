@@ -198,43 +198,42 @@ namespace PC_GUI.ViewModels.Session
 			//SessionNewViewModel model = this;
 			var sessionBo = Mapper.SessionMapper.SessionNewViewModelToSessionBo(this);
 
-			var bor = new RecordBo();
+			var recordBo = new RecordBo();
 
-			bor.WeaponProfileId = SelectedWeaponProfileItem.DbId;
+			recordBo.WeaponProfileId = SelectedWeaponProfileItem.DbId;
+			recordBo.MunitionId = SelectedMunitionItem.DbId;
 
 			if (BatchDataModelList.Any())
 			{
 				if(BatchDataModelList.Count < 2)
 				{
-					//no data
-					//bor.Score = BatchDataModelList.FirstOrDefault().Score;
-					//bor.ShotsCount = BatchDataModelList.FirstOrDefault().ShotsCount;
-					//bor.XCount = BatchDataModelList.FirstOrDefault().XCount;
+					recordBo.Score = BatchDataModelList.FirstOrDefault().Score;
+					recordBo.ShotsCount = BatchDataModelList.FirstOrDefault().ShotsCount;
+					recordBo.XCount = BatchDataModelList.FirstOrDefault().XCount;
 				}
 				else
 				{
-					// batch type data
 					foreach (var item in BatchDataModelList)
 					{
-						bor.Score += item.Score;
-						bor.ShotsCount += item.ShotsCount;
-						bor.XCount += item.Score;
+						recordBo.Score += item.Score;
+						recordBo.ShotsCount += item.ShotsCount;
+						recordBo.XCount += item.Score;
 					}
 					//TODO: Make this to data json
 
 				}
 			}
-			else
+			else //no data in batch list
 			{
-				//bor.Score = Score;
-				//bor.ShotsCount = Shots;
-				//bor.XCount = BatchDataModelList.FirstOrDefault().XCount;
+				//recordBo.Score = Score;
+				//recordBo.ShotsCount = Shots;
+				//recordBo.XCount = BatchDataModelList.FirstOrDefault().XCount;
 			}
 			//bor.Score = ScoreTotal;
 			//bor.ShotsCount = ShotsTotal;
-			bor.TimeStart = RecordTimeStart;
-			bor.TimeEnd = RecordTimeEnd;
-			sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(bor);
+			recordBo.TimeStart = RecordTimeStart;
+			recordBo.TimeEnd = RecordTimeEnd;
+			sessionBo.DisciplineBoList.FirstOrDefault().RecordBoList.Add(recordBo);
 
 
 			var stop = 0;

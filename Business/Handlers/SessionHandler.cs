@@ -72,8 +72,8 @@ namespace Business.Handlers
 					rec.DisciplineId = item.DbId;
 					rec.PersonId = 1;
 					rec.WeaponProfileId = bor.WeaponProfileId;
-					rec.MunitionId = 1;
-					rec.SightsId = 1;
+					rec.MunitionId = bor.MunitionId;
+					rec.SightsId = 1;//bor;
 					rec.Score = bor.Score;
 					rec.ShotsCount = bor.ShotsCount;
 					rec.TimeStart = bor.TimeStart.HasValue ? bor.TimeStart.Value.ToString(@"hh\:mm") : string.Empty;
