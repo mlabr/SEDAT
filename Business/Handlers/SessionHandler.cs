@@ -171,6 +171,29 @@ namespace Business.Handlers
 			return list;
 		}
 
+		public List<CShootingSupportBo> GetCShootingSupportUsedOnlyList()
+		{
+			var list = new List<CShootingSupportBo>();
+			ICodeRepository<CShootingSupport> repo = new CShootingSupportRepository();
+			var items = repo.GetUsedOnlyList();
+
+			foreach (var item in items)
+			{
+				var cd = new CShootingSupportBo();
+				cd.DbId = item.CShootingSupportId;
+				cd.Name = item.Name;
+				cd.Description = item.Description;
+				cd.Note = item.Note;
+				cd.Priority = item.Priority;
+
+				list.Add(cd);
+
+			}
+			list.OrderBy(x => x.Priority);
+
+			return list;
+		}
+
 		public List<TargetBo> GetTargetUsedOnlyList()
 		{
 			var list = new List<TargetBo>();

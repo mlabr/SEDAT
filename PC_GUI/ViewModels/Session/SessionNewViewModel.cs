@@ -129,7 +129,17 @@ namespace PC_GUI.ViewModels.Session
 			}
 			SelectedCShootingPositionItem = CShootingPositionList.FirstOrDefault();
 
-
+			var csuporptList = sesHandler.GetCShootingSupportUsedOnlyList();
+			CShootingSupportList = new List<DropDownItemModel>();
+			foreach (var item in csuporptList)
+			{
+				var csp = new DropDownItemModel();
+				csp.Name = item.Name;
+				csp.Description = item.Description;
+				csp.DbId = item.DbId;
+				CShootingSupportList.Add(csp);
+			}
+			SelectedCShootingSupportItem = CShootingSupportList.FirstOrDefault();
 
 			/****************************
 			 * 

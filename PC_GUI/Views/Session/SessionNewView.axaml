@@ -89,7 +89,7 @@
           </ComboBox.ItemTemplate>
         </ComboBox>
         
-        <ComboBox Grid.Column="3" Grid.Row="4"  ItemsSource="{Binding CShootingPositionList}" SelectedItem="{Binding SelectedCShootingPositionItem}" Height="30" Margin="0 5 0 0" Width="180" MaxDropDownHeight="300">
+        <ComboBox Grid.Column="3" Grid.Row="4"  ItemsSource="{Binding CShootingSupportList}" SelectedItem="{Binding SelectedCShootingSupportItem}" Height="30" Margin="0 5 0 0" Width="180" MaxDropDownHeight="300">
           <ComboBox.ItemTemplate>
             <DataTemplate>
               <TextBlock Text="{Binding Name}" FontFamily="{Binding}" ToolTip.Tip="{Binding Description}" ></TextBlock>

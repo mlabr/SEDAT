@@ -38,6 +38,13 @@ namespace PC_GUI.ViewModels.Session
 		[ObservableProperty]
 		private DropDownItemModel _selectedCShootingPositionItem;
 
+
+		[ObservableProperty]
+		private List<DropDownItemModel> _cShootingSupportList;
+
+		[ObservableProperty]
+		private DropDownItemModel _selectedCShootingSupportItem;
+
 		[ObservableProperty]
 		private DateTimeOffset _disciplineDate = new DateTimeOffset(DateTime.Now);
 
