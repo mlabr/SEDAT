@@ -1,4 +1,5 @@
-﻿using Avalonia.Media;
+﻿using Avalonia;
+using Avalonia.Media;
 using DataLayer.Entities;
 using DataLayer.Entities.CodeList;
 using System;
@@ -458,6 +459,38 @@ namespace DataLayer.DataResources
 				item.Note = "";
 				item.Description = types[i - 1].Item2;
 				item.IsUsed = types[i - 1].Item3;
+				i++;
+				yield return item;
+			}
+		}
+
+		internal IEnumerable<CShootingSupport> GetCSupportTypes()
+		{
+			Tuple<string, string>[] types =
+			{
+				Tuple.Create("Unknown",""),
+				Tuple.Create("Offhand",""),
+				Tuple.Create("Elbow",""),
+				Tuple.Create("Monopod","Floating monopod"),
+				Tuple.Create("Improvised","trunk, branch, wall, etc."),
+				Tuple.Create("Bipod",""),
+				Tuple.Create("Tripod",""),
+				Tuple.Create("Front bag",""),
+				Tuple.Create("Front & rear bags",""),
+				Tuple.Create("Bench rest",""),
+				Tuple.Create("Other","")
+			};
+
+			var i = 1;
+			foreach (var type in types)
+			{
+				var item = new CShootingSupport();
+				item.CShootingSupportId = i;
+				item.Name = types[i - 1].Item1;
+				item.Priority = i;
+				item.Note = "";
+				item.Description = types[i - 1].Item2;
+				item.IsUsed = true;
 				i++;
 				yield return item;
 			}

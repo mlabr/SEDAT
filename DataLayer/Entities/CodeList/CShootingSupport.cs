@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities.CodeList
 {
-	[Table("CScoreSupport")]
+	[Table("CShootingSupport")]
 	public class CShootingSupport : EntityCodeBase
 	{
 		[PrimaryKey, NotNull, AutoIncrement]
