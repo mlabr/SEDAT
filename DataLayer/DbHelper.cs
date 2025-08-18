@@ -42,6 +42,11 @@ namespace DataLayer
 					db.Insert(s);
 				}
 
+				db.CreateTable<CShootingSupport>();
+				foreach (var s in idr.GetCShootingSupport())
+				{
+					db.Insert(s);
+				}
 
 				db.CreateTable<CDisciplineType>();
 				foreach (var s in idr.GetCDisciplineTypeIEnumerable())

@@ -464,7 +464,7 @@ namespace DataLayer.DataResources
 			}
 		}
 
-		internal IEnumerable<CShootingSupport> GetCSupportTypes()
+		internal IEnumerable<CShootingSupport> GetCShootingSupport()
 		{
 			Tuple<string, string>[] types =
 			{
