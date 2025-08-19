@@ -53,6 +53,7 @@ namespace Business.Handlers
 				discipline.Name = item.Name;
 				discipline.CDisciplineTypeId = item.CDisciplineTypeId;
 				discipline.CShootingPositionId = item.CShootingPositionId;
+				discipline.CShootingSupportId = item.CShootingSupportId;
 				discipline.Description = item.Description;
 				discipline.TargetId = item.TargetId;
 				discipline.Range = item.Range;

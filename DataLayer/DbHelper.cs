@@ -131,6 +131,7 @@ namespace DataLayer
 												"SessionId INTEGER References Session (SessionId) NOT NULL," +
 												"CDisciplineTypeId INTEGER References CDisciplineType (CDisciplineTypeId) NOT NULL," +
 												"CShootingPositionId INTEGER References CShootingPosition (CShootingPositionId) NOT NULL," +
+												"CShootingSupportId INTEGER References CShootingSupport (CShootingSupportId) NOT NULL," +
 												"TargetId INTEGER References Target (TargetId) NOT NULL," +
 												"Name String NOT NULL," +
 												"Description String," +

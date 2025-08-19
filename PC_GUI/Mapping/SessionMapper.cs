@@ -60,6 +60,7 @@ namespace PC_GUI.Mapping
 				disciplineBo.CDisciplineTypeId = model.SelectedCDisciplineItem.DbId;
 				disciplineBo.TargetId = model.SelectedTargetItem.DbId;
 				disciplineBo.CShootingPositionId = model.SelectedCShootingPositionItem.DbId;
+				disciplineBo.CShootingSupportId = model.SelectedCShootingSupportItem.DbId;
 				disciplineBo.Description = model.DisciplineDescription;
 				disciplineBo.Note = model.DisciplineNote;
 				disciplineBo.Range = NumberParser.StringToFloat(model.Range);

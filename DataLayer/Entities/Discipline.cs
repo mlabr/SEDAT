@@ -15,7 +15,9 @@ namespace DataLayer.Entities
 
         public int CShootingPositionId { get; set; }
 
-        public int TargetId { get; set; }
+		public int CShootingSupportId { get; set; }
+
+		public int TargetId { get; set; }
 
         public string Name { get; set; }
 
@@ -49,6 +51,9 @@ namespace DataLayer.Entities
 
         [Ignore]
         public CShootingPosition CShootingPosition { get; set; }
+
+        [Ignore]
+        public CShootingSupport CShootingSupport { get; set; }
 
 	}
 }

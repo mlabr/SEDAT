@@ -19,6 +19,8 @@ namespace Business.BusinessObjects
 
 		public int CShootingPositionId { get; set; }
 
+		public int CShootingSupportId { get; set; }
+
 		public int TargetId { get; set; }
 
 		public string Name { get; set; }
@@ -39,5 +41,6 @@ namespace Business.BusinessObjects
 
 
 		public List<RecordBo> RecordBoList { get; set; }
+
 	}
 }
