@@ -100,7 +100,8 @@ namespace Business.Handlers.WeaponHandlers
 				m.Name = item.Name;
 				m.CaliberId = item.CaliberId;
 				m.DbId = item.MunitionId.Value;
-				m.Description = item.Description;
+				m.Description = "(" + caliberList.Where(c => c.DbId == item.CaliberId).Select(d => d.Name).FirstOrDefault().ToString() + ") ";
+				m.Description += item.Description;
 				m.Note = item.Note;
 				list.Add(m);
 			}
